@@ -1,42 +1,64 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
 		<meta charset="UTF-8"/>
 		<title>Arduino Simulator</title>
 	</head>
 	<body>
 		<script>
-			var setupCode = "println(\"hola\");";
-			var loopCode = "println(\"loopeando\");";
-
-			var code = "#include <iostream>\n" +
-
-						// main
-						"int main(){int internalLoopSystem=0;"+
-						setupCode +
-						"while(true){" +
-						loopCode +
-						"internalLoopSystem=internalLoopSystem+1;}return 0;}"
-
-						+
-
-						// print
-						"void print(char *text);" +
-						"void print(char *text){while(*text){cout << (*text);++text;};}"
-
-						+
-
-						// println
-						"void println(char *text);" +
-						"void println(char *text){while(*text){cout << (*text);++text;}cout << \"<br/>\";}"
-						;
-
 			var myWorker = new Worker("ArduinoSimulator.js");
 			myWorker.onmessage = function(e)
 				{
 				document.write(e.data);
 				}
-			myWorker.postMessage(code);
+
+			function convertArduinoSketch(a)
+				{
+				a = a.replaceAll("Serial.begin","_Serial_Begin");
+				a = a.replaceAll("Serial.println","_Serial_Println");
+				a = a.replaceAll("Serial.print","_Serial_Print");
+				return a;
+				}
+
+			function execute()
+				{
+				var setupCode = "void setup(){Serial.begin(9600);Serial.println(\"hola1\");Serial.println(\"hello world!\");}";
+				var loopCode = "void loop(){Serial.println(\"looping\");}";
+
+				setupCode = convertArduinoSketch(setupCode);
+				loopCode = convertArduinoSketch(loopCode);
+
+				var code = "#include <iostream>" +
+
+							// main
+							"int main(){int internalLoopSystem=0;setup();while(true){loop();internalLoopSystem=internalLoopSystem+1;}return 0;}"
+
+							+
+
+							// setup
+							"void setup();" +
+							setupCode
+
+							+
+
+							// loop
+							"void loop();" +
+							loopCode
+
+							+
+
+							// Serial implementation
+							"void _Serial_Begin(int baudRate);" +
+							"void _Serial_Begin(int baudRate){}" +
+							"void _Serial_Print(char *text);" +
+							"void _Serial_Print(char *text){while(*text){cout << (*text);++text;};}" +
+							"void _Serial_Println(char *text);" +
+							"void _Serial_Println(char *text){while(*text){cout << (*text);++text;}cout << \"<br/>\";}";
+
+				myWorker.postMessage(code);
+				}
+
+			execute();
 		</script>
 	</body>
 </html>
