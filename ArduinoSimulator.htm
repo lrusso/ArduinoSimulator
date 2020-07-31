@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Arduino Simulator</title>
+	</head>
+	<body>
+		<script>
+			var setupCode = "println(\"hola\");";
+			var loopCode = "println(\"loopeando\");";
+
+			var code = "#include <iostream>\n" +
+
+						// main
+						"int main(){int internalLoopSystem=0;"+
+						setupCode +
+						"while(true){" +
+						loopCode +
+						"internalLoopSystem=internalLoopSystem+1;}return 0;}"
+
+						+
+
+						// print
+						"void print(char *text);" +
+						"void print(char *text){while(*text){cout << (*text);++text;};}"
+
+						+
+
+						// println
+						"void println(char *text);" +
+						"void println(char *text){while(*text){cout << (*text);++text;}cout << \"<br/>\";}"
+						;
+
+			var myWorker = new Worker("ArduinoSimulator.js");
+			myWorker.onmessage = function(e)
+				{
+				document.write(e.data);
+				}
+			myWorker.postMessage(code);
+		</script>
+	</body>
+</html>
