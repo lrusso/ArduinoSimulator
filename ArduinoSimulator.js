@@ -212,6 +212,15 @@ function menuNewFileExecute(files)
 	{
 	try
 		{
+		// UPDATING THE MENU RUN ICON
+		document.getElementById("buttonRun").className = "arduinosimulator_button_run_enabled";
+
+		// UPDATING THE WEB WORKER STATUS
+		myWorkerRunning = false;
+
+		// TERMINATING THE WEB WORKER
+		try{myWorker.terminate()}catch(err){}
+
 		// SETTING THE DEFAULT FILE NAME IN THE LABEL
 		STRING_FILENAME = STRING_FILENAME_EMPTY + ".ino";
 		document.getElementById("arduinosimulator_filename").innerHTML = STRING_FILENAME;
@@ -302,6 +311,15 @@ function menuOpenFileExecute(file)
 	{
 	try
 		{
+		// UPDATING THE MENU RUN ICON
+		document.getElementById("buttonRun").className = "arduinosimulator_button_run_enabled";
+
+		// UPDATING THE WEB WORKER STATUS
+		myWorkerRunning = false;
+
+		// TERMINATING THE WEB WORKER
+		try{myWorker.terminate()}catch(err){}
+
 		// LOCKING THE EDITOR AND HIDING THE POINTER
 		editor.setOptions({readOnly: true, highlightGutterLine: false});
 		editor.renderer.$cursorLayer.element.style.display = "none";
@@ -553,7 +571,7 @@ function menuRun()
 		// CHECKING IF THE WEB WORKER IS RUNNING
 		if (myWorkerRunning==false)
 			{
-			// UPADTING THE MENU RUN ICON
+			// UPDATING THE MENU RUN ICON
 			document.getElementById("buttonRun").className = "arduinosimulator_button_stop_enabled";
 
 			// UPDATING THE WEB WORKER STATUS
@@ -574,7 +592,7 @@ function menuRun()
 			}
 			else
 			{
-			// UPADTING THE MENU RUN ICON
+			// UPDATING THE MENU RUN ICON
 			document.getElementById("buttonRun").className = "arduinosimulator_button_run_enabled";
 
 			// UPDATING THE WEB WORKER STATUS
