@@ -12,7 +12,7 @@ https://lrusso.github.io/ArduinoSimulator/ArduinoSimulator.htm
 
 * Change the App Icon.
 
-* Share Web (OG data) updating.
+* Share Web (OG data) update.
 
 * Clear feature in Serial Monitor.
 
