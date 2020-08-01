@@ -636,6 +636,8 @@ window.addEventListener("load", function()
 	document.getElementsByClassName("arduinosimulator_output_container")[0].style.display = "block";
 	document.getElementsByClassName("arduinosimulator_output_monitor")[0].style.display = "block";
 	document.getElementsByClassName("arduinosimulator_output_monitor_data")[0].style.display = "block";
+	document.getElementsByClassName("arduinosimulator_output_monitor_title")[0].style.display = "block";
+	
 
 	// RESIZING THE EDITOR
 	resizeArduinoSimulatorEditor();
