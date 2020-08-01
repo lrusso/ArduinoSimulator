@@ -29,6 +29,7 @@ html,body{margin:0;padding:0;background-color:black;-webkit-user-select:none;-mo
 .arduinosimulator_output_monitor_data{display:none;padding:10px;font-family:monospace,monospace;-webkit-user-select:text;-moz-user-select:text;user-select:text}
 .arduinosimulator_output_monitor_title{display:none;position:fixed;right:0;top:425px;width:525px;z-index:999;background-color:#F2F2F2;border-bottom:1px solid #C3C3C3}
 .arduinosimulator_output_monitor_title_value{font-family:Arial;font-size:13px;line-height:2;padding-left:7px;font-weight:bold}
+.arduinosimulator_output_monitor_clear{position:absolute;right:4px;top:5px;width:16px;height:16px;cursor:pointer;background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA4klEQVQ4jbXTP0oDURDH8c9uRLBKQLDQJp4hvXU6W2+gjTaCN7DTm5g+hxDPYLOxiWIqmxUtdhaem7dRQX8w7Px73zcMbwt5HWLSyd3jsad/7XCNj47VUfuiMgOYYICiY4PMVLaCeo3tyB3E9y4Dv8RJ+DWuyqCXOMYYFWaZw7OojaN3TU84zxU6usCiDdIdvGKYxBWOwqokP4xeNDtIAaMk3sde4rcapYDuBCmgT/8HWP0CsPqzCTYt8QYPmmd82wdIdYblDyZY4jQ3wTN248bv9NI6RZLcwVTz02zSO+Z4g09n2y8uhw/vCwAAAABJRU5ErkJggg==");background-repeat:no-repeat}
 .arduinosimulator_splash_container{position:fixed;left:0;right:0;top:0;bottom:0;background-color:rgba(0,0,0,0.5);z-index:9999}
 .arduinosimulator_pleasewait{position:fixed;width:64px;height:64px;left:0;right:0;top:0;bottom:0;margin:auto auto;border:0}
 .arduinosimulator_spinner{color:white;display:inline-block;position:relative;width:64px;height:64px}

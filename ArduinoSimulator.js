@@ -212,14 +212,8 @@ function menuNewFileExecute(files)
 	{
 	try
 		{
-		// UPDATING THE MENU RUN ICON
-		document.getElementById("buttonRun").className = "arduinosimulator_button_run_enabled";
-
-		// UPDATING THE WEB WORKER STATUS
-		myWorkerRunning = false;
-
-		// TERMINATING THE WEB WORKER
-		try{myWorker.terminate()}catch(err){}
+		// STOPPING THE EMULATION (IF RUNNING)
+		stoppingEmulator();
 
 		// SETTING THE DEFAULT FILE NAME IN THE LABEL
 		STRING_FILENAME = STRING_FILENAME_EMPTY + ".ino";
@@ -311,14 +305,8 @@ function menuOpenFileExecute(file)
 	{
 	try
 		{
-		// UPDATING THE MENU RUN ICON
-		document.getElementById("buttonRun").className = "arduinosimulator_button_run_enabled";
-
-		// UPDATING THE WEB WORKER STATUS
-		myWorkerRunning = false;
-
-		// TERMINATING THE WEB WORKER
-		try{myWorker.terminate()}catch(err){}
+		// STOPPING THE EMULATION (IF RUNNING)
+		stoppingEmulator();
 
 		// LOCKING THE EDITOR AND HIDING THE POINTER
 		editor.setOptions({readOnly: true, highlightGutterLine: false});
@@ -586,14 +574,8 @@ function menuRun()
 				// CHECKING IF THE EMULATOR SAID THAT THE CODE HAS A BUG
 				if (e.data==null)
 					{
-					// UPDATING THE MENU RUN ICON
-					document.getElementById("buttonRun").className = "arduinosimulator_button_run_enabled";
-
-					// UPDATING THE WEB WORKER STATUS
-					myWorkerRunning = false;
-
-					// TERMINATING THE WEB WORKER
-					try{myWorker.terminate();}catch(err){}
+					// STOPPING THE EMULATION
+					stoppingEmulator();
 					}
 					else
 					{
@@ -607,18 +589,41 @@ function menuRun()
 			}
 			else
 			{
-			// UPDATING THE MENU RUN ICON
-			document.getElementById("buttonRun").className = "arduinosimulator_button_run_enabled";
-
-			// UPDATING THE WEB WORKER STATUS
-			myWorkerRunning = false;
-
-			// TERMINATING THE WEB WORKER
-			myWorker.terminate();
+			// STOPPING THE EMULATION
+			stoppingEmulator();
 			}
 
 		// FOCUSING THE EDITOR
 		editor.focus();
+		}
+		catch(err)
+		{
+		}
+	}
+
+function clearSerialMonitor()
+	{
+	try
+		{
+		document.getElementsByClassName("arduinosimulator_output_monitor_data")[0].innerHTML = "";
+		}
+		catch(err)
+		{
+		}
+	}
+
+function stoppingEmulator()
+	{
+	try
+		{
+		// UPDATING THE MENU RUN ICON
+		document.getElementById("buttonRun").className = "arduinosimulator_button_run_enabled";
+
+		// UPDATING THE WEB WORKER STATUS
+		myWorkerRunning = false;
+
+		// TERMINATING THE WEB WORKER
+		myWorker.terminate();
 		}
 		catch(err)
 		{
@@ -746,5 +751,6 @@ window.addEventListener("load", function()
 	document.getElementById("buttonRedo").addEventListener("click",function(event){menuRedo()});
 	document.getElementById("buttonSearch").addEventListener("click",function(event){menuSearch()});
 	document.getElementById("buttonRun").addEventListener("click",function(event){menuRun()});
+	document.getElementById("buttonClear").addEventListener("click",function(event){clearSerialMonitor()});
 	document.getElementById("arduinosimulator_filename").addEventListener("click",function(event){editor.focus()});
 	});
