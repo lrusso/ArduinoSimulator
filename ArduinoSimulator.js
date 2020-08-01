@@ -667,7 +667,7 @@ function runSketch(sketch)
 
 				// DELAY IMPLEMENTATION
 				"void delay(int milliseconds);" +
-				"void delay(int milliseconds){int endingDelay=time(0)+floor(milliseconds/1000);while(time(0)<=endingDelay){}}"
+				"void delay(int milliseconds){int endingDelay=time(0)+(milliseconds/1000);while(time(0)<=endingDelay){}}"
 
 				+
 
