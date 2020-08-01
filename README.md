@@ -8,7 +8,13 @@ https://lrusso.github.io/ArduinoSimulator/ArduinoSimulator.htm
 
 ## Roadmap:
 
-* **Clear** feature in Serial Monitor.
+* Project Banner.
+
+* Change the App Icon.
+
+* Share Web (OG data) updating.
+
+* Clear feature in Serial Monitor.
 
 * **pinMode** function implementation.
 
