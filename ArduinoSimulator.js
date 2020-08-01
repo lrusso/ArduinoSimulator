@@ -660,11 +660,7 @@ function runSketch(sketch)
 
 				// Serial implementation (JSCPP doesn't support structs yet)
 				"void _Serial_Begin(int baudRate);" +
-				"void _Serial_Begin(int baudRate){}" +
-				"void _Serial_Print(char *text);" +
-				"void _Serial_Print(char *text){while(*text){cout << (*text);++text;};}" +
-				"void _Serial_Println(char *text);" +
-				"void _Serial_Println(char *text){while(*text){cout << (*text);++text;}cout << \"<br/>\";}";
+				"void _Serial_Begin(int baudRate){}";
 
 	// SENDING THE SKETCH TO THE WEB WORKER IN ORDER TO BE EXECUTED
 	myWorker.postMessage(code);
@@ -673,8 +669,8 @@ function runSketch(sketch)
 function convertArduinoSketch(a)
 	{
 	a = a.replaceAll("Serial.begin","_Serial_Begin");
-	a = a.replaceAll("Serial.println","_Serial_Println");
-	a = a.replaceAll("Serial.print","_Serial_Print");
+	a = a.replaceAll("Serial.println","cout <<");
+	a = a.replaceAll("Serial.print","cout <<");
 	return a;
 	}
 
@@ -683,7 +679,6 @@ window.addEventListener("resize", function()
 	// RESIZING THE EDITOR
 	resizeArduinoSimulatorEditor();
 	});
-
 
 window.addEventListener("load", function()
 	{
