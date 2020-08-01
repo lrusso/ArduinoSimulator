@@ -583,7 +583,7 @@ function resizeArduinoSimulatorEditor()
 		}
 	}
 
-function execute(sketch)
+function runSketch(sketch)
 	{
 	// Converting the Arduino methods and classes (JSCPP doesn't support structs yet)
 	sketch = convertArduinoSketch(sketch);
@@ -656,9 +656,9 @@ window.addEventListener("load", function()
 	document.getElementById("buttonUndo").addEventListener("click",function(event){menuUndo()});
 	document.getElementById("buttonRedo").addEventListener("click",function(event){menuRedo()});
 	document.getElementById("buttonSearch").addEventListener("click",function(event){menuSearch()});
-	document.getElementById("buttonInsert").addEventListener("click",function(event)
+	document.getElementById("buttonRun").addEventListener("click",function(event)
 		{
-		execute(editor.getValue());
+		runSketch(editor.getValue());
 		});
 	document.getElementById("arduinosimulator_filename").addEventListener("click",function(event){editor.focus()});
 	});
