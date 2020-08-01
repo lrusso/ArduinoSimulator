@@ -553,6 +553,9 @@ function menuRun()
 		// CHECKING IF THE WEB WORKER IS RUNNING
 		if (myWorkerRunning==false)
 			{
+			// UPADTING THE MENU RUN ICON
+			document.getElementById("buttonRun").className = "arduinosimulator_button_stop_enabled";
+
 			// UPDATING THE WEB WORKER STATUS
 			myWorkerRunning = true;
 
@@ -571,6 +574,9 @@ function menuRun()
 			}
 			else
 			{
+			// UPADTING THE MENU RUN ICON
+			document.getElementById("buttonRun").className = "arduinosimulator_button_run_enabled";
+
 			// UPDATING THE WEB WORKER STATUS
 			myWorkerRunning = false;
 
