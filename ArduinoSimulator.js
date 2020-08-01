@@ -634,7 +634,7 @@ function runSketch(sketch)
 	// Converting the Arduino methods and classes (JSCPP doesn't support structs yet)
 	sketch = convertArduinoSketch(sketch);
 
-	var code = "#include <iostream>" +
+	var code = "#include <iostream>\n#include <ctime>\n#include <cmath>" +
 
 				// main implementation that will execute setup and loop
 				"int main(){int internalLoopSystem=0;setup();while(true){loop();internalLoopSystem=internalLoopSystem+1;}return 0;}"
@@ -649,6 +649,12 @@ function runSketch(sketch)
 
 				// adding the Arduino sketch
 				sketch
+
+				+
+
+				// delay implementation
+				"void delay(int milliseconds);" +
+				"void delay(int milliseconds){int endingDelay=time(0)+floor(milliseconds/1000);while(time(0)<=endingDelay){}}"
 
 				+
 
