@@ -10,8 +10,6 @@ https://lrusso.github.io/ArduinoSimulator/ArduinoSimulator.htm
 
 * Project Banner.
 
-* Share Web (OG data) update.
-
 * Clear feature in Serial Monitor.
 
 * **pinMode** function implementation.
