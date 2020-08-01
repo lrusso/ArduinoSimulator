@@ -29,7 +29,7 @@
 			var STRING_LOSECHANGES_MESSAGE = "Lose any unsaved changes?";
 			var STRING_LOSECHANGES_YES = "Yes";
 			var STRING_LOSECHANGES_NO = "No";
-			var STRING_WELCOME = "/*\n\nArduino Simulator developed by LRusso.com\n\n*/\n\nint counter = 0;\n\nvoid setup()\n" + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + "Serial.begin(9600);\n" + String.fromCharCode(9) + "Serial.println(\"Hello world!\");\n" + String.fromCharCode(9) + "}\n\nvoid loop()\n" + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + "counter++;\n" + String.fromCharCode(9) + "Serial.print(counter);\n" + String.fromCharCode(9) + "delay(1000);\n" + String.fromCharCode(9) + "counter++;\n" + String.fromCharCode(9) + "Serial.print(counter);\n" + String.fromCharCode(9) + "delay(1000);\n" + String.fromCharCode(9) + "counter++;\n" + String.fromCharCode(9) + "Serial.print(counter);\n" + String.fromCharCode(9) + "delay(1000);\n" + String.fromCharCode(9) + "Serial.print(\" and looping! \");\n" + String.fromCharCode(9) + "delay(1000);\n" + String.fromCharCode(9) + "}";
+			var STRING_WELCOME = "/*\n\nArduino Simulator developed by LRusso.com\n\n*/\n\nint counter = 0;\n\nvoid setup()\n" + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + "Serial.begin(9600);\n" + String.fromCharCode(9) + "Serial.println(\"Hello world!\");\n" + String.fromCharCode(9) + "}\n\nvoid loop()\n" + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + "delay(1000);\n" + String.fromCharCode(9) + "counter++;\n" + String.fromCharCode(9) + "Serial.print(counter);\n" + String.fromCharCode(9) + "delay(1000);\n" + String.fromCharCode(9) + "counter++;\n" + String.fromCharCode(9) + "Serial.print(counter);\n" + String.fromCharCode(9) + "delay(1000);\n" + String.fromCharCode(9) + "counter++;\n" + String.fromCharCode(9) + "Serial.print(counter);\n" + String.fromCharCode(9) + "delay(1000);\n" + String.fromCharCode(9) + "Serial.print(\" and looping! \");\n" + String.fromCharCode(9) + "}";
 		</script>
 		<div class="arduinosimulator_splash_container">
 			<div class="arduinosimulator_pleasewait"><div class="arduinosimulator_spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
@@ -60,7 +60,6 @@
 				<div class="arduinosimulator_separator"></div>
 				<div class="arduinosimulator_holder">
 					<div class="arduinosimulator_button_run_enabled" id="buttonRun"></div>
-					<input type="file" class="arduinosimulator_buttonHidden" id="fileInserter" onChange="menuInsert(document.getElementById('fileInserter').files[0]);">
 				</div>
 				<div class="arduinosimulator_separator"></div>
 				<div class="arduinosimulator_holder">
@@ -73,14 +72,27 @@
 		<div class="arduinosimulator_output_container">
 			<div class="arduinosimulator_output_title">
 				<div class="arduinosimulator_output_title_value">
-					HARDWARE CONNECTIONS
+					HARDWARE INFORMATION
 				</div>
 			</div>
-
-			<div style="float:left;width:100%;height:30px;display:inline-block;background-color:white;padding-bottom:50px;font-family:Arial;font-size:13px;border-bottom:1px solid #D3D3D3">
-
+			<div class="arduinosimulator_output_hardware_container">
+				<div class="arduinosimulator_output_hardware_board_container">
+					<div class="arduinosimulator_output_hardware_board_image"></div>
+					<div class="arduinosimulator_output_hardware_board_label">
+						<div class="arduinosimulator_output_hardware_board_label_value">
+							ARDUINO<br />BOARD<br />UNO
+						</div>
+					</div>
+				</div>
+				<div class="arduinosimulator_output_hardware_led_container">
+					<div class="arduinosimulator_output_hardware_led_image"></div>
+					<div class="arduinosimulator_output_hardware_led_label">
+						<div class="arduinosimulator_output_hardware_led_label_value">
+							NOT<br/>CONNECTED
+						</div>
+					</div>
+				</div>
 			</div>
-
 			<div class="arduinosimulator_output_title">
 				<div class="arduinosimulator_output_title_value">
 					SERIAL MONITOR
