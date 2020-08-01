@@ -10,8 +10,6 @@ https://lrusso.github.io/ArduinoSimulator/ArduinoSimulator.htm
 
 * Project Banner.
 
-* Change the App Icon.
-
 * Share Web (OG data) update.
 
 * Clear feature in Serial Monitor.
