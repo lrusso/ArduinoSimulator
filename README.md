@@ -6,11 +6,11 @@ https://lrusso.github.io/ArduinoSimulator/ArduinoSimulator.htm
 
 ## Roadmap:
 
-* Clear Serial Monitor feature.
+* **Clear** feature in Serial Monitor.
 
-* pinMode implementation.
+* **pinMode** function implementation.
 
-* digitalWrite implementation.
+* **digitalWrite** function implementation.
 
 * To be able to connect LEDs and wheels (with DC Motors) to the Arduino board.
 
