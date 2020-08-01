@@ -1,4 +1,4 @@
-// CREATING THE WEB WORKER (THE CPP COMPILER)
+// CREATING THE WEB WORKER (THE CPP INTERPRETER)
 var myWorker;
 var myWorkerRunning;
 
@@ -578,13 +578,28 @@ function menuRun()
 			myWorkerRunning = true;
 
 			// CREATING THE WEB WORKER
-			myWorker = new Worker("ArduinoSimulatorCompiler.js");
+			myWorker = new Worker("ArduinoSimulatorInterpreter.js");
 
 			// SETTING WHAT HAPPENS WHEN DATA IS RECEIVED FROM THE WEB WORKER
 			myWorker.onmessage = function(e)
 				{
-				// ADDING DATA TO THE SERIAL MONITOR
-				document.getElementsByClassName("arduinosimulator_output_monitor_data")[0].innerHTML = document.getElementsByClassName("arduinosimulator_output_monitor_data")[0].innerHTML + e.data;
+				// CHECKING IF THE EMULATOR SAID THAT THE CODE HAS A BUG
+				if (e.data==null)
+					{
+					// UPDATING THE MENU RUN ICON
+					document.getElementById("buttonRun").className = "arduinosimulator_button_run_enabled";
+
+					// UPDATING THE WEB WORKER STATUS
+					myWorkerRunning = false;
+
+					// TERMINATING THE WEB WORKER
+					try{myWorker.terminate();}catch(err){}
+					}
+					else
+					{
+					// ADDING DATA TO THE SERIAL MONITOR
+					document.getElementsByClassName("arduinosimulator_output_monitor_data")[0].innerHTML = document.getElementsByClassName("arduinosimulator_output_monitor_data")[0].innerHTML + e.data;
+					}
 				}
 
 			// RUNNING THE SKETCH
@@ -601,6 +616,9 @@ function menuRun()
 			// TERMINATING THE WEB WORKER
 			myWorker.terminate();
 			}
+
+		// FOCUSING THE EDITOR
+		editor.focus();
 		}
 		catch(err)
 		{
@@ -631,36 +649,40 @@ function resizeArduinoSimulatorEditor()
 
 function runSketch(sketch)
 	{
-	// Converting the Arduino methods and classes (JSCPP doesn't support structs yet)
+	// CONVERTING THE ARDUINO METHODS AND CLASSES (JSCPP DOESN'T SUPPORT STRUCTS YET)
 	sketch = convertArduinoSketch(sketch);
 
-	var code = "#include <iostream>\n#include <ctime>\n#include <cmath>" +
+	var code = "#include <iostream>\n#include <ctime>\n#include <cmath>\n" +
 
-				// main implementation that will execute setup and loop
+				// MAIN IMPLEMENTATION THAT WILL EXECUTE SETUP AND LOOP
 				"int main(){int internalLoopSystem=0;setup();while(true){loop();internalLoopSystem=internalLoopSystem+1;}return 0;}"
 
 				+
 
-				// setup and loop prototypes implementation
+				// SETUP AND LOOP PROTOTYPES IMPLEMENTATION
 				"void setup();" +
 				"void loop();"
 
 				+
 
-				// adding the Arduino sketch
-				sketch
-
-				+
-
-				// delay implementation
+				// DELAY IMPLEMENTATION
 				"void delay(int milliseconds);" +
 				"void delay(int milliseconds){int endingDelay=time(0)+floor(milliseconds/1000);while(time(0)<=endingDelay){}}"
 
 				+
 
-				// Serial implementation (JSCPP doesn't support structs yet)
+				// SERIAL IMPLEMENTATION (JSCPP DOESN'T SUPPORT STRUCTS YET)
 				"void _Serial_Begin(int baudRate);" +
-				"void _Serial_Begin(int baudRate){}";
+				"void _Serial_Begin(int baudRate){}" +
+
+
+				// THE FOLLOWING BREAKLINES ARE NEED IN ORDER TO PREVENT JSCPP TO SHOW ANY OF THE PREVIOUS CODE IF THE USER CODE FAILS
+				"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+
+				+
+
+				// ADDING THE ARDUINO SKETCH
+				sketch;
 
 	// SENDING THE SKETCH TO THE WEB WORKER IN ORDER TO BE EXECUTED
 	myWorker.postMessage(code);
@@ -712,7 +734,6 @@ window.addEventListener("load", function()
 	document.getElementsByClassName("arduinosimulator_output_monitor")[0].style.display = "block";
 	document.getElementsByClassName("arduinosimulator_output_monitor_data")[0].style.display = "block";
 	document.getElementsByClassName("arduinosimulator_output_monitor_title")[0].style.display = "block";
-	
 
 	// RESIZING THE EDITOR
 	resizeArduinoSimulatorEditor();
