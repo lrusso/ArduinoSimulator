@@ -605,7 +605,11 @@ function clearSerialMonitor()
 	{
 	try
 		{
+		// CLEARING THE SERIAL MONITOR DATA
 		document.getElementsByClassName("arduinosimulator_output_monitor_data")[0].innerHTML = "";
+
+		// FOCUSING THE EDITOR
+		editor.focus();
 		}
 		catch(err)
 		{
@@ -736,9 +740,6 @@ window.addEventListener("load", function()
 
 	// SHOWING THE SERIAL MONITOR
 	document.getElementsByClassName("arduinosimulator_output_container")[0].style.display = "block";
-	document.getElementsByClassName("arduinosimulator_output_monitor")[0].style.display = "block";
-	document.getElementsByClassName("arduinosimulator_output_monitor_data")[0].style.display = "block";
-	document.getElementsByClassName("arduinosimulator_output_monitor_title")[0].style.display = "block";
 
 	// RESIZING THE EDITOR
 	resizeArduinoSimulatorEditor();
