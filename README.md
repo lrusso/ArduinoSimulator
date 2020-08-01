@@ -6,6 +6,8 @@ https://lrusso.github.io/ArduinoSimulator/ArduinoSimulator.htm
 
 ## Roadmap:
 
+* Clear Serial Monitor feature.
+
 * pinMode implementation.
 
 * digitalWrite implementation.
