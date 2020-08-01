@@ -1,12 +1,6 @@
 // CREATING THE WEB WORKER (THE CPP COMPILER)
-var myWorker = new Worker("ArduinoSimulatorCompiler.js");
-
-// SETTING WHAT HAPPENS WHEN DATA IS RECEIVED FROM THE WEB WORKER
-myWorker.onmessage = function(e)
-	{
-	// ADDING DATA TO THE SERIAL MONITOR
-	document.getElementsByClassName("arduinosimulator_output_monitor_data")[0].innerHTML = document.getElementsByClassName("arduinosimulator_output_monitor_data")[0].innerHTML + e.data;
-	}
+var myWorker;
+var myWorkerRunning;
 
 function confirmCustom(title,message,yes,no,myCallback)
 	{
@@ -552,6 +546,43 @@ function menuRedo()
 		}
 	}
 
+function menuRun()
+	{
+	try
+		{
+		// CHECKING IF THE WEB WORKER IS RUNNING
+		if (myWorkerRunning==false)
+			{
+			// UPDATING THE WEB WORKER STATUS
+			myWorkerRunning = true;
+
+			// CREATING THE WEB WORKER
+			myWorker = new Worker("ArduinoSimulatorCompiler.js");
+
+			// SETTING WHAT HAPPENS WHEN DATA IS RECEIVED FROM THE WEB WORKER
+			myWorker.onmessage = function(e)
+				{
+				// ADDING DATA TO THE SERIAL MONITOR
+				document.getElementsByClassName("arduinosimulator_output_monitor_data")[0].innerHTML = document.getElementsByClassName("arduinosimulator_output_monitor_data")[0].innerHTML + e.data;
+				}
+
+			// RUNNING THE SKETCH
+			runSketch(editor.getValue());
+			}
+			else
+			{
+			// UPDATING THE WEB WORKER STATUS
+			myWorkerRunning = false;
+
+			// TERMINATING THE WEB WORKER
+			myWorker.terminate();
+			}
+		}
+		catch(err)
+		{
+		}
+	}
+
 function resizeArduinoSimulatorEditor()
 	{
 	try
@@ -626,6 +657,9 @@ window.addEventListener("resize", function()
 
 window.addEventListener("load", function()
 	{
+	// SETTING THAT THE WEB WORKER IS NOT RUNNING
+	myWorkerRunning = false;
+
 	// HIDING THE LOADING SPLASH
 	document.getElementsByClassName("arduinosimulator_splash_container")[0].style.display = "none";
 
@@ -649,9 +683,6 @@ window.addEventListener("load", function()
 	document.getElementById("buttonUndo").addEventListener("click",function(event){menuUndo()});
 	document.getElementById("buttonRedo").addEventListener("click",function(event){menuRedo()});
 	document.getElementById("buttonSearch").addEventListener("click",function(event){menuSearch()});
-	document.getElementById("buttonRun").addEventListener("click",function(event)
-		{
-		runSketch(editor.getValue());
-		});
+	document.getElementById("buttonRun").addEventListener("click",function(event){menuRun()});
 	document.getElementById("arduinosimulator_filename").addEventListener("click",function(event){editor.focus()});
 	});
