@@ -216,8 +216,8 @@ function menuNewFileExecute(files)
 	{
 	try
 		{
-		// STOPPING THE EMULATION (IF RUNNING)
-		stoppingEmulator();
+		// STOPPING THE SIMULATOR (IF RUNNING)
+		stoppingSimulator();
 
 		// CLEARING THE SERIAL MONITOR
 		document.getElementsByClassName("arduinosimulator_output_monitor_data")[0].innerHTML = "";
@@ -313,7 +313,7 @@ function menuOpenFileExecute(file)
 	try
 		{
 		// STOPPING THE EMULATION (IF RUNNING)
-		stoppingEmulator();
+		stoppingSimulator();
 
 		// CLEARING THE SERIAL MONITOR
 		document.getElementsByClassName("arduinosimulator_output_monitor_data")[0].innerHTML = "";
@@ -607,14 +607,14 @@ function menuRun()
 				{
 				try
 					{
-					// GETTING THE DATA SENT FROM THE EMULATOR
+					// GETTING THE DATA SENT FROM THE SIMULATOR
 					var myReceivedData = e.data;
 
-					// CHECKING IF THE EMULATOR SAID THAT THE CODE HAS A BUG
+					// CHECKING IF THE SIMULATOR SAID THAT THE CODE HAS A BUG
 					if (myReceivedData==null)
 						{
-						// STOPPING THE EMULATION
-						stoppingEmulator();
+						// STOPPING THE SIMULATION
+						stoppingSimulator();
 						}
 						else
 						{
@@ -674,8 +674,8 @@ function menuRun()
 			}
 			else
 			{
-			// STOPPING THE EMULATION
-			stoppingEmulator();
+			// STOPPING THE SIMULATION
+			stoppingSimulator();
 			}
 
 		// FOCUSING THE EDITOR
@@ -701,7 +701,7 @@ function clearSerialMonitor()
 		}
 	}
 
-function stoppingEmulator()
+function stoppingSimulator()
 	{
 	try
 		{
