@@ -605,6 +605,13 @@ function menuRun()
 			// SETTING WHAT HAPPENS WHEN DATA IS RECEIVED FROM THE WEB WORKER
 			myWorker.onmessage = function(e)
 				{
+				try{
+
+				}
+				catch(err)
+				{
+
+				}
 				// GETTING THE DATA SENT FROM THE EMULATOR
 				var myReceivedData = e.data;
 
@@ -641,7 +648,18 @@ function menuRun()
 						if (myReceivedData.indexOf("_" + myDCMotorPin + "_")>-1)
 							{
 							// GETTING THE DUTY
+							var duty = myReceivedData.substr(myReceivedData.lastIndexOf("_")+1,myReceivedData.length);
 
+							if (duty>0)
+								{
+								// TURNING ON THE DC MOTOR
+								document.getElementById("motorStatus").className = "arduinosimulator_output_hardware_dcmotor_image_on";
+								}
+								else
+								{
+								// TURNING OFF THE DC MOTOR
+								document.getElementById("motorStatus").className = "arduinosimulator_output_hardware_dcmotor_image_off";
+								}
 							}
 						}
 					else
