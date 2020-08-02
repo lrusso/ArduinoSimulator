@@ -672,6 +672,38 @@ function runSketch(sketch)
 				"void setup();" +
 				"void loop();"
 
+
+				+
+
+				// DIGITAL PINS IMPLEMENTATION
+				"bool _DIGITAL_PIN0_ACTIVE = false;" +
+				"bool _DIGITAL_PIN1_ACTIVE = false;" +
+				"bool _DIGITAL_PIN2_ACTIVE = false;" +
+				"bool _DIGITAL_PIN3_ACTIVE = false;" +
+				"bool _DIGITAL_PIN4_ACTIVE = false;" +
+				"bool _DIGITAL_PIN5_ACTIVE = false;" +
+				"bool _DIGITAL_PIN6_ACTIVE = false;" +
+				"bool _DIGITAL_PIN7_ACTIVE = false;" +
+				"bool _DIGITAL_PIN8_ACTIVE = false;" +
+				"bool _DIGITAL_PIN9_ACTIVE = false;" +
+				"bool _DIGITAL_PIN10_ACTIVE = false;" +
+				"bool _DIGITAL_PIN11_ACTIVE = false;" +
+				"bool _DIGITAL_PIN12_ACTIVE = false;" +
+				"bool _DIGITAL_PIN13_ACTIVE = false;" +
+
+				// PINMODE IMPLEMENTATION
+				"int OUTPUT = -1;" +
+				"void pinMode(int digitalpin, int output);" +
+				"void pinMode(int digitalpin, int output){if (digitalpin==0){_DIGITAL_PIN0_ACTIVE=true;}else if (digitalpin==1){_DIGITAL_PIN1_ACTIVE=true;}else if (digitalpin==2){_DIGITAL_PIN2_ACTIVE=true;}else if (digitalpin==3){_DIGITAL_PIN3_ACTIVE=true;}else if (digitalpin==4){_DIGITAL_PIN4_ACTIVE=true;}else if (digitalpin==5){_DIGITAL_PIN5_ACTIVE=true;}else if (digitalpin==6){_DIGITAL_PIN6_ACTIVE=true;}else if (digitalpin==7){_DIGITAL_PIN7_ACTIVE=true;}else if (digitalpin==8){_DIGITAL_PIN8_ACTIVE=true;}else if (digitalpin==9){_DIGITAL_PIN9_ACTIVE=true;}else if (digitalpin==10){_DIGITAL_PIN10_ACTIVE=true;}else if (digitalpin==11){_DIGITAL_PIN11_ACTIVE=true;}else if (digitalpin==12){_DIGITAL_PIN12_ACTIVE=true;}else if (digitalpin==13){_DIGITAL_PIN13_ACTIVE=true;}}"
+
+				+
+
+				// DIGITALWRITE IMPLEMENTATION
+				"bool LOW = false;" +
+				"bool HIGH = true;" +
+				"void digitalWrite(int digitalpin, bool signal);" +
+				"void digitalWrite(int digitalpin, bool signal){}"
+
 				+
 
 				// DELAY IMPLEMENTATION
