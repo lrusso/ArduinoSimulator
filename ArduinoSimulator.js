@@ -809,6 +809,12 @@ function runSketch(sketch)
 
 				+
 
+				// PULSEIN IMPLEMENTATION
+				"unsigned long pulseIn(int pin, int signal);" +
+				"unsigned long pulseIn(int pin, int signal){return 0;}"
+
+				+
+
 				// SERIAL IMPLEMENTATION
 				"int _Serial_Available();" +
 				"int _Serial_Available(){return 0;}" +
@@ -861,6 +867,9 @@ function convertArduinoSketch(a)
 
 	// FINDING AND REPLACING ALL THE SERIAL.READ
 	a = a.replace(/Serial.read/g,"_Serial_Read");
+
+	// FINDING AND REPLACING ALL THE PULSEIN FUNCTIONS
+	a = a.replace(/pulseIn/g,"_pulseIn");
 
 	// FINDING AND REPLACING ALL THE BOOLEAN FUNCTIONS
 	a = a.replace(/boolean /g,"bool ");
