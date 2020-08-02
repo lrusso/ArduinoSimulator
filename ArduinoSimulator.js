@@ -646,14 +646,44 @@ function stoppingEmulator()
 	{
 	try
 		{
+		// TERMINATING THE WEB WORKER
+		try{myWorker.terminate()}catch(err){}
+
 		// UPDATING THE MENU RUN ICON
 		document.getElementById("buttonRun").className = "arduinosimulator_button_run_enabled";
 
 		// UPDATING THE WEB WORKER STATUS
 		myWorkerRunning = false;
 
-		// TERMINATING THE WEB WORKER
-		myWorker.terminate();
+		// UPDATING THE PIN LED STATUS
+		updatePinLedStatus();
+
+		// CLEARING THE SERIAL MONITOR
+		document.getElementsByClassName("arduinosimulator_output_monitor_data")[0].innerHTML = "";
+		}
+		catch(err)
+		{
+		}
+	}
+
+function updatePinLedStatus()
+	{
+	try
+		{
+		// SETTING THE DEFAULT LED IMAGE
+		document.getElementById("ledStatus").className = "arduinosimulator_output_hardware_led_image_off";
+
+		// CHECKING IF A PIN LED WAS SET
+		if (myPinLed>-1)
+			{
+			// UPDATING THE PIN LED LABEL WITH THE SELECTED DIGITAL PIN
+			document.getElementsByClassName("arduinosimulator_output_hardware_led_label_value")[0].innerHTML = "CONNECTED<br/>TO D" + myPinLed;
+			}
+			else
+			{
+			// UPDATING THE PIN LED LABEL WITH A NOT CONNECTION SIGN
+			document.getElementsByClassName("arduinosimulator_output_hardware_led_label_value")[0].innerHTML = "NOT<br />CONNECTED";
+			}
 		}
 		catch(err)
 		{
@@ -759,7 +789,7 @@ function convertArduinoSketch(a)
 	for (var i = 0; i < matches.length; i++)
 		{
 		var replaceThis = new RegExp(escapeRegex(matches[i]),"g");
-		var withThis = matches[i] + ";cout << \"<br/>\"";
+		var withThis = matches[i] + ";cout << \"<br />\"";
 		a = a.replace(replaceThis, withThis);
 		}
 
@@ -792,7 +822,10 @@ window.addEventListener("load", function()
 	// SHOWING THE CODE EDITOR
 	document.getElementById("arduinosimulator_textcode_container").style.display = "block";
 
-	// SHOWING THE SERIAL MONITOR
+	// CHECKING IF A PIN LED WAS SET AND UPDATING THE UI IF NECESSARY
+	updatePinLedStatus();
+
+	// SHOWING THE OUTPUT CONTAINER
 	document.getElementsByClassName("arduinosimulator_output_container")[0].style.display = "block";
 
 	// RESIZING THE EDITOR
