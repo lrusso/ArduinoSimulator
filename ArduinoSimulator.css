@@ -72,4 +72,5 @@ html,body{margin:0;padding:0;background-color:black;-webkit-user-select:none;-mo
 	.arduinosimulator_button_redo_enabled:hover{background-color:#F2F2F2;border:thin solid #F2F2F2}
 	.arduinosimulator_button_search_enabled:hover{background-color:#F2F2F2;border:thin solid #F2F2F2}
 	.arduinosimulator_button_run_enabled:hover{background-color:#F2F2F2;border:thin solid #F2F2F2}
+	.arduinosimulator_button_stop_enabled:hover{background-color:#F2F2F2;border:thin solid #F2F2F2}
 	}
