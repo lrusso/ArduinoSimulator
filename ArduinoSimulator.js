@@ -700,6 +700,7 @@ function runSketch(sketch)
 				+
 
 				// PINMODE IMPLEMENTATION
+				"int INPUT = 0;" +
 				"int OUTPUT = 0;" +
 				"void pinMode(int digitalpin, int type);" +
 				"void pinMode(int digitalpin, int type){_digital_pins_active[digitalpin]=true;}"
