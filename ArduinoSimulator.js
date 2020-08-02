@@ -913,13 +913,13 @@ window.addEventListener("load", function()
 	// CHECKING IF THE USER SET A PIN VALUE IN THE URL
 	try
 		{
-		var tempPinLed = getValueFromURL("pinled");
-		if (tempPinLed!=null)
+		var tempLedPin = getValueFromURL("ledpin");
+		if (tempLedPin!=null)
 			{
-			tempPinLed = parseInt(tempPinLed);
-			if (Number.isInteger(tempPinLed)==true)
+			tempLedPin = parseInt(tempLedPin);
+			if (Number.isInteger(tempLedPin)==true)
 				{
-				myLedPin = tempPinLed;
+				myLedPin = tempLedPin;
 				}
 			}
 		}
