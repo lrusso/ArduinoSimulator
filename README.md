@@ -22,4 +22,8 @@ Browse to the Web page with a different **ledpin** value (see example above) or 
 
 ## Roadmap
 
+* analogWrite implementation.
+
 * String class implementation.
+
+* 'Please Rotate' in mobile devices.
