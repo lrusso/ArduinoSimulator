@@ -859,6 +859,12 @@ function convertArduinoSketch(a)
 	// FINDING AND REPLACING ALL THE SERIAL.READ
 	a = a.replace(/Serial.read/g,"_Serial_Read");
 
+	// FINDING AND REPLACING ALL THE SERIAL.READ
+	a = a.replace(/Serial.read/g,"_Serial_Read");
+
+	// FINDING AND REPLACING ALL THE BOOLEAN FUNCTIONS
+	a = a.replace(/boolean /g,"bool ");
+
 	// RETURNING THE CONVERTED CODE
 	return a;
 	}
