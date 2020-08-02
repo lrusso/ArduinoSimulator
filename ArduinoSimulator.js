@@ -557,7 +557,7 @@ function menuLed()
 	{
 	try
 		{
-		// CHECKING IF THE LED MUST BE CONNECTED
+		// CHECKING IF THE LED MUST BE DISCONNECTED
 		if (myPinLed+1>13)
 			{
 			// DISCONNECTING THE LED
