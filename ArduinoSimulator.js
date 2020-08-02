@@ -586,6 +586,30 @@ function menuLed()
 		}
 	}
 
+function menuDCMotor()
+	{
+	try
+		{
+		// CHECKING IF THE LED MUST BE DISCONNECTED
+		if (myDCMotorPin+1>myAnalogPinsOnBoard)
+			{
+			// DISCONNECTING THE LED
+			myDCMotorPin = -1;
+			}
+			else
+			{
+			// UPDATING THE LED PIN VALUE
+			myDCMotorPin = myDCMotorPin + 1;
+			}
+
+		// UPDATING THE LED PIN STATUS
+		updateDCMotorPinStatus();
+		}
+		catch(err)
+		{
+		}
+	}
+
 function menuRun()
 	{
 	try
@@ -1032,6 +1056,7 @@ window.addEventListener("load", function()
 	document.getElementById("buttonRedo").addEventListener("click",function(event){menuRedo()});
 	document.getElementById("buttonSearch").addEventListener("click",function(event){menuSearch()});
 	document.getElementById("buttonLed").addEventListener("click",function(event){menuLed()});
+	document.getElementById("buttonDCMotor").addEventListener("click",function(event){menuDCMotor()});
 	document.getElementById("buttonRun").addEventListener("click",function(event){menuRun()});
 	document.getElementById("buttonClear").addEventListener("click",function(event){clearSerialMonitor()});
 	document.getElementById("arduinosimulator_filename").addEventListener("click",function(event){editor.focus()});
