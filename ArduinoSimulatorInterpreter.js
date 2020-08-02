@@ -10,7 +10,7 @@ self.onmessage = function(e)
 	p.prototype.raiseException=function(e,r)
 		{
 		// SHOWING THE ERROR IN THE SERIAL MONITOR
-		self.postMessage("<br/>Error: " + e);
+		self.postMessage("<br />Error: " + e);
 
 		// TELLING THE WEB CLIENT THAT THE CODE HAS A BUG
 		self.postMessage(null);
