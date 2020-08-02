@@ -861,14 +861,20 @@ window.addEventListener("load", function()
 	document.getElementById("arduinosimulator_textcode_container").style.display = "block";
 
 	// CHECKING IF THE USER SET A PIN VALUE IN THE URL
-	var tempPinLed = getValueFromURL("pinled");
-	if (tempPinLed!=null)
+	try
 		{
-		tempPinLed = parseInt(tempPinLed);
-		if (Number.isInteger(tempPinLed)==true)
+		var tempPinLed = getValueFromURL("pinled");
+		if (tempPinLed!=null)
 			{
-			myPinLed = tempPinLed;
+			tempPinLed = parseInt(tempPinLed);
+			if (Number.isInteger(tempPinLed)==true)
+				{
+				myPinLed = tempPinLed;
+				}
 			}
+		}
+		catch(err)
+		{
 		}
 
 	// CHECKING IF A PIN LED WAS SET AND UPDATING THE UI IF NECESSARY
