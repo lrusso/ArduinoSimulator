@@ -553,6 +553,30 @@ function menuRedo()
 		}
 	}
 
+function menuLed()
+	{
+	try
+		{
+		// CHECKING IF THE LED MUST BE CONNECTED
+		if (myPinLed+1>13)
+			{
+			// DISCONNECTING THE LED
+			myPinLed = -1;
+			}
+			else
+			{
+			// UPDATING THE PIN LED VALUE
+			myPinLed = myPinLed + 1;
+			}
+
+		// UPDATING THE PIN LED STATUS
+		updatePinLedStatus();
+		}
+		catch(err)
+		{
+		}
+	}
+
 function menuRun()
 	{
 	try
@@ -838,6 +862,7 @@ window.addEventListener("load", function()
 	document.getElementById("buttonUndo").addEventListener("click",function(event){menuUndo()});
 	document.getElementById("buttonRedo").addEventListener("click",function(event){menuRedo()});
 	document.getElementById("buttonSearch").addEventListener("click",function(event){menuSearch()});
+	document.getElementById("buttonLed").addEventListener("click",function(event){menuLed()});
 	document.getElementById("buttonRun").addEventListener("click",function(event){menuRun()});
 	document.getElementById("buttonClear").addEventListener("click",function(event){clearSerialMonitor()});
 	document.getElementById("arduinosimulator_filename").addEventListener("click",function(event){editor.focus()});
