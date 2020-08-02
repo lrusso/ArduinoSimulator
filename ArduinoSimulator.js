@@ -605,68 +605,67 @@ function menuRun()
 			// SETTING WHAT HAPPENS WHEN DATA IS RECEIVED FROM THE WEB WORKER
 			myWorker.onmessage = function(e)
 				{
-				try{
-
-				}
-				catch(err)
-				{
-
-				}
-				// GETTING THE DATA SENT FROM THE EMULATOR
-				var myReceivedData = e.data;
-
-				// CHECKING IF THE EMULATOR SAID THAT THE CODE HAS A BUG
-				if (myReceivedData==null)
+				try
 					{
-					// STOPPING THE EMULATION
-					stoppingEmulator();
+					// GETTING THE DATA SENT FROM THE EMULATOR
+					var myReceivedData = e.data;
+
+					// CHECKING IF THE EMULATOR SAID THAT THE CODE HAS A BUG
+					if (myReceivedData==null)
+						{
+						// STOPPING THE EMULATION
+						stoppingEmulator();
+						}
+						else
+						{
+						// CHECKING IF A DIGITAL PIN EVENT OCCURRED
+						if (myReceivedData.indexOf("_DIGITAL_PIN_STATUS_")>-1)
+							{
+							// CHECKING IF THE DIGITAL PIN THAT GOT THE CALL IS THE SAME AS THE ONE IN MYLEDPIN VARIABLE
+							if (myReceivedData.indexOf("_" + myLedPin + "_")>-1)
+								{
+								// CHECKING IF THE CALL HAS A TRUE ATTACHED TO IT
+								if (myReceivedData.indexOf("TRUE")>-1)
+									{
+									// TURNING ON THE LED LIGHT
+									document.getElementById("ledStatus").className = "arduinosimulator_output_hardware_led_image_on";
+									}
+									else
+									{
+									// TURNING OFF THE LED LIGHT
+									document.getElementById("ledStatus").className = "arduinosimulator_output_hardware_led_image_off";
+									}
+								}
+							}
+						// CHECKING IF AN ANALOG PIN EVENT OCCURRED
+						else if (myReceivedData.indexOf("_ANALOG_PIN_STATUS_")>-1)
+							{
+							if (myReceivedData.indexOf("_" + myDCMotorPin + "_")>-1)
+								{
+								// GETTING THE DUTY
+								var duty = myReceivedData.substr(myReceivedData.lastIndexOf("_")+1,myReceivedData.length);
+
+								if (duty>0)
+									{
+									// TURNING ON THE DC MOTOR
+									document.getElementById("motorStatus").className = "arduinosimulator_output_hardware_dcmotor_image_on";
+									}
+									else
+									{
+									// TURNING OFF THE DC MOTOR
+									document.getElementById("motorStatus").className = "arduinosimulator_output_hardware_dcmotor_image_off";
+									}
+								}
+							}
+						else
+							{
+							// ADDING THE RECEIVED DATA TO THE SERIAL MONITOR
+							document.getElementsByClassName("arduinosimulator_output_monitor_data")[0].innerHTML = document.getElementsByClassName("arduinosimulator_output_monitor_data")[0].innerHTML + myReceivedData;
+							}
+						}
 					}
-					else
+					catch(err)
 					{
-					// CHECKING IF A DIGITAL PIN EVENT OCCURRED
-					if (myReceivedData.indexOf("_DIGITAL_PIN_STATUS_")>-1)
-						{
-						// CHECKING IF THE DIGITAL PIN THAT GOT THE CALL IS THE SAME AS THE ONE IN MYLEDPIN VARIABLE
-						if (myReceivedData.indexOf("_" + myLedPin + "_")>-1)
-							{
-							// CHECKING IF THE CALL HAS A TRUE ATTACHED TO IT
-							if (myReceivedData.indexOf("TRUE")>-1)
-								{
-								// TURNING ON THE LED LIGHT
-								document.getElementById("ledStatus").className = "arduinosimulator_output_hardware_led_image_on";
-								}
-								else
-								{
-								// TURNING OFF THE LED LIGHT
-								document.getElementById("ledStatus").className = "arduinosimulator_output_hardware_led_image_off";
-								}
-							}
-						}
-					// CHECKING IF AN ANALOG PIN EVENT OCCURRED
-					else if (myReceivedData.indexOf("_ANALOG_PIN_STATUS_")>-1)
-						{
-						if (myReceivedData.indexOf("_" + myDCMotorPin + "_")>-1)
-							{
-							// GETTING THE DUTY
-							var duty = myReceivedData.substr(myReceivedData.lastIndexOf("_")+1,myReceivedData.length);
-
-							if (duty>0)
-								{
-								// TURNING ON THE DC MOTOR
-								document.getElementById("motorStatus").className = "arduinosimulator_output_hardware_dcmotor_image_on";
-								}
-								else
-								{
-								// TURNING OFF THE DC MOTOR
-								document.getElementById("motorStatus").className = "arduinosimulator_output_hardware_dcmotor_image_off";
-								}
-							}
-						}
-					else
-						{
-						// ADDING THE RECEIVED DATA TO THE SERIAL MONITOR
-						document.getElementsByClassName("arduinosimulator_output_monitor_data")[0].innerHTML = document.getElementsByClassName("arduinosimulator_output_monitor_data")[0].innerHTML + myReceivedData;
-						}
 					}
 				}
 
