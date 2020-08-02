@@ -22,6 +22,4 @@ Browse to the Web page with a different **pinled** value (see example above) or 
 
 ## Roadmap
 
-* pulseIn implementation.
-
 * String class implementation.
