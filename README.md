@@ -27,9 +27,3 @@ Browse to the Web page with a different **ledpin** value (see example above) or 
 ## How to set a different pin for the DC Motor?
 
 Browse to the Web page with a different **ledpin** value (see example above) or change the **myDCMotorPin** variable in the **ArduinoSimulator.js** file.
-
-## Roadmap
-
-* String class implementation.
-
-* 'Please Rotate' in mobile devices.
