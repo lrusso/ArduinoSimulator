@@ -590,19 +590,19 @@ function menuDCMotor()
 	{
 	try
 		{
-		// CHECKING IF THE LED MUST BE DISCONNECTED
+		// CHECKING IF THE DC MOTOR MUST BE DISCONNECTED
 		if (myDCMotorPin+1>myAnalogPinsOnBoard)
 			{
-			// DISCONNECTING THE LED
+			// DISCONNECTING THE DC MOTOR
 			myDCMotorPin = -1;
 			}
 			else
 			{
-			// UPDATING THE LED PIN VALUE
+			// UPDATING THE DC MOTOR PIN VALUE
 			myDCMotorPin = myDCMotorPin + 1;
 			}
 
-		// UPDATING THE LED PIN STATUS
+		// UPDATING THE DC MOTOR PIN STATUS
 		updateDCMotorPinStatus();
 		}
 		catch(err)
