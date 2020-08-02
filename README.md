@@ -14,4 +14,4 @@ https://lrusso.github.io/ArduinoSimulator/ArduinoSimulatorSample.htm?pinled=13
 
 ## How to set a default sketch in the simulator?
 
-Edit the **STRING_WELCOME** variable in **ArduinoSimulator.htm** file.
+Edit the **STRING_WELCOME** variable located in **ArduinoSimulator.htm** file.
