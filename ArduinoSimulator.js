@@ -217,6 +217,9 @@ function menuNewFileExecute(files)
 		// STOPPING THE EMULATION (IF RUNNING)
 		stoppingEmulator();
 
+		// CLEARING THE SERIAL MONITOR
+		document.getElementsByClassName("arduinosimulator_output_monitor_data")[0].innerHTML = "";
+
 		// SETTING THE DEFAULT FILE NAME IN THE LABEL
 		STRING_FILENAME = STRING_FILENAME_EMPTY + ".ino";
 		document.getElementById("arduinosimulator_filename").innerHTML = STRING_FILENAME;
@@ -309,6 +312,9 @@ function menuOpenFileExecute(file)
 		{
 		// STOPPING THE EMULATION (IF RUNNING)
 		stoppingEmulator();
+
+		// CLEARING THE SERIAL MONITOR
+		document.getElementsByClassName("arduinosimulator_output_monitor_data")[0].innerHTML = "";
 
 		// LOCKING THE EDITOR AND HIDING THE POINTER
 		editor.setOptions({readOnly: true, highlightGutterLine: false});
@@ -608,7 +614,7 @@ function menuRun()
 					}
 					else
 					{
-					// CHECKING IF A DIGITAL PIN EVENT OCCURRED
+					// CHECKING IF A DIGITAL PIN EVENT OCCURRED (THE SAME LOGIC IS APPLIED FOR ANALOG EVENTS)
 					if (myReceivedData.indexOf("_DIGITAL_PIN_STATUS_")>-1)
 						{
 						// CHECKING IF THE DIGITAL PIN THAT GOT THE CALL IS THE SAME AS THE ONE IN MYPINVARIABLE
@@ -682,9 +688,6 @@ function stoppingEmulator()
 
 		// UPDATING THE PIN LED STATUS
 		updatePinLedStatus();
-
-		// CLEARING THE SERIAL MONITOR
-		document.getElementsByClassName("arduinosimulator_output_monitor_data")[0].innerHTML = "";
 		}
 		catch(err)
 		{
@@ -759,7 +762,12 @@ function runSketch(sketch)
 				+
 
 				// DIGITAL PINS IMPLEMENTATION
-				"bool _digital_pins_active[14] = {false, false, false, false, false, false, false, false, false, false, false, false, false, false};"
+				"bool _digital_pins_active[14] = {false,false,false,false,false,false,false,false,false,false,false,false,false,false};"
+
+				+
+
+				// ANALOG PINS IMPLEMENTATION
+				"bool _analog_pins_active[6] = {false,false,false,false,false,false};"
 
 				+
 
@@ -771,17 +779,33 @@ function runSketch(sketch)
 
 				+
 
-				// DIGITALWRITE IMPLEMENTATION
+				// SIGNAL IMPLEMENTATION FOR DIGITALWRITE AND ANALOGWRITE
+
 				"bool LOW = false;" +
-				"bool HIGH = true;" +
+				"bool HIGH = true;"
+
+				+
+
+				// DIGITALWRITE IMPLEMENTATION
 				"void digitalWrite(int digitalpin, bool signal);" +
 				"void digitalWrite(int digitalpin, bool signal){if(digitalpin==0 && _digital_pins_active[0]==true && signal==true){cout <<\"_DIGITAL_PIN_STATUS_0_TRUE\";}else if(digitalpin==0 && _digital_pins_active[0]==true && signal==false){cout <<\"_DIGITAL_PIN_STATUS_0_FALSE\";}else if(digitalpin==1 && _digital_pins_active[1]==true && signal==true){cout <<\"_DIGITAL_PIN_STATUS_1_TRUE\";}else if(digitalpin==1 && _digital_pins_active[1]==true && signal==false){cout <<\"_DIGITAL_PIN_STATUS_1_FALSE\";}else if(digitalpin==2 && _digital_pins_active[2]==true && signal==true){cout <<\"_DIGITAL_PIN_STATUS_2_TRUE\";}else if(digitalpin==2 && _digital_pins_active[2]==true && signal==false){cout <<\"_DIGITAL_PIN_STATUS_2_FALSE\";}else if(digitalpin==3 && _digital_pins_active[3]==true && signal==true){cout <<\"_DIGITAL_PIN_STATUS_3_TRUE\";}else if(digitalpin==3 && _digital_pins_active[3]==true && signal==false){cout <<\"_DIGITAL_PIN_STATUS_3_FALSE\";}else if(digitalpin==4 && _digital_pins_active[4]==true && signal==true){cout <<\"_DIGITAL_PIN_STATUS_4_TRUE\";}else if(digitalpin==4 && _digital_pins_active[4]==true && signal==false){cout <<\"_DIGITAL_PIN_STATUS_4_FALSE\";}else if(digitalpin==5 && _digital_pins_active[5]==true && signal==true){cout <<\"_DIGITAL_PIN_STATUS_5_TRUE\";}else if(digitalpin==5 && _digital_pins_active[5]==true && signal==false){cout <<\"_DIGITAL_PIN_STATUS_5_FALSE\";}else if(digitalpin==6 && _digital_pins_active[6]==true && signal==true){cout <<\"_DIGITAL_PIN_STATUS_6_TRUE\";}else if(digitalpin==6 && _digital_pins_active[6]==true && signal==false){cout <<\"_DIGITAL_PIN_STATUS_6_FALSE\";}else if(digitalpin==7 && _digital_pins_active[7]==true && signal==true){cout <<\"_DIGITAL_PIN_STATUS_7_TRUE\";}else if(digitalpin==7 && _digital_pins_active[7]==true && signal==false){cout <<\"_DIGITAL_PIN_STATUS_7_FALSE\";}else if(digitalpin==8 && _digital_pins_active[8]==true && signal==true){cout <<\"_DIGITAL_PIN_STATUS_8_TRUE\";}else if(digitalpin==8 && _digital_pins_active[8]==true && signal==false){cout <<\"_DIGITAL_PIN_STATUS_8_FALSE\";}else if(digitalpin==9 && _digital_pins_active[9]==true && signal==true){cout <<\"_DIGITAL_PIN_STATUS_9_TRUE\";}else if(digitalpin==9 && _digital_pins_active[9]==true && signal==false){cout <<\"_DIGITAL_PIN_STATUS_9_FALSE\";}else if(digitalpin==10 && _digital_pins_active[10]==true && signal==true){cout <<\"_DIGITAL_PIN_STATUS_10_TRUE\";}else if(digitalpin==10 && _digital_pins_active[10]==true && signal==false){cout <<\"_DIGITAL_PIN_STATUS_10_FALSE\";}else if(digitalpin==11 && _digital_pins_active[11]==true && signal==true){cout <<\"_DIGITAL_PIN_STATUS_11_TRUE\";}else if(digitalpin==11 && _digital_pins_active[11]==true && signal==false){cout <<\"_DIGITAL_PIN_STATUS_11_FALSE\";}else if(digitalpin==12 && _digital_pins_active[12]==true && signal==true){cout <<\"_DIGITAL_PIN_STATUS_12_TRUE\";}else if(digitalpin==12 && _digital_pins_active[12]==true && signal==false){cout <<\"_DIGITAL_PIN_STATUS_12_FALSE\";}else if(digitalpin==13 && _digital_pins_active[13]==true && signal==true){cout <<\"_DIGITAL_PIN_STATUS_13_TRUE\";}else if(digitalpin==13 && _digital_pins_active[13]==true && signal==false){cout <<\"_DIGITAL_PIN_STATUS_13_FALSE\";}}"
+				+
+
+				// ANALOGWRITE IMPLEMENTATION
+				"void analogWrite(int analogpin, bool signal);" +
+				"void analogWrite(int analogpin, bool signal){if(analogpin==0 && _analog_pins_active[0]==true && signal==true){cout <<\"_analog_PIN_STATUS_0_TRUE\";}else if(analogpin==0 && _analog_pins_active[0]==true && signal==false){cout <<\"_analog_PIN_STATUS_0_FALSE\";}else if(analogpin==1 && _analog_pins_active[1]==true && signal==true){cout <<\"_analog_PIN_STATUS_1_TRUE\";}else if(analogpin==1 && _analog_pins_active[1]==true && signal==false){cout <<\"_analog_PIN_STATUS_1_FALSE\";}else if(analogpin==2 && _analog_pins_active[2]==true && signal==true){cout <<\"_analog_PIN_STATUS_2_TRUE\";}else if(analogpin==2 && _analog_pins_active[2]==true && signal==false){cout <<\"_analog_PIN_STATUS_2_FALSE\";}else if(analogpin==3 && _analog_pins_active[3]==true && signal==true){cout <<\"_analog_PIN_STATUS_3_TRUE\";}else if(analogpin==3 && _analog_pins_active[3]==true && signal==false){cout <<\"_analog_PIN_STATUS_3_FALSE\";}else if(analogpin==4 && _analog_pins_active[4]==true && signal==true){cout <<\"_analog_PIN_STATUS_4_TRUE\";}else if(analogpin==4 && _analog_pins_active[4]==true && signal==false){cout <<\"_analog_PIN_STATUS_4_FALSE\";}else if(analogpin==5 && _analog_pins_active[5]==true && signal==true){cout <<\"_analog_PIN_STATUS_5_TRUE\";}else if(analogpin==5 && _analog_pins_active[5]==true && signal==false){cout <<\"_analog_PIN_STATUS_5_FALSE\";}}"
 
 				+
 
 				// DELAY IMPLEMENTATION
 				"void delay(int milliseconds);" +
 				"void delay(int milliseconds){int endingDelay=time(0)+(milliseconds/1000);while(time(0)<=endingDelay){}}"
+
+				+
+
+				// DELAYMICROSECONDS IMPLEMENTATION
+				"void delayMicroseconds(int milliseconds);" +
+				"void delayMicroseconds(int milliseconds){delay(milliseconds);}"
 
 				+
 
