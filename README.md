@@ -8,7 +8,7 @@ Arduino simulator developed in JavaScript.
 
 https://lrusso.github.io/ArduinoSimulator/ArduinoSimulator.htm
 
-## Sample running a sketch with loop, math and a LED blink:
+## Sample running a sketch with a loop, math and LED blink:
 
 https://lrusso.github.io/ArduinoSimulator/ArduinoSimulatorSample.htm?pinled=13
 
