@@ -2,6 +2,8 @@
 var myWorker;
 var myWorkerRunning;
 
+var pinLed = 13;
+
 function confirmCustom(title,message,yes,no,myCallback)
 	{
 	try
@@ -579,8 +581,26 @@ function menuRun()
 					}
 					else
 					{
-					// ADDING DATA TO THE SERIAL MONITOR
-					document.getElementsByClassName("arduinosimulator_output_monitor_data")[0].innerHTML = document.getElementsByClassName("arduinosimulator_output_monitor_data")[0].innerHTML + e.data;
+					var myData = e.data;
+					if (myData.indexOf("_DIGITAL_PIN_STATUS_")>-1)
+						{
+						if (myData.indexOf("_" + pinLed + "_")>-1)
+							{
+							if (myData.indexOf("TRUE")>-1)
+								{
+								document.getElementById("ledStatus").className = "arduinosimulator_output_hardware_led_image_on";
+								}
+								else
+								{
+								document.getElementById("ledStatus").className = "arduinosimulator_output_hardware_led_image_off";
+								}
+							}
+						}
+						else
+						{
+						// ADDING DATA TO THE SERIAL MONITOR
+						document.getElementsByClassName("arduinosimulator_output_monitor_data")[0].innerHTML = document.getElementsByClassName("arduinosimulator_output_monitor_data")[0].innerHTML + e.data;
+						}
 					}
 				}
 
@@ -675,27 +695,14 @@ function runSketch(sketch)
 				+
 
 				// DIGITAL PINS IMPLEMENTATION
-				"bool _DIGITAL_PIN0_ACTIVE = false;" +
-				"bool _DIGITAL_PIN1_ACTIVE = false;" +
-				"bool _DIGITAL_PIN2_ACTIVE = false;" +
-				"bool _DIGITAL_PIN3_ACTIVE = false;" +
-				"bool _DIGITAL_PIN4_ACTIVE = false;" +
-				"bool _DIGITAL_PIN5_ACTIVE = false;" +
-				"bool _DIGITAL_PIN6_ACTIVE = false;" +
-				"bool _DIGITAL_PIN7_ACTIVE = false;" +
-				"bool _DIGITAL_PIN8_ACTIVE = false;" +
-				"bool _DIGITAL_PIN9_ACTIVE = false;" +
-				"bool _DIGITAL_PIN10_ACTIVE = false;" +
-				"bool _DIGITAL_PIN11_ACTIVE = false;" +
-				"bool _DIGITAL_PIN12_ACTIVE = false;" +
-				"bool _DIGITAL_PIN13_ACTIVE = false;"
+				"bool _digital_pins_active[14] = {false, false, false, false, false, false, false, false, false, false, false, false, false, false};"
 
 				+
 
 				// PINMODE IMPLEMENTATION
-				"int OUTPUT = -1;" +
-				"void pinMode(int digitalpin, int output);" +
-				"void pinMode(int digitalpin, int output){if (digitalpin==0){_DIGITAL_PIN0_ACTIVE=true;}else if (digitalpin==1){_DIGITAL_PIN1_ACTIVE=true;}else if (digitalpin==2){_DIGITAL_PIN2_ACTIVE=true;}else if (digitalpin==3){_DIGITAL_PIN3_ACTIVE=true;}else if (digitalpin==4){_DIGITAL_PIN4_ACTIVE=true;}else if (digitalpin==5){_DIGITAL_PIN5_ACTIVE=true;}else if (digitalpin==6){_DIGITAL_PIN6_ACTIVE=true;}else if (digitalpin==7){_DIGITAL_PIN7_ACTIVE=true;}else if (digitalpin==8){_DIGITAL_PIN8_ACTIVE=true;}else if (digitalpin==9){_DIGITAL_PIN9_ACTIVE=true;}else if (digitalpin==10){_DIGITAL_PIN10_ACTIVE=true;}else if (digitalpin==11){_DIGITAL_PIN11_ACTIVE=true;}else if (digitalpin==12){_DIGITAL_PIN12_ACTIVE=true;}else if (digitalpin==13){_DIGITAL_PIN13_ACTIVE=true;}}"
+				"int OUTPUT = 0;" +
+				"void pinMode(int digitalpin, int type);" +
+				"void pinMode(int digitalpin, int type){_digital_pins_active[digitalpin]=true;}"
 
 				+
 
@@ -703,7 +710,7 @@ function runSketch(sketch)
 				"bool LOW = false;" +
 				"bool HIGH = true;" +
 				"void digitalWrite(int digitalpin, bool signal);" +
-				"void digitalWrite(int digitalpin, bool signal){}"
+				"void digitalWrite(int digitalpin, bool signal){if(digitalpin==0 && _digital_pins_active[0]==true && signal==true){cout <<\"_DIGITAL_PIN_STATUS_0_TRUE\";}else if(digitalpin==0 && _digital_pins_active[0]==true && signal==false){cout <<\"_DIGITAL_PIN_STATUS_0_FALSE\";}else if(digitalpin==1 && _digital_pins_active[1]==true && signal==true){cout <<\"_DIGITAL_PIN_STATUS_1_TRUE\";}else if(digitalpin==1 && _digital_pins_active[1]==true && signal==false){cout <<\"_DIGITAL_PIN_STATUS_1_FALSE\";}else if(digitalpin==2 && _digital_pins_active[2]==true && signal==true){cout <<\"_DIGITAL_PIN_STATUS_2_TRUE\";}else if(digitalpin==2 && _digital_pins_active[2]==true && signal==false){cout <<\"_DIGITAL_PIN_STATUS_2_FALSE\";}else if(digitalpin==3 && _digital_pins_active[3]==true && signal==true){cout <<\"_DIGITAL_PIN_STATUS_3_TRUE\";}else if(digitalpin==3 && _digital_pins_active[3]==true && signal==false){cout <<\"_DIGITAL_PIN_STATUS_3_FALSE\";}else if(digitalpin==4 && _digital_pins_active[4]==true && signal==true){cout <<\"_DIGITAL_PIN_STATUS_4_TRUE\";}else if(digitalpin==4 && _digital_pins_active[4]==true && signal==false){cout <<\"_DIGITAL_PIN_STATUS_4_FALSE\";}else if(digitalpin==5 && _digital_pins_active[5]==true && signal==true){cout <<\"_DIGITAL_PIN_STATUS_5_TRUE\";}else if(digitalpin==5 && _digital_pins_active[5]==true && signal==false){cout <<\"_DIGITAL_PIN_STATUS_5_FALSE\";}else if(digitalpin==6 && _digital_pins_active[6]==true && signal==true){cout <<\"_DIGITAL_PIN_STATUS_6_TRUE\";}else if(digitalpin==6 && _digital_pins_active[6]==true && signal==false){cout <<\"_DIGITAL_PIN_STATUS_6_FALSE\";}else if(digitalpin==7 && _digital_pins_active[7]==true && signal==true){cout <<\"_DIGITAL_PIN_STATUS_7_TRUE\";}else if(digitalpin==7 && _digital_pins_active[7]==true && signal==false){cout <<\"_DIGITAL_PIN_STATUS_7_FALSE\";}else if(digitalpin==8 && _digital_pins_active[8]==true && signal==true){cout <<\"_DIGITAL_PIN_STATUS_8_TRUE\";}else if(digitalpin==8 && _digital_pins_active[8]==true && signal==false){cout <<\"_DIGITAL_PIN_STATUS_8_FALSE\";}else if(digitalpin==9 && _digital_pins_active[9]==true && signal==true){cout <<\"_DIGITAL_PIN_STATUS_9_TRUE\";}else if(digitalpin==9 && _digital_pins_active[9]==true && signal==false){cout <<\"_DIGITAL_PIN_STATUS_9_FALSE\";}else if(digitalpin==10 && _digital_pins_active[10]==true && signal==true){cout <<\"_DIGITAL_PIN_STATUS_10_TRUE\";}else if(digitalpin==10 && _digital_pins_active[10]==true && signal==false){cout <<\"_DIGITAL_PIN_STATUS_10_FALSE\";}else if(digitalpin==11 && _digital_pins_active[11]==true && signal==true){cout <<\"_DIGITAL_PIN_STATUS_11_TRUE\";}else if(digitalpin==11 && _digital_pins_active[11]==true && signal==false){cout <<\"_DIGITAL_PIN_STATUS_11_FALSE\";}else if(digitalpin==12 && _digital_pins_active[12]==true && signal==true){cout <<\"_DIGITAL_PIN_STATUS_12_TRUE\";}else if(digitalpin==12 && _digital_pins_active[12]==true && signal==false){cout <<\"_DIGITAL_PIN_STATUS_12_FALSE\";}else if(digitalpin==13 && _digital_pins_active[13]==true && signal==true){cout <<\"_DIGITAL_PIN_STATUS_13_TRUE\";}else if(digitalpin==13 && _digital_pins_active[13]==true && signal==false){cout <<\"_DIGITAL_PIN_STATUS_13_FALSE\";}}"
 
 				+
 
