@@ -815,7 +815,9 @@ function runSketch(sketch)
 				"int _Serial_Read();" +
 				"int _Serial_Read(){return -1;}" +
 				"void _Serial_Begin(int baudRate);" +
-				"void _Serial_Begin(int baudRate){}" +
+				"void _Serial_Begin(int baudRate){}"
+
+				+
 
 				// THE FOLLOWING BREAKLINES ARE NEED IN ORDER TO PREVENT JSCPP TO SHOW ANY OF THE PREVIOUS CODE IF THE USER CODE FAILS
 				"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
