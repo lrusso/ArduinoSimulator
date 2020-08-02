@@ -22,8 +22,8 @@ Browse to the Web page with a different **pinled** value (see example above) or 
 
 ## Roadmap
 
-* Boolean to bool implementation.
-
 * pulseIn implementation.
 
 * String class implementation.
+
+* Boolean to bool implementation.
