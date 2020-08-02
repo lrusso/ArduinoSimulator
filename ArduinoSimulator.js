@@ -741,10 +741,10 @@ function runSketch(sketch)
 function convertArduinoSketch(a)
 	{
 	// FINDING AND REPLACING ALL THE SERIAL.BEGIN
-	a = a.replaceAll("Serial.begin","_Serial_Begin");
+	a = a.replace(/Serial.begin/g,"_Serial_Begin");
 
 	// FINDING AND REPLACING ALL THE SERIAL.PRINTLN
-	a = a.replaceAll("Serial.println","cout <<");
+	a = a.replace(/Serial.println/g,"cout <<");
 
 	// FINDID ALL THE COUT FUNCTIONS PREVIOUSLY IMPLEMENTED (BY REPLACING THE PRINTLN FUNCTION)
 	// AND ADDING A BREAKLINE AFTER EACH COUT FUNCTION
@@ -752,11 +752,11 @@ function convertArduinoSketch(a)
 	matches = a.match(reg);
 	for (var i = 0; i < matches.length; i++)
 		{
-		a = a.replaceAll(matches[i],matches[i] + ";cout << \"<br/>\"");
+		a = a.replace(/matches[i]/g,matches[i] + ";cout << \"<br/>\"");
 		}
 
 	// FINDING AND REPLACING ALL THE SERIAL.PRINT
-	a = a.replaceAll("Serial.print","cout <<");
+	a = a.replace(/Serial.print/g,"cout <<");
 
 	// RETURNING THE CONVERTED CODE
 	return a;
