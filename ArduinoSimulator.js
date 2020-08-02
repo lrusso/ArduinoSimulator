@@ -936,9 +936,6 @@ function convertArduinoSketch(a)
 	// FINDING AND REPLACING ALL THE SERIAL.READ
 	a = a.replace(/Serial.read/g,"_Serial_Read");
 
-	// FINDING AND REPLACING ALL THE SERIAL.READ
-	a = a.replace(/Serial.read/g,"_Serial_Read");
-
 	// FINDING AND REPLACING ALL THE PULSEIN FUNCTIONS
 	a = a.replace(/pulseIn/g,"_pulseIn");
 
