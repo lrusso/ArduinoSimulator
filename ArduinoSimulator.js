@@ -672,7 +672,6 @@ function runSketch(sketch)
 				"void setup();" +
 				"void loop();"
 
-
 				+
 
 				// DIGITAL PINS IMPLEMENTATION
@@ -689,7 +688,9 @@ function runSketch(sketch)
 				"bool _DIGITAL_PIN10_ACTIVE = false;" +
 				"bool _DIGITAL_PIN11_ACTIVE = false;" +
 				"bool _DIGITAL_PIN12_ACTIVE = false;" +
-				"bool _DIGITAL_PIN13_ACTIVE = false;" +
+				"bool _DIGITAL_PIN13_ACTIVE = false;"
+
+				+
 
 				// PINMODE IMPLEMENTATION
 				"int OUTPUT = -1;" +
