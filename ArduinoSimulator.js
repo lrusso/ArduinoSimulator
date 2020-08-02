@@ -3,7 +3,8 @@ var myWorker;
 var myWorkerRunning;
 var myLedPin = -1;
 var myDCMotorPin = -1;
-var myPinsOnBoard = 13;
+var myAnalogPinsOnBoard = 5;
+var myDigitalPinsOnBoard = 13;
 
 function confirmCustom(title,message,yes,no,myCallback)
 	{
@@ -566,7 +567,7 @@ function menuLed()
 	try
 		{
 		// CHECKING IF THE LED MUST BE DISCONNECTED
-		if (myLedPin+1>myPinsOnBoard)
+		if (myLedPin+1>myDigitalPinsOnBoard)
 			{
 			// DISCONNECTING THE LED
 			myLedPin = -1;
@@ -706,7 +707,7 @@ function updateLedPinStatus()
 		document.getElementById("ledStatus").className = "arduinosimulator_output_hardware_led_image_off";
 
 		// CHECKING IF A LED PIN WAS SET AND IF IT IS VALID
-		if (myLedPin>-1 && myLedPin<=myPinsOnBoard)
+		if (myLedPin>-1 && myLedPin<=myDigitalPinsOnBoard)
 			{
 			// UPDATING THE LED PIN LABEL WITH THE SELECTED DIGITAL PIN
 			document.getElementsByClassName("arduinosimulator_output_hardware_led_label_value")[0].innerHTML = "D" + myLedPin;
@@ -733,7 +734,7 @@ function updateDCMotorPinStatus()
 		document.getElementById("motorStatus").className = "arduinosimulator_output_hardware_dcmotor_image_off";
 
 		// CHECKING IF A LED PIN WAS SET AND IF IT IS VALID
-		if (myDCMotorPin>-1 && myDCMotorPin<=myPinsOnBoard)
+		if (myDCMotorPin>-1 && myDCMotorPin<=myAnalogPinsOnBoard)
 			{
 			// UPDATING THE LED PIN LABEL WITH THE SELECTED DIGITAL PIN
 			document.getElementsByClassName("arduinosimulator_output_hardware_dcmotor_label_value")[0].innerHTML = "A" + myDCMotorPin;
