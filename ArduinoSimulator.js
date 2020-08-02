@@ -809,10 +809,13 @@ function runSketch(sketch)
 
 				+
 
-				// SERIAL IMPLEMENTATION (JSCPP DOESN'T SUPPORT STRUCTS YET)
+				// SERIAL IMPLEMENTATION
+				"int _Serial_Available();" +
+				"int _Serial_Available(){return 0;}" +
+				"int _Serial_Read();" +
+				"int _Serial_Read(){return -1;}" +
 				"void _Serial_Begin(int baudRate);" +
 				"void _Serial_Begin(int baudRate){}" +
-
 
 				// THE FOLLOWING BREAKLINES ARE NEED IN ORDER TO PREVENT JSCPP TO SHOW ANY OF THE PREVIOUS CODE IF THE USER CODE FAILS
 				"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
@@ -847,6 +850,12 @@ function convertArduinoSketch(a)
 
 	// FINDING AND REPLACING ALL THE SERIAL.PRINT
 	a = a.replace(/Serial.print/g,"cout <<");
+
+	// FINDING AND REPLACING ALL THE SERIAL.AVAILABLE
+	a = a.replace(/Serial.available/g,"_Serial_Available");
+
+	// FINDING AND REPLACING ALL THE SERIAL.READ
+	a = a.replace(/Serial.read/g,"_Serial_Read");
 
 	// RETURNING THE CONVERTED CODE
 	return a;
