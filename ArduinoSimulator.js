@@ -752,7 +752,9 @@ function convertArduinoSketch(a)
 	matches = a.match(reg);
 	for (var i = 0; i < matches.length; i++)
 		{
-		a = a.replace(/matches[i]/g,matches[i] + ";cout << \"<br/>\"");
+		var replaceThis = new RegExp(escapeRegex(matches[i]),"g");
+		var withThis = matches[i] + ";cout << \"<br/>\"";
+		a = a.replace(replaceThis, withThis);
 		}
 
 	// FINDING AND REPLACING ALL THE SERIAL.PRINT
@@ -760,6 +762,11 @@ function convertArduinoSketch(a)
 
 	// RETURNING THE CONVERTED CODE
 	return a;
+	}
+
+function escapeRegex( value )
+	{
+	return value.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g,"\\$&");
 	}
 
 window.addEventListener("resize", function()
