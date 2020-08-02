@@ -12,6 +12,6 @@ https://lrusso.github.io/ArduinoSimulator/ArduinoSimulator.htm
 
 https://lrusso.github.io/ArduinoSimulator/ArduinoSimulatorSample.htm?pinled=13
 
-## How to set a default code within the simulator?
+## How to set a default sketch in the simulator?
 
 Edit the **STRING_WELCOME** variable within **ArduinoSimulator.htm** file.
