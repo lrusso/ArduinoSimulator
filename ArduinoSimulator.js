@@ -1,7 +1,8 @@
 // CREATING THE WEB WORKER (THE CPP INTERPRETER)
 var myWorker;
 var myWorkerRunning;
-var myPinLed = 13;
+var myPinLed = -1;
+var myPinsOnBoard = 13;
 
 function confirmCustom(title,message,yes,no,myCallback)
 	{
@@ -558,7 +559,7 @@ function menuLed()
 	try
 		{
 		// CHECKING IF THE LED MUST BE DISCONNECTED
-		if (myPinLed+1>13)
+		if (myPinLed+1>myPinsOnBoard)
 			{
 			// DISCONNECTING THE LED
 			myPinLed = -1;
@@ -697,14 +698,17 @@ function updatePinLedStatus()
 		// SETTING THE DEFAULT LED IMAGE
 		document.getElementById("ledStatus").className = "arduinosimulator_output_hardware_led_image_off";
 
-		// CHECKING IF A PIN LED WAS SET
-		if (myPinLed>-1)
+		// CHECKING IF A PIN LED WAS SET AND IF IT IS VALID
+		if (myPinLed>-1 && myPinLed<=myPinsOnBoard)
 			{
 			// UPDATING THE PIN LED LABEL WITH THE SELECTED DIGITAL PIN
 			document.getElementsByClassName("arduinosimulator_output_hardware_led_label_value")[0].innerHTML = "CONNECTED<br/>TO D" + myPinLed;
 			}
 			else
 			{
+			// SETTING THE DEFAULT VALUE FOR THE PIN LED
+			myPinLed = -1;
+
 			// UPDATING THE PIN LED LABEL WITH A NOT CONNECTION SIGN
 			document.getElementsByClassName("arduinosimulator_output_hardware_led_label_value")[0].innerHTML = "NOT<br />CONNECTED";
 			}
@@ -824,9 +828,19 @@ function convertArduinoSketch(a)
 	return a;
 	}
 
-function escapeRegex( value )
+function escapeRegex(value)
 	{
 	return value.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g,"\\$&");
+	}
+
+function getValueFromURL(name)
+	{
+	var url = location.href;
+	name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+	var regexS = "[\\?&]"+name+"=([^&#]*)";
+	var regex = new RegExp( regexS );
+	var results = regex.exec( url );
+	return results == null ? null : results[1];
 	}
 
 window.addEventListener("resize", function()
@@ -845,6 +859,17 @@ window.addEventListener("load", function()
 
 	// SHOWING THE CODE EDITOR
 	document.getElementById("arduinosimulator_textcode_container").style.display = "block";
+
+	// CHECKING IF THE USER SET A PIN VALUE IN THE URL
+	var tempPinLed = getValueFromURL("pinled");
+	if (tempPinLed!=null)
+		{
+		tempPinLed = parseInt(tempPinLed);
+		if (Number.isInteger(tempPinLed)==true)
+			{
+			myPinLed = tempPinLed;
+			}
+		}
 
 	// CHECKING IF A PIN LED WAS SET AND UPDATING THE UI IF NECESSARY
 	updatePinLedStatus();
