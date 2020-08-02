@@ -2,6 +2,7 @@
 var myWorker;
 var myWorkerRunning;
 var myLedPin = -1;
+var myDCMotorPin = -1;
 var myPinsOnBoard = 13;
 
 function confirmCustom(title,message,yes,no,myCallback)
@@ -572,12 +573,12 @@ function menuLed()
 			}
 			else
 			{
-			// UPDATING THE PIN LED VALUE
+			// UPDATING THE LED PIN VALUE
 			myLedPin = myLedPin + 1;
 			}
 
-		// UPDATING THE PIN LED STATUS
-		updatePinLedStatus();
+		// UPDATING THE LED PIN STATUS
+		updateLedPinStatus();
 		}
 		catch(err)
 		{
@@ -686,34 +687,64 @@ function stoppingEmulator()
 		// UPDATING THE WEB WORKER STATUS
 		myWorkerRunning = false;
 
-		// UPDATING THE PIN LED STATUS
-		updatePinLedStatus();
+		// UPDATING THE LED PIN STATUS
+		updateLedPinStatus();
+
+		// UPDATING THE DC MOTOR PIN STATUS
+		updateDCMotorPinStatus();
 		}
 		catch(err)
 		{
 		}
 	}
 
-function updatePinLedStatus()
+function updateLedPinStatus()
 	{
 	try
 		{
 		// SETTING THE DEFAULT LED IMAGE
 		document.getElementById("ledStatus").className = "arduinosimulator_output_hardware_led_image_off";
 
-		// CHECKING IF A PIN LED WAS SET AND IF IT IS VALID
+		// CHECKING IF A LED PIN WAS SET AND IF IT IS VALID
 		if (myLedPin>-1 && myLedPin<=myPinsOnBoard)
 			{
-			// UPDATING THE PIN LED LABEL WITH THE SELECTED DIGITAL PIN
+			// UPDATING THE LED PIN LABEL WITH THE SELECTED DIGITAL PIN
 			document.getElementsByClassName("arduinosimulator_output_hardware_led_label_value")[0].innerHTML = "D" + myLedPin;
 			}
 			else
 			{
-			// SETTING THE DEFAULT VALUE FOR THE PIN LED
+			// SETTING THE DEFAULT VALUE FOR THE LED PIN
 			myLedPin = -1;
 
-			// UPDATING THE PIN LED LABEL WITH A NOT CONNECTION SIGN
+			// UPDATING THE LED PIN LABEL WITH A NOT CONNECTION SIGN
 			document.getElementsByClassName("arduinosimulator_output_hardware_led_label_value")[0].innerHTML = "---";
+			}
+		}
+		catch(err)
+		{
+		}
+	}
+
+function updateDCMotorPinStatus()
+	{
+	try
+		{
+		// SETTING THE DEFAULT LED IMAGE
+		document.getElementById("motorStatus").className = "arduinosimulator_output_hardware_dcmotor_image_off";
+
+		// CHECKING IF A LED PIN WAS SET AND IF IT IS VALID
+		if (myDCMotorPin>-1 && myDCMotorPin<=myPinsOnBoard)
+			{
+			// UPDATING THE LED PIN LABEL WITH THE SELECTED DIGITAL PIN
+			document.getElementsByClassName("arduinosimulator_output_hardware_dcmotor_label_value")[0].innerHTML = "A" + myDCMotorPin;
+			}
+			else
+			{
+			// SETTING THE DEFAULT VALUE FOR THE LED PIN
+			myDCMotorPin = -1;
+
+			// UPDATING THE LED PIN LABEL WITH A NOT CONNECTION SIGN
+			document.getElementsByClassName("arduinosimulator_output_hardware_dcmotor_label_value")[0].innerHTML = "---";
 			}
 		}
 		catch(err)
@@ -910,7 +941,7 @@ window.addEventListener("load", function()
 	// SHOWING THE CODE EDITOR
 	document.getElementById("arduinosimulator_textcode_container").style.display = "block";
 
-	// CHECKING IF THE USER SET A PIN VALUE IN THE URL
+	// CHECKING IF THE USER SET A LED PIN VALUE IN THE URL
 	try
 		{
 		var tempLedPin = getValueFromURL("ledpin");
@@ -927,8 +958,28 @@ window.addEventListener("load", function()
 		{
 		}
 
-	// CHECKING IF A PIN LED WAS SET AND UPDATING THE UI IF NECESSARY
-	updatePinLedStatus();
+	// CHECKING IF THE USER SET A DC MOTOR PIN VALUE IN THE URL
+	try
+		{
+		var tempDCMotorPin = getValueFromURL("dcmotorpin");
+		if (tempDCMotorPin!=null)
+			{
+			tempDCMotorPin = parseInt(tempDCMotorPin);
+			if (Number.isInteger(tempDCMotorPin)==true)
+				{
+				myDCMotorPin = tempDCMotorPin;
+				}
+			}
+		}
+		catch(err)
+		{
+		}
+
+	// CHECKING IF A LED PIN WAS SET AND UPDATING THE UI IF NECESSARY
+	updateLedPinStatus();
+
+	// CHECKING IF A DC MOTOR PIN WAS SET AND UPDATING THE UI IF NECESSARY
+	updateDCMotorPinStatus();
 
 	// SHOWING THE OUTPUT CONTAINER
 	document.getElementsByClassName("arduinosimulator_output_container")[0].style.display = "block";
