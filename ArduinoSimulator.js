@@ -1,8 +1,7 @@
 // CREATING THE WEB WORKER (THE CPP INTERPRETER)
 var myWorker;
 var myWorkerRunning;
-
-var pinLed = 13;
+var myPinLed = 13;
 
 function confirmCustom(title,message,yes,no,myCallback)
 	{
@@ -584,7 +583,7 @@ function menuRun()
 					var myData = e.data;
 					if (myData.indexOf("_DIGITAL_PIN_STATUS_")>-1)
 						{
-						if (myData.indexOf("_" + pinLed + "_")>-1)
+						if (myData.indexOf("_" + myPinLed + "_")>-1)
 							{
 							if (myData.indexOf("TRUE")>-1)
 								{
