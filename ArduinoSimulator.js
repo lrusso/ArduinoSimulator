@@ -1,7 +1,7 @@
 // CREATING THE WEB WORKER (THE CPP INTERPRETER)
 var myWorker;
 var myWorkerRunning;
-var myPinLed = -1;
+var myLedPin = -1;
 var myPinsOnBoard = 13;
 
 function confirmCustom(title,message,yes,no,myCallback)
@@ -565,15 +565,15 @@ function menuLed()
 	try
 		{
 		// CHECKING IF THE LED MUST BE DISCONNECTED
-		if (myPinLed+1>myPinsOnBoard)
+		if (myLedPin+1>myPinsOnBoard)
 			{
 			// DISCONNECTING THE LED
-			myPinLed = -1;
+			myLedPin = -1;
 			}
 			else
 			{
 			// UPDATING THE PIN LED VALUE
-			myPinLed = myPinLed + 1;
+			myLedPin = myLedPin + 1;
 			}
 
 		// UPDATING THE PIN LED STATUS
@@ -618,7 +618,7 @@ function menuRun()
 					if (myReceivedData.indexOf("_DIGITAL_PIN_STATUS_")>-1)
 						{
 						// CHECKING IF THE DIGITAL PIN THAT GOT THE CALL IS THE SAME AS THE ONE IN MYPINVARIABLE
-						if (myReceivedData.indexOf("_" + myPinLed + "_")>-1)
+						if (myReceivedData.indexOf("_" + myLedPin + "_")>-1)
 							{
 							// CHECKING IF THE CALL HAS A TRUE ATTACHED TO IT
 							if (myReceivedData.indexOf("TRUE")>-1)
@@ -702,18 +702,18 @@ function updatePinLedStatus()
 		document.getElementById("ledStatus").className = "arduinosimulator_output_hardware_led_image_off";
 
 		// CHECKING IF A PIN LED WAS SET AND IF IT IS VALID
-		if (myPinLed>-1 && myPinLed<=myPinsOnBoard)
+		if (myLedPin>-1 && myLedPin<=myPinsOnBoard)
 			{
 			// UPDATING THE PIN LED LABEL WITH THE SELECTED DIGITAL PIN
-			document.getElementsByClassName("arduinosimulator_output_hardware_led_label_value")[0].innerHTML = "CONNECTED<br/>TO D" + myPinLed;
+			document.getElementsByClassName("arduinosimulator_output_hardware_led_label_value")[0].innerHTML = "D" + myLedPin;
 			}
 			else
 			{
 			// SETTING THE DEFAULT VALUE FOR THE PIN LED
-			myPinLed = -1;
+			myLedPin = -1;
 
 			// UPDATING THE PIN LED LABEL WITH A NOT CONNECTION SIGN
-			document.getElementsByClassName("arduinosimulator_output_hardware_led_label_value")[0].innerHTML = "NOT<br />CONNECTED";
+			document.getElementsByClassName("arduinosimulator_output_hardware_led_label_value")[0].innerHTML = "---";
 			}
 		}
 		catch(err)
@@ -919,7 +919,7 @@ window.addEventListener("load", function()
 			tempPinLed = parseInt(tempPinLed);
 			if (Number.isInteger(tempPinLed)==true)
 				{
-				myPinLed = tempPinLed;
+				myLedPin = tempPinLed;
 				}
 			}
 		}
