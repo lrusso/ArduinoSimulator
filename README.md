@@ -15,3 +15,7 @@ https://lrusso.github.io/ArduinoSimulator/ArduinoSimulatorSample.htm?pinled=13
 ## How to set a default sketch in the simulator?
 
 Edit the **STRING_WELCOME** variable located in **ArduinoSimulator.htm** file.
+
+## How to set a different pin for the LED light?
+
+Load the webpage with a different **pinled** value in the url (see example above).
