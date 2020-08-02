@@ -913,18 +913,19 @@ function convertArduinoSketch(a)
 	// FINDING AND REPLACING ALL THE SERIAL.PRINTLN
 	a = a.replace(/Serial.println/g,"cout <<");
 
-	/*
-	// FINDID ALL THE COUT FUNCTIONS PREVIOUSLY IMPLEMENTED (BY REPLACING THE PRINTLN FUNCTION)
+	// FINDING ALL THE COUT FUNCTIONS PREVIOUSLY IMPLEMENTED (BY REPLACING THE PRINTLN FUNCTION)
 	// AND ADDING A BREAKLINE AFTER EACH COUT FUNCTION
 	var reg = /cout <<\(.*\)/g;
-	matches = a.match(reg);
-	for (var i = 0; i < matches.length; i++)
+	var matches = a.match(reg);
+	if (matches)
 		{
-		var replaceThis = new RegExp(escapeRegex(matches[i]),"g");
-		var withThis = matches[i] + ";cout << \"<br />\"";
-		a = a.replace(replaceThis, withThis);
+		for (var i = 0; i < matches.length; i++)
+			{
+			var replaceThis = new RegExp(escapeRegex(matches[i]),"g");
+			var withThis = matches[i] + ";cout << \"<br />\"";
+			a = a.replace(replaceThis, withThis);
+			}
 		}
-	*/
 
 	// FINDING AND REPLACING ALL THE SERIAL.PRINT
 	a = a.replace(/Serial.print/g,"cout <<");
