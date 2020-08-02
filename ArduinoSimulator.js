@@ -572,33 +572,40 @@ function menuRun()
 			// SETTING WHAT HAPPENS WHEN DATA IS RECEIVED FROM THE WEB WORKER
 			myWorker.onmessage = function(e)
 				{
+				// GETTING THE DATA SENT FROM THE EMULATOR
+				var myReceivedData = e.data;
+
 				// CHECKING IF THE EMULATOR SAID THAT THE CODE HAS A BUG
-				if (e.data==null)
+				if (myReceivedData==null)
 					{
 					// STOPPING THE EMULATION
 					stoppingEmulator();
 					}
 					else
 					{
-					var myData = e.data;
-					if (myData.indexOf("_DIGITAL_PIN_STATUS_")>-1)
+					// CHECKING IF A DIGITAL PIN EVENT OCCURRED
+					if (myReceivedData.indexOf("_DIGITAL_PIN_STATUS_")>-1)
 						{
-						if (myData.indexOf("_" + myPinLed + "_")>-1)
+						// CHECKING IF THE DIGITAL PIN THAT GOT THE CALL IS THE SAME AS THE ONE IN MYPINVARIABLE
+						if (myReceivedData.indexOf("_" + myPinLed + "_")>-1)
 							{
-							if (myData.indexOf("TRUE")>-1)
+							// CHECKING IF THE CALL HAS A TRUE ATTACHED TO IT
+							if (myReceivedData.indexOf("TRUE")>-1)
 								{
+								// TURNING ON THE LED LIGHT
 								document.getElementById("ledStatus").className = "arduinosimulator_output_hardware_led_image_on";
 								}
 								else
 								{
+								// TURNING OFF THE LED LIGHT
 								document.getElementById("ledStatus").className = "arduinosimulator_output_hardware_led_image_off";
 								}
 							}
 						}
 						else
 						{
-						// ADDING DATA TO THE SERIAL MONITOR
-						document.getElementsByClassName("arduinosimulator_output_monitor_data")[0].innerHTML = document.getElementsByClassName("arduinosimulator_output_monitor_data")[0].innerHTML + e.data;
+						// ADDING THE RECEIVED DATA TO THE SERIAL MONITOR
+						document.getElementsByClassName("arduinosimulator_output_monitor_data")[0].innerHTML = document.getElementsByClassName("arduinosimulator_output_monitor_data")[0].innerHTML + myReceivedData;
 						}
 					}
 				}
