@@ -645,7 +645,7 @@ function menuRun()
 						// CHECKING IF A DIGITAL PIN EVENT OCCURRED
 						if (myReceivedData.indexOf("_DIGITAL_PIN_STATUS_")>-1)
 							{
-							// CHECKING IF THE DIGITAL PIN THAT GOT THE CALL IS THE SAME AS THE ONE IN MYLEDPIN VARIABLE
+							// CHECKING IF THE DIGITAL PIN THAT GOT THE CALL IS THE SAME AS THE ONE IN THE MYLEDPIN VARIABLE
 							if (myReceivedData.indexOf("_" + myLedPin + "_")>-1)
 								{
 								// CHECKING IF THE CALL HAS A TRUE ATTACHED TO IT
@@ -664,6 +664,7 @@ function menuRun()
 						// CHECKING IF AN ANALOG PIN EVENT OCCURRED
 						else if (myReceivedData.indexOf("_ANALOG_PIN_STATUS_")>-1)
 							{
+							// CHECKING IF THE ANALOG PIN THAT GOT THE CALL IS THE SAME AS THE ONE IN THE MYDCMOTORPIN VARIABLE
 							if (myReceivedData.indexOf("_" + myDCMotorPin + "_")>-1)
 								{
 								// GETTING THE DUTY
