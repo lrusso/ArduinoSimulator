@@ -30,7 +30,11 @@ Browse to the Web page with a different **ledpin** value (see example above) or 
 
 ## Roadmap
 
-* Serial input.
+* Serial.read() implementation.
+
+* Serial.available() implementation.
+
+* Serial.readString() implementation.
 
 * String class.
 
