@@ -28,7 +28,7 @@ Browse to the Web page with a different **ledpin** value (see example above) or 
 
 Browse to the Web page with a different **ledpin** value (see example above) or change the **myDCMotorPin** variable in the **ArduinoSimulator.js** file.
 
-## Roadmap
+## Roadmap - Pending implementations
 
 * Serial.read().
 
