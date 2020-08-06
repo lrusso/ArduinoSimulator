@@ -27,3 +27,11 @@ Browse to the Web page with a different **ledpin** value (see example above) or 
 ## How to set a default pin for the DC Motor?
 
 Browse to the Web page with a different **ledpin** value (see example above) or change the **myDCMotorPin** variable in the **ArduinoSimulator.js** file.
+
+## Roadmap
+
+* Serial input.
+
+* String class.
+
+* Ultrasonic sensor HC-SR04.
