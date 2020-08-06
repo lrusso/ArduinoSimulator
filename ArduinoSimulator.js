@@ -1,3 +1,5 @@
+function isMobileDevice(){return!!(navigator.userAgent.match(/Android/i)||navigator.userAgent.match(/webOS/i)||navigator.userAgent.match(/iPhone/i)||navigator.userAgent.match(/iPad/i)||navigator.userAgent.match(/iPod/i)||navigator.userAgent.match(/BlackBerry/i)||navigator.userAgent.match(/Windows Phone/i))}
+
 // CREATING THE WEB WORKER (THE CPP INTERPRETER)
 var myWorker;
 var myWorkerRunning;
@@ -703,8 +705,12 @@ function menuRun()
 			stoppingSimulator();
 			}
 
-		// FOCUSING THE EDITOR
-		editor.focus();
+		// CHECKING IF IT IS A MOBILE DEVICE
+		if (isMobileDevice()==false)
+			{
+			// FOCUSING THE EDITOR
+			editor.focus();
+			}
 		}
 		catch(err)
 		{
