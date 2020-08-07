@@ -56,7 +56,7 @@ self.addEventListener("message", function (e)
 		function loop()
 			{
 			// RUNNING A LINE CODE
-			mySimulator.next();
+			try{mySimulator.next()}catch(err){}
 
 			// WAITING 20 MS FOR RUNNING THE NEXT LINE CODE
 			setTimeout(loop, 20);
