@@ -1924,7 +1924,7 @@ function startSendingData()
 
 			if (dataToBeSentIndex>-1)
 				{
-				setTimeout(startSendingData,20);
+				setTimeout(startSendingData,1);
 				}
 			}
 		}
@@ -1965,7 +1965,7 @@ self.addEventListener("message", function (e)
 				try{mySimulator.next()}catch(err){}
 
 				// WAITING 20 MS FOR RUNNING THE NEXT LINE CODE
-				setTimeout(loop, 20);
+				setTimeout(loop, 1);
 				}
 
 			// RUNNING THE CODE LINE BY LINE
