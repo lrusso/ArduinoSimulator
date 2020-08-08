@@ -587,6 +587,10 @@ function menuRun()
 			// UPDATING THE WEB WORKER STATUS
 			myWorkerRunning = true;
 
+			// ENABLING THE INPUT TEXTBOX AND SEND BUTTON
+			document.getElementsByClassName("arduinosimulator_rightpanel_input_textbox")[0].disabled = false;
+			document.getElementsByClassName("arduinosimulator_rightpanel_input_send")[0].disabled = false;
+
 			// CREATING THE WEB WORKER
 			myWorker = new Worker("ArduinoSimulatorInterpreter.min.js");
 
@@ -746,6 +750,11 @@ function stoppingSimulator()
 
 		// UPDATING THE WEB WORKER STATUS
 		myWorkerRunning = false;
+
+		// DISABLING THE INPUT TEXTBOX AND SEND BUTTON
+		document.getElementsByClassName("arduinosimulator_rightpanel_input_textbox")[0].value = "";
+		document.getElementsByClassName("arduinosimulator_rightpanel_input_textbox")[0].disabled = true;
+		document.getElementsByClassName("arduinosimulator_rightpanel_input_send")[0].disabled = true;
 
 		// UPDATING THE LED PIN STATUS
 		updateLedPinStatus();
