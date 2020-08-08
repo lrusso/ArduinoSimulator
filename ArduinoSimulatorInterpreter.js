@@ -1929,11 +1929,17 @@ self.addEventListener("message", function (e)
 	{
 	try
 		{
+		// GETTING THE DATA FROM THE WEB WORKER MESSAGE
+		var workerMessage = e.data;
+
+		// SETTING THE PREFIX FOR RECEIVING SERIAL DATA FROM THE USER
+		var workerReceivingDataPrefix = "SEND_SERIAL_DATA_ARDUINO_SIMULATOR=";
+
 		// CHECKING IF THE USER SENT SERIAL DATA (NOT THE SKETCH TO BE EXECUTED)
-		if (e.data.indexOf("SEND_SERIAL_DATA_ARDUINO_SIMULATOR=")>-1)
+		if (workerMessage.indexOf(workerReceivingDataPrefix)>-1)
 			{
 			// GETTING THE SERIAL DATA FROM THE USER
-			var finalData = e.data.substr(35,e.data.length);
+			var finalData = workerMessage.substr(workerReceivingDataPrefix.length,workerMessage.length);
 
 			// CLEARING THE ARRAY THAT WILL ACT AS A BUFFER FOR THE BOARD SIMULATION
 			mySimulatorInputArray = [];
@@ -1951,11 +1957,8 @@ self.addEventListener("message", function (e)
 			}
 			else
 			{
-			// GETTING THE SKETCH CODE
-			var mySketchCode = e.data;
-
 			// RUNNING THE SIMULATOR
-			mySimulator = JSCPP.run(mySketchCode, mySimulatorInput, mySimulatorConfig);
+			mySimulator = JSCPP.run(workerMessage, mySimulatorInput, mySimulatorConfig);
 
 			// FUNCTION FOR INFINITE LOOP WITH A DELAY
 			function loop()
@@ -1964,7 +1967,7 @@ self.addEventListener("message", function (e)
 				var lineCounter = 0;
 
 				// GETTING THE SKETCH LINE COUNT
-				var lineCounterMax = mySketchCode.split("\n").length;
+				var lineCounterMax = workerMessage.split("\n").length;
 
 				// EXECUTING ALL THE LINES OF CODE
 				while(lineCounter<=lineCounterMax)
