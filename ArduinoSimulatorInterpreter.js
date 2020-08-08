@@ -1912,7 +1912,7 @@ function startSendingData()
 			mySimulatorInputArrayIndex = mySimulatorInputArrayIndex + 1;
 			}
 
-		// CHECKING IF THE INPUT ARRAY INDEX IS LESS THAN THE INPUTY ARRAY LENGTH
+		// CHECKING IF THE INPUT ARRAY INDEX IS LESS THAN THE INPUT ARRAY LENGTH
 		if (mySimulatorInputArrayIndex<mySimulatorInputArray.length)
 			{
 			// WAITING 1 MS AND LOOPING FOR CHECKING IF THE CHARACTER WAS RECEIVED BY THE BOARD
