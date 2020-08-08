@@ -1951,20 +1951,36 @@ self.addEventListener("message", function (e)
 			}
 			else
 			{
+			// GETTING THE SKETCH CODE
+			var mySketchCode = e.data;
+
 			// RUNNING THE SIMULATOR
-			mySimulator = JSCPP.run(e.data, mySimulatorInput, mySimulatorConfig);
+			mySimulator = JSCPP.run(mySketchCode, mySimulatorInput, mySimulatorConfig);
 
 			// FUNCTION FOR INFINITE LOOP WITH A DELAY
 			function loop()
 				{
-				// RUNNING A LINE CODE
-				try{mySimulator.next()}catch(err){}
+				// SETTING A LINE COUNTER
+				var lineCounter = 0;
 
-				// WAITING 1 MS FOR RUNNING THE NEXT LINE CODE
+				// GETTING THE SKETCH LINE COUNT
+				var lineCounterMax = mySketchCode.split("\n").length;
+
+				// EXECUTING ALL THE LINES OF CODE
+				while(lineCounter<=lineCounterMax)
+					{
+					// UPDATING THE LINE CODE COUNTER
+					lineCounter = lineCounter + 1;
+
+					// RUNNING A LINE CODE
+					try{mySimulator.next()}catch(err){}
+					}
+
+				// WAITING 1 MS FOR ANOTHER LOOP
 				setTimeout(loop, 1);
 				}
 
-			// RUNNING THE CODE LINE BY LINE
+			// LOOPING THE LINE CODE RUNNER
 			loop();
 			}
 		}
