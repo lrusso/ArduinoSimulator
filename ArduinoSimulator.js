@@ -826,8 +826,12 @@ function resizeArduinoSimulatorEditor()
 		document.getElementById("arduinosimulator_textcode_container").style.height = editHeight.toString() + "px";
 		editor.resize();
 
-		// GETTING FOCUS IN THE EDITOR
-		editor.focus();
+		// CHECKING IF IT IS A MOBILE DEVICE
+		if (isMobileDevice()==false)
+			{
+			// GETTING FOCUS IN THE EDITOR
+			editor.focus();
+			}
 		}
 		catch(err)
 		{
