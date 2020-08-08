@@ -626,7 +626,7 @@ function menuRun()
 			myWorkerRunning = true;
 
 			// CREATING THE WEB WORKER
-			myWorker = new Worker("ArduinoSimulatorInterpreter.js");
+			myWorker = new Worker("ArduinoSimulatorInterpreter.min.js");
 
 			// SETTING WHAT HAPPENS WHEN DATA IS RECEIVED FROM THE WEB WORKER
 			myWorker.onmessage = function(e)
