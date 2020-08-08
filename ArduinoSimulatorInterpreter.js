@@ -1910,21 +1910,21 @@ function startSendingData()
 	{
 	try
 		{
-		if (mySimulatorInput=="" || mySimulatorInputArrayIndex>-1)
+		// CHECKING IF THE SIMULATOR INPUT IS EMPTY
+		if (mySimulatorInput=="")
 			{
-			if (mySimulatorInput=="")
-				{
-				if (mySimulatorInputArrayIndex<mySimulatorInputArray.length)
-					{
-					mySimulatorInput = mySimulatorInputArray[mySimulatorInputArrayIndex];
-					mySimulatorInputArrayIndex = mySimulatorInputArrayIndex + 1;
-					}
-				}
+			// UPDATING THE SIMULATOR INPUT WITH A CHARACTER FROM THE INPUT ARRAY
+			mySimulatorInput = mySimulatorInputArray[mySimulatorInputArrayIndex];
 
-			if (mySimulatorInputArrayIndex>-1 && mySimulatorInputArrayIndex<mySimulatorInputArray.length)
-				{
-				setTimeout(startSendingData,1);
-				}
+			// UPDATING THE INPUT ARRAY INDEX
+			mySimulatorInputArrayIndex = mySimulatorInputArrayIndex + 1;
+			}
+
+		// CHECKING IF THE INPUT ARRAY INDEX IS LESS THAN THE INPUTY ARRAY LENGTH
+		if (mySimulatorInputArrayIndex<mySimulatorInputArray.length)
+			{
+			// SETTING A TIMEOUT WITH A LOOP IN ORDER TO WAIT FOR THE BOARD TO GET THE INPUTTED CHARACTER
+			setTimeout(startSendingData,1);
 			}
 		}
 		catch(err)
