@@ -1071,6 +1071,11 @@ window.addEventListener("load", function()
 	// RESIZING THE EDITOR
 	resizeArduinoSimulatorEditor();
 
+	// DISABLING THE INPUT TEXTBOX AND SEND BUTTON
+	document.getElementsByClassName("arduinosimulator_rightpanel_input_textbox")[0].value = "";
+	document.getElementsByClassName("arduinosimulator_rightpanel_input_textbox")[0].disabled = true;
+	document.getElementsByClassName("arduinosimulator_rightpanel_input_send")[0].disabled = true;
+
 	// SETTING WHAT HAPPENS WHEN EACH ELEMENT IS CLICKED
 	document.getElementById("buttonNew").addEventListener("click",function(event){menuNewFile()});
 	document.getElementById("buttonOpen").addEventListener("click",function(event){menuOpenFile()});
