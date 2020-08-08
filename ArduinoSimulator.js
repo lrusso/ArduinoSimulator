@@ -450,44 +450,6 @@ function menuSaveFile()
 		}
 	}
 
-function menuInsert(file)
-	{
-	try
-		{
-		var filereader = new FileReader();
-		filereader.file_name = file.name;
-
-		// CHECKING THE FILE EXTENSION
-		var extension = filereader.file_name.split(".").pop().toLowerCase();
-		filereader.onload = function()
-			{
-			// GETTING THE FILE CONTENT
-			var content = this.result;
-
-			// SETTING THE FILE CONTENT INTO THE EDITOR
-			editor.session.insert(editor.getCursorPosition(), content);
-
-			// CLEARING SELECTION
-			editor.clearSelection();
-
-			// GETTING FOCUS IN THE EDITOR
-			editor.focus();
-
-			// CLEARING THE SELECTED FILE VALUE
-			document.getElementById("fileInserter").value = null;
-			};
-
-		// READING THE FILE
-		filereader.readAsDataURL(file);
-
-		// CLEARING THE SELECTED FILE VALUE
-		document.getElementById("fileInserter").value = null;
-		}
-		catch(err)
-		{
-		}
-	}
-
 function menuSearch()
 	{
 	// SHOWING THE SEARCH BOX
