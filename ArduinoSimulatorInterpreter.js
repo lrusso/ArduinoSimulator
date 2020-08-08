@@ -1915,7 +1915,8 @@ function startSendingData()
 		// CHECKING IF THE INPUT ARRAY INDEX IS LESS THAN THE INPUTY ARRAY LENGTH
 		if (mySimulatorInputArrayIndex<mySimulatorInputArray.length)
 			{
-			// SETTING A TIMEOUT WITH A LOOP IN ORDER TO WAIT FOR THE BOARD TO GET THE INPUTTED CHARACTER
+			// WAITING 1 MS AND LOOPING FOR CHECKING IF THE CHARACTER WAS RECEIVED BY THE BOARD
+			// IN ORDER TO LATER SEND THE PENDING CHARACTERS (IF ANY)
 			setTimeout(startSendingData,1);
 			}
 		}
@@ -1959,7 +1960,7 @@ self.addEventListener("message", function (e)
 				// RUNNING A LINE CODE
 				try{mySimulator.next()}catch(err){}
 
-				// WAITING 20 MS FOR RUNNING THE NEXT LINE CODE
+				// WAITING 1 MS FOR RUNNING THE NEXT LINE CODE
 				setTimeout(loop, 1);
 				}
 
