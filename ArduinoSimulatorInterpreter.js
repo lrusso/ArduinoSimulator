@@ -1894,6 +1894,8 @@ if(!add||!isObject(add))return origin;var keys=Object.keys(add);var i=keys.lengt
 
 var mySimulator;
 var mySimulatorInput = "";
+var mySimulatorInputArray = [];
+var mySimulatorInputArrayIndex = 0;
 var mySimulatorConfig = {
 			stdio: {
 				write: function(s)
@@ -1904,25 +1906,22 @@ var mySimulatorConfig = {
 			debug: true
 			};
 
-var dataToBeSent = [];
-var dataToBeSentIndex = 0;
-
 function startSendingData()
 	{
 	try
 		{
-		if (mySimulatorInput=="" || dataToBeSentIndex>-1)
+		if (mySimulatorInput=="" || mySimulatorInputArrayIndex>-1)
 			{
 			if (mySimulatorInput=="")
 				{
-				if (dataToBeSentIndex<dataToBeSent.length)
+				if (mySimulatorInputArrayIndex<mySimulatorInputArray.length)
 					{
-					mySimulatorInput = dataToBeSent[dataToBeSentIndex];
-					dataToBeSentIndex = dataToBeSentIndex + 1;
+					mySimulatorInput = mySimulatorInputArray[mySimulatorInputArrayIndex];
+					mySimulatorInputArrayIndex = mySimulatorInputArrayIndex + 1;
 					}
 				}
 
-			if (dataToBeSentIndex>-1)
+			if (mySimulatorInputArrayIndex>-1 && mySimulatorInputArrayIndex<mySimulatorInputArray.length)
 				{
 				setTimeout(startSendingData,1);
 				}
@@ -1943,14 +1942,18 @@ self.addEventListener("message", function (e)
 			// GETTING THE SERIAL DATA FROM THE USER
 			var finalData = e.data.substr(35,e.data.length);
 
-			dataToBeSent = [];
-			dataToBeSentIndex = 0;
+			// CLEARING THE ARRAY THAT WILL ACT AS A BUFFER FOR THE BOARD SIMULATION
+			mySimulatorInputArray = [];
+			mySimulatorInputArrayIndex = 0;
 
+			// GETTING EVERY CHARACTER FROM THE FINALDATA VARIABLE
 			for (var i = 0; i < finalData.length; i++)
 				{
-				dataToBeSent.push(String(finalData.charCodeAt(i)));
+				// ADDING THE CHARCODE FOR EVERY CHARACTER TO THE INPUT ARRAY
+				mySimulatorInputArray.push(String(finalData.charCodeAt(i)));
 				}
 
+			// START SENDING DATA TO THE BOARD
 			startSendingData();
 			}
 			else
