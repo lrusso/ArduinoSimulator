@@ -724,8 +724,12 @@ function clearSerialMonitor()
 		// CLEARING THE SERIAL MONITOR DATA
 		document.getElementsByClassName("arduinosimulator_rightpanel_output_data")[0].innerHTML = "";
 
-		// FOCUSING THE EDITOR
-		editor.focus();
+		// CHECKING IF IT IS A MOBILE DEVICE
+		if (isMobileDevice()==false)
+			{
+			// FOCUSING THE EDITOR
+			editor.focus();
+			}
 		}
 		catch(err)
 		{
