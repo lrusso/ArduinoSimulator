@@ -53,6 +53,25 @@ html,body{margin:0;padding:0;background-color:black;-webkit-user-select:none;-mo
 .arduinosimulator_rightpanel_output{position:fixed;top:243px;bottom:0;right:0;width:525px;overflow:scroll}
 .arduinosimulator_rightpanel_output_clear{display:block;float:right;width:28px;height:26px;cursor:pointer;background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA4klEQVQ4jbXTP0oDURDH8c9uRLBKQLDQJp4hvXU6W2+gjTaCN7DTm5g+hxDPYLOxiWIqmxUtdhaem7dRQX8w7Px73zcMbwt5HWLSyd3jsad/7XCNj47VUfuiMgOYYICiY4PMVLaCeo3tyB3E9y4Dv8RJ+DWuyqCXOMYYFWaZw7OojaN3TU84zxU6usCiDdIdvGKYxBWOwqokP4xeNDtIAaMk3sde4rcapYDuBCmgT/8HWP0CsPqzCTYt8QYPmmd82wdIdYblDyZY4jQ3wTN248bv9NI6RZLcwVTz02zSO+Z4g09n2y8uhw/vCwAAAABJRU5ErkJggg==");background-repeat:no-repeat;background-position:7px 5px}
 .arduinosimulator_rightpanel_output_data{padding:10px;font-family:monospace,monospace;-webkit-user-select:text;-moz-user-select:text;user-select:text}
+.arduinosimulator_rightpanel_output_loading{display:none;position:fixed;right:0;width:525px;top:243px;bottom:0;margin:auto auto;border:0;z-index:99;text-align:center;background-color:white}
+.arduinosimulator_rightpanel_output_loading_centered{position:relative;top:50%;transform:translateY(-50%);margin-top:-10px}
+.arduinosimulator_rightpanel_output_loading_spinner{color:gray;display:inline-block;position:relative;width:64px;height:64px}
+.arduinosimulator_rightpanel_output_loading_spinner div{transform-origin:32px 32px;animation:arduinosimulator_spinner 1.2s linear infinite}
+.arduinosimulator_rightpanel_output_loading_spinner div:after{content:" ";display:block;position:absolute;top:3px;left:29px;width:5px;height:14px;border-radius:20%;background:gray}
+.arduinosimulator_rightpanel_output_loading_spinner div:nth-child(1){transform:rotate(0deg);animation-delay:-1.1s}
+.arduinosimulator_rightpanel_output_loading_spinner div:nth-child(2){transform:rotate(30deg);animation-delay:-1s}
+.arduinosimulator_rightpanel_output_loading_spinner div:nth-child(3){transform:rotate(60deg);animation-delay:-0.9s}
+.arduinosimulator_rightpanel_output_loading_spinner div:nth-child(4){transform:rotate(90deg);animation-delay:-0.8s}
+.arduinosimulator_rightpanel_output_loading_spinner div:nth-child(5){transform:rotate(120deg);animation-delay:-0.7s}
+.arduinosimulator_rightpanel_output_loading_spinner div:nth-child(6){transform:rotate(150deg);animation-delay:-0.6s}
+.arduinosimulator_rightpanel_output_loading_spinner div:nth-child(7){transform:rotate(180deg);animation-delay:-0.5s}
+.arduinosimulator_rightpanel_output_loading_spinner div:nth-child(8){transform:rotate(210deg);animation-delay:-0.4s}
+.arduinosimulator_rightpanel_output_loading_spinner div:nth-child(9){transform:rotate(240deg);animation-delay:-0.3s}
+.arduinosimulator_rightpanel_output_loading_spinner div:nth-child(10){transform:rotate(270deg);animation-delay:-0.2s}
+.arduinosimulator_rightpanel_output_loading_spinner div:nth-child(11){transform:rotate(300deg);animation-delay:-0.1s}
+.arduinosimulator_rightpanel_output_loading_spinner div:nth-child(12){transform:rotate(330deg);animation-delay:0s}
+@keyframes arduinosimulator_rightpanel_output_loading_spinner{0%{opacity:1}100%{opacity:0}}
+
 .arduinosimulator_splash_container{position:fixed;left:0;right:0;top:0;bottom:0;background-color:rgba(0,0,0,0.5);z-index:9999}
 .arduinosimulator_pleasewait{position:fixed;width:64px;height:64px;left:0;right:0;top:0;bottom:0;margin:auto auto;border:0}
 .arduinosimulator_spinner{color:white;display:inline-block;position:relative;width:64px;height:64px}

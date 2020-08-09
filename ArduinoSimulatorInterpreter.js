@@ -1957,6 +1957,9 @@ self.addEventListener("message", function (e)
 			}
 			else
 			{
+			// TELLING THE BROWSER TO ENABLE THE SERIAL MONITOR
+			self.postMessage("ENABLE_SERIAL_MONITOR_ARDUINO_SIMULATOR");
+
 			// RUNNING THE SIMULATOR
 			mySimulator = JSCPP.run(workerMessage, mySimulatorInput, mySimulatorConfig);
 

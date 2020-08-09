@@ -587,12 +587,11 @@ function menuRun()
 			// UPDATING THE MENU RUN ICON
 			document.getElementById("buttonRun").className = "arduinosimulator_button_stop_enabled";
 
+			// SHOWING THE SERIAL MONITOR LOADING SPLASH
+			document.getElementsByClassName("arduinosimulator_rightpanel_output_loading")[0].style.display = "block";
+
 			// UPDATING THE WEB WORKER STATUS
 			myWorkerRunning = true;
-
-			// ENABLING THE INPUT TEXTBOX AND SEND BUTTON
-			document.getElementsByClassName("arduinosimulator_rightpanel_input_textbox")[0].disabled = false;
-			document.getElementsByClassName("arduinosimulator_rightpanel_input_send")[0].disabled = false;
 
 			// CREATING THE WEB WORKER
 			myWorker = new Worker("ArduinoSimulatorInterpreter.min.js");
@@ -613,8 +612,18 @@ function menuRun()
 						}
 						else
 						{
+						if (myReceivedData.indexOf("ENABLE_SERIAL_MONITOR_ARDUINO_SIMULATOR")>-1)
+							{
+							// HIDING THE SERIAL MONITOR LOADING SPLASH
+							document.getElementsByClassName("arduinosimulator_rightpanel_output_loading")[0].style.display = "none";
+
+							// ENABLING THE INPUT TEXTBOX AND SEND BUTTON
+							document.getElementsByClassName("arduinosimulator_rightpanel_input_textbox")[0].value = "";
+							document.getElementsByClassName("arduinosimulator_rightpanel_input_textbox")[0].disabled = false;
+							document.getElementsByClassName("arduinosimulator_rightpanel_input_send")[0].disabled = false;
+							}
 						// CHECKING IF A DIGITAL PIN EVENT OCCURRED
-						if (myReceivedData.indexOf("_DIGITAL_PIN_STATUS_")>-1)
+						else if (myReceivedData.indexOf("_DIGITAL_PIN_STATUS_")>-1)
 							{
 							// CHECKING IF THE DIGITAL PIN THAT GOT THE CALL IS THE SAME AS THE ONE IN THE MYLEDPIN VARIABLE
 							if (myReceivedData.indexOf("_" + myLedPin + "_")>-1)
@@ -765,12 +774,8 @@ function stoppingSimulator()
 		// UPDATING THE DC MOTOR PIN STATUS
 		updateDCMotorPinStatus();
 
-		// CHECKING IF IT IS A MOBILE DEVICE
-		if (isMobileDevice()==false)
-			{
-			// GETTING FOCUS IN THE EDITOR
-			editor.focus();
-			}
+		// CLEARING THE SERIAL MONITOR
+		clearSerialMonitor();
 		}
 		catch(err)
 		{
