@@ -28,7 +28,7 @@ html,body{margin:0;padding:0;background-color:black;-webkit-user-select:none;-mo
 .arduinosimulator_button_stop_enabled{display:block;font-family:Arial;font-size:15px;line-height:32px;height:32px;width:28px;background-color:#F2F2F2;border:thin solid #F2F2F2;margin-left:3px;cursor:default;-webkit-user-select:none;-moz-user-select:none;user-select:none;background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH5AgBBAkEGGsIHAAAAD9JREFUOMtjYKARYKZE8zQGBoYXDAwM76E0Op6GrJgFiwFqDAwM4ngsUEPmMFHq11EDRg3AZcBPAnp+MgwqAAB0Jgn8BL4uMwAAAABJRU5ErkJggg==");background-repeat:no-repeat;background-position:center}
 .arduinosimulator_button_stop_enabled:hover{background-color:#E3E3E3;border:thin solid #D3D3D3}
 .arduinosimulator_buttonHidden{display:none}
-.arduinosimulator_rightpanel{display:none;position:fixed;right:0;top:41px;bottom:0;width:525px;background-color:white;border-left:1px solid #D3D3D3;overflow-y:scroll}
+.arduinosimulator_rightpanel{display:none;position:fixed;right:0;top:41px;bottom:0;width:525px;background-color:white;border-left:1px solid #D3D3D3;overflow-y:scroll;overflow-x:hidden}
 .arduinosimulator_rightpanel::-webkit-scrollbar{display:none}
 .arduinosimulator_rightpanel_title{background-color: #F2F2F2;border-bottom:1px solid #D3D3D3}
 .arduinosimulator_rightpanel_title_value{font-family:Arial;font-size:13px;line-height:2;padding-left:7px;font-weight:bold}

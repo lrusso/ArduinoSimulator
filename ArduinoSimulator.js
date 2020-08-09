@@ -874,7 +874,7 @@ function runSketch(sketch)
 	// CONVERTING THE ARDUINO METHODS AND CLASSES (JSCPP DOESN'T SUPPORT STRUCTS YET)
 	sketch = convertArduinoSketch(sketch);
 
-	var code = "#include <iostream>\n#include <ctime>\n#include \"stdlib.h\"#include <cmath>\n#include <string.h>\nusing namespace std;\n" +
+	var code = "#include <iostream>\n#include <ctime>\n#include <stdlib.h>\n#include <cmath>\n#include <string.h>\nusing namespace std;\n" +
 
 				// MAIN IMPLEMENTATION THAT WILL EXECUTE SETUP AND LOOP
 				"int main(){int internalLoopSystem=0;setup();while(true){loop();internalLoopSystem=internalLoopSystem+1;}return 0;}"
