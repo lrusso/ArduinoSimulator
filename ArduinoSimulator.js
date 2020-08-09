@@ -620,10 +620,11 @@ function menuRun()
 							// HIDING THE SERIAL MONITOR LOADING SPLASH
 							document.getElementsByClassName("arduinosimulator_rightpanel_output_loading")[0].style.display = "none";
 
-							// ENABLING THE INPUT TEXTBOX AND SEND BUTTON
+							// ENABLING THE INPUT TEXTBOX, CLEAR ICON AND SEND BUTTON
 							document.getElementsByClassName("arduinosimulator_rightpanel_input_textbox")[0].value = "";
 							document.getElementsByClassName("arduinosimulator_rightpanel_input_textbox")[0].disabled = false;
 							document.getElementsByClassName("arduinosimulator_rightpanel_input_send")[0].disabled = false;
+							document.getElementById("buttonClear").className = "arduinosimulator_rightpanel_output_clear_enabled";
 							}
 						// CHECKING IF A DIGITAL PIN EVENT OCCURRED
 						else if (myReceivedData.indexOf("_DIGITAL_PIN_STATUS_")>-1)
@@ -766,10 +767,11 @@ function stoppingSimulator()
 		// UPDATING THE WEB WORKER STATUS
 		myWorkerRunning = false;
 
-		// DISABLING THE INPUT TEXTBOX AND SEND BUTTON
+		// DISABLING THE INPUT TEXTBOX, CLEAR ICON AND SEND BUTTON
 		document.getElementsByClassName("arduinosimulator_rightpanel_input_textbox")[0].value = "";
 		document.getElementsByClassName("arduinosimulator_rightpanel_input_textbox")[0].disabled = true;
 		document.getElementsByClassName("arduinosimulator_rightpanel_input_send")[0].disabled = true;
+		document.getElementById("buttonClear").className = "arduinosimulator_rightpanel_output_clear_disabled";
 
 		// UPDATING THE LED PIN STATUS
 		updateLedPinStatus();
@@ -1108,7 +1110,7 @@ window.addEventListener("load", function()
 	document.getElementById("buttonLed").addEventListener("click",function(event){menuLed()});
 	document.getElementById("buttonDCMotor").addEventListener("click",function(event){menuDCMotor()});
 	document.getElementById("buttonRun").addEventListener("click",function(event){menuRun()});
-	document.getElementById("buttonClear").addEventListener("click",function(event){clearSerialMonitor()});
+	document.getElementById("buttonClear").addEventListener("click",function(event){if(document.getElementById("buttonClear").className=="arduinosimulator_rightpanel_output_clear_enabled"){clearSerialMonitor()}});
 	document.getElementById("buttonSend").addEventListener("click",function(event){sendSerialData()});
 	document.getElementsByClassName("arduinosimulator_rightpanel_input_textbox")[0].addEventListener("keyup",function(event){if (event.keyCode==13){sendSerialData()}});
 	document.getElementById("arduinosimulator_filename").addEventListener("click",function(event){editor.focus()});
