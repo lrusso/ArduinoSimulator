@@ -590,6 +590,9 @@ function menuRun()
 			// SHOWING THE SERIAL MONITOR LOADING SPLASH
 			document.getElementsByClassName("arduinosimulator_rightpanel_output_loading")[0].style.display = "block";
 
+			// CLEARING THE SERIAL MONITOR DATA
+			document.getElementsByClassName("arduinosimulator_rightpanel_output_data")[0].innerHTML = "";
+
 			// UPDATING THE WEB WORKER STATUS
 			myWorkerRunning = true;
 
@@ -774,8 +777,12 @@ function stoppingSimulator()
 		// UPDATING THE DC MOTOR PIN STATUS
 		updateDCMotorPinStatus();
 
-		// CLEARING THE SERIAL MONITOR
-		clearSerialMonitor();
+		// CHECKING IF IT IS A MOBILE DEVICE
+		if (isMobileDevice()==false)
+			{
+			// FOCUSING THE EDITOR
+			editor.focus();
+			}
 		}
 		catch(err)
 		{
