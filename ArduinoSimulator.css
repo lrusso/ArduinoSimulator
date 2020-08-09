@@ -100,9 +100,9 @@ html,body{margin:0;padding:0;background-color:black;-webkit-user-select:none;-mo
 	.arduinosimulator_button_stop_enabled:hover{background-color:#F2F2F2;border:thin solid #F2F2F2}
 	}
 
+.ace-arduino-light{background-color:#fff}
 .ace-arduino-light .ace_gutter{background-color:#dae3e3;color:#434f54}
 .ace-arduino-light .ace_gutter-active-line{background:#b5c8c9}
-.ace-arduino-light .ace_scroller{background-color:#fff}
 .ace-arduino-light .ace_cursor{border-left:1px solid #7991e8}
 .ace-arduino-light .ace_overwrite-cursors .ace_cursor{background:#766b13;border:1px solid #ffe300}
 .ace-arduino-light .ace_marker-layer .ace_selection{background:#fc0;opacity:.4}
