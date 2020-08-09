@@ -761,6 +761,13 @@ function stoppingSimulator()
 
 		// UPDATING THE DC MOTOR PIN STATUS
 		updateDCMotorPinStatus();
+
+		// CHECKING IF IT IS A MOBILE DEVICE
+		if (isMobileDevice()==false)
+			{
+			// GETTING FOCUS IN THE EDITOR
+			editor.focus();
+			}
 		}
 		catch(err)
 		{
