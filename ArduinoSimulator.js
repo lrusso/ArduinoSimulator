@@ -145,13 +145,16 @@ try
 	var editor = ace.edit("arduinosimulator_textcode");
 
 	// SETTING THE OPTIONS
-	editor.setOptions({fontSize:"14px",showPrintMargin:false,showInvisibles:true,tabSize:4,useSoftTabs:false,highlightActiveLine:false});
+	editor.setOptions({fontSize:"14px",showPrintMargin:false,showInvisibles:false,tabSize:4,useSoftTabs:false,highlightActiveLine:false});
 
 	// REMOVING COMMAND
 	editor.commands.removeCommand("gotoline");
 
-	// SETTING THE DEFAULT PROGRAMMING LANGUAGE IN THE ACE CORE
-	editor.session.setMode("ace/mode/c_cpp");
+	// SETTING THE ARDUINO MODE
+	editor.session.setMode("ace/mode/arduino");
+
+	// SETTING THE ARDUINO THEME
+	editor.setTheme("ace/theme/arduino_light");
 
 	// DISABLING WORKERS
 	editor.session.setUseWorker(false);
