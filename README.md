@@ -12,10 +12,6 @@ https://lrusso.github.io/ArduinoSimulator/ArduinoSimulator.htm
 
 https://lrusso.github.io/ArduinoSimulator/ArduinoSimulatorSample.htm?ledpin=13&dcmotorpin=5
 
-## Video demo
-
-https://www.youtube.com/watch?v=Sn8w5wzJsLk
-
 ## How to set a default sketch in the simulator?
 
 Edit the **STRING_WELCOME** variable located in **ArduinoSimulator.htm** file.
