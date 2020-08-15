@@ -90,7 +90,7 @@ html,body{margin:0;padding:0;background-color:black;-webkit-user-select:none;-mo
 @keyframes arduinosimulator_spinner{0%{opacity:1}100%{opacity:0}}
 
 #arduinosimulator_filename{float:left;font-family:Arial;font-size:13px;line-height:2.7;margin-left:6px;margin-right:0px;cursor:default;-webkit-user-select:none;-moz-user-select:none;user-select:none}
-#arduinosimulator_textcode_container{position:fixed;padding:0;margin:0;left:0;top:41px;bottom:0;right:0}
+#arduinosimulator_textcode_container{position:fixed;padding:0;margin:0;left:0;top:41px;bottom:0;right:0;display:none}
 #arduinosimulator_textcode{position:absolute;top:0;right:325px;bottom:0;left:0}
 
 .arduinosimulator_portrait_background{position:fixed;top:0;left:0;right:0;bottom:0;background-color:black;z-index:9999;display:none}
