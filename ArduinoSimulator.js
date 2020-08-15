@@ -953,13 +953,6 @@ function runSketch(sketch)
 
 				+
 
-				// ATOI IMPLEMENTATION
-
-				"int _atoi(char charValue);" +
-				"int _atoi(char charValue){int someInt = charValue - '0';return someInt;}"
-
-				+
-
 				// SERIAL IMPLEMENTATION
 				"int _SerialReceivedData = 0;" +
 				"int _Serial_Available();" +
@@ -1019,9 +1012,6 @@ function convertArduinoSketch(a)
 
 	// FINDING AND REPLACING ALL THE BOOLEAN FUNCTIONS
 	a = a.replace(/boolean /g,"bool ");
-
-	// FINDING AND REPLACING ALL THE ATOI FUNCTIONS
-	a = a.replace(/atoi\(/g,"_atoi(");
 
 	// RETURNING THE CONVERTED CODE
 	return a;
