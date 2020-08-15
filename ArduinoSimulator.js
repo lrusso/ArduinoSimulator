@@ -849,14 +849,7 @@ function resizeArduinoSimulatorEditor()
 	{
 	try
 		{
-		// GETTING THE WINDOW SIZE
-		var w = window, d = document, e = d.documentElement, g = d.getElementsByTagName("body")[0], x = w.innerWidth || e.clientWidth || g.clientWidth, y = w.innerHeight|| e.clientHeight|| g.clientHeight;
-
-		// CALCUTING THE NEW SIZE FOR THE EDITOR
-		var editHeight = y - 41;
-
 		// RESIZING THE EDITOR
-		document.getElementById("arduinosimulator_textcode_container").style.height = editHeight.toString() + "px";
 		editor.resize();
 
 		// CHECKING IF IT IS A MOBILE DEVICE
