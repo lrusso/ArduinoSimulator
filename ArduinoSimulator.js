@@ -951,7 +951,7 @@ function runSketch(sketch)
 				"int _Serial_Available();" +
 				"int _Serial_Available(){cin >> (_SerialReceivedData);return _SerialReceivedData;}" +
 				"char _Serial_Read();" +
-				"char _Serial_Read(){if (_SerialReceivedData<128){return (char)_SerialReceivedData;}else{return (char)0;}}" +
+				"char _Serial_Read(){return (char)_SerialReceivedData;}" +
 				"void _Serial_Begin(int baudRate);" +
 				"void _Serial_Begin(int baudRate){}"
 
