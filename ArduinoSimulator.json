@@ -3,7 +3,7 @@
 	"short_name": "Arduino Simulator",
 	"lang": "en-US",
 	"start_url": "https://lrusso.github.io/ArduinoSimulator/ArduinoSimulator.htm",
-	"display": "fullscreen",
+	"display": "standalone",
 	"orientation": "landscape",
 	"theme_color": "#F2F2F2",
 	"background_color": "#000000",
