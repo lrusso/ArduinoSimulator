@@ -2,7 +2,7 @@
 	"name": "Arduino Simulator",
 	"short_name": "Arduino Simulator",
 	"lang": "en-US",
-	"start_url": "https://lrusso.github.io/ArduinoSimulator/ArduinoSimulatorSample.htm",
+	"start_url": "https://lrusso.github.io/ArduinoSimulator/ArduinoSimulatorSample.htm?ledpin=13&dcmotorpin=5",
 	"display": "standalone",
 	"orientation": "landscape",
 	"theme_color": "#F2F2F2",
