@@ -11,6 +11,7 @@ const filesToCache = [
 	"ArduinoSimulatorInterpreter.js",
 	"ArduinoSimulatorInterpreter.min.js",
 	"ArduinoSimulatorSample.htm",
+	"ArduinoSimulatorSample.json",
 	"ArduinoSimulatorShare.png"
 ];
 
