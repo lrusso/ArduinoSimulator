@@ -1006,6 +1006,9 @@ function convertArduinoSketch(a)
 	// FINDING AND REPLACING ALL THE BOOLEAN FUNCTIONS
 	a = a.replace(/boolean /g,"bool ");
 
+	// FINDING AND REPLACING ALL THE STRING TYPES
+	a = a.replace(/(String )([A-Za-z])/g,"char *$2");
+
 	// RETURNING THE CONVERTED CODE
 	return a;
 	}
