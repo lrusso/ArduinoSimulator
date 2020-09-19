@@ -972,10 +972,10 @@ function runSketch(sketch)
 function convertArduinoSketch(a)
 	{
 	// FINDING AND REPLACING ALL THE SERIAL.BEGIN
-	a = a.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bSerial.begin\b/g,"_Serial_Begin");
+	a = a.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bSerial\.begin\b/g,"_Serial_Begin");
 
 	// FINDING AND REPLACING ALL THE SERIAL.PRINTLN
-	a = a.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bSerial.println\b/g,"cout <<");
+	a = a.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bSerial\.println\b/g,"cout <<");
 
 	// FINDING ALL THE COUT FUNCTIONS PREVIOUSLY IMPLEMENTED (BY REPLACING EVERY PRINTLN FUNCTION)
 	// AND ADDING A BREAKLINE AFTER EACH COUT FUNCTION
@@ -992,13 +992,13 @@ function convertArduinoSketch(a)
 		}
 
 	// FINDING AND REPLACING ALL THE SERIAL.PRINT
-	a = a.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bSerial.print\b/g,"cout <<");
+	a = a.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bSerial\.print\b/g,"cout <<");
 
 	// FINDING AND REPLACING ALL THE SERIAL.AVAILABLE
-	a = a.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bSerial.available\b/g,"_Serial_Available");
+	a = a.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bSerial\.available\b/g,"_Serial_Available");
 
 	// FINDING AND REPLACING ALL THE SERIAL.READ
-	a = a.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bSerial.read\b/g,"_Serial_Read");
+	a = a.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bSerial\.read\b/g,"_Serial_Read");
 
 	// FINDING AND REPLACING ALL THE PULSEIN FUNCTIONS
 	a = a.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bpulseIn\b/g,"_pulseIn");
