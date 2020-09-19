@@ -989,7 +989,7 @@ function convertArduinoSketch(a)
 	// FINDING AND REPLACING ALL THE PULSEIN FUNCTIONS
 	a = a.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bpulseIn\b/g,"_pulseIn");
 
-	// FINDING AND REPLACING ALL THE BOOLEAN FUNCTIONS
+	// FINDING AND REPLACING ALL THE BOOLEAN TYPES
 	a = a.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bboolean \b/g,"bool ");
 
 	// FINDING AND REPLACING ALL THE STRING TYPES
