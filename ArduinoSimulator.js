@@ -971,19 +971,19 @@ function runSketch(sketch)
 
 function convertArduinoSketch(a)
 	{
-	// FINDING AND REPLACING ALL THE SERIAL.BEGIN
+	// FINDING AND REPLACING ALL THE SERIAL.BEGIN METHODS
 	a = a.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bSerial\.begin\b/g,"_Serial_Begin");
 
-	// FINDING AND REPLACING ALL THE SERIAL.PRINT
+	// FINDING AND REPLACING ALL THE SERIAL.PRINT METHODS
 	a = a.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)(\bSerial\.print\b)(.*\);)/g,"cout <<$2");
 
-	// FINDING AND REPLACING ALL THE SERIAL.PRINTLN
+	// FINDING AND REPLACING ALL THE SERIAL.PRINTLN METHODS
 	a = a.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)(\bSerial\.println\b)(.*\);)/g,"cout <<$2cout << \"<br />\";");
 
-	// FINDING AND REPLACING ALL THE SERIAL.AVAILABLE
+	// FINDING AND REPLACING ALL THE SERIAL.AVAILABLE METHODS
 	a = a.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bSerial\.available\b/g,"_Serial_Available");
 
-	// FINDING AND REPLACING ALL THE SERIAL.READ
+	// FINDING AND REPLACING ALL THE SERIAL.READ METHODS
 	a = a.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bSerial\.read\b/g,"_Serial_Read");
 
 	// FINDING AND REPLACING ALL THE PULSEIN FUNCTIONS
