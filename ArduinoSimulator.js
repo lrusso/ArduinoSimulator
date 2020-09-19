@@ -975,21 +975,7 @@ function convertArduinoSketch(a)
 	a = a.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bSerial\.begin\b/g,"_Serial_Begin");
 
 	// FINDING AND REPLACING ALL THE SERIAL.PRINTLN
-	a = a.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bSerial\.println\b/g,"cout <<");
-
-	// FINDING ALL THE COUT FUNCTIONS PREVIOUSLY IMPLEMENTED (BY REPLACING EVERY PRINTLN FUNCTION)
-	// AND ADDING A BREAKLINE AFTER EACH COUT FUNCTION
-	var reg = /cout <<\(.*\)/g;
-	var matches = a.match(reg);
-	if (matches)
-		{
-		for (var i = 0; i < matches.length; i++)
-			{
-			var replaceThis = new RegExp(escapeRegex(matches[i]),"g");
-			var withThis = matches[i] + ";cout << \"<br />\"";
-			a = a.replace(replaceThis, withThis);
-			}
-		}
+	a = a.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)(\bSerial\.println\b)(.*\);)/g,"cout <<$2cout << \"<br />\";");
 
 	// FINDING AND REPLACING ALL THE SERIAL.PRINT
 	a = a.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bSerial\.print\b/g,"cout <<");
@@ -1008,6 +994,8 @@ function convertArduinoSketch(a)
 
 	// FINDING AND REPLACING ALL THE STRING TYPES
 	a = a.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\b(String )([A-Za-z])/g,"char *$2");
+
+	alert(a);
 
 	// RETURNING THE CONVERTED CODE
 	return a;
