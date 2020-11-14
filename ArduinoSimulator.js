@@ -975,10 +975,10 @@ function convertArduinoSketch(a)
 	a = a.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bSerial\.begin\b/g,"_Serial_Begin");
 
 	// FINDING AND REPLACING ALL THE CALLS TO THE SERIAL.PRINT METHOD
-	a = a.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)(\bSerial\.print\b)(.*\);)/g,"cout <<$2");
+	a = a.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)(\bSerial\.print\b)(.*?\);)/g,"cout <<$2");
 
 	// FINDING AND REPLACING ALL THE CALLS TO THE SERIAL.PRINTLN METHOD
-	a = a.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)(\bSerial\.println\b)(.*\);)/g,"cout <<$2cout << \"<br />\";");
+	a = a.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)(\bSerial\.println\b)(.*?\);)/g,"cout <<$2cout << \"<br />\";");
 
 	// FINDING AND REPLACING ALL THE CALLS TO THE SERIAL.AVAILABLE METHOD
 	a = a.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bSerial\.available\b/g,"_Serial_Available");
