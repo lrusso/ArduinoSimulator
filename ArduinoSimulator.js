@@ -869,7 +869,7 @@ function runSketch(sketch)
 	// CONVERTING THE ARDUINO METHODS AND CLASSES (JSCPP DOESN'T SUPPORT STRUCTS YET)
 	sketch = convertArduinoSketch(sketch);
 
-	var code = "#include <iostream>\n#include <ctime>\n#include <stdlib.h>\n#include <cmath>\n#include <string.h>\nusing namespace std;\n" +
+	var code = "#include <iostream>\n#include <ctime>\n#include <stdlib.h>\n#include <cmath>\n#include <string.h>\n#include <cstdio>\nusing namespace std;\n" +
 
 				// MAIN IMPLEMENTATION THAT WILL EXECUTE SETUP AND LOOP
 				"int main(){int internalLoopSystem=0;setup();while(true){loop();internalLoopSystem=internalLoopSystem+1;}return 0;}"
@@ -957,6 +957,11 @@ function runSketch(sketch)
 
 				+
 
+				// INT TO CHAR IMPLEMENTATION
+				"char* _intToChar(int a){int BUFFERSIZE = 9;char answer[BUFFERSIZE];char answer2[BUFFERSIZE];int counter = 0;while (a > 0){answer[counter] = (a % 10 + '0');counter = counter + 1;a = a / 10;}int x = 0;int y = BUFFERSIZE - 1;while(y>-1){answer2[x] = answer[y];x = x + 1;y = y - 1;}return answer2;}"
+
+				+
+
 				// THE FOLLOWING BREAKLINES ARE NEED IN ORDER TO PREVENT JSCPP TO SHOW ANY OF THE PREVIOUS CODE IF THE USER CODE FAILS
 				"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
 
@@ -997,6 +1002,9 @@ function convertArduinoSketch(a)
 
 	// FINDING AND REPLACING ALL THE REFERENCES TO THE CONVERT TO STRING FUNCTION THAT HAS A STRING AS A PARAMETER
 	a = a.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\b(String\()(\"[A-Za-z].*\")\)/g,"$2");
+
+	// FINDING AND REPLACING ALL THE REFERENCES TO THE CONVERT TO STRING FUNCTION THAT HAS AN INTEGER AS A PARAMETER
+	a = a.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\b(String\()([0-9].*)\)/g,"_intToChar($2)");
 
 	// RETURNING THE CONVERTED CODE
 	return a;
