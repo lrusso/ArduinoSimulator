@@ -995,7 +995,7 @@ function convertArduinoSketch(a)
 	// FINDING AND REPLACING ALL THE REFERENCES TO THE STRING TYPE
 	a = a.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\b(String )([A-Za-z])/g,"char *$2");
 
-	// FINDING AND REPLACING ALL THE REFERENCES TO THE STRING TYPE
+	// FINDING AND REPLACING ALL THE REFERENCES TO THE CONVERT TO STRING FUNCTION THAT HAS A STRING AS A PARAMETER
 	a = a.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\b(String\()(\"[A-Za-z].*\")\)/g,"$2");
 
 	// RETURNING THE CONVERTED CODE
