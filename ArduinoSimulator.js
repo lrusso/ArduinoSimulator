@@ -676,6 +676,8 @@ function menuRun()
 					catch(err)
 					{
 					}
+
+				return true;
 				}
 
 			// RUNNING THE SKETCH
