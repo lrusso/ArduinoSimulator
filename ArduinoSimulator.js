@@ -50,9 +50,6 @@ try
 	// WORKAROUND FOR SYNTAX HIGHLIGHTING LARGE LINES AND FILES
 	editor.session.bgTokenizer.tokenizer.$setMaxTokenCount(999999);
 
-	// GETTING FOCUS IN THE EDITOR
-	editor.focus();
-
 	// SETTING WHAT WILL HAPPEN WHEN THE EDITOR CONTENT CHANGES
 	editor.getSession().on("change", function()
 		{
