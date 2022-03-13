@@ -1,3 +1,6 @@
+// confirmCustom.js
+function confirmCustom(title,message,yes,no,myCallbackYes,myCallbackNo){try{var confirmContainer = document.createElement("div");confirmContainer.className = "alert_confirm_input_custom";confirmContainer.style.position = "fixed";confirmContainer.style.top = 0;confirmContainer.style.bottom = 0;confirmContainer.style.left = 0;confirmContainer.style.right = 0;confirmContainer.style.zIndex = 999;confirmContainer.style.backgroundColor = "rgba(0,0,0,0.5)";confirmContainer.style.userSelect = "none";var confirmForm = document.createElement("div");confirmForm.style.position = "relative";confirmForm.style.top = "50%";confirmForm.style.left = 0;confirmForm.style.right = 0;confirmForm.style.marginLeft = "auto";confirmForm.style.marginRight = "auto";confirmForm.style.transform = "translateY(-50%)";confirmForm.style.width = "300px";confirmForm.style.backgroundColor = "#f2f2f2";confirmForm.style.textAlign = "center";confirmForm.style.borderRadius = "5px";confirmForm.style.overflow = "hidden";confirmForm.style.boxShadow = "0 2px 2px 1px rgba(0,0,0,0.4)";var confirmTitle = document.createElement("div");confirmTitle.style.textAlign = "left";confirmTitle.style.paddingLeft = "10px";confirmTitle.style.backgroundColor = "#3a76b1";confirmTitle.style.fontFamily = "Arial";confirmTitle.style.fontSize = "16px";confirmTitle.style.fontWeight = "bold";confirmTitle.style.color = "white";confirmTitle.style.lineHeight = 2.5;confirmTitle.innerHTML = title;var confirmMessage = document.createElement("div");confirmMessage.style.padding = "20px";confirmMessage.style.fontFamily = "Arial";confirmMessage.style.fontSize = "16px";confirmMessage.style.color = "black";confirmMessage.style.textAlign = "center";confirmMessage.style.lineHeight = 2;confirmMessage.style.overflow = "hidden";confirmMessage.style.textOverflow = "ellipsis";confirmMessage.innerHTML = message;var confirmButtonYes = document.createElement("input");confirmButtonYes.type = "submit";confirmButtonYes.style.outline = "none";confirmButtonYes.style.padding = "10px";confirmButtonYes.style.width = "auto";confirmButtonYes.style.backgroundColor = "#d2d2d2";confirmButtonYes.style.border = "1px solid #b2b2b2";confirmButtonYes.style.fontFamily = "Arial";confirmButtonYes.style.fontSize = "16px";confirmButtonYes.style.color = "black";confirmButtonYes.style.textAlign = "center";confirmButtonYes.style.lineHeight = 1.5;confirmButtonYes.style.display = "inline-block";confirmButtonYes.style.marginBottom = "10px";confirmButtonYes.style.paddingLeft = "40px";confirmButtonYes.style.paddingRight = "40px";confirmButtonYes.style.cursor = "pointer";confirmButtonYes.style.borderRadius = "5px";confirmButtonYes.addEventListener("click",function(event){document.body.removeChild(confirmContainer);myCallbackYes();});confirmButtonYes.value = yes;var confirmButtonNo = document.createElement("input");confirmButtonNo.type = "submit";confirmButtonNo.style.outline = "none";confirmButtonNo.style.padding = "10px";confirmButtonNo.style.backgroundColor = "#d2d2d2";confirmButtonNo.style.border = "1px solid #b2b2b2";confirmButtonNo.style.fontFamily = "Arial";confirmButtonNo.style.fontSize = "16px";confirmButtonNo.style.color = "black";confirmButtonNo.style.textAlign = "center";confirmButtonNo.style.lineHeight = 1.5;confirmButtonNo.style.display = "inline-block";confirmButtonNo.style.marginLeft = "20px";confirmButtonNo.style.marginBottom = "10px";confirmButtonNo.style.paddingLeft = "40px";confirmButtonNo.style.paddingRight = "40px";confirmButtonNo.style.cursor = "pointer";confirmButtonNo.style.borderRadius = "5px";confirmButtonNo.addEventListener("click",function(event){document.body.removeChild(confirmContainer);myCallbackNo();});confirmButtonNo.value = no;confirmForm.appendChild(confirmTitle);confirmForm.appendChild(confirmMessage);confirmForm.appendChild(confirmButtonYes);confirmForm.appendChild(confirmButtonNo);confirmContainer.appendChild(confirmForm);document.body.appendChild(confirmContainer);}catch(err){}}
+
 function isMobileDevice(){return!!(navigator.userAgent.match(/Android/i)||navigator.userAgent.match(/webOS/i)||navigator.userAgent.match(/iPhone/i)||navigator.userAgent.match(/iPad/i)||navigator.userAgent.match(/iPod/i)||navigator.userAgent.match(/BlackBerry/i)||navigator.userAgent.match(/Windows Phone/i))}
 
 // CREATING THE WEB WORKER (THE CPP INTERPRETER)
@@ -5,131 +8,6 @@ var myWorker;
 var myWorkerRunning;
 var myAnalogPinsOnBoard = 5;
 var myDigitalPinsOnBoard = 13;
-
-function confirmCustom(title,message,yes,no,myCallback)
-	{
-	try
-		{
-		// CREATING THE CONFIRM CONTAINER
-		var confirmContainer = document.createElement("div");
-		confirmContainer.style.position = "fixed";
-		confirmContainer.style.top = 0;
-		confirmContainer.style.bottom = 0;
-		confirmContainer.style.left = 0;
-		confirmContainer.style.right = 0;
-		confirmContainer.style.zIndex = 9999;
-		confirmContainer.style.backgroundColor = "rgba(0,0,0,0.5)";
-
-		// CREATING THE CONFIRM FORM
-		var confirmForm = document.createElement("div");
-		confirmForm.style.position = "relative";
-		confirmForm.style.top = "50%";
-		confirmForm.style.left = 0;
-		confirmForm.style.right = 0;
-		confirmForm.style.marginLeft = "auto";
-		confirmForm.style.marginRight = "auto";
-		confirmForm.style.transform = "translateY(-50%)";
-		confirmForm.style.width = "300px";
-		confirmForm.style.backgroundColor = "#f2f2f2";
-		confirmForm.style.textAlign = "center";
-
-		// CREATING THE CONFIRM TITLE
-		var confirmTitle = document.createElement("div");
-		confirmTitle.style.textAlign = "left";
-		confirmTitle.style.paddingLeft = "10px";
-		confirmTitle.style.backgroundColor = "#3a76b1";
-		confirmTitle.style.fontFamily = "Arial";
-		confirmTitle.style.fontSize = "16px";
-		confirmTitle.style.fontWeight = "bold";
-		confirmTitle.style.color = "white";
-		confirmTitle.style.lineHeight = 2.5;
-		confirmTitle.innerHTML = title;
-
-		// CREATING THE CONFIRM MESSAGE
-		var confirmMessage = document.createElement("div");
-		confirmMessage.style.padding = "20px";
-		confirmMessage.style.fontFamily = "Arial";
-		confirmMessage.style.fontSize = "16px";
-		confirmMessage.style.color = "black";
-		confirmMessage.style.textAlign = "center";
-		confirmMessage.style.lineHeight = 2;
-		confirmMessage.innerHTML = message;
-
-		// CREATING THE CONFIRM YES BUTTON
-		var confirmButtonYes = document.createElement("div");
-		confirmButtonYes.style.padding = "10px";
-		confirmButtonYes.style.backgroundColor = "#d2d2d2";
-		confirmButtonYes.style.border = "1px solid #b2b2b2";
-		confirmButtonYes.style.fontFamily = "Arial";
-		confirmButtonYes.style.fontSize = "16px";
-		confirmButtonYes.style.color = "black";
-		confirmButtonYes.style.textAlign = "center";
-		confirmButtonYes.style.lineHeight = 1.5;
-		confirmButtonYes.style.display = "inline-block";
-		confirmButtonYes.style.marginBottom = "10px";
-		confirmButtonYes.style.paddingLeft = "40px";
-		confirmButtonYes.style.paddingRight = "40px";
-		confirmButtonYes.style.cursor = "pointer";
-		confirmButtonYes.addEventListener("click",function(event)
-			{
-			// REMOVING THE CONFIRM CONTAINER
-			document.body.removeChild(confirmContainer);
-
-			// EXECUTING THE CALLBACK FUNCTION
-			myCallback();
-			});
-		confirmButtonYes.innerHTML = yes;
-
-		// CREATING THE CONFIRM NO BUTTON
-		var confirmButtonNo = document.createElement("div");
-		confirmButtonNo.style.padding = "10px";
-		confirmButtonNo.style.backgroundColor = "#d2d2d2";
-		confirmButtonNo.style.border = "1px solid #b2b2b2";
-		confirmButtonNo.style.fontFamily = "Arial";
-		confirmButtonNo.style.fontSize = "16px";
-		confirmButtonNo.style.color = "black";
-		confirmButtonNo.style.textAlign = "center";
-		confirmButtonNo.style.lineHeight = 1.5;
-		confirmButtonNo.style.display = "inline-block";
-		confirmButtonNo.style.marginLeft = "20px";
-		confirmButtonNo.style.marginBottom = "10px";
-		confirmButtonNo.style.paddingLeft = "40px";
-		confirmButtonNo.style.paddingRight = "40px";
-		confirmButtonNo.style.cursor = "pointer";
-		confirmButtonNo.addEventListener("click",function(event)
-			{
-			// REMOVING THE CONFIRM CONTAINER
-			document.body.removeChild(confirmContainer);
-
-			try
-				{
-				// UNLOCKING THE EDITOR AND SHOWING THE POINTER
-				editor.setOptions({readOnly: false, highlightGutterLine: true});
-				editor.renderer.$cursorLayer.element.style.display = "block";
-
-				// FOCUSING THE EDITOR
-				editor.focus();
-				}
-				catch(err)
-				{
-				}
-			});
-		confirmButtonNo.innerHTML = no;
-
-		// ADDING ALL THE ELEMENTS TO THE CONFIRM CONTAINER
-		confirmForm.appendChild(confirmTitle);
-		confirmForm.appendChild(confirmMessage);
-		confirmForm.appendChild(confirmButtonYes);
-		confirmForm.appendChild(confirmButtonNo);
-		confirmContainer.appendChild(confirmForm);
-
-		// ADDING THE CONFIRM CONTAINER TO THE DOCUMENT
-		document.body.appendChild(confirmContainer);
-		}
-		catch(err)
-		{
-		}
-	}
 
 try
 	{
@@ -202,7 +80,7 @@ function menuNewFile()
 			editor.renderer.$cursorLayer.element.style.display = "none";
 
 			// SHOWING A DIALOG IN ORDER TO CONFIRM IF THE USER WANTS TO LOSE ANY UNSAVED CHANGES
-			confirmCustom(STRING_LOSECHANGES_TITLE,STRING_LOSECHANGES_MESSAGE,STRING_LOSECHANGES_YES,STRING_LOSECHANGES_NO, menuNewFileExecute);
+			confirmCustom(STRING_LOSECHANGES_TITLE,STRING_LOSECHANGES_MESSAGE,STRING_LOSECHANGES_YES,STRING_LOSECHANGES_NO, menuNewFileExecute, menuCancel);
 			}
 			else
 			{
@@ -279,7 +157,7 @@ function menuOpenFile()
 			editor.renderer.$cursorLayer.element.style.display = "none";
 
 			// SHOWING A DIALOG IN ORDER TO CONFIRM IF THE USER WANTS TO LOSE ANY UNSAVED CHANGES
-			confirmCustom(STRING_LOSECHANGES_TITLE,STRING_LOSECHANGES_MESSAGE,STRING_LOSECHANGES_YES,STRING_LOSECHANGES_NO, menuOpenFileSelect);
+			confirmCustom(STRING_LOSECHANGES_TITLE,STRING_LOSECHANGES_MESSAGE,STRING_LOSECHANGES_YES,STRING_LOSECHANGES_NO, menuOpenFileSelect, menuCancel);
 			}
 			else
 			{
@@ -645,6 +523,26 @@ function menuRun()
 			// STOPPING THE SIMULATION
 			stoppingSimulator();
 			}
+
+		// CHECKING IF IT IS A MOBILE DEVICE
+		if (isMobileDevice()==false)
+			{
+			// FOCUSING THE EDITOR
+			editor.focus();
+			}
+		}
+		catch(err)
+		{
+		}
+	}
+
+function menuCancel()
+	{
+	try
+		{
+		// UNLOCKING THE EDITOR AND SHOWING THE POINTER
+		editor.setOptions({readOnly: false, highlightGutterLine: true});
+		editor.renderer.$cursorLayer.element.style.display = "block";
 
 		// CHECKING IF IT IS A MOBILE DEVICE
 		if (isMobileDevice()==false)
