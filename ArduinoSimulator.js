@@ -3,8 +3,6 @@ function isMobileDevice(){return!!(navigator.userAgent.match(/Android/i)||naviga
 // CREATING THE WEB WORKER (THE CPP INTERPRETER)
 var myWorker;
 var myWorkerRunning;
-var myLedPin = -1;
-var myDCMotorPin = -1;
 var myAnalogPinsOnBoard = 5;
 var myDigitalPinsOnBoard = 13;
 
@@ -225,7 +223,7 @@ function menuNewFileExecute(files)
 		stoppingSimulator();
 
 		// CLEARING THE SERIAL MONITOR
-		document.getElementsByClassName("arduinosimulator_rightpanel_output_data")[0].innerHTML = "";
+		document.getElementsByClassName("arduinosimulator_bottompanel_output_data")[0].innerHTML = "";
 
 		// SETTING THE DEFAULT FILE NAME IN THE LABEL
 		STRING_FILENAME = STRING_FILENAME_EMPTY + ".ino";
@@ -321,7 +319,7 @@ function menuOpenFileExecute(file)
 		stoppingSimulator();
 
 		// CLEARING THE SERIAL MONITOR
-		document.getElementsByClassName("arduinosimulator_rightpanel_output_data")[0].innerHTML = "";
+		document.getElementsByClassName("arduinosimulator_bottompanel_output_data")[0].innerHTML = "";
 
 		// LOCKING THE EDITOR AND HIDING THE POINTER
 		editor.setOptions({readOnly: true, highlightGutterLine: false});
@@ -529,54 +527,6 @@ function menuRedo()
 		}
 	}
 
-function menuLed()
-	{
-	try
-		{
-		// CHECKING IF THE LED MUST BE DISCONNECTED
-		if (myLedPin+1>myDigitalPinsOnBoard)
-			{
-			// DISCONNECTING THE LED
-			myLedPin = -1;
-			}
-			else
-			{
-			// UPDATING THE LED PIN VALUE
-			myLedPin = myLedPin + 1;
-			}
-
-		// UPDATING THE LED PIN STATUS
-		updateLedPinStatus();
-		}
-		catch(err)
-		{
-		}
-	}
-
-function menuDCMotor()
-	{
-	try
-		{
-		// CHECKING IF THE DC MOTOR MUST BE DISCONNECTED
-		if (myDCMotorPin+1>myAnalogPinsOnBoard)
-			{
-			// DISCONNECTING THE DC MOTOR
-			myDCMotorPin = -1;
-			}
-			else
-			{
-			// UPDATING THE DC MOTOR PIN VALUE
-			myDCMotorPin = myDCMotorPin + 1;
-			}
-
-		// UPDATING THE DC MOTOR PIN STATUS
-		updateDCMotorPinStatus();
-		}
-		catch(err)
-		{
-		}
-	}
-
 function menuRun()
 	{
 	try
@@ -588,10 +538,10 @@ function menuRun()
 			document.getElementById("buttonRun").className = "arduinosimulator_button_stop_enabled";
 
 			// SHOWING THE SERIAL MONITOR LOADING SPLASH
-			document.getElementsByClassName("arduinosimulator_rightpanel_output_loading")[0].style.display = "block";
+			document.getElementsByClassName("arduinosimulator_bottompanel_output_loading")[0].style.display = "block";
 
 			// CLEARING THE SERIAL MONITOR DATA
-			document.getElementsByClassName("arduinosimulator_rightpanel_output_data")[0].innerHTML = "";
+			document.getElementsByClassName("arduinosimulator_bottompanel_output_data")[0].innerHTML = "";
 
 			// UPDATING THE WEB WORKER STATUS
 			myWorkerRunning = true;
@@ -618,17 +568,18 @@ function menuRun()
 						if (myReceivedData.indexOf("ENABLE_SERIAL_MONITOR_ARDUINO_SIMULATOR")>-1)
 							{
 							// HIDING THE SERIAL MONITOR LOADING SPLASH
-							document.getElementsByClassName("arduinosimulator_rightpanel_output_loading")[0].style.display = "none";
+							document.getElementsByClassName("arduinosimulator_bottompanel_output_loading")[0].style.display = "none";
 
 							// ENABLING THE INPUT TEXTBOX, CLEAR ICON AND SEND BUTTON
-							document.getElementsByClassName("arduinosimulator_rightpanel_input_textbox")[0].value = "";
-							document.getElementsByClassName("arduinosimulator_rightpanel_input_textbox")[0].disabled = false;
-							document.getElementsByClassName("arduinosimulator_rightpanel_input_send")[0].disabled = false;
-							document.getElementById("buttonClear").className = "arduinosimulator_rightpanel_output_clear_enabled";
+							document.getElementsByClassName("arduinosimulator_bottompanel_input_textbox")[0].value = "";
+							document.getElementsByClassName("arduinosimulator_bottompanel_input_textbox")[0].disabled = false;
+							document.getElementsByClassName("arduinosimulator_bottompanel_input_send")[0].disabled = false;
+							document.getElementById("buttonClear").className = "arduinosimulator_bottompanel_output_clear_enabled";
 							}
 						// CHECKING IF A DIGITAL PIN EVENT OCCURRED
 						else if (myReceivedData.indexOf("_DIGITAL_PIN_STATUS_")>-1)
 							{
+							/*
 							// CHECKING IF THE DIGITAL PIN THAT GOT THE CALL IS THE SAME AS THE ONE IN THE MYLEDPIN VARIABLE
 							if (myReceivedData.indexOf("_" + myLedPin + "_")>-1)
 								{
@@ -636,18 +587,20 @@ function menuRun()
 								if (myReceivedData.indexOf("TRUE")>-1)
 									{
 									// TURNING ON THE LED LIGHT
-									document.getElementById("ledStatus").className = "arduinosimulator_rightpanel_hardware_led_image_on";
+									document.getElementById("ledStatus").className = "arduinosimulator_bottompanel_hardware_led_image_on";
 									}
 									else
 									{
 									// TURNING OFF THE LED LIGHT
-									document.getElementById("ledStatus").className = "arduinosimulator_rightpanel_hardware_led_image_off";
+									document.getElementById("ledStatus").className = "arduinosimulator_bottompanel_hardware_led_image_off";
 									}
 								}
+							*/
 							}
 						// CHECKING IF AN ANALOG PIN EVENT OCCURRED
 						else if (myReceivedData.indexOf("_ANALOG_PIN_STATUS_")>-1)
 							{
+							/*
 							// CHECKING IF THE ANALOG PIN THAT GOT THE CALL IS THE SAME AS THE ONE IN THE MYDCMOTORPIN VARIABLE
 							if (myReceivedData.indexOf("_" + myDCMotorPin + "_")>-1)
 								{
@@ -657,19 +610,23 @@ function menuRun()
 								if (duty>0)
 									{
 									// TURNING ON THE DC MOTOR
-									document.getElementById("motorStatus").className = "arduinosimulator_rightpanel_hardware_dcmotor_image_on";
+									document.getElementById("motorStatus").className = "arduinosimulator_bottompanel_hardware_dcmotor_image_on";
 									}
 									else
 									{
 									// TURNING OFF THE DC MOTOR
-									document.getElementById("motorStatus").className = "arduinosimulator_rightpanel_hardware_dcmotor_image_off";
+									document.getElementById("motorStatus").className = "arduinosimulator_bottompanel_hardware_dcmotor_image_off";
 									}
 								}
+							*/
 							}
 						else
 							{
 							// ADDING THE RECEIVED DATA TO THE SERIAL MONITOR
-							document.getElementsByClassName("arduinosimulator_rightpanel_output_data")[0].innerHTML = document.getElementsByClassName("arduinosimulator_rightpanel_output_data")[0].innerHTML + myReceivedData;
+							document.getElementsByClassName("arduinosimulator_bottompanel_output_data")[0].innerHTML = document.getElementsByClassName("arduinosimulator_bottompanel_output_data")[0].innerHTML + myReceivedData;
+
+							// SCROLLING TO THE BOTTOM OF THE SERIAL MONITOR TEXTAREA
+							document.getElementsByClassName("arduinosimulator_bottompanel_output_data")[0].scrollIntoView(false);
 							}
 						}
 					}
@@ -701,25 +658,6 @@ function menuRun()
 		}
 	}
 
-function clearSerialMonitor()
-	{
-	try
-		{
-		// CLEARING THE SERIAL MONITOR DATA
-		document.getElementsByClassName("arduinosimulator_rightpanel_output_data")[0].innerHTML = "";
-
-		// CHECKING IF IT IS A MOBILE DEVICE
-		if (isMobileDevice()==false)
-			{
-			// FOCUSING THE EDITOR
-			editor.focus();
-			}
-		}
-		catch(err)
-		{
-		}
-	}
-
 function sendSerialData()
 	{
 	try
@@ -728,7 +666,7 @@ function sendSerialData()
 		if (myWorkerRunning==true)
 			{
 			// GETTING THE VALUE FROM THE TEXTBOX
-			var myValue = document.getElementsByClassName("arduinosimulator_rightpanel_input_textbox")[0].value;
+			var myValue = document.getElementsByClassName("arduinosimulator_bottompanel_input_textbox")[0].value;
 
 			// CHECKING IF THERE IS A VALUE
 			if (myValue!="")
@@ -740,13 +678,13 @@ function sendSerialData()
 				myWorker.postMessage(myPrefix + myValue);
 
 				// CLEANING THE TEXTBOX
-				document.getElementsByClassName("arduinosimulator_rightpanel_input_textbox")[0].value = "";
+				document.getElementsByClassName("arduinosimulator_bottompanel_input_textbox")[0].value = "";
 
 				// CHECKING IF IT IS A MOBILE DEVICE
 				if (isMobileDevice()==false)
 					{
 					// FOCUSING THE TEXTBOX
-					document.getElementsByClassName("arduinosimulator_rightpanel_input_textbox")[0].focus();
+					document.getElementsByClassName("arduinosimulator_bottompanel_input_textbox")[0].focus();
 					}
 				}
 			}
@@ -770,76 +708,16 @@ function stoppingSimulator()
 		myWorkerRunning = false;
 
 		// DISABLING THE INPUT TEXTBOX, CLEAR ICON AND SEND BUTTON
-		document.getElementsByClassName("arduinosimulator_rightpanel_input_textbox")[0].value = "";
-		document.getElementsByClassName("arduinosimulator_rightpanel_input_textbox")[0].disabled = true;
-		document.getElementsByClassName("arduinosimulator_rightpanel_input_send")[0].disabled = true;
-		document.getElementById("buttonClear").className = "arduinosimulator_rightpanel_output_clear_disabled";
-
-		// UPDATING THE LED PIN STATUS
-		updateLedPinStatus();
-
-		// UPDATING THE DC MOTOR PIN STATUS
-		updateDCMotorPinStatus();
+		document.getElementsByClassName("arduinosimulator_bottompanel_input_textbox")[0].value = "";
+		document.getElementsByClassName("arduinosimulator_bottompanel_input_textbox")[0].disabled = true;
+		document.getElementsByClassName("arduinosimulator_bottompanel_input_send")[0].disabled = true;
+		document.getElementById("buttonClear").className = "arduinosimulator_bottompanel_output_clear_disabled";
 
 		// CHECKING IF IT IS A MOBILE DEVICE
 		if (isMobileDevice()==false)
 			{
 			// FOCUSING THE EDITOR
 			editor.focus();
-			}
-		}
-		catch(err)
-		{
-		}
-	}
-
-function updateLedPinStatus()
-	{
-	try
-		{
-		// SETTING THE DEFAULT LED IMAGE
-		document.getElementById("ledStatus").className = "arduinosimulator_rightpanel_hardware_led_image_off";
-
-		// CHECKING IF A LED PIN WAS SET AND IF IT IS VALID
-		if (myLedPin>-1 && myLedPin<=myDigitalPinsOnBoard)
-			{
-			// UPDATING THE LED PIN LABEL WITH THE SELECTED DIGITAL PIN
-			document.getElementsByClassName("arduinosimulator_rightpanel_hardware_led_label_value")[0].innerHTML = "D" + myLedPin;
-			}
-			else
-			{
-			// SETTING THE DEFAULT VALUE FOR THE LED PIN
-			myLedPin = -1;
-
-			// UPDATING THE LED PIN LABEL WITH A NOT CONNECTION SIGN
-			document.getElementsByClassName("arduinosimulator_rightpanel_hardware_led_label_value")[0].innerHTML = "---";
-			}
-		}
-		catch(err)
-		{
-		}
-	}
-
-function updateDCMotorPinStatus()
-	{
-	try
-		{
-		// SETTING THE DEFAULT LED IMAGE
-		document.getElementById("motorStatus").className = "arduinosimulator_rightpanel_hardware_dcmotor_image_off";
-
-		// CHECKING IF A LED PIN WAS SET AND IF IT IS VALID
-		if (myDCMotorPin>-1 && myDCMotorPin<=myAnalogPinsOnBoard)
-			{
-			// UPDATING THE LED PIN LABEL WITH THE SELECTED DIGITAL PIN
-			document.getElementsByClassName("arduinosimulator_rightpanel_hardware_dcmotor_label_value")[0].innerHTML = "A" + myDCMotorPin;
-			}
-			else
-			{
-			// SETTING THE DEFAULT VALUE FOR THE LED PIN
-			myDCMotorPin = -1;
-
-			// UPDATING THE LED PIN LABEL WITH A NOT CONNECTION SIGN
-			document.getElementsByClassName("arduinosimulator_rightpanel_hardware_dcmotor_label_value")[0].innerHTML = "---";
 			}
 		}
 		catch(err)
@@ -1025,16 +903,6 @@ function escapeRegex(value)
 	return value.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g,"\\$&");
 	}
 
-function getValueFromURL(name)
-	{
-	var url = location.href;
-	name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
-	var regexS = "[\\?&]"+name+"=([^&#]*)";
-	var regex = new RegExp( regexS );
-	var results = regex.exec( url );
-	return results == null ? null : results[1];
-	}
-
 window.addEventListener("resize", function()
 	{
 	// RESIZING THE EDITOR
@@ -1052,56 +920,16 @@ window.addEventListener("load", function()
 	// SHOWING THE CODE EDITOR
 	document.getElementById("arduinosimulator_textcode_container").style.display = "block";
 
-	// CHECKING IF THE USER SET A LED PIN VALUE IN THE URL
-	try
-		{
-		var tempLedPin = getValueFromURL("ledpin");
-		if (tempLedPin!=null)
-			{
-			tempLedPin = parseInt(tempLedPin);
-			if (Number.isInteger(tempLedPin)==true)
-				{
-				myLedPin = tempLedPin;
-				}
-			}
-		}
-		catch(err)
-		{
-		}
-
-	// CHECKING IF THE USER SET A DC MOTOR PIN VALUE IN THE URL
-	try
-		{
-		var tempDCMotorPin = getValueFromURL("dcmotorpin");
-		if (tempDCMotorPin!=null)
-			{
-			tempDCMotorPin = parseInt(tempDCMotorPin);
-			if (Number.isInteger(tempDCMotorPin)==true)
-				{
-				myDCMotorPin = tempDCMotorPin;
-				}
-			}
-		}
-		catch(err)
-		{
-		}
-
-	// CHECKING IF A LED PIN WAS SET AND UPDATING THE UI IF NECESSARY
-	updateLedPinStatus();
-
-	// CHECKING IF A DC MOTOR PIN WAS SET AND UPDATING THE UI IF NECESSARY
-	updateDCMotorPinStatus();
-
 	// SHOWING THE RIGHT PANEL
-	document.getElementsByClassName("arduinosimulator_rightpanel")[0].style.display = "block";
+	document.getElementsByClassName("arduinosimulator_bottompanel")[0].style.display = "block";
 
 	// RESIZING THE EDITOR
 	resizeArduinoSimulatorEditor();
 
 	// DISABLING THE INPUT TEXTBOX AND SEND BUTTON
-	document.getElementsByClassName("arduinosimulator_rightpanel_input_textbox")[0].value = "";
-	document.getElementsByClassName("arduinosimulator_rightpanel_input_textbox")[0].disabled = true;
-	document.getElementsByClassName("arduinosimulator_rightpanel_input_send")[0].disabled = true;
+	document.getElementsByClassName("arduinosimulator_bottompanel_input_textbox")[0].value = "";
+	document.getElementsByClassName("arduinosimulator_bottompanel_input_textbox")[0].disabled = true;
+	document.getElementsByClassName("arduinosimulator_bottompanel_input_send")[0].disabled = true;
 
 	// SETTING WHAT HAPPENS WHEN EACH ELEMENT IS CLICKED
 	document.getElementById("buttonNew").addEventListener("click",function(event){menuNewFile()});
@@ -1110,11 +938,8 @@ window.addEventListener("load", function()
 	document.getElementById("buttonUndo").addEventListener("click",function(event){menuUndo()});
 	document.getElementById("buttonRedo").addEventListener("click",function(event){menuRedo()});
 	document.getElementById("buttonSearch").addEventListener("click",function(event){menuSearch()});
-	document.getElementById("buttonLed").addEventListener("click",function(event){menuLed()});
-	document.getElementById("buttonDCMotor").addEventListener("click",function(event){menuDCMotor()});
 	document.getElementById("buttonRun").addEventListener("click",function(event){menuRun()});
-	document.getElementById("buttonClear").addEventListener("click",function(event){if(document.getElementById("buttonClear").className=="arduinosimulator_rightpanel_output_clear_enabled"){clearSerialMonitor()}});
 	document.getElementById("buttonSend").addEventListener("click",function(event){sendSerialData()});
-	document.getElementsByClassName("arduinosimulator_rightpanel_input_textbox")[0].addEventListener("keyup",function(event){if (event.keyCode==13){sendSerialData()}});
+	document.getElementsByClassName("arduinosimulator_bottompanel_input_textbox")[0].addEventListener("keyup",function(event){if (event.keyCode==13){sendSerialData()}});
 	document.getElementById("arduinosimulator_filename").addEventListener("click",function(event){editor.focus()});
 	});
