@@ -24,13 +24,35 @@
 		<script>
 			var userLanguage = window.navigator.userLanguage || window.navigator.language;
 
-			var STRING_FILENAME = "Untitled.ino";
-			var STRING_FILENAME_EMPTY = "Untitled";
-			var STRING_LOSECHANGES_TITLE = "MESSAGE";
-			var STRING_LOSECHANGES_MESSAGE = "Lose any unsaved changes?";
-			var STRING_LOSECHANGES_YES = "Yes";
-			var STRING_LOSECHANGES_NO = "No";
-			var STRING_WELCOME = "/*\n\nArduino Simulator developed by LRusso.com\n\n*/\n\nint LED_PIN = 13;\nint DCMOTOR_PIN = 5;\nint counter = 0;\n\nvoid setup()\n" + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + "Serial.begin(9600);\n" + String.fromCharCode(9) + "Serial.println(\"Hello world!\");\n\n" + String.fromCharCode(9) + "pinMode(LED_PIN, OUTPUT);\n" + String.fromCharCode(9) + "pinMode(DCMOTOR_PIN, OUTPUT);\n" + String.fromCharCode(9) + "}\n\nvoid loop()\n" + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + "digitalWrite(LED_PIN, LOW);\n" + String.fromCharCode(9) + "analogWrite(DCMOTOR_PIN, 0);\n" + String.fromCharCode(9) + "delay(1000);\n\n" + String.fromCharCode(9) + "counter++;\n" + String.fromCharCode(9) + "Serial.print(counter);\n\n" + String.fromCharCode(9) + "digitalWrite(LED_PIN, HIGH);\n" + String.fromCharCode(9) + "analogWrite(DCMOTOR_PIN, 255);\n" + String.fromCharCode(9) + "delay(1000);\n\n" + String.fromCharCode(9) + "Serial.print(\" and looping! \");\n" + String.fromCharCode(9) + "}";
+			var STRING_FILENAME = "";
+			var STRING_FILENAME_EMPTY = "";
+			var STRING_LOSECHANGES_TITLE = "";
+			var STRING_LOSECHANGES_MESSAGE = "";
+			var STRING_LOSECHANGES_YES = "";
+			var STRING_LOSECHANGES_NO = "";
+			var STRING_WELCOME = "";
+
+			// CHECKING THE USER LANGUAGE
+			if (userLanguage.substring(0,2)=="es")
+				{
+				STRING_FILENAME = "Sin nombre.ino";
+				STRING_FILENAME_EMPTY = "Sin nombre";
+				STRING_LOSECHANGES_TITLE = "MENSAJE";
+				STRING_LOSECHANGES_MESSAGE = "¿Perder cambios no guardados?";
+				STRING_LOSECHANGES_YES = "S" + String.fromCharCode(237);
+				STRING_LOSECHANGES_NO = "No";
+				STRING_WELCOME = "/*\n\nArduino Simulator desarrollado por LRusso.com\n\n*/\n\nint LED_PIN = 13;\nint DCMOTOR_PIN = 5;\nint counter = 0;\n\nvoid setup()\n" + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + "Serial.begin(9600);\n" + String.fromCharCode(9) + "Serial.println(\"Hello world!\");\n\n" + String.fromCharCode(9) + "pinMode(LED_PIN, OUTPUT);\n" + String.fromCharCode(9) + "pinMode(DCMOTOR_PIN, OUTPUT);\n" + String.fromCharCode(9) + "}\n\nvoid loop()\n" + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + "digitalWrite(LED_PIN, LOW);\n" + String.fromCharCode(9) + "analogWrite(DCMOTOR_PIN, 0);\n" + String.fromCharCode(9) + "delay(1000);\n\n" + String.fromCharCode(9) + "counter++;\n" + String.fromCharCode(9) + "Serial.print(counter);\n\n" + String.fromCharCode(9) + "digitalWrite(LED_PIN, HIGH);\n" + String.fromCharCode(9) + "analogWrite(DCMOTOR_PIN, 255);\n" + String.fromCharCode(9) + "delay(1000);\n\n" + String.fromCharCode(9) + "Serial.print(\" and looping! \");\n" + String.fromCharCode(9) + "}";
+				}
+				else
+				{
+				STRING_FILENAME = "Untitled.ino";
+				STRING_FILENAME_EMPTY = "Untitled";
+				STRING_LOSECHANGES_TITLE = "MESSAGE";
+				STRING_LOSECHANGES_MESSAGE = "Lose any unsaved changes?";
+				STRING_LOSECHANGES_YES = "Yes";
+				STRING_LOSECHANGES_NO = "No";
+				STRING_WELCOME = "/*\n\nArduino Simulator developed by LRusso.com\n\n*/\n\nint LED_PIN = 13;\nint DCMOTOR_PIN = 5;\nint counter = 0;\n\nvoid setup()\n" + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + "Serial.begin(9600);\n" + String.fromCharCode(9) + "Serial.println(\"Hello world!\");\n\n" + String.fromCharCode(9) + "pinMode(LED_PIN, OUTPUT);\n" + String.fromCharCode(9) + "pinMode(DCMOTOR_PIN, OUTPUT);\n" + String.fromCharCode(9) + "}\n\nvoid loop()\n" + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + "digitalWrite(LED_PIN, LOW);\n" + String.fromCharCode(9) + "analogWrite(DCMOTOR_PIN, 0);\n" + String.fromCharCode(9) + "delay(1000);\n\n" + String.fromCharCode(9) + "counter++;\n" + String.fromCharCode(9) + "Serial.print(counter);\n\n" + String.fromCharCode(9) + "digitalWrite(LED_PIN, HIGH);\n" + String.fromCharCode(9) + "analogWrite(DCMOTOR_PIN, 255);\n" + String.fromCharCode(9) + "delay(1000);\n\n" + String.fromCharCode(9) + "Serial.print(\" and looping! \");\n" + String.fromCharCode(9) + "}";
+				}
 		</script>
 		<div class="arduinosimulator_splash_container">
 			<div class="arduinosimulator_pleasewait"><div class="arduinosimulator_spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
@@ -60,13 +82,6 @@
 				</div>
 				<div class="arduinosimulator_separator"></div>
 				<div class="arduinosimulator_holder">
-					<div class="arduinosimulator_button_led_enabled" id="buttonLed"></div>
-				</div>
-				<div class="arduinosimulator_holder">
-					<div class="arduinosimulator_button_dcmotor_enabled" id="buttonDCMotor"></div>
-				</div>
-				<div class="arduinosimulator_separator"></div>
-				<div class="arduinosimulator_holder">
 					<div class="arduinosimulator_button_run_enabled" id="buttonRun"></div>
 				</div>
 				<div class="arduinosimulator_separator"></div>
@@ -77,49 +92,24 @@
 		</div>
 		<div id="arduinosimulator_textcode_container"><div id="arduinosimulator_textcode"></div></div>
 
-		<div class="arduinosimulator_rightpanel">
-			<div class="arduinosimulator_rightpanel_title">
-				<div class="arduinosimulator_rightpanel_title_value">
-					HARDWARE INFORMATION
-				</div>
-			</div>
-			<div class="arduinosimulator_rightpanel_hardware_container">
-				<div class="arduinosimulator_rightpanel_hardware_led_container">
-					<div class="arduinosimulator_rightpanel_hardware_led_image_off" id="ledStatus"></div>
-					<div class="arduinosimulator_rightpanel_hardware_led_label">
-						<div class="arduinosimulator_rightpanel_hardware_led_label_value"></div>
-					</div>
-				</div>
-				<div class="arduinosimulator_rightpanel_hardware_dcmotor_container">
-					<div class="arduinosimulator_rightpanel_hardware_dcmotor_image_off" id="motorStatus"></div>
-					<div class="arduinosimulator_rightpanel_hardware_dcmotor_label">
-						<div class="arduinosimulator_rightpanel_hardware_dcmotor_label_value">---</div>
-					</div>
-				</div>
-			</div>
-			<div class="arduinosimulator_rightpanel_title">
-				<div class="arduinosimulator_rightpanel_title_value">
+		<div class="arduinosimulator_bottompanel">
+			<div class="arduinosimulator_bottompanel_title">
+				<div class="arduinosimulator_bottompanel_title_value">
 					SERIAL MONITOR
-					<div class="arduinosimulator_rightpanel_output_clear_disabled" id="buttonClear"></div>
 				</div>
-				<div class="arduinosimulator_rightpanel_input">
-					<input type="text" class="arduinosimulator_rightpanel_input_textbox" disabled />
-					<input type="button" class="arduinosimulator_rightpanel_input_send" disabled id="buttonSend" value="SEND" />
+				<div class="arduinosimulator_bottompanel_input">
+					<input type="text" class="arduinosimulator_bottompanel_input_textbox" disabled />
+					<input type="button" class="arduinosimulator_bottompanel_input_send" disabled id="buttonSend" value="SEND" />
 				</div>
 			</div>
-			<div class="arduinosimulator_rightpanel_output">
-				<div class="arduinosimulator_rightpanel_output_data"></div>
-				<div class="arduinosimulator_rightpanel_output_loading">
-					<div class="arduinosimulator_rightpanel_output_loading_centered">
-						<div class="arduinosimulator_rightpanel_output_loading_spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+			<div class="arduinosimulator_bottompanel_output">
+				<div class="arduinosimulator_bottompanel_output_data"></div>
+				<div class="arduinosimulator_bottompanel_output_loading">
+					<div class="arduinosimulator_bottompanel_output_loading_centered">
+						<div class="arduinosimulator_bottompanel_output_loading_spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 					</div>
 				</div>
 			</div>
-		</div>
-
-		<div class="arduinosimulator_portrait_background">
-			<div class="arduinosimulator_portrait_phone"></div>
-			<div class="arduinosimulator_portrait_message">Please rotate your device.</div>
 		</div>
 
 		<script src="ArduinoSimulatorEditor.js"></script>
