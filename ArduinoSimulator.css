@@ -29,10 +29,13 @@ html,body{margin:0;padding:0;background-color:black;-webkit-user-select:none;-mo
 .arduinosimulator_button_stop_enabled{display:block;font-family:Arial;font-size:15px;line-height:32px;height:32px;width:28px;background-color:#F2F2F2;border:thin solid #F2F2F2;margin-left:3px;cursor:default;-webkit-user-select:none;-moz-user-select:none;user-select:none;background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH5AgBBAkEGGsIHAAAAD9JREFUOMtjYKARYKZE8zQGBoYXDAwM76E0Op6GrJgFiwFqDAwM4ngsUEPmMFHq11EDRg3AZcBPAnp+MgwqAAB0Jgn8BL4uMwAAAABJRU5ErkJggg==");background-repeat:no-repeat;background-position:center}
 .arduinosimulator_button_stop_enabled:hover{background-color:#E3E3E3;border:thin solid #D3D3D3}
 .arduinosimulator_buttonHidden{display:none}
-.arduinosimulator_bottompanel{display:none;position:fixed;left:0;right:0;bottom:0;height:225px;border-top:1px solid #D3D3D3;background-color:#F2F2F2;border-left:1px solid #D3D3D3;overflow-x:hidden}
-.arduinosimulator_bottompanel_digital_container{width:500px;overflow-x:hidden}
+.arduinosimulator_bottompanel{display:none;position:fixed;left:0;right:0;bottom:0;height:251px;border-top:1px solid #D3D3D3;background-color:#F2F2F2;border-left:1px solid #D3D3D3;overflow-x:hidden}
+.arduinosimulator_bottompanel_digital_container{width:700px;overflow-x:hidden}
 .arduinosimulator_bottompanel_digital_title{float:left;font-family:Arial;font-size:13px;line-height:2;font-weight:bold;margin-left:7px;margin-right:1px}
 .arduinosimulator_bottompanel_digital_pin{float:left;width:16px;height:16px;border-radius:16px;margin-top:4px;margin-left:4px;background-color:red;font-size:11px;font-family:Arial;color:white;justify-content:center;align-items:center;display:flex}
+.arduinosimulator_bottompanel_analog_container{width:700px;overflow-x:hidden}
+.arduinosimulator_bottompanel_analog_title{float:left;font-family:Arial;font-size:13px;line-height:2;font-weight:bold;margin-left:7px;margin-right:1px}
+.arduinosimulator_bottompanel_analog_pin{float:left;min-width:16px;height:16px;border-radius:16px;margin-top:4px;margin-left:4px;background-color:black;font-size:11px;font-family:Arial;color:white;justify-content:center;align-items:center;display:flex}
 .arduinosimulator_bottompanel_input_title{background-color: #F2F2F2;border-bottom:1px solid #D3D3D3}
 .arduinosimulator_bottompanel_input_title_value{font-family:Arial;font-size:13px;line-height:2;padding-left:7px;font-weight:bold}
 .arduinosimulator_bottompanel_input{width:100%;display:flex}
@@ -80,7 +83,7 @@ html,body{margin:0;padding:0;background-color:black;-webkit-user-select:none;-mo
 @keyframes arduinosimulator_spinner{0%{opacity:1}100%{opacity:0}}
 
 #arduinosimulator_filename{float:left;font-family:Arial;font-size:13px;line-height:2.7;margin-left:6px;margin-right:0px;cursor:default;-webkit-user-select:none;-moz-user-select:none;user-select:none}
-#arduinosimulator_textcode_container{position:fixed;padding:0;margin:0;left:0;top:41px;bottom:226px;right:0;display:none}
+#arduinosimulator_textcode_container{position:fixed;padding:0;margin:0;left:0;top:41px;bottom:252px;right:0;display:none}
 #arduinosimulator_textcode{position:absolute;top:0;right:0;bottom:0px;left:0}
 
 @media (pointer: coarse)
