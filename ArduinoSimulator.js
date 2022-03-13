@@ -603,10 +603,10 @@ function stoppingSimulator()
 		document.getElementsByClassName("arduinosimulator_bottompanel_input_textbox")[0].disabled = true;
 		document.getElementsByClassName("arduinosimulator_bottompanel_input_send")[0].disabled = true;
 
-		// LOOPING ALL THE DIGITALS LED PINS
+		// LOOPING ALL THE DIGITAL LED PINS
 		for (var i = 0; i < 14; i++)
 			{
-			// TURNING OFF ALL THE DIGITALS LED PINS
+			// TURNING OFF ALL THE DIGITAL LED PINS
 			document.getElementsByClassName("arduinosimulator_bottompanel_digital_pin")[i].style.backgroundColor = "red";
 			}
 
