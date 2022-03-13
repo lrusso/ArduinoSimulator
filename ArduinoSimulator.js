@@ -6,8 +6,6 @@ function isMobileDevice(){return!!(navigator.userAgent.match(/Android/i)||naviga
 // CREATING THE WEB WORKER (THE CPP INTERPRETER)
 var myWorker;
 var myWorkerRunning;
-var myAnalogPinsOnBoard = 5;
-var myDigitalPinsOnBoard = 13;
 
 try
 	{
@@ -471,25 +469,14 @@ function menuRun()
 						// CHECKING IF AN ANALOG PIN EVENT OCCURRED
 						else if (myReceivedData.indexOf("_ANALOG_PIN_STATUS_")>-1)
 							{
-							/*
-							// CHECKING IF THE ANALOG PIN THAT GOT THE CALL IS THE SAME AS THE ONE IN THE MYDCMOTORPIN VARIABLE
-							if (myReceivedData.indexOf("_" + myDCMotorPin + "_")>-1)
-								{
-								// GETTING THE DUTY
-								var duty = myReceivedData.substr(myReceivedData.lastIndexOf("_")+1,myReceivedData.length);
+							// GETTING THE ANALOG PIN NUMBER
+							var analogPinNumber = myReceivedData.substring(0,myReceivedData.lastIndexOf("_")) .replace(/[^0-9]/g, "");
 
-								if (duty>0)
-									{
-									// TURNING ON THE DC MOTOR
-									document.getElementById("motorStatus").className = "arduinosimulator_bottompanel_hardware_dcmotor_image_on";
-									}
-									else
-									{
-									// TURNING OFF THE DC MOTOR
-									document.getElementById("motorStatus").className = "arduinosimulator_bottompanel_hardware_dcmotor_image_off";
-									}
-								}
-							*/
+							// GETTING THE ANALOG PIN VALUE
+							var analogPinValue = myReceivedData.substring(myReceivedData.lastIndexOf("_")+1,myReceivedData.length);
+
+							// UPDATING THE ANALOG PIN LABEL
+							document.getElementsByClassName("arduinosimulator_bottompanel_analog_pin")[analogPinNumber].innerHTML = analogPinValue;
 							}
 						else
 							{
@@ -608,6 +595,13 @@ function stoppingSimulator()
 			{
 			// TURNING OFF ALL THE DIGITAL LED PINS
 			document.getElementsByClassName("arduinosimulator_bottompanel_digital_pin")[i].style.backgroundColor = "red";
+			}
+
+		// LOOPING ALL THE ANALOG PINS
+		for (var i = 0; i < 6; i++)
+			{
+			// RESTORING ALL THE ANALOG PINS VALUES
+			document.getElementsByClassName("arduinosimulator_bottompanel_analog_pin")[i].innerHTML = "0";
 			}
 
 		// CHECKING IF IT IS A MOBILE DEVICE
