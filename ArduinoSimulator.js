@@ -811,8 +811,10 @@ window.addEventListener("load", function()
 	// SETTING THAT THE WEB WORKER IS NOT RUNNING
 	myWorkerRunning = false;
 
-	// UPDATING THE SEND BUTTON TEXT VALUE
+	// UPDATING THE LABELS ACCORDING TO THE USER LANGUAGE
 	document.getElementsByClassName("arduinosimulator_bottompanel_input_send")[0].value = STRING_SEND;
+	document.getElementsByClassName("arduinosimulator_bottompanel_digital_title")[0].innerHTML = STRING_DIGITAL_PINS;
+	document.getElementsByClassName("arduinosimulator_bottompanel_input_title_value")[0].innerHTML = STRING_SERIAL_MONITOR;
 
 	// HIDING THE LOADING SPLASH
 	document.getElementsByClassName("arduinosimulator_splash_container")[0].style.display = "none";
