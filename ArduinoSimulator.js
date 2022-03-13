@@ -454,23 +454,20 @@ function menuRun()
 						// CHECKING IF A DIGITAL PIN EVENT OCCURRED
 						else if (myReceivedData.indexOf("_DIGITAL_PIN_STATUS_")>-1)
 							{
-							/*
-							// CHECKING IF THE DIGITAL PIN THAT GOT THE CALL IS THE SAME AS THE ONE IN THE MYLEDPIN VARIABLE
-							if (myReceivedData.indexOf("_" + myLedPin + "_")>-1)
+							// GETTING THE DIGITAL PIN NUMBER
+							var digitalPinNumber = myReceivedData.replace(/[^0-9]/g, "");
+
+							// CHECKING IF THE CALL HAS A TRUE ATTACHED TO IT
+							if (myReceivedData.indexOf("TRUE")>-1)
 								{
-								// CHECKING IF THE CALL HAS A TRUE ATTACHED TO IT
-								if (myReceivedData.indexOf("TRUE")>-1)
-									{
-									// TURNING ON THE LED LIGHT
-									document.getElementById("ledStatus").className = "arduinosimulator_bottompanel_hardware_led_image_on";
-									}
-									else
-									{
-									// TURNING OFF THE LED LIGHT
-									document.getElementById("ledStatus").className = "arduinosimulator_bottompanel_hardware_led_image_off";
-									}
+								// TURNING ON THE DIGITAL LED PIN
+								document.getElementsByClassName("arduinosimulator_bottompanel_digital_pin")[digitalPinNumber].style.backgroundColor = "green";
 								}
-							*/
+								else
+								{
+								// TURNING OFF THE DIGITAL LED PIN
+								document.getElementsByClassName("arduinosimulator_bottompanel_digital_pin")[digitalPinNumber].style.backgroundColor = "red";
+								}
 							}
 						// CHECKING IF AN ANALOG PIN EVENT OCCURRED
 						else if (myReceivedData.indexOf("_ANALOG_PIN_STATUS_")>-1)
