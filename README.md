@@ -8,10 +8,6 @@ Arduino simulator developed in JavaScript.
 
 https://lrusso.github.io/ArduinoSimulator/ArduinoSimulator.htm
 
-## Sample sketch with math, a LED blink and DC Motor:
-
-https://lrusso.github.io/ArduinoSimulator/ArduinoSimulatorSample.htm?ledpin=13&dcmotorpin=5
-
 ## How to set a default sketch in the simulator?
 
 Edit the **STRING_WELCOME** variable located in **ArduinoSimulator.htm** file.
