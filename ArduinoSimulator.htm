@@ -30,6 +30,7 @@
 			var STRING_LOSECHANGES_MESSAGE = "";
 			var STRING_LOSECHANGES_YES = "";
 			var STRING_LOSECHANGES_NO = "";
+			var STRING_SEND = "";
 			var STRING_WELCOME = "";
 
 			// CHECKING THE USER LANGUAGE
@@ -41,6 +42,7 @@
 				STRING_LOSECHANGES_MESSAGE = "¿Perder cambios no guardados?";
 				STRING_LOSECHANGES_YES = "S" + String.fromCharCode(237);
 				STRING_LOSECHANGES_NO = "No";
+				STRING_SEND = "ENVIAR";
 				STRING_WELCOME = "/*\n\nArduino Simulator desarrollado por LRusso.com\n\n*/\n\nchar charOne[] = \"Char 1 example.\";\nString stringOne = \"String 1 example.\";\nString stringTwo = String(\"String 2 example.\");\nString stringThree = String(15);\nString stringFour = String(15.50);\n\nvoid setup()\n" + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + "Serial.begin(9600);\n" + String.fromCharCode(9) + "Serial.println(charOne);\n" + String.fromCharCode(9) + "Serial.println(stringOne);\n" + String.fromCharCode(9) + "Serial.println(stringTwo);\n" + String.fromCharCode(9) + "Serial.println(stringThree);\n" + String.fromCharCode(9) + "Serial.println(stringFour);\n" + String.fromCharCode(9) + "Serial.println(\"------------------\");\n" + String.fromCharCode(9) + "Serial.println(\"Write something in the textbox above to test that this sketch sends the serial data to the Arduino board and back to the Serial Monitor.\");\n" + String.fromCharCode(9) + "}\n\nvoid loop()\n" + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + "while(Serial.available()>0)\n" + String.fromCharCode(9) + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + String.fromCharCode(9) +  "char receivedChar = Serial.read();\n" + String.fromCharCode(9) + String.fromCharCode(9) + "Serial.print(receivedChar);\n" + String.fromCharCode(9) + String.fromCharCode(9) + "}\n" + String.fromCharCode(9) + "}";
 				}
 				else
@@ -51,6 +53,7 @@
 				STRING_LOSECHANGES_MESSAGE = "Lose any unsaved changes?";
 				STRING_LOSECHANGES_YES = "Yes";
 				STRING_LOSECHANGES_NO = "No";
+				STRING_SEND = "SEND";
 				STRING_WELCOME = "/*\n\nArduino Simulator developed by LRusso.com\n\n*/\n\nchar charOne[] = \"Char 1 example.\";\nString stringOne = \"String 1 example.\";\nString stringTwo = String(\"String 2 example.\");\nString stringThree = String(15);\nString stringFour = String(15.50);\n\nvoid setup()\n" + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + "Serial.begin(9600);\n" + String.fromCharCode(9) + "Serial.println(charOne);\n" + String.fromCharCode(9) + "Serial.println(stringOne);\n" + String.fromCharCode(9) + "Serial.println(stringTwo);\n" + String.fromCharCode(9) + "Serial.println(stringThree);\n" + String.fromCharCode(9) + "Serial.println(stringFour);\n" + String.fromCharCode(9) + "Serial.println(\"------------------\");\n" + String.fromCharCode(9) + "Serial.println(\"Write something in the textbox above to test that this sketch sends the serial data to the Arduino board and back to the Serial Monitor.\");\n" + String.fromCharCode(9) + "}\n\nvoid loop()\n" + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + "while(Serial.available()>0)\n" + String.fromCharCode(9) + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + String.fromCharCode(9) +  "char receivedChar = Serial.read();\n" + String.fromCharCode(9) + String.fromCharCode(9) + "Serial.print(receivedChar);\n" + String.fromCharCode(9) + String.fromCharCode(9) + "}\n" + String.fromCharCode(9) + "}";
 				}
 		</script>

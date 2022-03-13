@@ -809,6 +809,9 @@ window.addEventListener("load", function()
 	// SETTING THAT THE WEB WORKER IS NOT RUNNING
 	myWorkerRunning = false;
 
+	// UPDATING THE SEND BUTTON TEXT VALUE
+	document.getElementsByClassName("arduinosimulator_bottompanel_input_send")[0].value = STRING_SEND;
+
 	// HIDING THE LOADING SPLASH
 	document.getElementsByClassName("arduinosimulator_splash_container")[0].style.display = "none";
 

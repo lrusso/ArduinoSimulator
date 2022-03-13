@@ -33,7 +33,7 @@ html,body{margin:0;padding:0;background-color:black;-webkit-user-select:none;-mo
 .arduinosimulator_bottompanel_title{background-color: #F2F2F2;border-bottom:1px solid #D3D3D3}
 .arduinosimulator_bottompanel_title_value{font-family:Arial;font-size:13px;line-height:2;padding-left:7px;font-weight:bold}
 .arduinosimulator_bottompanel_input{background-color:#F2F2F2;width:100%;display:flex}
-.arduinosimulator_bottompanel_input_textbox{-webkit-appearance:none;border-radius:0;margin-left:5px;margin-bottom:7px;border:1px solid silver;outline:none;font-family:Arial;font-size:13px;height:18px;padding:4px;flex:2}
+.arduinosimulator_bottompanel_input_textbox{-webkit-appearance:none;border-radius:0;margin-left:5px;margin-bottom:7px;margin-right:3px;border:1px solid silver;outline:none;font-family:Arial;font-size:13px;height:18px;padding:4px;flex:2}
 .arduinosimulator_bottompanel_input_textbox:disabled{-webkit-appearance:none;border-radius:0;border:1px solid silver;background-color:#D9D9D9}
 .arduinosimulator_bottompanel_input_send{-webkit-appearance:none;border-radius:0;margin-left:2px;font-family:Arial;font-size:13px;border:1px solid silver;background-color:#D9D9D9;height:28px;width:99px;margin-right:5px}
 .arduinosimulator_bottompanel_output{position:fixed;left:0;right:0;bottom:0;right:0;height:137px;overflow:scroll}
