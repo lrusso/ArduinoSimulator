@@ -69,36 +69,38 @@
 		<div class="arduinosimulator_splash_container">
 			<div class="arduinosimulator_pleasewait"><div class="arduinosimulator_spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
 		</div>
-		<div class="arduinosimulator_menubar">
-			<div class="arduinosimulator_wrapper">
-				<div class="arduinosimulator_holder">
-					<div class="arduinosimulator_button_new_enabled" id="buttonNew"></div>
-				</div>
-				<div class="arduinosimulator_holder">
-					<div class="arduinosimulator_button_open_enabled" id="buttonOpen"></div>
-					<input type="file" class="arduinosimulator_buttonHidden" id="fileOpener" onChange="menuOpenFileExecute(document.getElementById('fileOpener').files[0]);">
-				</div>
-				<div class="arduinosimulator_holder">
-					<div class="arduinosimulator_button_save_enabled" id="buttonSave"></div>
-				</div>
-				<div class="arduinosimulator_separator"></div>
-				<div class="arduinosimulator_holder">
-					<div class="arduinosimulator_button_undo_disabled" id="buttonUndo"></div>
-				</div>
-				<div class="arduinosimulator_holder">
-					<div class="arduinosimulator_button_redo_disabled" id="buttonRedo"></div>
-				</div>
-				<div class="arduinosimulator_separator"></div>
-				<div class="arduinosimulator_holder">
-					<div class="arduinosimulator_button_search_enabled" id="buttonSearch"></div>
-				</div>
-				<div class="arduinosimulator_separator"></div>
-				<div class="arduinosimulator_holder">
-					<div class="arduinosimulator_button_run_enabled" id="buttonRun"></div>
-				</div>
-				<div class="arduinosimulator_separator"></div>
-				<div class="arduinosimulator_holder">
-					<div id="arduinosimulator_filename"><script>document.write(STRING_FILENAME_EMPTY + ".ino");</script></div>
+		<div class="arduinosimulator_menu_container">
+			<div class="arduinosimulator_menu">
+				<div class="arduinosimulator_menu_size">
+					<div class="arduinosimulator_holder">
+						<div class="arduinosimulator_button_new_enabled" id="buttonNew"></div>
+					</div>
+					<div class="arduinosimulator_holder">
+						<div class="arduinosimulator_button_open_enabled" id="buttonOpen"></div>
+						<input type="file" class="arduinosimulator_buttonHidden" id="fileOpener" onChange="menuOpenFileExecute(document.getElementById('fileOpener').files[0]);">
+					</div>
+					<div class="arduinosimulator_holder">
+						<div class="arduinosimulator_button_save_enabled" id="buttonSave"></div>
+					</div>
+					<div class="arduinosimulator_separator"></div>
+					<div class="arduinosimulator_holder">
+						<div class="arduinosimulator_button_undo_disabled" id="buttonUndo"></div>
+					</div>
+					<div class="arduinosimulator_holder">
+						<div class="arduinosimulator_button_redo_disabled" id="buttonRedo"></div>
+					</div>
+					<div class="arduinosimulator_separator"></div>
+					<div class="arduinosimulator_holder">
+						<div class="arduinosimulator_button_search_enabled" id="buttonSearch"></div>
+					</div>
+					<div class="arduinosimulator_separator"></div>
+					<div class="arduinosimulator_holder">
+						<div class="arduinosimulator_button_run_enabled" id="buttonRun"></div>
+					</div>
+					<div class="arduinosimulator_separator"></div>
+					<div class="arduinosimulator_holder">
+						<div id="arduinosimulator_filename"><script>document.write(STRING_FILENAME_EMPTY + ".ino");</script></div>
+					</div>
 				</div>
 			</div>
 		</div>
