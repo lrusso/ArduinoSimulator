@@ -449,7 +449,6 @@ function menuRun()
 							document.getElementsByClassName("arduinosimulator_bottompanel_input_textbox")[0].value = "";
 							document.getElementsByClassName("arduinosimulator_bottompanel_input_textbox")[0].disabled = false;
 							document.getElementsByClassName("arduinosimulator_bottompanel_input_send")[0].disabled = false;
-							document.getElementById("buttonClear").className = "arduinosimulator_bottompanel_output_clear_enabled";
 							}
 						// CHECKING IF A DIGITAL PIN EVENT OCCURRED
 						else if (myReceivedData.indexOf("_DIGITAL_PIN_STATUS_")>-1)
@@ -603,7 +602,13 @@ function stoppingSimulator()
 		document.getElementsByClassName("arduinosimulator_bottompanel_input_textbox")[0].value = "";
 		document.getElementsByClassName("arduinosimulator_bottompanel_input_textbox")[0].disabled = true;
 		document.getElementsByClassName("arduinosimulator_bottompanel_input_send")[0].disabled = true;
-		document.getElementById("buttonClear").className = "arduinosimulator_bottompanel_output_clear_disabled";
+
+		// LOOPING ALL THE DIGITALS LED PINS
+		for (var i = 0; i < 14; i++)
+			{
+			// TURNING OFF ALL THE DIGITALS LED PINS
+			document.getElementsByClassName("arduinosimulator_bottompanel_digital_pin")[i].style.backgroundColor = "red";
+			}
 
 		// CHECKING IF IT IS A MOBILE DEVICE
 		if (isMobileDevice()==false)
