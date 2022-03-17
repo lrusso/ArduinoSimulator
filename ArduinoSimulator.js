@@ -558,12 +558,8 @@ function sendSerialData()
 				// CLEANING THE TEXTBOX
 				document.getElementsByClassName("arduinosimulator_bottompanel_input_textbox")[0].value = "";
 
-				// CHECKING IF IT IS A MOBILE DEVICE
-				if (isMobileDevice()==false)
-					{
-					// FOCUSING THE TEXTBOX
-					document.getElementsByClassName("arduinosimulator_bottompanel_input_textbox")[0].focus();
-					}
+				// FOCUSING THE TEXTBOX
+				document.getElementsByClassName("arduinosimulator_bottompanel_input_textbox")[0].focus();
 				}
 			}
 		}
@@ -810,6 +806,9 @@ window.addEventListener("load", function()
 	document.getElementsByClassName("arduinosimulator_bottompanel_digital_title")[0].innerHTML = STRING_DIGITAL_PINS;
 	document.getElementsByClassName("arduinosimulator_bottompanel_analog_title")[0].innerHTML = STRING_ANALOG_PINS;
 	document.getElementsByClassName("arduinosimulator_bottompanel_input_title_value")[0].innerHTML = STRING_SERIAL_MONITOR;
+
+	// PIXEL FIX WORKAROUND FOR CHROME IN MOBILE DEVICES
+	document.getElementsByTagName("body")[0].style.backgroundColor = "#D3D3D3";
 
 	// HIDING THE LOADING SPLASH
 	document.getElementsByClassName("arduinosimulator_splash_container")[0].style.display = "none";
