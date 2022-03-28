@@ -2,7 +2,7 @@
 
 Arduino simulator developed in JavaScript.
 
-![alt screenshot](https://raw.githubusercontent.com/lrusso/ArduinoSimulator/master/ArduinoSimulator.png)
+![alt screenshot](https://raw.githubusercontent.com/lrusso/ArduinoSimulator/master/ArduinoSimulator.jpg)
 
 ## Web:
 
