@@ -12,7 +12,7 @@ https://lrusso.github.io/ArduinoSimulator/ArduinoSimulator.htm
 
 https://lrusso.github.io/ArduinoSimulator/ArduinoSimulatorSample1.htm
 
-## Demo using serial:
+## Demo using the Serial monitor:
 
 https://lrusso.github.io/ArduinoSimulator/ArduinoSimulatorSample2.htm
 
