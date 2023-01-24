@@ -160,9 +160,12 @@
 			</div>
 		</div>
 
-		<script src="ArduinoSimulatorEditor.js"></script>
-		<script src="ArduinoSimulator.js"></script>
 		<script>
+			var arduinoSimulator = document.createElement("script");
+			arduinoSimulator.defer = true;
+			arduinoSimulator.src = "ArduinoSimulator.js?v=" + Date.now();
+			document.getElementsByTagName("head")[0].appendChild(arduinoSimulator);
+
 			if ("serviceWorker" in navigator)
 				{
 				navigator.serviceWorker.register("worker.js").then(function(registration)
