@@ -77,7 +77,7 @@
 				STRING_ANALOG_PINS = "BROCHES ANALOGIQUES";
 				STRING_SERIAL_MONITOR = "MONITEUR S" + String.fromCharCode(201) +"RIE";
 				STRING_SEND = "ENVOYER";
-				STRING_WELCOME = "/*\n\nSimulateur Arduino d" + String.fromCharCode(233) +"velopp" + String.fromCharCode(233) +" par LRusso.com\n\n*/\n\nvoid setup()\n" + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + "Serial.begin(9600);\n" + String.fromCharCode(9) + "}\n\nvoid loop()\n" + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + "}";
+				STRING_WELCOME = "/*\n\nSimulateur Arduino d" + String.fromCharCode(233) +"velopp" + String.fromCharCode(233) +" par LRusso.com\n\n*/\n\nint LED_PIN = 0;\nint DCMOTOR_PIN = 5;\nint counter = 0;\n\nvoid setup()\n" + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + "Serial.begin(9600);\n" + String.fromCharCode(9) + "Serial.println(\"Hello world!\");\n\n" + String.fromCharCode(9) + "pinMode(LED_PIN, OUTPUT);\n" + String.fromCharCode(9) + "pinMode(DCMOTOR_PIN, OUTPUT);\n" + String.fromCharCode(9) + "}\n\nvoid loop()\n" + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + "digitalWrite(LED_PIN, LOW);\n" + String.fromCharCode(9) + "analogWrite(DCMOTOR_PIN, 0);\n" + String.fromCharCode(9) + "delay(1000);\n\n" + String.fromCharCode(9) + "counter++;\n" + String.fromCharCode(9) + "Serial.print(counter);\n\n" + String.fromCharCode(9) + "digitalWrite(LED_PIN, HIGH);\n" + String.fromCharCode(9) + "analogWrite(DCMOTOR_PIN, 255);\n" + String.fromCharCode(9) + "delay(1000);\n\n" + String.fromCharCode(9) + "Serial.print(\" and looping! \");\n" + String.fromCharCode(9) + "}";
 				}
 			else
 				{
