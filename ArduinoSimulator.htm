@@ -51,7 +51,21 @@
 				STRING_SEND = "ENVIAR";
 				STRING_WELCOME = "/*\n\nArduino Simulator desarrollado por LRusso.com\n\n*/\n\nvoid setup()\n" + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + "Serial.begin(9600);\n" + String.fromCharCode(9) + "}\n\nvoid loop()\n" + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + "}";
 				}
-				else
+			else if (userLanguage.substring(0,2)=="it")
+				{
+				STRING_FILENAME = "Senza titolo.ino";
+				STRING_FILENAME_EMPTY = "Senza titolo";
+				STRING_LOSECHANGES_TITLE = "MESSAGGIO";
+				STRING_LOSECHANGES_MESSAGE = "Perdere eventuali modifiche non salvate?";
+				STRING_LOSECHANGES_YES = "S" + String.fromCharCode(236);
+				STRING_LOSECHANGES_NO = "No";
+				STRING_DIGITAL_PINS = "PIN DIGITALI";
+				STRING_ANALOG_PINS = "PIN ANALOGICI";
+				STRING_SERIAL_MONITOR = "MONITOR SERIALE";
+				STRING_SEND = "SPEDIRE";
+				STRING_WELCOME = "/*\n\nSimulatore Arduino sviluppato da LRusso.com\n\n*/\n\nvoid setup()\n" + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + "Serial.begin(9600);\n" + String.fromCharCode(9) + "}\n\nvoid loop()\n" + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + "}";
+				}
+			else
 				{
 				STRING_FILENAME = "Untitled.ino";
 				STRING_FILENAME_EMPTY = "Untitled";
