@@ -10,11 +10,11 @@ https://lrusso.github.io/ArduinoSimulator/ArduinoSimulator.htm
 
 ## Demo using digital and analog pins:
 
-https://lrusso.github.io/ArduinoSimulator/ArduinoSimulatorSample1.htm
+https://lrusso.github.io/ArduinoSimulator/ArduinoSimulatorDemo1.htm
 
 ## Demo using the Serial monitor:
 
-https://lrusso.github.io/ArduinoSimulator/ArduinoSimulatorSample2.htm
+https://lrusso.github.io/ArduinoSimulator/ArduinoSimulatorDemo2.htm
 
 ## How to set a default sketch in the simulator?
 
