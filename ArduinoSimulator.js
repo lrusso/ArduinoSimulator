@@ -30,6 +30,7 @@ function isMobileDevice(){return!!(navigator.userAgent.match(/Android/i)||naviga
 // CREATING THE WEB WORKER (THE CPP INTERPRETER)
 var myWorker;
 var myWorkerRunning;
+var myWorkerTimestamp = Date.now();
 
 try
 	{
@@ -444,7 +445,7 @@ function menuRun()
 			myWorkerRunning = true;
 
 			// CREATING THE WEB WORKER
-			myWorker = new Worker("ArduinoSimulatorInterpreter.min.js");
+			myWorker = new Worker("ArduinoSimulatorInterpreter.min.js?v=" + myWorkerTimestamp);
 
 			// SETTING WHAT HAPPENS WHEN DATA IS RECEIVED FROM THE WEB WORKER
 			myWorker.onmessage = function(e)
