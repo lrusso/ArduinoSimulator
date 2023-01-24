@@ -1,6 +1,6 @@
 # Arduino Simulator
 
-Arduino simulator developed in JavaScript.
+Arduino Simulator in JavaScript.
 
 ![alt screenshot](https://raw.githubusercontent.com/lrusso/ArduinoSimulator/master/ArduinoSimulator1.png)
 
