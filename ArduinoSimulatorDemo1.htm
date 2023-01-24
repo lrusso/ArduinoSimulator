@@ -65,6 +65,20 @@
 				STRING_SEND = "SPEDIRE";
 				STRING_WELCOME = "/*\n\nSimulatore Arduino sviluppato da LRusso.com\n\n*/\n\nint LED_PIN = 0;\nint DCMOTOR_PIN = 5;\nint counter = 0;\n\nvoid setup()\n" + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + "Serial.begin(9600);\n" + String.fromCharCode(9) + "Serial.println(\"Ciao mondo!\");\n\n" + String.fromCharCode(9) + "pinMode(LED_PIN, OUTPUT);\n" + String.fromCharCode(9) + "pinMode(DCMOTOR_PIN, OUTPUT);\n" + String.fromCharCode(9) + "}\n\nvoid loop()\n" + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + "digitalWrite(LED_PIN, LOW);\n" + String.fromCharCode(9) + "analogWrite(DCMOTOR_PIN, 0);\n" + String.fromCharCode(9) + "delay(1000);\n\n" + String.fromCharCode(9) + "counter++;\n" + String.fromCharCode(9) + "Serial.print(counter);\n\n" + String.fromCharCode(9) + "digitalWrite(LED_PIN, HIGH);\n" + String.fromCharCode(9) + "analogWrite(DCMOTOR_PIN, 255);\n" + String.fromCharCode(9) + "delay(1000);\n\n" + String.fromCharCode(9) + "Serial.print(\" e looping! \");\n" + String.fromCharCode(9) + "}";
 				}
+			else if (userLanguage.substring(0,2)=="fr")
+				{
+				STRING_FILENAME = "Sans titre.ino";
+				STRING_FILENAME_EMPTY = "Sans titre";
+				STRING_LOSECHANGES_TITLE = "MESSAGE";
+				STRING_LOSECHANGES_MESSAGE = "Perdre toutes les modifications non enregistr" + String.fromCharCode(233) +"es?";
+				STRING_LOSECHANGES_YES = "Oui";
+				STRING_LOSECHANGES_NO = "Non";
+				STRING_DIGITAL_PINS = "BROCHES NUM" + String.fromCharCode(201) +"RIQUES";
+				STRING_ANALOG_PINS = "BROCHES ANALOGIQUES";
+				STRING_SERIAL_MONITOR = "MONITEUR S" + String.fromCharCode(201) +"RIE";
+				STRING_SEND = "ENVOYER";
+				STRING_WELCOME = "/*\n\nSimulateur Arduino d" + String.fromCharCode(233) +"velopp" + String.fromCharCode(233) +" par LRusso.com\n\n*/\n\nvoid setup()\n" + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + "Serial.begin(9600);\n" + String.fromCharCode(9) + "}\n\nvoid loop()\n" + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + "}";
+				}
 			else
 				{
 				STRING_FILENAME = "Untitled.ino";

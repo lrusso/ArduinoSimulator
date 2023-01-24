@@ -65,6 +65,20 @@
 				STRING_SEND = "SPEDIRE";
 				STRING_WELCOME = "/*\n\nSimulatore Arduino sviluppato da LRusso.com\n\n*/\n\nchar charOne[] = \"Char 1 esempio.\";\nString stringOne = \"String 1 esempio.\";\nString stringTwo = String(\"String 2 esempio.\");\nString stringThree = String(15);\nString stringFour = String(15.50);\n\nvoid setup()\n" + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + "Serial.begin(9600);\n" + String.fromCharCode(9) + "Serial.println(charOne);\n" + String.fromCharCode(9) + "Serial.println(stringOne);\n" + String.fromCharCode(9) + "Serial.println(stringTwo);\n" + String.fromCharCode(9) + "Serial.println(stringThree);\n" + String.fromCharCode(9) + "Serial.println(stringFour);\n" + String.fromCharCode(9) + "Serial.println(\"------------------\");\n" + String.fromCharCode(9) + "Serial.println(\"Scrivi qualcosa nella casella di testo sopra per verificare che questo Sketch invii i dati seriali alla scheda Arduino e di nuovo al monitor seriale.\");\n" + String.fromCharCode(9) + "}\n\nvoid loop()\n" + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + "while(Serial.available()>0)\n" + String.fromCharCode(9) + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + String.fromCharCode(9) +  "char receivedChar = Serial.read();\n" + String.fromCharCode(9) + String.fromCharCode(9) + "Serial.print(receivedChar);\n" + String.fromCharCode(9) + String.fromCharCode(9) + "}\n" + String.fromCharCode(9) + "}";
 				}
+			else if (userLanguage.substring(0,2)=="fr")
+				{
+				STRING_FILENAME = "Sans titre.ino";
+				STRING_FILENAME_EMPTY = "Sans titre";
+				STRING_LOSECHANGES_TITLE = "MESSAGE";
+				STRING_LOSECHANGES_MESSAGE = "Perdre toutes les modifications non enregistr" + String.fromCharCode(233) +"es?";
+				STRING_LOSECHANGES_YES = "Oui";
+				STRING_LOSECHANGES_NO = "Non";
+				STRING_DIGITAL_PINS = "BROCHES NUM" + String.fromCharCode(201) +"RIQUES";
+				STRING_ANALOG_PINS = "BROCHES ANALOGIQUES";
+				STRING_SERIAL_MONITOR = "MONITEUR S" + String.fromCharCode(201) +"RIE";
+				STRING_SEND = "ENVOYER";
+				STRING_WELCOME = "/*\n\nSimulateur Arduino d" + String.fromCharCode(233) +"velopp" + String.fromCharCode(233) +" par LRusso.com\n\n*/\n\nvoid setup()\n" + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + "Serial.begin(9600);\n" + String.fromCharCode(9) + "}\n\nvoid loop()\n" + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + "}";
+				}
 			else
 				{
 				STRING_FILENAME = "Untitled.ino";
