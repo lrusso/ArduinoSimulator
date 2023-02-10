@@ -78,10 +78,6 @@ try
 		{
 		// THE DOCUMENT WILL BE DIRTY
 		window.onbeforeunload = function(e){return "changed";};
-
-		// THE UNDO BUTTON WILL BE ENABLED
-		document.getElementById("buttonUndo").classList.add("arduinosimulator_button_undo_enabled");
-		document.getElementById("buttonUndo").classList.remove("arduinosimulator_button_undo_disabled");
 		});
 	}
 	catch(err)
@@ -145,12 +141,6 @@ function menuNewFileExecute(files)
 		// UNLOCKING THE EDITOR AND SHOWING THE POINTER
 		editor.setOptions({readOnly: false, highlightGutterLine: true});
 		editor.renderer.$cursorLayer.element.style.display = "block";
-
-		// SETTING THE DEFAULT STATE FOR EACH BUTTON
-		document.getElementById("buttonUndo").classList.add("arduinosimulator_button_undo_disabled");
-		document.getElementById("buttonUndo").classList.remove("arduinosimulator_button_undo_enabled");
-		document.getElementById("buttonRedo").classList.add("arduinosimulator_button_redo_disabled");
-		document.getElementById("buttonRedo").classList.remove("arduinosimulator_button_redo_enabled");
 
 		// HIDING THE SEARCH BOX (IF AVAILABLE)
 		try{editor.searchBox.hide();}catch(err){}
@@ -261,12 +251,6 @@ function menuOpenFileExecute(file)
 				// CLEARING THE UNDOMANAGER RECORDS
 				editor.session.getUndoManager().reset();
 
-				// SETTING THE DEFAULT STATE FOR EACH BUTTON
-				document.getElementById("buttonUndo").classList.add("arduinosimulator_button_undo_disabled");
-				document.getElementById("buttonUndo").classList.remove("arduinosimulator_button_undo_enabled");
-				document.getElementById("buttonRedo").classList.add("arduinosimulator_button_redo_disabled");
-				document.getElementById("buttonRedo").classList.remove("arduinosimulator_button_redo_enabled");
-
 				// HIDING THE SEARCH BOX (IF AVAILABLE)
 				try{editor.searchBox.hide();}catch(err){}
 
@@ -325,12 +309,6 @@ function menuSaveFile()
 			// CLEARING THE UNDOMANAGER RECORDS
 			editor.session.getUndoManager().reset();
 
-			// SETTING THE DEFAULT STATE FOR EACH BUTTON
-			document.getElementById("buttonUndo").classList.add("arduinosimulator_button_undo_disabled");
-			document.getElementById("buttonUndo").classList.remove("arduinosimulator_button_undo_enabled");
-			document.getElementById("buttonRedo").classList.add("arduinosimulator_button_redo_disabled");
-			document.getElementById("buttonRedo").classList.remove("arduinosimulator_button_redo_enabled");
-
 			// HIDING THE SEARCH BOX (IF AVAILABLE)
 			try{editor.searchBox.hide();}catch(err){}
 
@@ -373,20 +351,6 @@ function menuUndo()
 
 		// CLEARING SELECTION
 		editor.clearSelection();
-
-		// IF THERE ARE ANY UNDOS LEFT, THE UNDO BUTTON WILL BE DISABLED
-		if (!editor.session.getUndoManager().hasUndo())
-			{
-			document.getElementById("buttonUndo").classList.add("arduinosimulator_button_undo_disabled");
-			document.getElementById("buttonUndo").classList.remove("arduinosimulator_button_undo_enabled");
-			}
-
-		// IF THERE ARE ANY REDOS LEFT, THE REDO BUTTON WILL BE DISABLED
-		if (editor.session.getUndoManager().hasRedo())
-			{
-			document.getElementById("buttonRedo").classList.add("arduinosimulator_button_redo_enabled");
-			document.getElementById("buttonRedo").classList.remove("arduinosimulator_button_redo_disabled");
-			}
 		}
 		catch(err)
 		{
@@ -405,20 +369,6 @@ function menuRedo()
 
 		// CLEARING SELECTION
 		editor.clearSelection();
-
-		// IF THERE ARE ANY UNDOS LEFT, THE UNDO BUTTON WILL BE DISABLED
-		if (!editor.session.getUndoManager().hasRedo())
-			{
-			document.getElementById("buttonRedo").classList.add("arduinosimulator_button_redo_disabled");
-			document.getElementById("buttonRedo").classList.remove("arduinosimulator_button_redo_enabled");
-			}
-
-		// IF THERE ARE ANY REDOS LEFT, THE REDO BUTTON WILL BE DISABLED
-		if (editor.session.getUndoManager().hasUndo())
-			{
-			document.getElementById("buttonUndo").classList.add("arduinosimulator_button_undo_enabled");
-			document.getElementById("buttonUndo").classList.remove("arduinosimulator_button_undo_disabled");
-			}
 		}
 		catch(err)
 		{
@@ -433,7 +383,7 @@ function menuRun()
 		if (myWorkerRunning==false)
 			{
 			// UPDATING THE MENU RUN ICON
-			document.getElementById("buttonRun").className = "arduinosimulator_button_stop_enabled";
+			document.getElementById("buttonRun").className = "arduinosimulator_button_stop";
 
 			// SHOWING THE SERIAL MONITOR LOADING SPLASH
 			document.getElementsByClassName("arduinosimulator_bottompanel_output_loading")[0].style.display = "block";
@@ -601,7 +551,7 @@ function stoppingSimulator()
 		try{myWorker.terminate()}catch(err){}
 
 		// UPDATING THE MENU RUN ICON
-		document.getElementById("buttonRun").className = "arduinosimulator_button_run_enabled";
+		document.getElementById("buttonRun").className = "arduinosimulator_button_run";
 
 		// UPDATING THE WEB WORKER STATUS
 		myWorkerRunning = false;
