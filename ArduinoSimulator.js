@@ -575,6 +575,12 @@ function stoppingSimulator()
 			document.getElementsByClassName("arduinosimulator_bottompanel_analog_pin")[i].innerHTML = "0";
 			}
 
+		// HIDING THE STOP ICON
+		document.getElementById("iconStop").style.display = "none";
+
+		// SHOWING THE RUN ICON
+		document.getElementById("iconRun").style.display = "inline-block";
+
 		// CHECKING IF IT IS A MOBILE DEVICE
 		if (isMobileDevice()==false)
 			{
@@ -716,6 +722,12 @@ function runSketch(sketch)
 
 				// ADDING THE ARDUINO SKETCH
 				sketch;
+
+	// HIDING THE RUN ICON
+	document.getElementById("iconRun").style.display = "none";
+
+	// SHOWING THE STOP ICON
+	document.getElementById("iconStop").style.display = "inline-block";
 
 	// SENDING THE SKETCH TO THE WEB WORKER IN ORDER TO BE EXECUTED
 	myWorker.postMessage(code);
