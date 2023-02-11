@@ -5,7 +5,7 @@ html,body{margin:0;padding:0;background-color:black;-webkit-user-select:none;-mo
 .arduinosimulator_menu{background-color:#F2F2F2;left:0;right:0;padding-top:0;padding-bottom:0;height:80px;overflow-x:scroll;overflow-y:hidden;outline:none;text-align:center;font-family:Arial;font-size:13px}
 .arduinosimulator_menu::-webkit-scrollbar{display:none}
 .arduinosimulator_menu_size{float:left;width:550px}
-.arduinosimulator_holder{float:left;padding-top:3px;padding-bottom:3px;margin:0}
+.arduinosimulator_holder{float:left;display:flex;margin:0;height:40px;align-items:center}
 .arduinosimulator_separator{float:left;border-left:thin solid #D3D3D3;margin-left:5px;height:100px;width:1px}
 .arduinosimulator_button_new{display:block;font-family:Arial;font-size:15px;line-height:32px;height:28px;width:28px;background-color:#F2F2F2;border:thin solid #F2F2F2;margin-left:3px;cursor:default;-webkit-user-select:none;-moz-user-select:none;user-select:none;padding-top:3px;padding-bottom:1px}
 .arduinosimulator_button_new:hover{background-color:#E3E3E3;border:thin solid #D3D3D3}
