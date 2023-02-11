@@ -19,7 +19,380 @@ ace.define("ace/mode/arduino",["require","exports","module","ace/lib/oop","ace/m
 ace.define("ace/theme/arduino_light",["require","exports","module","ace/lib/dom"],function(e,t,n){t.isDark=!1,t.cssClass="ace-arduino-light"});
 
 // ------------------------------------------------------------------
-// ARDUINO SIMULATOR
+// INTERNATIONALIZATION VALUES
+// ------------------------------------------------------------------
+
+var userLanguage = window.navigator.userLanguage || window.navigator.language;
+
+var STRING_FILENAME = "";
+var STRING_FILENAME_EMPTY = "";
+var STRING_LOSECHANGES_TITLE = "";
+var STRING_LOSECHANGES_MESSAGE = "";
+var STRING_LOSECHANGES_YES = "";
+var STRING_LOSECHANGES_NO = "";
+var STRING_DIGITAL_PINS = "";
+var STRING_ANALOG_PINS = "";
+var STRING_SERIAL_MONITOR = "";
+var STRING_SEND = "";
+
+// CHECKING THE USER LANGUAGE
+if (userLanguage.substring(0,2)=="es")
+	{
+	STRING_FILENAME = "Sin nombre.ino";
+	STRING_FILENAME_EMPTY = "Sin nombre";
+	STRING_LOSECHANGES_TITLE = "MENSAJE";
+	STRING_LOSECHANGES_MESSAGE = "¿Perder cambios no guardados?";
+	STRING_LOSECHANGES_YES = "S" + String.fromCharCode(237);
+	STRING_LOSECHANGES_NO = "No";
+	STRING_DIGITAL_PINS = "PINES DIGITALES";
+	STRING_ANALOG_PINS = "PINES ANAL" + String.fromCharCode(211) + "GICOS";
+	STRING_SERIAL_MONITOR = "MONITOR SERIAL";
+	STRING_SEND = "ENVIAR";
+	}
+else if (userLanguage.substring(0,2)=="it")
+	{
+	STRING_FILENAME = "Senza titolo.ino";
+	STRING_FILENAME_EMPTY = "Senza titolo";
+	STRING_LOSECHANGES_TITLE = "MESSAGGIO";
+	STRING_LOSECHANGES_MESSAGE = "Perdere eventuali modifiche non salvate?";
+	STRING_LOSECHANGES_YES = "S" + String.fromCharCode(236);
+	STRING_LOSECHANGES_NO = "No";
+	STRING_DIGITAL_PINS = "PIN DIGITALI";
+	STRING_ANALOG_PINS = "PIN ANALOGICI";
+	STRING_SERIAL_MONITOR = "MONITOR SERIALE";
+	STRING_SEND = "SPEDIRE";
+	}
+else if (userLanguage.substring(0,2)=="fr")
+	{
+	STRING_FILENAME = "Sans titre.ino";
+	STRING_FILENAME_EMPTY = "Sans titre";
+	STRING_LOSECHANGES_TITLE = "MESSAGE";
+	STRING_LOSECHANGES_MESSAGE = "Perdre toutes les modifications non enregistr" + String.fromCharCode(233) + "es?";
+	STRING_LOSECHANGES_YES = "Oui";
+	STRING_LOSECHANGES_NO = "Non";
+	STRING_DIGITAL_PINS = "BROCHES NUM" + String.fromCharCode(201) + "RIQUES";
+	STRING_ANALOG_PINS = "BROCHES ANALOGIQUES";
+	STRING_SERIAL_MONITOR = "MONITEUR S" + String.fromCharCode(201) + "RIE";
+	STRING_SEND = "ENVOYER";
+	}
+else if (userLanguage.substring(0,2)=="pr")
+	{
+	STRING_FILENAME = "Sem t" + String.fromCharCode(237) + "tulo.ino";
+	STRING_FILENAME_EMPTY = "Sem t" + String.fromCharCode(237) + "tulo";
+	STRING_LOSECHANGES_TITLE = "MENSAGEM";
+	STRING_LOSECHANGES_MESSAGE = "Perder todas as altera" + String.fromCharCode(231) + String.fromCharCode(245) + "es n" + String.fromCharCode(227) + "o salvas?";
+	STRING_LOSECHANGES_YES = "Sim";
+	STRING_LOSECHANGES_NO = "N" + String.fromCharCode(227) + "o";
+	STRING_DIGITAL_PINS = "PINS DIGITAIS";
+	STRING_ANALOG_PINS = "PINS ANAL" + String.fromCharCode(211) + "GICOS";
+	STRING_SERIAL_MONITOR = "MONITOR SERIAL";
+	STRING_SEND = "MANDAR";
+	}
+else
+	{
+	STRING_FILENAME = "Untitled.ino";
+	STRING_FILENAME_EMPTY = "Untitled";
+	STRING_LOSECHANGES_TITLE = "MESSAGE";
+	STRING_LOSECHANGES_MESSAGE = "Lose any unsaved changes?";
+	STRING_LOSECHANGES_YES = "Yes";
+	STRING_LOSECHANGES_NO = "No";
+	STRING_DIGITAL_PINS = "DIGITAL PINS";
+	STRING_ANALOG_PINS = "ANALOG PINS";
+	STRING_SERIAL_MONITOR = "SERIAL MONITOR";
+	STRING_SEND = "SEND";
+	}
+
+// ------------------------------------------------------------------
+// ARDUINO SIMULATOR STYLES
+// ------------------------------------------------------------------
+
+var ARDUINO_SIMULATOR_STYLESHEET = `
+html,body{position:fixed;height:100%;width:100%;overflow:auto;padding:0;margin:0}
+html,body{margin:0;padding:0;background-color:black;-webkit-user-select:none;-moz-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;touch-action:none;overflow:hidden;-webkit-text-size-adjust:none}
+
+.arduinosimulator_menu_container{height:40px;border-bottom:thin solid #D3D3D3;overflow-y:hidden}
+.arduinosimulator_menu{background-color:#F2F2F2;left:0;right:0;padding-top:0;padding-bottom:0;height:80px;overflow-x:scroll;overflow-y:hidden;outline:none;text-align:center;font-family:Arial;font-size:13px}
+.arduinosimulator_menu::-webkit-scrollbar{display:none}
+.arduinosimulator_menu_size{float:left;width:550px}
+.arduinosimulator_holder{float:left;display:flex;margin:0;height:40px;align-items:center}
+.arduinosimulator_separator{float:left;border-left:thin solid #D3D3D3;margin-left:5px;height:100px;width:1px}
+.arduinosimulator_button_new{display:block;font-family:Arial;font-size:15px;line-height:32px;height:28px;width:28px;background-color:#F2F2F2;border:thin solid #F2F2F2;margin-left:3px;cursor:default;-webkit-user-select:none;-moz-user-select:none;user-select:none;padding-top:3px;padding-bottom:1px}
+.arduinosimulator_button_new:hover{background-color:#E3E3E3;border:thin solid #D3D3D3}
+.arduinosimulator_button_open{display:block;font-family:Arial;font-size:15px;line-height:32px;height:28px;width:28px;background-color:#F2F2F2;border:thin solid #F2F2F2;margin-left:3px;cursor:default;-webkit-user-select:none;-moz-user-select:none;user-select:none;padding-top:3px;padding-bottom:1px}
+.arduinosimulator_button_open:hover{background-color:#E3E3E3;border:thin solid #D3D3D3}
+.arduinosimulator_button_save{display:block;font-family:Arial;font-size:15px;line-height:32px;height:28px;width:28px;background-color:#F2F2F2;border:thin solid #F2F2F2;margin-left:3px;cursor:default;-webkit-user-select:none;-moz-user-select:none;user-select:none;padding-top:3px;padding-bottom:1px}
+.arduinosimulator_button_save:hover{background-color:#E3E3E3;border:thin solid #D3D3D3}
+.arduinosimulator_button_undo{display:block;font-family:Arial;font-size:15px;line-height:32px;height:28px;width:28px;background-color:#F2F2F2;border:thin solid #F2F2F2;margin-left:3px;cursor:default;-webkit-user-select:none;-moz-user-select:none;user-select:none;padding-top:3px;padding-bottom:1px}
+.arduinosimulator_button_undo:hover{background-color:#E3E3E3;border:thin solid #D3D3D3}
+.arduinosimulator_button_redo{display:block;font-family:Arial;font-size:15px;line-height:32px;height:28px;width:28px;background-color:#F2F2F2;border:thin solid #F2F2F2;margin-left:3px;cursor:default;-webkit-user-select:none;-moz-user-select:none;user-select:none;padding-top:3px;padding-bottom:1px}
+.arduinosimulator_button_redo:hover{background-color:#E3E3E3;border:thin solid #D3D3D3}
+.arduinosimulator_button_search{display:block;font-family:Arial;font-size:15px;line-height:32px;height:28px;width:28px;background-color:#F2F2F2;border:thin solid #F2F2F2;margin-left:3px;cursor:default;-webkit-user-select:none;-moz-user-select:none;user-select:none;padding-top:3px;padding-bottom:1px}
+.arduinosimulator_button_search:hover{background-color:#E3E3E3;border:thin solid #D3D3D3}
+.arduinosimulator_button_run{display:block;font-family:Arial;font-size:15px;line-height:32px;height:28px;width:28px;background-color:#F2F2F2;border:thin solid #F2F2F2;margin-left:3px;cursor:default;-webkit-user-select:none;-moz-user-select:none;user-select:none;padding-top:3px;padding-bottom:1px}
+.arduinosimulator_button_run:hover{background-color:#E3E3E3;border:thin solid #D3D3D3}
+.arduinosimulator_button_stop{display:block;font-family:Arial;font-size:15px;line-height:32px;height:28px;width:28px;background-color:#F2F2F2;border:thin solid #F2F2F2;margin-left:3px;cursor:default;-webkit-user-select:none;-moz-user-select:none;user-select:none;padding-top:3px;padding-bottom:1px}
+.arduinosimulator_button_stop:hover{background-color:#E3E3E3;border:thin solid #D3D3D3}
+.arduinosimulator_buttonHidden{display:none}
+.arduinosimulator_bottompanel{display:none;position:fixed;left:0;right:0;bottom:0;height:251px;border-top:1px solid #D3D3D3;background-color:#F2F2F2;border-left:1px solid #D3D3D3;overflow-x:hidden}
+.arduinosimulator_bottompanel_digital_container{height:26px;overflow-y:hidden}
+.arduinosimulator_bottompanel_digital_panel{background-color:#F2F2F2;left:0;right:0;padding-top:0;padding-bottom:0;height:80px;overflow-x:scroll;overflow-y:hidden;outline:none;text-align:center;font-family:Arial;font-size:13px}
+.arduinosimulator_bottompanel_digital_panel::-webkit-scrollbar{display:none}
+.arduinosimulator_bottompanel_digital_content{float:left;width:450px}
+.arduinosimulator_bottompanel_digital_title{float:left;font-family:Arial;font-size:13px;line-height:2;font-weight:bold;margin-left:7px;margin-right:1px;cursor:default}
+.arduinosimulator_bottompanel_digital_pin{float:left;width:16px;height:16px;border-radius:16px;margin-top:4px;margin-left:4px;background-color:red;font-size:11px;font-family:Arial;color:white;justify-content:center;align-items:center;display:flex;cursor:default}
+.arduinosimulator_bottompanel_analog_container{height:26px;overflow-y:hidden}
+.arduinosimulator_bottompanel_analog_panel{background-color:#F2F2F2;left:0;right:0;padding-top:0;padding-bottom:0;height:80px;overflow-x:scroll;overflow-y:hidden;outline:none;text-align:center;font-family:Arial;font-size:13px}
+.arduinosimulator_bottompanel_analog_panel::-webkit-scrollbar{display:none}
+.arduinosimulator_bottompanel_analog_content{float:left;width:450px}
+.arduinosimulator_bottompanel_analog_title{float:left;font-family:Arial;font-size:13px;line-height:2;font-weight:bold;margin-left:7px;margin-right:1px;cursor:default}
+.arduinosimulator_bottompanel_analog_pin{float:left;width:40px;height:16px;border-radius:16px;margin-top:4px;margin-left:4px;background-color:black;font-size:11px;font-family:Arial;color:white;justify-content:center;align-items:center;display:flex;cursor:default}
+.arduinosimulator_bottompanel_input_title{background-color: #F2F2F2;border-bottom:1px solid #D3D3D3}
+.arduinosimulator_bottompanel_input_title_value{font-family:Arial;font-size:13px;line-height:2;padding-left:7px;font-weight:bold;cursor:default}
+.arduinosimulator_bottompanel_input{width:100%;display:flex}
+.arduinosimulator_bottompanel_input_textbox{-webkit-appearance:none;border-radius:0;margin-left:5px;margin-bottom:7px;margin-right:3px;border:1px solid silver;outline:none;font-family:Arial;font-size:13px;height:18px;padding:4px;flex:2}
+.arduinosimulator_bottompanel_input_textbox:disabled{-webkit-appearance:none;border-radius:0;border:1px solid silver;background-color:#D9D9D9}
+.arduinosimulator_bottompanel_input_send{-webkit-appearance:none;border-radius:0;margin-left:2px;font-family:Arial;font-size:13px;border:1px solid silver;background-color:#D9D9D9;height:28px;width:99px;margin-right:5px}
+.arduinosimulator_bottompanel_output{position:fixed;left:0;right:0;bottom:0;right:0;height:137px;overflow:scroll;background-color:white}
+.arduinosimulator_bottompanel_output_data{padding:10px;font-family:monospace,monospace;overflow-wrap:break-word;-webkit-user-select:text;-moz-user-select:text;user-select:text}
+.arduinosimulator_bottompanel_output_loading{display:none;position:fixed;left:0;right:0;bottom:0;right:0;height:135px;margin:auto auto;border:0;z-index:99;text-align:center;background-color:white}
+.arduinosimulator_bottompanel_output_loading_centered{position:relative;top:50%;transform:translateY(-50%)}
+.arduinosimulator_bottompanel_output_loading_spinner{color:gray;display:inline-block;position:relative;width:64px;height:64px}
+.arduinosimulator_bottompanel_output_loading_spinner div{transform-origin:32px 32px;animation:arduinosimulator_spinner 1.2s linear infinite}
+.arduinosimulator_bottompanel_output_loading_spinner div:after{content:" ";display:block;position:absolute;top:3px;left:29px;width:5px;height:14px;border-radius:20%;background:gray}
+.arduinosimulator_bottompanel_output_loading_spinner div:nth-child(1){transform:rotate(0deg);animation-delay:-1.1s}
+.arduinosimulator_bottompanel_output_loading_spinner div:nth-child(2){transform:rotate(30deg);animation-delay:-1s}
+.arduinosimulator_bottompanel_output_loading_spinner div:nth-child(3){transform:rotate(60deg);animation-delay:-0.9s}
+.arduinosimulator_bottompanel_output_loading_spinner div:nth-child(4){transform:rotate(90deg);animation-delay:-0.8s}
+.arduinosimulator_bottompanel_output_loading_spinner div:nth-child(5){transform:rotate(120deg);animation-delay:-0.7s}
+.arduinosimulator_bottompanel_output_loading_spinner div:nth-child(6){transform:rotate(150deg);animation-delay:-0.6s}
+.arduinosimulator_bottompanel_output_loading_spinner div:nth-child(7){transform:rotate(180deg);animation-delay:-0.5s}
+.arduinosimulator_bottompanel_output_loading_spinner div:nth-child(8){transform:rotate(210deg);animation-delay:-0.4s}
+.arduinosimulator_bottompanel_output_loading_spinner div:nth-child(9){transform:rotate(240deg);animation-delay:-0.3s}
+.arduinosimulator_bottompanel_output_loading_spinner div:nth-child(10){transform:rotate(270deg);animation-delay:-0.2s}
+.arduinosimulator_bottompanel_output_loading_spinner div:nth-child(11){transform:rotate(300deg);animation-delay:-0.1s}
+.arduinosimulator_bottompanel_output_loading_spinner div:nth-child(12){transform:rotate(330deg);animation-delay:0s}
+@keyframes arduinosimulator_bottompanel_output_loading_spinner{0%{opacity:1}100%{opacity:0}}
+
+.arduinosimulator_splash_container{position:fixed;left:0;right:0;top:0;bottom:0;background-color:rgba(0,0,0,0.5);z-index:9999}
+.arduinosimulator_pleasewait{position:fixed;width:64px;height:64px;left:0;right:0;top:0;bottom:0;margin:auto auto;border:0}
+.arduinosimulator_spinner{color:white;display:inline-block;position:relative;width:64px;height:64px}
+.arduinosimulator_spinner div{transform-origin:32px 32px;animation:arduinosimulator_spinner 1.2s linear infinite}
+.arduinosimulator_spinner div:after{content:" ";display:block;position:absolute;top:3px;left:29px;width:5px;height:14px;border-radius:20%;background:white}
+.arduinosimulator_spinner div:nth-child(1){transform:rotate(0deg);animation-delay:-1.1s}
+.arduinosimulator_spinner div:nth-child(2){transform:rotate(30deg);animation-delay:-1s}
+.arduinosimulator_spinner div:nth-child(3){transform:rotate(60deg);animation-delay:-0.9s}
+.arduinosimulator_spinner div:nth-child(4){transform:rotate(90deg);animation-delay:-0.8s}
+.arduinosimulator_spinner div:nth-child(5){transform:rotate(120deg);animation-delay:-0.7s}
+.arduinosimulator_spinner div:nth-child(6){transform:rotate(150deg);animation-delay:-0.6s}
+.arduinosimulator_spinner div:nth-child(7){transform:rotate(180deg);animation-delay:-0.5s}
+.arduinosimulator_spinner div:nth-child(8){transform:rotate(210deg);animation-delay:-0.4s}
+.arduinosimulator_spinner div:nth-child(9){transform:rotate(240deg);animation-delay:-0.3s}
+.arduinosimulator_spinner div:nth-child(10){transform:rotate(270deg);animation-delay:-0.2s}
+.arduinosimulator_spinner div:nth-child(11){transform:rotate(300deg);animation-delay:-0.1s}
+.arduinosimulator_spinner div:nth-child(12){transform:rotate(330deg);animation-delay:0s}
+@keyframes arduinosimulator_spinner{0%{opacity:1}100%{opacity:0}}
+
+#arduinosimulator_filename{float:left;font-family:Arial;font-size:13px;line-height:2.7;margin-left:6px;margin-right:0px;cursor:default;-webkit-user-select:none;-moz-user-select:none;user-select:none}
+#arduinosimulator_textcode_container{position:fixed;padding:0;margin:0;left:0;top:41px;bottom:252px;right:0;display:none}
+#arduinosimulator_textcode{position:absolute;top:0;right:0;bottom:0px;left:0}
+
+@media (pointer: coarse)
+	{
+	.arduinosimulator_button_new:hover{background-color:#F2F2F2;border:thin solid #F2F2F2}
+	.arduinosimulator_button_open:hover{background-color:#F2F2F2;border:thin solid #F2F2F2}
+	.arduinosimulator_button_save:hover{background-color:#F2F2F2;border:thin solid #F2F2F2}
+	.arduinosimulator_button_undo:hover{background-color:#F2F2F2;border:thin solid #F2F2F2}
+	.arduinosimulator_button_redo:hover{background-color:#F2F2F2;border:thin solid #F2F2F2}
+	.arduinosimulator_button_search:hover{background-color:#F2F2F2;border:thin solid #F2F2F2}
+	.arduinosimulator_button_run:hover{background-color:#F2F2F2;border:thin solid #F2F2F2}
+	.arduinosimulator_button_stop:hover{background-color:#F2F2F2;border:thin solid #F2F2F2}
+	}
+
+.ace-arduino-light{background-color:#fff}
+.ace-arduino-light .ace_gutter{background-color:#dae3e3;color:#434f54}
+.ace-arduino-light .ace_gutter-active-line{background:#b5c8c9}
+.ace-arduino-light .ace_cursor{border-left:2px solid #555}
+.ace-arduino-light .ace_overwrite-cursors .ace_cursor{background:#766b13;border:1px solid #ffe300}
+.ace-arduino-light .ace_marker-layer .ace_selection{background:#fc0;opacity:.4}
+.ace-arduino-light .ace_marker-layer .ace_selected-word{background:#c9d2d2;opacity:.5;z-index:6}
+.ace-arduino-light .ace_marker-layer .ace_step{background:#dae3e3}
+.ace-arduino-light .ace_marker-layer .ace_bracket{border:1px solid #333;margin:-1px 0 0 -1px}
+.ace-arduino-light .ace_marker-layer .ace_active-line{background:#b5c8c9}
+.ace-arduino-light .ace_invisible,.ace-arduino-light .ace_paren{color:#333}
+.ace-arduino-light .ace_indent-guide{border-right:1px dotted #aabbbc;margin-right:-1px}
+.ace-arduino-light .ace_link_marker{border-bottom:1px solid #00979c}
+.ace-arduino-light .ace_identifier{color:#000}
+.ace-arduino-light .ace_comment{color:rgba(78,91,97,.8)}
+.ace-arduino-light .ace_string{color:#005c5f}
+.ace-arduino-light .ace_keyword.ace_control,.ace-arduino-light .ace_support.ace_type.ace_arduino{color:#728e00}
+.ace-arduino-light .ace_constant.ace_language,.ace-arduino-light .ace_constant.ace_language.ace_arduino,.ace-arduino-light .ace_storage.ace_modifier,.ace-arduino-light .ace_storage.ace_type{color:#00979d}
+.ace-arduino-light .ace_support.ace_function,.ace-arduino-light .ace_support.ace_function.ace_arduino{color:#d35400}
+.ace-arduino-light .ace_keyword{color:#728e00}
+.ace-arduino-light .ace_numeric{color:#8a7b52}
+`;
+
+// ADDING THE STYLESHEET TO THE WEBSITE
+var styleNode = document.createElement("style");
+var styleTextNode = document.createTextNode(ARDUINO_SIMULATOR_STYLESHEET);
+styleNode.appendChild(styleTextNode);
+document.getElementsByTagName("head")[0].appendChild(styleNode);
+
+// ------------------------------------------------------------------
+// ARDUINO SIMULATOR UI
+// ------------------------------------------------------------------
+
+var ARDUINO_SIMULATOR_UI = `
+<div class="arduinosimulator_splash_container">
+<div class="arduinosimulator_pleasewait"><div class="arduinosimulator_spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
+</div>
+<div class="arduinosimulator_menu_container">
+<div class="arduinosimulator_menu">
+	<div class="arduinosimulator_menu_size">
+		<div class="arduinosimulator_holder">
+			<div class="arduinosimulator_button_new" id="buttonNew">
+				<svg width="16" height="16" viewBox="0 0 1000 1000">
+					<path
+					  d="M903 761l-142 142q-24 24 -64 40.5t-73 16.5h-480q-33 0 -56.5 -23.5t-23.5 -56.5v-864q0 -33 23.5 -56.5t56.5 -23.5h736q33 0 56.5 23.5t23.5 56.5v608q0 33 -16.5 73t-40.5 64zM858 715q3 -2 5 -5l4 -6h-163v163l6 -4t5 -5zM896 16q0 -7 -4.5 -11.5t-11.5 -4.5h-736
+					  q-7 0 -11.5 4.5t-4.5 11.5v864q0 7 4.5 11.5t11.5 4.5h480q4 0 8 -0.5t8 -1.5v-254h254q1 -4 1.5 -8t0.5 -8v-608z"
+					  transform="translate(0 930) scale(-1,1) rotate(180)"
+					/>
+				  </svg>
+			</div>
+		</div>
+		<div class="arduinosimulator_holder">
+			<div class="arduinosimulator_button_open" id="buttonOpen">
+				<svg width="16" height="16" viewBox="0 0 576 512">
+					<path
+						d="M572.694 292.093L500.27 416.248A63.997 63.997 0 0 1 444.989 448H45.025c-18.523 0-30.064-20.093-20.731-36.093l72.424-124.155A64 64 0 0 1 152 256h399.964c18.523 0 30.064 20.093 20.73 36.093zM152 224h328v-48c0-26.51-21.49-48-48-48H272l-64-64H48C21.49 64 0 85.49 0 112v278.046l69.077-118.418C86.214 242.25 117.989 224 152 224z"								
+						transform="translate(0 -60) scale(1,1.2)"
+					/>
+				</svg>
+			</div>
+			<input type="file" class="arduinosimulator_buttonHidden" id="fileOpener" onChange="menuOpenFileExecute(document.getElementById('fileOpener').files[0]);">
+		</div>
+		<div class="arduinosimulator_holder">
+			<div class="arduinosimulator_button_save" id="buttonSave">
+				<svg width="16" height="16" viewBox="0 0 1000 1000">
+					<path
+					  d="M896 960h-896v-1024h1024v896zM512 832h128v-256h-128v256zM896 64h-768v768h64v-320h576v320h75l53 -53v-715z"
+					  transform="translate(-10 930) scale(-1,1) rotate(180)"
+					/>
+				  </svg>
+			</div>
+		</div>
+		<div class="arduinosimulator_separator"></div>
+		<div class="arduinosimulator_holder">
+			<div class="arduinosimulator_button_undo" id="buttonUndo">
+				<svg width="16" height="16" viewBox="0 0 1000 1000">
+					<path
+					  d="M762 -64q43 77 62 168t-9 168t-113.5 127.5t-253.5 46.5v-254l-384 384l384 384v-248q201 5 314.5 -73t148.5 -196t-4.5 -255.5t-144.5 -251.5z"
+					  transform="translate(0 930) scale(-1,1) rotate(180)"
+					/>
+				  </svg>
+			</div>
+		</div>
+		<div class="arduinosimulator_holder">
+			<div class="arduinosimulator_button_redo" id="buttonRedo">
+				<svg width="16" height="16" viewBox="0 0 1000 1000">
+					<path
+					  d="M576 712v248l384 -384l-384 -384v254q-168 4 -253.5 -46.5t-113.5 -127.5t-9 -168t62 -168q-105 114 -144.5 251.5t-4.5 255.5t148.5 196t314.5 73v0z"
+					  transform="translate(0 930) scale(-1,1) rotate(180)"
+					/>
+				  </svg>
+			</div>
+		</div>
+		<div class="arduinosimulator_separator"></div>
+		<div class="arduinosimulator_holder">
+			<div class="arduinosimulator_button_search" id="buttonSearch">
+				<svg width="24" height="24" viewBox="0 0 24 24">
+					<path
+						d="M11,5 C8.24078475,5 6,7.24078475 6,10 C6,12.7592153 8.24078475,15 11,15 C13.7592153,15 16,12.7592153 16,10 C16,7.24078475 13.7592153,5 11,5 Z M16.1517226,14.737509 L19.7071068,18.2928932 C20.0976311,18.6834175 20.0976311,19.3165825 19.7071068,19.7071068 C19.3165825,20.0976311 18.6834175,20.0976311 18.2928932,19.7071068 L14.5932864,16.0075 C13.5426554,16.6376337 12.3133603,17 11,17 C7.13621525,17 4,13.8637847 4,10 C4,6.13621525 7.13621525,3 11,3 C14.8637847,3 18,6.13621525 18,10 C18,11.826606 17.2990779,13.4906052 16.1517226,14.737509 Z"
+						transform="translate(0 2)"
+					/>
+				</svg>
+			</div>
+		</div>
+		<div class="arduinosimulator_separator"></div>
+		<div class="arduinosimulator_holder">
+			<div class="arduinosimulator_button_run" id="buttonRun">
+				<svg width="17" height="17" viewBox="0 0 56.693 56.693" id="iconRun" style="display:inline-block">
+					<path d="M46.279,26.484L20.113,7.48c-0.957-0.695-2.228-0.796-3.278-0.258c-1.056,0.537-1.721,1.622-1.721,2.807  v38.009c0,1.184,0.665,2.268,1.721,2.805c0.45,0.23,0.939,0.344,1.429,0.344c0.652,0,1.303-0.203,1.85-0.602l26.166-19.006  c0.818-0.594,1.298-1.539,1.298-2.548C47.577,28.023,47.094,27.077,46.279,26.484z" />
+				</svg>
+				<svg width="17" height="17" viewBox="0 0 24 24" id="iconStop" style="display:none">
+					<path
+						d="M16,6H8C6.9,6,6,6.9,6,8v8c0,1.1,0.9,2,2,2h8c1.1,0,2-0.9,2-2V8C18,6.9,17.1,6,16,6z"
+						transform="translate(-0.5 -5) scale(1.1,1.5)"
+					/>
+				</svg>
+			</div>
+		</div>
+		<div class="arduinosimulator_separator"></div>
+		<div class="arduinosimulator_holder">
+			<div id="arduinosimulator_filename">` + STRING_FILENAME_EMPTY + `.ino</div>
+		</div>
+	</div>
+</div>
+</div>
+<div id="arduinosimulator_textcode_container"><div id="arduinosimulator_textcode"></div></div>
+
+<div class="arduinosimulator_bottompanel">
+<div class="arduinosimulator_bottompanel_digital_container">
+	<div class="arduinosimulator_bottompanel_digital_panel">
+		<div class="arduinosimulator_bottompanel_digital_content">
+			<div class="arduinosimulator_bottompanel_digital_title">` + STRING_DIGITAL_PINS + `</div>
+			<div class="arduinosimulator_bottompanel_digital_pin">0</div>
+			<div class="arduinosimulator_bottompanel_digital_pin">1</div>
+			<div class="arduinosimulator_bottompanel_digital_pin">2</div>
+			<div class="arduinosimulator_bottompanel_digital_pin">3</div>
+			<div class="arduinosimulator_bottompanel_digital_pin">4</div>
+			<div class="arduinosimulator_bottompanel_digital_pin">5</div>
+			<div class="arduinosimulator_bottompanel_digital_pin">6</div>
+			<div class="arduinosimulator_bottompanel_digital_pin">7</div>
+			<div class="arduinosimulator_bottompanel_digital_pin">8</div>
+			<div class="arduinosimulator_bottompanel_digital_pin">9</div>
+			<div class="arduinosimulator_bottompanel_digital_pin">10</div>
+			<div class="arduinosimulator_bottompanel_digital_pin">11</div>
+			<div class="arduinosimulator_bottompanel_digital_pin">12</div>
+			<div class="arduinosimulator_bottompanel_digital_pin">13</div>
+		</div>
+	</div>
+</div>
+<div class="arduinosimulator_bottompanel_analog_container">
+	<div class="arduinosimulator_bottompanel_analog_panel">
+		<div class="arduinosimulator_bottompanel_digital_content">
+			<div class="arduinosimulator_bottompanel_analog_title">` + STRING_ANALOG_PINS + `</div>
+			<div class="arduinosimulator_bottompanel_analog_pin">0</div>
+			<div class="arduinosimulator_bottompanel_analog_pin">0</div>
+			<div class="arduinosimulator_bottompanel_analog_pin">0</div>
+			<div class="arduinosimulator_bottompanel_analog_pin">0</div>
+			<div class="arduinosimulator_bottompanel_analog_pin">0</div>
+			<div class="arduinosimulator_bottompanel_analog_pin">0</div>
+		</div>
+	</div>
+</div>
+<div class="arduinosimulator_bottompanel_input_title">
+	<div class="arduinosimulator_bottompanel_input_title_value">` + STRING_SERIAL_MONITOR + `</div>
+	<div class="arduinosimulator_bottompanel_input">
+		<input type="text" class="arduinosimulator_bottompanel_input_textbox" disabled>
+		<input type="button" class="arduinosimulator_bottompanel_input_send" disabled id="buttonSend" value="` + STRING_SEND + `">
+	</div>
+</div>
+<div class="arduinosimulator_bottompanel_output">
+	<div class="arduinosimulator_bottompanel_output_data"></div>
+	<div class="arduinosimulator_bottompanel_output_loading">
+		<div class="arduinosimulator_bottompanel_output_loading_centered">
+			<div class="arduinosimulator_bottompanel_output_loading_spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+		</div>
+	</div>
+</div>
+</div>
+`;
+
+// ADDING THE UI TO THE WEBSITE
+document.getElementsByTagName("body")[0].innerHTML = document.getElementsByTagName("body")[0].innerHTML + ARDUINO_SIMULATOR_UI;
+
+// ------------------------------------------------------------------
+// ARDUINO SIMULATOR LOGIC
 // ------------------------------------------------------------------
 
 // confirmCustom.js
@@ -59,7 +432,14 @@ try
 	editor.session.setUseWorker(false);
 
 	// SETTING WELCOME MESSAGE
-	editor.setValue(STRING_WELCOME);
+	try
+		{
+		editor.setValue(STRING_DEFAULTSKETCH);
+		}
+		catch(err)
+		{
+		editor.setValue("/*\n\nArduino Simulator developed by LRusso.com\n\n*/\n\nvoid setup()\n" + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + "Serial.begin(9600);\n" + String.fromCharCode(9) + "}\n\nvoid loop()\n" + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + "}");
+		}
 
 	// CLEARING SELECTION
 	editor.clearSelection();
@@ -787,12 +1167,6 @@ window.addEventListener("load", function()
 	{
 	// SETTING THAT THE WEB WORKER IS NOT RUNNING
 	myWorkerRunning = false;
-
-	// UPDATING THE LABELS ACCORDING TO THE USER LANGUAGE
-	document.getElementsByClassName("arduinosimulator_bottompanel_input_send")[0].value = STRING_SEND;
-	document.getElementsByClassName("arduinosimulator_bottompanel_digital_title")[0].innerHTML = STRING_DIGITAL_PINS;
-	document.getElementsByClassName("arduinosimulator_bottompanel_analog_title")[0].innerHTML = STRING_ANALOG_PINS;
-	document.getElementsByClassName("arduinosimulator_bottompanel_input_title_value")[0].innerHTML = STRING_SERIAL_MONITOR;
 
 	// PIXEL FIX WORKAROUND FOR CHROME IN MOBILE DEVICES
 	document.getElementsByTagName("body")[0].style.backgroundColor = "#D3D3D3";
