@@ -1139,6 +1139,17 @@ function convertArduinoSketch(a)
 	// FINDING AND REPLACING ALL THE REFERENCES TO THE BOOLEAN TYPE
 	a = a.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bboolean \b/g,"bool ");
 
+	// FINDING AND REMOVING ALL THE REFERENCES TO THE STATIC VARIABLES (TEMP WORKAROUND)
+	a = a.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bstatic byte \b/g,"byte ");
+	a = a.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bstatic int \b/g,"int ");
+	a = a.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bstatic long \b/g,"long ");
+	a = a.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bstatic bool \b/g,"bool ");
+	a = a.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bstatic float \b/g,"float ");
+	a = a.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bstatic double \b/g,"double ");
+	a = a.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bstatic String \b/g,"String ");
+	a = a.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bstatic char \b/g,"char ");
+	a = a.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bstatic unsigned \b/g,"unsigned ");
+
 	// FINDING AND REPLACING ALL THE REFERENCES TO THE STRING TYPE
 	a = a.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\b(String )([A-Za-z])/g,"char *$2");
 
