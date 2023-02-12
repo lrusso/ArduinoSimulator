@@ -616,8 +616,11 @@ function menuOpenFileExecute(file)
 				// SETTING THE FILE NAME VALUE IN THE LABEL
 				document.getElementById("arduinosimulator_filename").innerHTML = STRING_FILENAME;
 
-				// SETTING THE PROGRAMMING LANGUAGE IN THE ACE CORE
-				editor.session.setMode("ace/mode/c_cpp");
+				// SETTING THE ARDUINO MODE
+				editor.session.setMode("ace/mode/arduino");
+
+				// SETTING THE ARDUINO THEME
+				editor.setTheme("ace/theme/arduino_light");
 
 				// SETTING THE FILE CONTENT INTO THE EDITOR
 				editor.setValue(content);
