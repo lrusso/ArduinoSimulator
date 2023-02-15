@@ -4,6 +4,7 @@
 
 var userLanguage = window.navigator.userLanguage || window.navigator.language;
 
+var STRING_EMPTY_SKETCH = "";
 var STRING_FILENAME = "";
 var STRING_FILENAME_EMPTY = "";
 var STRING_LOSECHANGES_TITLE = "";
@@ -23,6 +24,7 @@ var STRING_ALL = "";
 // CHECKING THE USER LANGUAGE
 if (userLanguage.substring(0,2)=="es")
 	{
+	STRING_EMPTY_SKETCH = "/*\n\nArduino Simulator desarrollado por LRusso.com\n\n*/\n\nvoid setup()\n" + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + "Serial.begin(9600);\n" + String.fromCharCode(9) + "}\n\nvoid loop()\n" + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + "}";
 	STRING_FILENAME = "Sin nombre.ino";
 	STRING_FILENAME_EMPTY = "Sin nombre";
 	STRING_LOSECHANGES_TITLE = "MENSAJE";
@@ -41,6 +43,7 @@ if (userLanguage.substring(0,2)=="es")
 	}
 else if (userLanguage.substring(0,2)=="it")
 	{
+	STRING_EMPTY_SKETCH = "/*\n\nArduino Simulator sviluppato da LRusso.com\n\n*/\n\nvoid setup()\n" + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + "Serial.begin(9600);\n" + String.fromCharCode(9) + "}\n\nvoid loop()\n" + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + "}";
 	STRING_FILENAME = "Senza titolo.ino";
 	STRING_FILENAME_EMPTY = "Senza titolo";
 	STRING_LOSECHANGES_TITLE = "MESSAGGIO";
@@ -59,6 +62,7 @@ else if (userLanguage.substring(0,2)=="it")
 	}
 else if (userLanguage.substring(0,2)=="fr")
 	{
+	STRING_EMPTY_SKETCH = "/*\n\nArduino Simulator d" + String.fromCharCode(233) + "velopp" + String.fromCharCode(233) + " par LRusso.com\n\n*/\n\nvoid setup()\n" + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + "Serial.begin(9600);\n" + String.fromCharCode(9) + "}\n\nvoid loop()\n" + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + "}";
 	STRING_FILENAME = "Sans titre.ino";
 	STRING_FILENAME_EMPTY = "Sans titre";
 	STRING_LOSECHANGES_TITLE = "MESSAGE";
@@ -77,6 +81,7 @@ else if (userLanguage.substring(0,2)=="fr")
 	}
 else if (userLanguage.substring(0,2)=="pr")
 	{
+	STRING_EMPTY_SKETCH = "/*\n\nArduino Simulator desenvolvido por LRusso.com\n\n*/\n\nvoid setup()\n" + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + "Serial.begin(9600);\n" + String.fromCharCode(9) + "}\n\nvoid loop()\n" + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + "}";
 	STRING_FILENAME = "Sem t" + String.fromCharCode(237) + "tulo.ino";
 	STRING_FILENAME_EMPTY = "Sem t" + String.fromCharCode(237) + "tulo";
 	STRING_LOSECHANGES_TITLE = "MENSAGEM";
@@ -95,6 +100,7 @@ else if (userLanguage.substring(0,2)=="pr")
 	}
 else
 	{
+	STRING_EMPTY_SKETCH = "/*\n\nArduino Simulator developed by LRusso.com\n\n*/\n\nvoid setup()\n" + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + "Serial.begin(9600);\n" + String.fromCharCode(9) + "}\n\nvoid loop()\n" + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + "}";
 	STRING_FILENAME = "Untitled.ino";
 	STRING_FILENAME_EMPTY = "Untitled";
 	STRING_LOSECHANGES_TITLE = "MESSAGE";
@@ -468,7 +474,7 @@ try
 		}
 		catch(err)
 		{
-		editor.setValue("/*\n\nArduino Simulator developed by LRusso.com\n\n*/\n\nvoid setup()\n" + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + "Serial.begin(9600);\n" + String.fromCharCode(9) + "}\n\nvoid loop()\n" + String.fromCharCode(9) + "{\n" + String.fromCharCode(9) + "}");
+		editor.setValue(STRING_EMPTY_SKETCH);
 		}
 
 	// CLEARING SELECTION
