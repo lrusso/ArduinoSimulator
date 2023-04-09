@@ -1,3 +1,28 @@
+# DEPRECATED
+
+New project at https://github.com/lrusso/ArduinoSimulator2
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
 # Arduino Simulator
 
 Arduino Simulator in JavaScript.
