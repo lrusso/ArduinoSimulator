@@ -3,7 +3,7 @@ name: "Continuous Integration"
 on:
   push:
     branches:
-      - main
+      - master
     paths-ignore:
       - README.md
       - .github/pages/**
