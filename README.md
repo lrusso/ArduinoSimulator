@@ -2,7 +2,7 @@
 
 Arduino Simulator in JavaScript.
 
-![alt screenshot](https://raw.githubusercontent.com/lrusso/ArduinoSimulator/main/README.png)
+![alt screenshot](https://raw.githubusercontent.com/lrusso/ArduinoSimulator/master/README.png)
 
 ## Web:
 
