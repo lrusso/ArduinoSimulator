@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PinsDigitalItem Rendering 1 1`] = `
+<div
+  style={
+    {
+      "alignItems": "center",
+      "backgroundColor": "red",
+      "borderRadius": "16px",
+      "color": "white",
+      "cursor": "default",
+      "display": "flex",
+      "float": "left",
+      "fontFamily": "Arial",
+      "fontSize": "11px",
+      "height": "16px",
+      "justifyContent": "center",
+      "marginLeft": "4px",
+      "marginTop": "4px",
+      "width": "16px",
+    }
+  }
+>
+  0
+</div>
+`;
+
+exports[`PinsDigitalItem Rendering 2 1`] = `
+<div
+  style={
+    {
+      "alignItems": "center",
+      "backgroundColor": "green",
+      "borderRadius": "16px",
+      "color": "white",
+      "cursor": "default",
+      "display": "flex",
+      "float": "left",
+      "fontFamily": "Arial",
+      "fontSize": "11px",
+      "height": "16px",
+      "justifyContent": "center",
+      "marginLeft": "4px",
+      "marginTop": "4px",
+      "width": "16px",
+    }
+  }
+>
+  0
+</div>
+`;

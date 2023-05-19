@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BottomPanel Rendering 1 1`] = `
+<div
+  style={
+    {
+      "backgroundColor": "#F2F2F2",
+      "borderLeft": "1px solid #D3D3D3",
+      "borderTop": "1px solid #D3D3D3",
+      "bottom": 0,
+      "height": "251px",
+      "left": 0,
+      "overflowX": "hidden",
+      "position": "fixed",
+      "right": 0,
+    }
+  }
+/>
+`;

@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PinsDigitalLabel Rendering 1 1`] = `
+<div
+  style={
+    {
+      "cursor": "default",
+      "float": "left",
+      "fontFamily": "Arial",
+      "fontSize": "13px",
+      "fontWeight": "bold",
+      "lineHeight": 2,
+      "marginLeft": "7px",
+      "marginRight": "1px",
+    }
+  }
+>
+  DIGITAL PINS
+</div>
+`;

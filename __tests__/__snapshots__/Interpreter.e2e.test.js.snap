@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Interpreter End-To-End Running a Sketch and reading the Serial data 1`] = `
+"Char 1 example.
+String 1 example.
+String 2 example.
+15
+15.50
+------------------
+Write something in the textbox above to test that this sketch sends the serial data to the Arduino board and back to the Serial Monitor.
+"
+`;

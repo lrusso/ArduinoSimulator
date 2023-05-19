@@ -1,0 +1,1116 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Editor Rendering 1 1`] = `
+[
+  <div
+    style={
+      {
+        "borderBottom": "thin solid #D3D3D3",
+        "height": "40px",
+        "overflowY": "hidden",
+      }
+    }
+  >
+    <div
+      style={
+        {
+          "backgroundColor": "#F2F2F2",
+          "fontFamily": "Arial",
+          "fontSize": "13px",
+          "height": "80px",
+          "left": 0,
+          "outline": "none",
+          "overflowX": "scroll",
+          "overflowY": "hidden",
+          "paddingBottom": 0,
+          "paddingTop": 0,
+          "right": 0,
+          "textAlign": "center",
+        }
+      }
+    >
+      <div
+        style={
+          {
+            "float": "left",
+            "width": "550px",
+          }
+        }
+      >
+        <div
+          style={
+            {
+              "alignItems": "center",
+              "display": "flex",
+              "float": "left",
+              "height": "40px",
+              "margin": 0,
+            }
+          }
+        >
+          <div
+            className="arduinosimulator_menu_item"
+            onClick={[Function]}
+            style={
+              {
+                "MozUserSelect": "none",
+                "WebkitUserSelect": "none",
+                "backgroundColor": "#F2F2F2",
+                "border": "thin solid #F2F2F2",
+                "cursor": "default",
+                "display": "block",
+                "fontFamily": "Arial",
+                "fontSize": "15px",
+                "height": "28px",
+                "lineHeight": "32px",
+                "marginLeft": "3px",
+                "paddingBottom": "1px",
+                "paddingTop": "3px",
+                "userSelect": "none",
+                "width": "28px",
+              }
+            }
+          >
+            <svg
+              height={16}
+              viewBox="0 0 1000 1000"
+              width={16}
+            >
+              <path
+                d="M903 761l-142 142q-24 24 -64 40.5t-73 16.5h-480q-33 0 -56.5 -23.5t-23.5 -56.5v-864q0 -33 23.5 -56.5t56.5 -23.5h736q33 0 56.5 23.5t23.5 56.5v608q0 33 -16.5 73t-40.5 64zM858 715q3 -2 5 -5l4 -6h-163v163l6 -4t5 -5zM896 16q0 -7 -4.5 -11.5t-11.5 -4.5h-736 q-7 0 -11.5 4.5t-4.5 11.5v864q0 7 4.5 11.5t11.5 4.5h480q4 0 8 -0.5t8 -1.5v-254h254q1 -4 1.5 -8t0.5 -8v-608z"
+                transform="translate(0 930) scale(-1,1) rotate(180)"
+              />
+            </svg>
+          </div>
+        </div>
+        <div
+          style={
+            {
+              "alignItems": "center",
+              "display": "flex",
+              "float": "left",
+              "height": "40px",
+              "margin": 0,
+            }
+          }
+        >
+          <div
+            className="arduinosimulator_menu_item"
+            onClick={[Function]}
+            style={
+              {
+                "MozUserSelect": "none",
+                "WebkitUserSelect": "none",
+                "backgroundColor": "#F2F2F2",
+                "border": "thin solid #F2F2F2",
+                "cursor": "default",
+                "display": "block",
+                "fontFamily": "Arial",
+                "fontSize": "15px",
+                "height": "28px",
+                "lineHeight": "32px",
+                "marginLeft": "3px",
+                "paddingBottom": "1px",
+                "paddingTop": "3px",
+                "userSelect": "none",
+                "width": "28px",
+              }
+            }
+          >
+            <svg
+              height={16}
+              viewBox="0 0 576 512"
+              width={16}
+            >
+              <path
+                d="M572.694 292.093L500.27 416.248A63.997 63.997 0 0 1 444.989 448H45.025c-18.523 0-30.064-20.093-20.731-36.093l72.424-124.155A64 64 0 0 1 152 256h399.964c18.523 0 30.064 20.093 20.73 36.093zM152 224h328v-48c0-26.51-21.49-48-48-48H272l-64-64H48C21.49 64 0 85.49 0 112v278.046l69.077-118.418C86.214 242.25 117.989 224 152 224z"
+                transform="translate(0 -60) scale(1,1.2)"
+              />
+            </svg>
+          </div>
+        </div>
+        <div
+          style={
+            {
+              "alignItems": "center",
+              "display": "flex",
+              "float": "left",
+              "height": "40px",
+              "margin": 0,
+            }
+          }
+        >
+          <div
+            className="arduinosimulator_menu_item"
+            onClick={[Function]}
+            style={
+              {
+                "MozUserSelect": "none",
+                "WebkitUserSelect": "none",
+                "backgroundColor": "#F2F2F2",
+                "border": "thin solid #F2F2F2",
+                "cursor": "default",
+                "display": "block",
+                "fontFamily": "Arial",
+                "fontSize": "15px",
+                "height": "28px",
+                "lineHeight": "32px",
+                "marginLeft": "3px",
+                "paddingBottom": "1px",
+                "paddingTop": "3px",
+                "userSelect": "none",
+                "width": "28px",
+              }
+            }
+          >
+            <svg
+              height={16}
+              viewBox="0 0 1000 1000"
+              width={16}
+            >
+              <path
+                d="M896 960h-896v-1024h1024v896zM512 832h128v-256h-128v256zM896 64h-768v768h64v-320h576v320h75l53 -53v-715z"
+                transform="translate(-10 930) scale(-1,1) rotate(180)"
+              />
+            </svg>
+          </div>
+        </div>
+        <div
+          style={
+            {
+              "borderLeft": "thin solid #D3D3D3",
+              "float": "left",
+              "height": "100px",
+              "marginLeft": "5px",
+              "width": "1px",
+            }
+          }
+        />
+        <div
+          style={
+            {
+              "alignItems": "center",
+              "display": "flex",
+              "float": "left",
+              "height": "40px",
+              "margin": 0,
+            }
+          }
+        >
+          <div
+            className="arduinosimulator_menu_item"
+            onClick={[Function]}
+            style={
+              {
+                "MozUserSelect": "none",
+                "WebkitUserSelect": "none",
+                "backgroundColor": "#F2F2F2",
+                "border": "thin solid #F2F2F2",
+                "cursor": "default",
+                "display": "block",
+                "fontFamily": "Arial",
+                "fontSize": "15px",
+                "height": "28px",
+                "lineHeight": "32px",
+                "marginLeft": "3px",
+                "paddingBottom": "1px",
+                "paddingTop": "3px",
+                "userSelect": "none",
+                "width": "28px",
+              }
+            }
+          >
+            <svg
+              height={16}
+              viewBox="0 0 1000 1000"
+              width={16}
+            >
+              <path
+                d="M762 -64q43 77 62 168t-9 168t-113.5 127.5t-253.5 46.5v-254l-384 384l384 384v-248q201 5 314.5 -73t148.5 -196t-4.5 -255.5t-144.5 -251.5z"
+                transform="translate(0 930) scale(-1,1) rotate(180)"
+              />
+            </svg>
+          </div>
+        </div>
+        <div
+          style={
+            {
+              "alignItems": "center",
+              "display": "flex",
+              "float": "left",
+              "height": "40px",
+              "margin": 0,
+            }
+          }
+        >
+          <div
+            className="arduinosimulator_menu_item"
+            onClick={[Function]}
+            style={
+              {
+                "MozUserSelect": "none",
+                "WebkitUserSelect": "none",
+                "backgroundColor": "#F2F2F2",
+                "border": "thin solid #F2F2F2",
+                "cursor": "default",
+                "display": "block",
+                "fontFamily": "Arial",
+                "fontSize": "15px",
+                "height": "28px",
+                "lineHeight": "32px",
+                "marginLeft": "3px",
+                "paddingBottom": "1px",
+                "paddingTop": "3px",
+                "userSelect": "none",
+                "width": "28px",
+              }
+            }
+          >
+            <svg
+              height={16}
+              viewBox="0 0 1000 1000"
+              width={16}
+            >
+              <path
+                d="M576 712v248l384 -384l-384 -384v254q-168 4 -253.5 -46.5t-113.5 -127.5t-9 -168t62 -168q-105 114 -144.5 251.5t-4.5 255.5t148.5 196t314.5 73v0z"
+                transform="translate(0 930) scale(-1,1) rotate(180)"
+              />
+            </svg>
+          </div>
+        </div>
+        <div
+          style={
+            {
+              "borderLeft": "thin solid #D3D3D3",
+              "float": "left",
+              "height": "100px",
+              "marginLeft": "5px",
+              "width": "1px",
+            }
+          }
+        />
+        <div
+          style={
+            {
+              "alignItems": "center",
+              "display": "flex",
+              "float": "left",
+              "height": "40px",
+              "margin": 0,
+            }
+          }
+        >
+          <div
+            className="arduinosimulator_menu_item"
+            onClick={[Function]}
+            style={
+              {
+                "MozUserSelect": "none",
+                "WebkitUserSelect": "none",
+                "backgroundColor": "#F2F2F2",
+                "border": "thin solid #F2F2F2",
+                "cursor": "default",
+                "display": "block",
+                "fontFamily": "Arial",
+                "fontSize": "15px",
+                "height": "28px",
+                "lineHeight": "32px",
+                "marginLeft": "3px",
+                "paddingBottom": "1px",
+                "paddingTop": "3px",
+                "userSelect": "none",
+                "width": "28px",
+              }
+            }
+          >
+            <svg
+              height={24}
+              viewBox="0 0 24 24"
+              width={24}
+            >
+              <path
+                d="M11,5 C8.24078475,5 6,7.24078475 6,10 C6,12.7592153 8.24078475,15 11,15 C13.7592153,15 16,12.7592153 16,10 C16,7.24078475 13.7592153,5 11,5 Z M16.1517226,14.737509 L19.7071068,18.2928932 C20.0976311,18.6834175 20.0976311,19.3165825 19.7071068,19.7071068 C19.3165825,20.0976311 18.6834175,20.0976311 18.2928932,19.7071068 L14.5932864,16.0075 C13.5426554,16.6376337 12.3133603,17 11,17 C7.13621525,17 4,13.8637847 4,10 C4,6.13621525 7.13621525,3 11,3 C14.8637847,3 18,6.13621525 18,10 C18,11.826606 17.2990779,13.4906052 16.1517226,14.737509 Z"
+                transform="translate(0 2)"
+              />
+            </svg>
+          </div>
+        </div>
+        <div
+          style={
+            {
+              "borderLeft": "thin solid #D3D3D3",
+              "float": "left",
+              "height": "100px",
+              "marginLeft": "5px",
+              "width": "1px",
+            }
+          }
+        />
+        <div
+          style={
+            {
+              "alignItems": "center",
+              "display": "flex",
+              "float": "left",
+              "height": "40px",
+              "margin": 0,
+            }
+          }
+        >
+          <div
+            className="arduinosimulator_menu_item"
+            onClick={[Function]}
+            style={
+              {
+                "MozUserSelect": "none",
+                "WebkitUserSelect": "none",
+                "backgroundColor": "#F2F2F2",
+                "border": "thin solid #F2F2F2",
+                "cursor": "default",
+                "display": "block",
+                "fontFamily": "Arial",
+                "fontSize": "15px",
+                "height": "28px",
+                "lineHeight": "32px",
+                "marginLeft": "3px",
+                "paddingBottom": "1px",
+                "paddingTop": "3px",
+                "userSelect": "none",
+                "width": "28px",
+              }
+            }
+          >
+            <svg
+              height={17}
+              id="arduino_simulator_start_icon"
+              viewBox="0 0 56.693 56.693"
+              width={17}
+            >
+              <path
+                d="M46.279,26.484L20.113,7.48c-0.957-0.695-2.228-0.796-3.278-0.258c-1.056,0.537-1.721,1.622-1.721,2.807  v38.009c0,1.184,0.665,2.268,1.721,2.805c0.45,0.23,0.939,0.344,1.429,0.344c0.652,0,1.303-0.203,1.85-0.602l26.166-19.006  c0.818-0.594,1.298-1.539,1.298-2.548C47.577,28.023,47.094,27.077,46.279,26.484z"
+              />
+            </svg>
+          </div>
+        </div>
+        <div
+          style={
+            {
+              "borderLeft": "thin solid #D3D3D3",
+              "float": "left",
+              "height": "100px",
+              "marginLeft": "5px",
+              "width": "1px",
+            }
+          }
+        />
+        <div
+          style={
+            {
+              "alignItems": "center",
+              "display": "flex",
+              "float": "left",
+              "height": "40px",
+              "margin": 0,
+            }
+          }
+        >
+          <div
+            style={
+              {
+                "MozUserSelect": "none",
+                "WebkitUserSelect": "none",
+                "cursor": "default",
+                "float": "left",
+                "fontFamily": "Arial",
+                "fontSize": "13px",
+                "lineHeight": 2.7,
+                "marginLeft": "6px",
+                "marginRight": "0px",
+                "userSelect": "none",
+              }
+            }
+          >
+            Untitled.ino
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  <input
+    onChange={[Function]}
+    style={
+      {
+        "display": "none",
+      }
+    }
+    type="file"
+  />,
+  <div
+    style={
+      {
+        "bottom": "252px",
+        "left": 0,
+        "margin": 0,
+        "padding": 0,
+        "position": "fixed",
+        "right": 0,
+        "top": "41px",
+      }
+    }
+  >
+    <div
+      id="arduinosimulator_textcode"
+      style={
+        {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        }
+      }
+    />
+  </div>,
+  <div
+    style={
+      {
+        "backgroundColor": "#F2F2F2",
+        "borderLeft": "1px solid #D3D3D3",
+        "borderTop": "1px solid #D3D3D3",
+        "bottom": 0,
+        "height": "251px",
+        "left": 0,
+        "overflowX": "hidden",
+        "position": "fixed",
+        "right": 0,
+      }
+    }
+  >
+    <div
+      style={
+        {
+          "height": "26px",
+          "overflowY": "hidden",
+        }
+      }
+    >
+      <div
+        style={
+          {
+            "height": "80px",
+            "outline": "none",
+            "overflowX": "scroll",
+            "overflowY": "hidden",
+          }
+        }
+      >
+        <div
+          style={
+            {
+              "float": "left",
+              "width": "450px",
+            }
+          }
+        >
+          <div
+            style={
+              {
+                "cursor": "default",
+                "float": "left",
+                "fontFamily": "Arial",
+                "fontSize": "13px",
+                "fontWeight": "bold",
+                "lineHeight": 2,
+                "marginLeft": "7px",
+                "marginRight": "1px",
+              }
+            }
+          >
+            DIGITAL PINS
+          </div>
+          <div
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "red",
+                "borderRadius": "16px",
+                "color": "white",
+                "cursor": "default",
+                "display": "flex",
+                "float": "left",
+                "fontFamily": "Arial",
+                "fontSize": "11px",
+                "height": "16px",
+                "justifyContent": "center",
+                "marginLeft": "4px",
+                "marginTop": "4px",
+                "width": "16px",
+              }
+            }
+          >
+            0
+          </div>
+          <div
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "red",
+                "borderRadius": "16px",
+                "color": "white",
+                "cursor": "default",
+                "display": "flex",
+                "float": "left",
+                "fontFamily": "Arial",
+                "fontSize": "11px",
+                "height": "16px",
+                "justifyContent": "center",
+                "marginLeft": "4px",
+                "marginTop": "4px",
+                "width": "16px",
+              }
+            }
+          >
+            1
+          </div>
+          <div
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "red",
+                "borderRadius": "16px",
+                "color": "white",
+                "cursor": "default",
+                "display": "flex",
+                "float": "left",
+                "fontFamily": "Arial",
+                "fontSize": "11px",
+                "height": "16px",
+                "justifyContent": "center",
+                "marginLeft": "4px",
+                "marginTop": "4px",
+                "width": "16px",
+              }
+            }
+          >
+            2
+          </div>
+          <div
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "red",
+                "borderRadius": "16px",
+                "color": "white",
+                "cursor": "default",
+                "display": "flex",
+                "float": "left",
+                "fontFamily": "Arial",
+                "fontSize": "11px",
+                "height": "16px",
+                "justifyContent": "center",
+                "marginLeft": "4px",
+                "marginTop": "4px",
+                "width": "16px",
+              }
+            }
+          >
+            3
+          </div>
+          <div
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "red",
+                "borderRadius": "16px",
+                "color": "white",
+                "cursor": "default",
+                "display": "flex",
+                "float": "left",
+                "fontFamily": "Arial",
+                "fontSize": "11px",
+                "height": "16px",
+                "justifyContent": "center",
+                "marginLeft": "4px",
+                "marginTop": "4px",
+                "width": "16px",
+              }
+            }
+          >
+            4
+          </div>
+          <div
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "red",
+                "borderRadius": "16px",
+                "color": "white",
+                "cursor": "default",
+                "display": "flex",
+                "float": "left",
+                "fontFamily": "Arial",
+                "fontSize": "11px",
+                "height": "16px",
+                "justifyContent": "center",
+                "marginLeft": "4px",
+                "marginTop": "4px",
+                "width": "16px",
+              }
+            }
+          >
+            5
+          </div>
+          <div
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "red",
+                "borderRadius": "16px",
+                "color": "white",
+                "cursor": "default",
+                "display": "flex",
+                "float": "left",
+                "fontFamily": "Arial",
+                "fontSize": "11px",
+                "height": "16px",
+                "justifyContent": "center",
+                "marginLeft": "4px",
+                "marginTop": "4px",
+                "width": "16px",
+              }
+            }
+          >
+            6
+          </div>
+          <div
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "red",
+                "borderRadius": "16px",
+                "color": "white",
+                "cursor": "default",
+                "display": "flex",
+                "float": "left",
+                "fontFamily": "Arial",
+                "fontSize": "11px",
+                "height": "16px",
+                "justifyContent": "center",
+                "marginLeft": "4px",
+                "marginTop": "4px",
+                "width": "16px",
+              }
+            }
+          >
+            7
+          </div>
+          <div
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "red",
+                "borderRadius": "16px",
+                "color": "white",
+                "cursor": "default",
+                "display": "flex",
+                "float": "left",
+                "fontFamily": "Arial",
+                "fontSize": "11px",
+                "height": "16px",
+                "justifyContent": "center",
+                "marginLeft": "4px",
+                "marginTop": "4px",
+                "width": "16px",
+              }
+            }
+          >
+            8
+          </div>
+          <div
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "red",
+                "borderRadius": "16px",
+                "color": "white",
+                "cursor": "default",
+                "display": "flex",
+                "float": "left",
+                "fontFamily": "Arial",
+                "fontSize": "11px",
+                "height": "16px",
+                "justifyContent": "center",
+                "marginLeft": "4px",
+                "marginTop": "4px",
+                "width": "16px",
+              }
+            }
+          >
+            9
+          </div>
+          <div
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "red",
+                "borderRadius": "16px",
+                "color": "white",
+                "cursor": "default",
+                "display": "flex",
+                "float": "left",
+                "fontFamily": "Arial",
+                "fontSize": "11px",
+                "height": "16px",
+                "justifyContent": "center",
+                "marginLeft": "4px",
+                "marginTop": "4px",
+                "width": "16px",
+              }
+            }
+          >
+            10
+          </div>
+          <div
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "red",
+                "borderRadius": "16px",
+                "color": "white",
+                "cursor": "default",
+                "display": "flex",
+                "float": "left",
+                "fontFamily": "Arial",
+                "fontSize": "11px",
+                "height": "16px",
+                "justifyContent": "center",
+                "marginLeft": "4px",
+                "marginTop": "4px",
+                "width": "16px",
+              }
+            }
+          >
+            11
+          </div>
+          <div
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "red",
+                "borderRadius": "16px",
+                "color": "white",
+                "cursor": "default",
+                "display": "flex",
+                "float": "left",
+                "fontFamily": "Arial",
+                "fontSize": "11px",
+                "height": "16px",
+                "justifyContent": "center",
+                "marginLeft": "4px",
+                "marginTop": "4px",
+                "width": "16px",
+              }
+            }
+          >
+            12
+          </div>
+          <div
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "red",
+                "borderRadius": "16px",
+                "color": "white",
+                "cursor": "default",
+                "display": "flex",
+                "float": "left",
+                "fontFamily": "Arial",
+                "fontSize": "11px",
+                "height": "16px",
+                "justifyContent": "center",
+                "marginLeft": "4px",
+                "marginTop": "4px",
+                "width": "16px",
+              }
+            }
+          >
+            13
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      style={
+        {
+          "height": "26px",
+          "overflowY": "hidden",
+        }
+      }
+    >
+      <div
+        style={
+          {
+            "height": "80px",
+            "outline": "none",
+            "overflowX": "scroll",
+            "overflowY": "hidden",
+          }
+        }
+      >
+        <div
+          style={
+            {
+              "float": "left",
+              "width": "450px",
+            }
+          }
+        >
+          <div
+            style={
+              {
+                "cursor": "default",
+                "float": "left",
+                "fontFamily": "Arial",
+                "fontSize": "13px",
+                "fontWeight": "bold",
+                "lineHeight": 2,
+                "marginLeft": "7px",
+                "marginRight": "1px",
+              }
+            }
+          >
+            ANALOG PINS
+          </div>
+          <div
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "black",
+                "borderRadius": "16px",
+                "color": "white",
+                "cursor": "default",
+                "display": "flex",
+                "float": "left",
+                "fontFamily": "Arial",
+                "fontSize": "11px",
+                "height": "16px",
+                "justifyContent": "center",
+                "marginLeft": "4px",
+                "marginTop": "4px",
+                "width": "40px",
+              }
+            }
+          />
+          <div
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "black",
+                "borderRadius": "16px",
+                "color": "white",
+                "cursor": "default",
+                "display": "flex",
+                "float": "left",
+                "fontFamily": "Arial",
+                "fontSize": "11px",
+                "height": "16px",
+                "justifyContent": "center",
+                "marginLeft": "4px",
+                "marginTop": "4px",
+                "width": "40px",
+              }
+            }
+          />
+          <div
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "black",
+                "borderRadius": "16px",
+                "color": "white",
+                "cursor": "default",
+                "display": "flex",
+                "float": "left",
+                "fontFamily": "Arial",
+                "fontSize": "11px",
+                "height": "16px",
+                "justifyContent": "center",
+                "marginLeft": "4px",
+                "marginTop": "4px",
+                "width": "40px",
+              }
+            }
+          />
+          <div
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "black",
+                "borderRadius": "16px",
+                "color": "white",
+                "cursor": "default",
+                "display": "flex",
+                "float": "left",
+                "fontFamily": "Arial",
+                "fontSize": "11px",
+                "height": "16px",
+                "justifyContent": "center",
+                "marginLeft": "4px",
+                "marginTop": "4px",
+                "width": "40px",
+              }
+            }
+          />
+          <div
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "black",
+                "borderRadius": "16px",
+                "color": "white",
+                "cursor": "default",
+                "display": "flex",
+                "float": "left",
+                "fontFamily": "Arial",
+                "fontSize": "11px",
+                "height": "16px",
+                "justifyContent": "center",
+                "marginLeft": "4px",
+                "marginTop": "4px",
+                "width": "40px",
+              }
+            }
+          />
+          <div
+            style={
+              {
+                "alignItems": "center",
+                "backgroundColor": "black",
+                "borderRadius": "16px",
+                "color": "white",
+                "cursor": "default",
+                "display": "flex",
+                "float": "left",
+                "fontFamily": "Arial",
+                "fontSize": "11px",
+                "height": "16px",
+                "justifyContent": "center",
+                "marginLeft": "4px",
+                "marginTop": "4px",
+                "width": "40px",
+              }
+            }
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      style={
+        {
+          "backgroundColor": "#F2F2F2",
+          "borderBottom": "1px solid #D3D3D3",
+        }
+      }
+    >
+      <div
+        style={
+          {
+            "cursor": "default",
+            "float": "left",
+            "fontFamily": "Arial",
+            "fontSize": "13px",
+            "fontWeight": "bold",
+            "lineHeight": 2,
+            "marginLeft": "7px",
+            "marginRight": "1px",
+          }
+        }
+      >
+        SERIAL MONITOR
+      </div>
+      <div
+        style={
+          {
+            "display": "flex",
+            "width": "100%",
+          }
+        }
+      >
+        <input
+          onChange={[Function]}
+          onKeyUp={[Function]}
+          readOnly={true}
+          style={
+            {
+              "WebkitAppearance": "none",
+              "backgroundColor": "#D9D9D9",
+              "border": "1px solid silver",
+              "borderRadius": 0,
+              "cursor": "default",
+              "flex": 2,
+              "fontFamily": "Arial",
+              "fontSize": "13px",
+              "height": "18px",
+              "marginBottom": "7px",
+              "marginLeft": "5px",
+              "marginRight": "3px",
+              "outline": "none",
+              "padding": "4px",
+            }
+          }
+          type="text"
+          value=""
+        />
+        <input
+          disabled={true}
+          onClick={[Function]}
+          style={
+            {
+              "WebkitAppearance": "none",
+              "backgroundColor": "#D9D9D9",
+              "border": "1px solid silver",
+              "borderRadius": 0,
+              "color": "gray",
+              "fontFamily": "Arial",
+              "fontSize": "13px",
+              "height": "28px",
+              "marginLeft": "2px",
+              "marginRight": "5px",
+              "width": "99px",
+            }
+          }
+          type="submit"
+          value="SEND"
+        />
+      </div>
+      <div
+        style={
+          {
+            "backgroundColor": "white",
+            "bottom": 0,
+            "height": "137px",
+            "left": 0,
+            "overflow": "scroll",
+            "position": "fixed",
+            "right": 0,
+          }
+        }
+      >
+        <div
+          style={
+            {
+              "MozUserSelect": "text",
+              "WebkitUserSelect": "text",
+              "fontFamily": "monospace,monospace",
+              "overflowWrap": "break-word",
+              "padding": "10px",
+              "userSelect": "text",
+              "whiteSpace": "pre-line",
+            }
+          }
+        />
+      </div>
+    </div>
+  </div>,
+]
+`;

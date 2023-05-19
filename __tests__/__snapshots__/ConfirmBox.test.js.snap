@@ -1,0 +1,146 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ConfirmBox Rendering 1 1`] = `
+<div
+  style={
+    {
+      "WebkitUserSelect": "none",
+      "backgroundColor": "rgba(0,0,0,0.5)",
+      "bottom": "0",
+      "left": "0",
+      "minWidth": "320px",
+      "position": "fixed",
+      "right": "0",
+      "top": "0",
+      "userSelect": "none",
+      "zIndex": "8888",
+    }
+  }
+>
+  <div
+    style={
+      {
+        "backgroundColor": "#f2f2f2",
+        "borderRadius": "5px",
+        "boxShadow": "0 2px 2px 1px rgba(0,0,0,0.4)",
+        "left": "0",
+        "marginLeft": "auto",
+        "marginRight": "auto",
+        "overflow": "hidden",
+        "position": "relative",
+        "right": "0",
+        "textAlign": "center",
+        "top": "50%",
+        "transform": "translateY(-50%)",
+        "width": "300px",
+      }
+    }
+  >
+    <div
+      style={
+        {
+          "backgroundColor": "#3a76b1",
+          "color": "white",
+          "cursor": "default",
+          "fontFamily": "Arial",
+          "fontSize": "16px",
+          "fontWeight": "bold",
+          "lineHeight": "2.5",
+          "paddingLeft": "10px",
+          "textAlign": "left",
+        }
+      }
+    >
+      Test Title
+    </div>
+    <div
+      style={
+        {
+          "color": "black",
+          "cursor": "default",
+          "fontFamily": "Arial",
+          "fontSize": "16px",
+          "fontWeight": "400",
+          "lineHeight": "2",
+          "marginLeft": "10px",
+          "marginRight": "10px",
+          "overflow": "hidden",
+          "paddingBottom": "10px",
+          "paddingTop": "20px",
+          "textAlign": "center",
+          "whiteSpace": "pre-wrap",
+        }
+      }
+    >
+      Test Message
+    </div>
+    <div
+      style={
+        {
+          "float": "left",
+          "textAlign": "center",
+          "width": "300px",
+        }
+      }
+    >
+      <input
+        onClick={[Function]}
+        style={
+          {
+            "backgroundColor": "#d2d2d2",
+            "border": "1px solid #b2b2b2",
+            "borderRadius": "5px",
+            "color": "black",
+            "cursor": "pointer",
+            "display": "inline-block",
+            "fontFamily": "Arial",
+            "fontSize": "16px",
+            "lineHeight": "1.5",
+            "marginBottom": "10px",
+            "outline": "none",
+            "padding": "10px",
+            "paddingLeft": "40px",
+            "paddingRight": "40px",
+            "textAlign": "center",
+          }
+        }
+        type="button"
+        value="Test Accept"
+      />
+      <div
+        style={
+          {
+            "display": "inline-block",
+            "height": "40px",
+            "width": "20px",
+          }
+        }
+      />
+      <input
+        onClick={[Function]}
+        style={
+          {
+            "backgroundColor": "#d2d2d2",
+            "border": "1px solid #b2b2b2",
+            "borderRadius": "5px",
+            "color": "black",
+            "cursor": "pointer",
+            "display": "inline-block",
+            "fontFamily": "Arial",
+            "fontSize": "16px",
+            "lineHeight": "1.5",
+            "marginBottom": "10px",
+            "outline": "none",
+            "padding": "10px",
+            "paddingLeft": "40px",
+            "paddingRight": "40px",
+            "textAlign": "center",
+          }
+        }
+        type="button"
+        value="Test Cancel"
+      />
+    </div>
+  </div>
+</div>
+`;

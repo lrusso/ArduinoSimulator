@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ToolbarItem Rendering 1 1`] = `
+<div
+  style={
+    {
+      "alignItems": "center",
+      "display": "flex",
+      "float": "left",
+      "height": "40px",
+      "margin": 0,
+    }
+  }
+>
+  <div
+    className="arduinosimulator_menu_item"
+    style={
+      {
+        "MozUserSelect": "none",
+        "WebkitUserSelect": "none",
+        "backgroundColor": "#F2F2F2",
+        "border": "thin solid #F2F2F2",
+        "cursor": "default",
+        "display": "block",
+        "fontFamily": "Arial",
+        "fontSize": "15px",
+        "height": "28px",
+        "lineHeight": "32px",
+        "marginLeft": "3px",
+        "paddingBottom": "1px",
+        "paddingTop": "3px",
+        "userSelect": "none",
+        "width": "28px",
+      }
+    }
+  />
+</div>
+`;

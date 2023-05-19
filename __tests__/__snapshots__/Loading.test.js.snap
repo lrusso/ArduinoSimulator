@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loading Rendering 1 1`] = `
+<div
+  style={
+    {
+      "backgroundColor": "rgba(0,0,0,0.5)",
+      "bottom": "0",
+      "left": "0",
+      "minWidth": "320px",
+      "position": "fixed",
+      "right": "0",
+      "top": "0",
+      "zIndex": "8888",
+    }
+  }
+>
+  <div
+    style={
+      {
+        "height": "64px",
+        "left": "0",
+        "marginLeft": "auto",
+        "marginRight": "auto",
+        "position": "absolute",
+        "right": "0",
+        "top": "50%",
+        "transform": "translateY(-50%)",
+        "width": "64px",
+      }
+    }
+  >
+    <div
+      className="spinner_white_animation"
+    >
+      <div />
+      <div />
+      <div />
+      <div />
+      <div />
+      <div />
+      <div />
+      <div />
+      <div />
+      <div />
+      <div />
+      <div />
+    </div>
+  </div>
+</div>
+`;
