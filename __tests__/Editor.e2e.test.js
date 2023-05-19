@@ -26,7 +26,11 @@ describe("Editor End-To-End", () => {
         },
       })
     })
-    await page.goto("http://localhost:3000")
+    try {
+      await page.goto("http://localhost:3000")
+    } catch (err) {
+      throw Error("Please run 'npm run start' first.")
+    }
   })
 
   test("Checking if the Code Editor is mounted and working", async () => {

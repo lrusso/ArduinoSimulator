@@ -22,8 +22,10 @@ jobs:
           ref: ${{ github.ref }}
       - name: Installing packages
         run: npm install
-      - name: Starting the Arduino Simulator Web App in Dev mode
+      - name: Starting the Arduino Simulator Web App in Pipeline mode
         run: npm run start:pipeline
+      - name: Building the Arduino Simulator Web App
+        run: npm run build
       - name: Checking Prettier Rules
         run: npm run prettier
       - name: Checking Lint Rules
@@ -32,8 +34,8 @@ jobs:
         run: npm run test:unit
       - name: Running End-To-End Tests
         run: npm run test:e2e
-      - name: Building the Arduino Simulator Web App
-        run: npm run build
+      - name: Running Benchmark Tests
+        run: npm run test:benchmark
       - name: Attaching the Arduino Simulator Web App to this workflow
         uses: actions/upload-artifact@v3
         with:
