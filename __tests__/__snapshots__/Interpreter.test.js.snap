@@ -70,7 +70,7 @@ int main(){int internalLoopSystem=0;cout << fixed << setprecision(10);setup();wh
 
 /*
 
-Arduino Simulator 2 developed by LRusso.com
+Arduino Simulator developed by LRusso.com
 
 */
 
@@ -154,7 +154,7 @@ int main(){int internalLoopSystem=0;cout << fixed << setprecision(10);setup();wh
 
 /*
 
-Arduino Simulator 2 developed by LRusso.com
+Arduino Simulator developed by LRusso.com
 
 */
 
@@ -258,7 +258,7 @@ int main(){int internalLoopSystem=0;cout << fixed << setprecision(10);setup();wh
 
 /*
 
-Arduino Simulator 2 developed by LRusso.com
+Arduino Simulator developed by LRusso.com
 
 */
 

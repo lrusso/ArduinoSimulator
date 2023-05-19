@@ -1,20 +1,20 @@
-# Arduino Simulator 2
+# Arduino Simulator
 
 Arduino Simulator in JavaScript.
 
-![alt screenshot](https://raw.githubusercontent.com/lrusso/ArduinoSimulator2/main/README.png)
+![alt screenshot](https://raw.githubusercontent.com/lrusso/ArduinoSimulator/main/README.png)
 
 ## Web:
 
-https://lrusso.github.io/ArduinoSimulator2
+https://lrusso.github.io/ArduinoSimulator
 
 ## Demo using digital and analog pins:
 
-https://lrusso.github.io/ArduinoSimulator2/demo1.html
+https://lrusso.github.io/ArduinoSimulator/demo1.html
 
 ## Demo using the Serial monitor:
 
-https://lrusso.github.io/ArduinoSimulator2/demo2.html
+https://lrusso.github.io/ArduinoSimulator/demo2.html
 
 ## How to set a default sketch in the simulator?
 

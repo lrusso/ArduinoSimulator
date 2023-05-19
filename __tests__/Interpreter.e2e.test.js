@@ -33,7 +33,7 @@ describe("Interpreter End-To-End", () => {
         },
       })
       window.DEFAULT_SKETCH =
-        '/*\n\nArduino Simulator 2 developed by LRusso.com\n\n*/\n\nchar charOne[] = "Char 1 example.";\nString stringOne = "String 1 example.";\nString stringTwo = String("String 2 example.");\nString stringThree = String(15);\nString stringFour = String(15.50);\n\nvoid setup()\n\t{\n\tSerial.begin(9600);\n\tSerial.println(charOne);\n\tSerial.println(stringOne);\n\tSerial.println(stringTwo);\n\tSerial.println(stringThree);\n\tSerial.println(stringFour);\n\tSerial.println("------------------");\n\tSerial.println("Write something in the textbox above to test that this sketch sends the serial data to the Arduino board and back to the Serial Monitor.");\n\t}\n\nvoid loop()\n\t{\n\twhile(Serial.available()>0)\n\t\t{\n\t\tchar receivedChar = Serial.read();\n\t\tSerial.print(receivedChar);\n\t\t}\n\t}'
+        '/*\n\nArduino Simulator developed by LRusso.com\n\n*/\n\nchar charOne[] = "Char 1 example.";\nString stringOne = "String 1 example.";\nString stringTwo = String("String 2 example.");\nString stringThree = String(15);\nString stringFour = String(15.50);\n\nvoid setup()\n\t{\n\tSerial.begin(9600);\n\tSerial.println(charOne);\n\tSerial.println(stringOne);\n\tSerial.println(stringTwo);\n\tSerial.println(stringThree);\n\tSerial.println(stringFour);\n\tSerial.println("------------------");\n\tSerial.println("Write something in the textbox above to test that this sketch sends the serial data to the Arduino board and back to the Serial Monitor.");\n\t}\n\nvoid loop()\n\t{\n\twhile(Serial.available()>0)\n\t\t{\n\t\tchar receivedChar = Serial.read();\n\t\tSerial.print(receivedChar);\n\t\t}\n\t}'
     })
     await page.goto("http://localhost:3000")
   })

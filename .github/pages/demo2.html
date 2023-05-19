@@ -2,19 +2,19 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <title>Arduino Simulator 2</title>
-    <meta property="og:title" content="Arduino Simulator 2" />
+    <title>Arduino Simulator</title>
+    <meta property="og:title" content="Arduino Simulator" />
     <meta
       property="og:url"
-      content="https://lrusso.github.io/ArduinoSimulator2"
+      content="https://lrusso.github.io/ArduinoSimulator"
     />
     <meta property="og:description" content="info@lrusso.com" />
     <meta
       property="og:image"
-      content="https://lrusso.github.io/ArduinoSimulator2/ArduinoSimulatorShare.png"
+      content="https://lrusso.github.io/ArduinoSimulator/ArduinoSimulatorShare.png"
     />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Arduino Simulator 2" />
+    <meta property="og:site_name" content="Arduino Simulator" />
     <meta name="theme-color" content="#F2F2F2" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -64,7 +64,7 @@
     <div id="root"></div>
     <script>
       var DEFAULT_SKETCH =
-        '/*\n\nArduino Simulator 2 developed by LRusso.com\n\n*/\n\nchar charOne[] = "Char 1 example.";\nString stringOne = "String 1 example.";\nString stringTwo = String("String 2 example.");\nString stringThree = String(15);\nString stringFour = String(15.50);\n\nvoid setup()\n\t{\n\tSerial.begin(9600);\n\tSerial.println(charOne);\n\tSerial.println(stringOne);\n\tSerial.println(stringTwo);\n\tSerial.println(stringThree);\n\tSerial.println(stringFour);\n\tSerial.println("------------------");\n\tSerial.println("Write something in the textbox above to test that this sketch sends the serial data to the Arduino board and back to the Serial Monitor.");\n\t}\n\nvoid loop()\n\t{\n\twhile(Serial.available()>0)\n\t\t{\n\t\tchar receivedChar = Serial.read();\n\t\tSerial.print(receivedChar);\n\t\t}\n\t}'
+        '/*\n\nArduino Simulator developed by LRusso.com\n\n*/\n\nchar charOne[] = "Char 1 example.";\nString stringOne = "String 1 example.";\nString stringTwo = String("String 2 example.");\nString stringThree = String(15);\nString stringFour = String(15.50);\n\nvoid setup()\n\t{\n\tSerial.begin(9600);\n\tSerial.println(charOne);\n\tSerial.println(stringOne);\n\tSerial.println(stringTwo);\n\tSerial.println(stringThree);\n\tSerial.println(stringFour);\n\tSerial.println("------------------");\n\tSerial.println("Write something in the textbox above to test that this sketch sends the serial data to the Arduino board and back to the Serial Monitor.");\n\t}\n\nvoid loop()\n\t{\n\twhile(Serial.available()>0)\n\t\t{\n\t\tchar receivedChar = Serial.read();\n\t\tSerial.print(receivedChar);\n\t\t}\n\t}'
 
       const arduinoEditor = document.createElement("script")
       arduinoEditor.src = "ArduinoEditor.js?v=" + Date.now()

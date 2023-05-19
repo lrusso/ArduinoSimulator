@@ -8,7 +8,7 @@ const filesToCache = [
   "index.html",
 ]
 
-const staticCacheName = "arduinosimulator2-v1"
+const staticCacheName = "ArduinoSimulator-v1"
 
 // eslint-disable-next-line no-restricted-globals
 self.addEventListener("install", (event) => {

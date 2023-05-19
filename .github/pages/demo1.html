@@ -2,19 +2,19 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <title>Arduino Simulator 2</title>
-    <meta property="og:title" content="Arduino Simulator 2" />
+    <title>Arduino Simulator</title>
+    <meta property="og:title" content="Arduino Simulator" />
     <meta
       property="og:url"
-      content="https://lrusso.github.io/ArduinoSimulator2"
+      content="https://lrusso.github.io/ArduinoSimulator"
     />
     <meta property="og:description" content="info@lrusso.com" />
     <meta
       property="og:image"
-      content="https://lrusso.github.io/ArduinoSimulator2/ArduinoSimulatorShare.png"
+      content="https://lrusso.github.io/ArduinoSimulator/ArduinoSimulatorShare.png"
     />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Arduino Simulator 2" />
+    <meta property="og:site_name" content="Arduino Simulator" />
     <meta name="theme-color" content="#F2F2F2" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -64,7 +64,7 @@
     <div id="root"></div>
     <script>
       var DEFAULT_SKETCH =
-        '/*\n\nArduino Simulator 2 developed by LRusso.com\n\n*/\n\nint LED_PIN = 0;\nint DCMOTOR_PIN = 5;\nint counter = 0;\n\nvoid setup()\n\t{\n\tSerial.begin(9600);\n\tSerial.println("Hello world!");\n\n\tpinMode(LED_PIN, OUTPUT);\n\tpinMode(DCMOTOR_PIN, OUTPUT);\n\t}\n\nvoid loop()\n\t{\n\tdigitalWrite(LED_PIN, LOW);\n\tanalogWrite(DCMOTOR_PIN, 0);\n\tdelay(1000);\n\n\tcounter++;\n\tSerial.print(counter);\n\n\tdigitalWrite(LED_PIN, HIGH);\n\tanalogWrite(DCMOTOR_PIN, 255);\n\tdelay(1000);\n\n\tSerial.print(" and looping! ");\n\t}'
+        '/*\n\nArduino Simulator developed by LRusso.com\n\n*/\n\nint LED_PIN = 0;\nint DCMOTOR_PIN = 5;\nint counter = 0;\n\nvoid setup()\n\t{\n\tSerial.begin(9600);\n\tSerial.println("Hello world!");\n\n\tpinMode(LED_PIN, OUTPUT);\n\tpinMode(DCMOTOR_PIN, OUTPUT);\n\t}\n\nvoid loop()\n\t{\n\tdigitalWrite(LED_PIN, LOW);\n\tanalogWrite(DCMOTOR_PIN, 0);\n\tdelay(1000);\n\n\tcounter++;\n\tSerial.print(counter);\n\n\tdigitalWrite(LED_PIN, HIGH);\n\tanalogWrite(DCMOTOR_PIN, 255);\n\tdelay(1000);\n\n\tSerial.print(" and looping! ");\n\t}'
 
       const arduinoEditor = document.createElement("script")
       arduinoEditor.src = "ArduinoEditor.js?v=" + Date.now()

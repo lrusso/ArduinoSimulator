@@ -4,7 +4,7 @@ exports[`Language Validating strings for possible changes 1`] = `
 "
 en - /*
 
-Arduino Simulator 2 developed by LRusso.com
+Arduino Simulator developed by LRusso.com
 
 */
 
@@ -33,7 +33,7 @@ en - Replace
 en - All
 es - /*
 
-Arduino Simulator 2 desarrollado por LRusso.com
+Arduino Simulator desarrollado por LRusso.com
 
 */
 
@@ -62,7 +62,7 @@ es - Reemplazar
 es - Todo
 it - /*
 
-Arduino Simulator 2 sviluppato da LRusso.com
+Arduino Simulator sviluppato da LRusso.com
 
 */
 
@@ -120,7 +120,7 @@ fr - Remplacer
 fr - Toutes
 pr - /*
 
-Arduino Simulator 2 desenvolvido por LRusso.com
+Arduino Simulator desenvolvido por LRusso.com
 
 */
 

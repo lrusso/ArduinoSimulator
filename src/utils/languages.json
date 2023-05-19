@@ -1,6 +1,6 @@
 {
   "en": {
-    "EMPTY_SKETCH": "/*\n\nArduino Simulator 2 developed by LRusso.com\n\n*/\n\nvoid setup()\n\t{\n\tSerial.begin(9600);\n\t}\n\nvoid loop()\n\t{\n\t}",
+    "EMPTY_SKETCH": "/*\n\nArduino Simulator developed by LRusso.com\n\n*/\n\nvoid setup()\n\t{\n\tSerial.begin(9600);\n\t}\n\nvoid loop()\n\t{\n\t}",
     "FILENAME": "Untitled.ino",
     "FILENAME_EMPTY": "Untitled",
     "LOSECHANGES_TITLE": "MESSAGE",
@@ -18,7 +18,7 @@
     "ALL": "All"
   },
   "es": {
-    "EMPTY_SKETCH": "/*\n\nArduino Simulator 2 desarrollado por LRusso.com\n\n*/\n\nvoid setup()\n\t{\n\tSerial.begin(9600);\n\t}\n\nvoid loop()\n\t{\n\t}",
+    "EMPTY_SKETCH": "/*\n\nArduino Simulator desarrollado por LRusso.com\n\n*/\n\nvoid setup()\n\t{\n\tSerial.begin(9600);\n\t}\n\nvoid loop()\n\t{\n\t}",
     "FILENAME": "Sin nombre.ino",
     "FILENAME_EMPTY": "Sin nombre",
     "LOSECHANGES_TITLE": "MENSAJE",
@@ -36,7 +36,7 @@
     "ALL": "Todo"
   },
   "it": {
-    "EMPTY_SKETCH": "/*\n\nArduino Simulator 2 sviluppato da LRusso.com\n\n*/\n\nvoid setup()\n\t{\n\tSerial.begin(9600);\n\t}\n\nvoid loop()\n\t{\n\t}",
+    "EMPTY_SKETCH": "/*\n\nArduino Simulator sviluppato da LRusso.com\n\n*/\n\nvoid setup()\n\t{\n\tSerial.begin(9600);\n\t}\n\nvoid loop()\n\t{\n\t}",
     "FILENAME": "Senza titolo.ino",
     "FILENAME_EMPTY": "Senza titolo",
     "LOSECHANGES_TITLE": "MESSAGGIO",
@@ -72,7 +72,7 @@
     "ALL": "Toutes"
   },
   "pr": {
-    "EMPTY_SKETCH": "/*\n\nArduino Simulator 2 desenvolvido por LRusso.com\n\n*/\n\nvoid setup()\n\t{\n\tSerial.begin(9600);\n\t}\n\nvoid loop()\n\t{\n\t}",
+    "EMPTY_SKETCH": "/*\n\nArduino Simulator desenvolvido por LRusso.com\n\n*/\n\nvoid setup()\n\t{\n\tSerial.begin(9600);\n\t}\n\nvoid loop()\n\t{\n\t}",
     "FILENAME": "Sem título.ino",
     "FILENAME_EMPTY": "Sem título",
     "LOSECHANGES_TITLE": "MENSAGEM",
