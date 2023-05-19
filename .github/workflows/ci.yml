@@ -1,0 +1,41 @@
+name: "Continuous Integration"
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - README.md
+      - .github/pages/**
+
+concurrency:
+  group: "continuous-integration"
+  cancel-in-progress: true
+
+jobs:
+  continuous-integration:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref }}
+      - name: Installing packages
+        run: npm install
+      - name: Starting the Arduino Simulator Web App in Dev mode
+        run: npm run start:pipeline
+      - name: Checking Prettier Rules
+        run: npm run prettier
+      - name: Checking Lint Rules
+        run: npm run lint
+      - name: Running Unit Tests
+        run: npm run test:unit
+      - name: Running End-To-End Tests
+        run: npm run test:e2e
+      - name: Building the Arduino Simulator Web App
+        run: npm run build
+      - name: Attaching the Arduino Simulator Web App to this workflow
+        uses: actions/upload-artifact@v3
+        with:
+          name: arduino-simulator-2-web-app
+          path: build
