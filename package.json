@@ -21,7 +21,9 @@
     "svgo": "3.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "(ren README.md README2.md && ren README2.md README.md && npm run start:windows && exit || npm run start:linux)",
+    "start:linux": "BROWSER=none react-scripts start",
+    "start:windows": "set \"BROWSER=none\" && react-scripts start",
     "start:pipeline": "BROWSER=none react-scripts start > /dev/null & cd .",
     "build": "(ren README.md README2.md && ren README2.md README.md && npm run build:windows && exit || npm run build:linux)",
     "build:linux": "export GENERATE_SOURCEMAP=false && export IMAGE_INLINE_SIZE_LIMIT=100000 && react-scripts build && cp ./build/static/js/main.*.js ./build/ArduinoSimulator.js && rm ./build/asset-manifest.json && rm -r ./build/static && rm ./build/index.html && cp ./.github/pages/index.html ./build/index.html",
