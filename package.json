@@ -120,6 +120,7 @@
     ]
   },
   "pre-commit": [
+    "build",
     "lint",
     "prettier",
     "test:unit",
