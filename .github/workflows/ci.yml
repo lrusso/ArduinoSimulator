@@ -39,5 +39,5 @@ jobs:
       - name: Attaching the Arduino Simulator Web App to this workflow
         uses: actions/upload-artifact@v3
         with:
-          name: arduino-simulator-2-web-app
+          name: arduino-simulator-web-app
           path: build
