@@ -27,7 +27,7 @@ const t = (stringName) => {
 const BOARD_UNO = "UNO R3"
 const BOARD_MEGA1280 = "MEGA 1280"
 const BOARD_MEGA2560 = "MEGA 2560"
-const BOARD_NANO = "NANO"
+const BOARD_NANO = "NANO V3"
 
 export {
   declareLanguageData,
