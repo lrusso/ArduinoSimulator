@@ -24,4 +24,16 @@ const t = (stringName) => {
   return serviceStrings[stringName] || ""
 }
 
-export { declareLanguageData, t }
+const BOARD_UNO = "UNO R3"
+const BOARD_MEGA1280 = "MEGA 1280"
+const BOARD_MEGA2560 = "MEGA 2560"
+const BOARD_NANO = "NANO"
+
+export {
+  declareLanguageData,
+  t,
+  BOARD_UNO,
+  BOARD_MEGA1280,
+  BOARD_MEGA2560,
+  BOARD_NANO,
+}

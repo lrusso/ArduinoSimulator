@@ -23,7 +23,7 @@ exports[`PinsAnalogBar Rendering 1 1`] = `
       style={
         {
           "float": "left",
-          "width": "450px",
+          "width": "550px",
         }
       }
     >

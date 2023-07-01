@@ -1,12 +1,12 @@
 import React from "react"
 
-const ToolbarItem = ({ onClick, children }) => {
+const ToolbarItem = ({ onClick, disabled, children }) => {
   return (
     <div style={styles.item}>
       <div
         style={styles.iconWrapper}
         onClick={onClick}
-        className="arduinosimulator_menu_item"
+        className={disabled ? undefined : "arduinosimulator_menu_item"}
       >
         {children}
       </div>
@@ -28,7 +28,7 @@ const styles = {
     fontSize: "15px",
     lineHeight: "32px",
     height: "28px",
-    width: "28px",
+    minWidth: "28px",
     backgroundColor: "#F2F2F2",
     border: "thin solid #F2F2F2",
     marginLeft: "3px",

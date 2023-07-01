@@ -1,5 +1,6 @@
 import React from "react"
 import renderer from "react-test-renderer"
+import IconBoard from "../src/assets/IconBoard"
 import IconNew from "../src/assets/IconNew"
 import IconOpen from "../src/assets/IconOpen"
 import IconRedo from "../src/assets/IconRedo"
@@ -10,6 +11,16 @@ import IconStop from "../src/assets/IconStop"
 import IconUndo from "../src/assets/IconUndo"
 
 describe("Assets", () => {
+  test("IconBoard Enabled", () => {
+    const tree = renderer
+      .create(<IconBoard width={16} height={16} enabled />)
+      .toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+  test("IconBoard Disabled", () => {
+    const tree = renderer.create(<IconBoard width={16} height={16} />).toJSON()
+    expect(tree).toMatchSnapshot()
+  })
   test("IconNew", () => {
     const tree = renderer.create(<IconNew width={16} height={16} />).toJSON()
     expect(tree).toMatchSnapshot()

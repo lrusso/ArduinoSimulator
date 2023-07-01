@@ -27,10 +27,10 @@ exports[`ToolbarItem Rendering 1 1`] = `
         "height": "28px",
         "lineHeight": "32px",
         "marginLeft": "3px",
+        "minWidth": "28px",
         "paddingBottom": "1px",
         "paddingTop": "3px",
         "userSelect": "none",
-        "width": "28px",
       }
     }
   />

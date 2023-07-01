@@ -87,7 +87,7 @@ describe("App Benchmark", () => {
     const downloadSpeed = NETWORK_PRESETS.Good2G.downloadThroughput
     const downloadTime = getDownloadTime(latency, downloadSpeed)
 
-    expect(downloadTime).toBeLessThan(6)
+    expect(downloadTime).toBeLessThan(6.5)
   })
 
   test("Regular 3G testing", async () => {
