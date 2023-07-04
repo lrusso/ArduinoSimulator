@@ -8,6 +8,8 @@ const App = () => {
   React.useEffect(() => {
     declareLanguageData()
 
+    if (process.env.JEST_WORKER_ID) return
+
     const checkAceEditor = setInterval(() => {
       if (global.ace) {
         setWebLoaded(true)
