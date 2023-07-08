@@ -13,6 +13,8 @@ global.console = {
     throw Error(message)
   },
 }
+global.setTimeout = jest.fn(() => () => {})
+global.setInterval = jest.fn(() => () => {})
 global.Date = class MockDate extends Date {
   constructor() {
     super("2023-01-01T08:30:50")
