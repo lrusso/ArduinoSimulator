@@ -1,0 +1,151 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Language Validating strings for possible changes 1`] = `
+"
+en - /*
+
+Arduino Simulator developed by LRusso.com
+
+*/
+
+void setup()
+	{
+	Serial.begin(9600);
+	}
+
+void loop()
+	{
+	}
+en - Untitled.ino
+en - Untitled
+en - MESSAGE
+en - Lose any unsaved changes?
+en - Yes
+en - No
+en - DIGITAL PINS
+en - ANALOG PINS
+en - SERIAL MONITOR
+en - SEND
+en - Search for
+en -  of 
+en - Replace with
+en - Replace
+en - All
+es - /*
+
+Arduino Simulator desarrollado por LRusso.com
+
+*/
+
+void setup()
+	{
+	Serial.begin(9600);
+	}
+
+void loop()
+	{
+	}
+es - Sin nombre.ino
+es - Sin nombre
+es - MENSAJE
+es - ¿Perder cambios no guardados?
+es - Sí
+es - No
+es - PINES DIGITALES
+es - PINES ANALÓGICOS
+es - MONITOR SERIAL
+es - ENVIAR
+es - Buscar
+es -  de 
+es - Reemplazar con
+es - Reemplazar
+es - Todo
+it - /*
+
+Arduino Simulator sviluppato da LRusso.com
+
+*/
+
+void setup()
+	{
+	Serial.begin(9600);
+	}
+
+void loop()
+	{
+	}
+it - Senza titolo.ino
+it - Senza titolo
+it - MESSAGGIO
+it - Perdere eventuali modifiche non salvate?
+it - Sì
+it - No
+it - PIN DIGITALI
+it - PIN ANALOGICI
+it - MONITOR SERIALE
+it - SPEDIRE
+it - Cercare
+it -  di 
+it - Sostituirlo con
+it - Sostituirlo
+it - Tutto
+fr - /*
+
+Simulateur Arduino 2 développé par LRusso.com
+
+*/
+
+void setup()
+	{
+	Serial.begin(9600);
+	}
+
+void loop()
+	{
+	}
+fr - Sans titre.ino
+fr - Sans titre
+fr - MESSAGE
+fr - Perdre toutes les modifications non enregistrées?
+fr - Oui
+fr - Non
+fr - BROCHES NUMÉRIQUES
+fr - BROCHES ANALOGIQUES
+fr - MONITEUR SÉRIE
+fr - ENVOYER
+fr - Rechercher
+fr -  sur 
+fr - Remplacer par
+fr - Remplacer
+fr - Toutes
+pr - /*
+
+Arduino Simulator desenvolvido por LRusso.com
+
+*/
+
+void setup()
+	{
+	Serial.begin(9600);
+	}
+
+void loop()
+	{
+	}
+pr - Sem título.ino
+pr - Sem título
+pr - MENSAGEM
+pr - Perder alterações não salvas?
+pr - Sim
+pr - Não
+pr - PINS DIGITAIS
+pr - PINS ANALÓGICOS
+pr - MONITOR SERIAL
+pr - MANDAR
+pr - Procurar
+pr -  de 
+pr - Substituir com
+pr - Substituir
+pr - Todos
+"
+`;

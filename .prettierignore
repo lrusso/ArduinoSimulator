@@ -1,0 +1,15 @@
+build
+.github/pages/ArduinoEditor.js
+.github/pages/ArduinoSimulator.js
+.github/pages/ArduinoSimulatorInterpreter.js
+.github/pages/ArduinoSimulatorInterpreter.min.js
+.github\pages\ArduinoEditor.js
+.github\pages\ArduinoSimulator.js
+.github\pages\ArduinoSimulatorInterpreter.js
+.github\pages\ArduinoSimulatorInterpreter.min.js
+public/ArduinoEditor.js
+public/ArduinoSimulatorInterpreter.js
+public/ArduinoSimulatorInterpreter.min.js
+public\ArduinoEditor.js
+public\ArduinoSimulatorInterpreter.js
+public\ArduinoSimulatorInterpreter.min.js

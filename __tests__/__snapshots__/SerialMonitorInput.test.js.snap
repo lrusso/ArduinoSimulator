@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SerialMonitorInput Rendering 1 1`] = `
+<input
+  onChange={[Function]}
+  onKeyUp={[Function]}
+  readOnly={true}
+  style={
+    {
+      "WebkitAppearance": "none",
+      "backgroundColor": "#D9D9D9",
+      "border": "1px solid silver",
+      "borderRadius": 0,
+      "cursor": "default",
+      "flex": 2,
+      "fontFamily": "Arial",
+      "fontSize": "13px",
+      "height": "18px",
+      "marginBottom": "7px",
+      "marginLeft": "5px",
+      "marginRight": "3px",
+      "outline": "none",
+      "padding": "4px",
+    }
+  }
+  type="text"
+/>
+`;

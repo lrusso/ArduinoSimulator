@@ -1,0 +1,11 @@
+# dependencies
+*node_modules
+
+# build folder
+*build
+
+# misc
+.DS_Store
+
+# logs
+npm-debug.log*

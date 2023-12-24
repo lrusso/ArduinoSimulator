@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SerialMonitorData Rendering 1 1`] = `
+<div
+  style={
+    {
+      "backgroundColor": "white",
+      "bottom": 0,
+      "height": "137px",
+      "left": 0,
+      "overflow": "scroll",
+      "position": "fixed",
+      "right": 0,
+    }
+  }
+>
+  <div
+    style={
+      {
+        "MozUserSelect": "text",
+        "WebkitUserSelect": "text",
+        "fontFamily": "monospace,monospace",
+        "overflowWrap": "break-word",
+        "padding": "10px",
+        "userSelect": "text",
+        "whiteSpace": "pre-line",
+      }
+    }
+  />
+</div>
+`;

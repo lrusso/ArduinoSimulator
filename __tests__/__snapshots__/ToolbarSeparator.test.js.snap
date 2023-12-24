@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ToolbarSeparator Rendering 1 1`] = `
+<div
+  style={
+    {
+      "borderLeft": "thin solid #D3D3D3",
+      "float": "left",
+      "height": "100px",
+      "marginLeft": "5px",
+      "width": "1px",
+    }
+  }
+/>
+`;

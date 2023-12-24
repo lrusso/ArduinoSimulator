@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ToolbarFilename Rendering 1 1`] = `
+<div
+  style={
+    {
+      "alignItems": "center",
+      "display": "flex",
+      "float": "left",
+      "height": "40px",
+      "margin": 0,
+    }
+  }
+>
+  <div
+    style={
+      {
+        "MozUserSelect": "none",
+        "WebkitUserSelect": "none",
+        "cursor": "default",
+        "float": "left",
+        "fontFamily": "Arial",
+        "fontSize": "13px",
+        "lineHeight": 2.7,
+        "marginLeft": "6px",
+        "marginRight": "0px",
+        "userSelect": "none",
+      }
+    }
+  >
+    Untitled.ino
+  </div>
+</div>
+`;

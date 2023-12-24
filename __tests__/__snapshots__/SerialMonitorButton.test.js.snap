@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SerialMonitorButton Rendering 1 1`] = `
+<input
+  disabled={true}
+  style={
+    {
+      "WebkitAppearance": "none",
+      "backgroundColor": "#D9D9D9",
+      "border": "1px solid silver",
+      "borderRadius": 0,
+      "color": "gray",
+      "fontFamily": "Arial",
+      "fontSize": "13px",
+      "height": "28px",
+      "marginLeft": "2px",
+      "marginRight": "5px",
+      "width": "99px",
+    }
+  }
+  type="submit"
+  value="SEND"
+/>
+`;

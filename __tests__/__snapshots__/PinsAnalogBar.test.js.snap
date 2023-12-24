@@ -1,0 +1,169 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PinsAnalogBar Rendering 1 1`] = `
+<div
+  style={
+    {
+      "height": "26px",
+      "overflowY": "hidden",
+    }
+  }
+>
+  <div
+    style={
+      {
+        "height": "80px",
+        "outline": "none",
+        "overflowX": "scroll",
+        "overflowY": "hidden",
+      }
+    }
+  >
+    <div
+      style={
+        {
+          "float": "left",
+          "width": "550px",
+        }
+      }
+    >
+      <div
+        style={
+          {
+            "cursor": "default",
+            "float": "left",
+            "fontFamily": "Arial",
+            "fontSize": "13px",
+            "fontWeight": "bold",
+            "lineHeight": 2,
+            "marginLeft": "7px",
+            "marginRight": "1px",
+          }
+        }
+      >
+        ANALOG PINS
+      </div>
+      <div
+        style={
+          {
+            "alignItems": "center",
+            "backgroundColor": "black",
+            "borderRadius": "16px",
+            "color": "white",
+            "cursor": "default",
+            "display": "flex",
+            "float": "left",
+            "fontFamily": "Arial",
+            "fontSize": "11px",
+            "height": "16px",
+            "justifyContent": "center",
+            "marginLeft": "4px",
+            "marginTop": "4px",
+            "width": "40px",
+          }
+        }
+      />
+      <div
+        style={
+          {
+            "alignItems": "center",
+            "backgroundColor": "black",
+            "borderRadius": "16px",
+            "color": "white",
+            "cursor": "default",
+            "display": "flex",
+            "float": "left",
+            "fontFamily": "Arial",
+            "fontSize": "11px",
+            "height": "16px",
+            "justifyContent": "center",
+            "marginLeft": "4px",
+            "marginTop": "4px",
+            "width": "40px",
+          }
+        }
+      />
+      <div
+        style={
+          {
+            "alignItems": "center",
+            "backgroundColor": "black",
+            "borderRadius": "16px",
+            "color": "white",
+            "cursor": "default",
+            "display": "flex",
+            "float": "left",
+            "fontFamily": "Arial",
+            "fontSize": "11px",
+            "height": "16px",
+            "justifyContent": "center",
+            "marginLeft": "4px",
+            "marginTop": "4px",
+            "width": "40px",
+          }
+        }
+      />
+      <div
+        style={
+          {
+            "alignItems": "center",
+            "backgroundColor": "black",
+            "borderRadius": "16px",
+            "color": "white",
+            "cursor": "default",
+            "display": "flex",
+            "float": "left",
+            "fontFamily": "Arial",
+            "fontSize": "11px",
+            "height": "16px",
+            "justifyContent": "center",
+            "marginLeft": "4px",
+            "marginTop": "4px",
+            "width": "40px",
+          }
+        }
+      />
+      <div
+        style={
+          {
+            "alignItems": "center",
+            "backgroundColor": "black",
+            "borderRadius": "16px",
+            "color": "white",
+            "cursor": "default",
+            "display": "flex",
+            "float": "left",
+            "fontFamily": "Arial",
+            "fontSize": "11px",
+            "height": "16px",
+            "justifyContent": "center",
+            "marginLeft": "4px",
+            "marginTop": "4px",
+            "width": "40px",
+          }
+        }
+      />
+      <div
+        style={
+          {
+            "alignItems": "center",
+            "backgroundColor": "black",
+            "borderRadius": "16px",
+            "color": "white",
+            "cursor": "default",
+            "display": "flex",
+            "float": "left",
+            "fontFamily": "Arial",
+            "fontSize": "11px",
+            "height": "16px",
+            "justifyContent": "center",
+            "marginLeft": "4px",
+            "marginTop": "4px",
+            "width": "40px",
+          }
+        }
+      />
+    </div>
+  </div>
+</div>
+`;
