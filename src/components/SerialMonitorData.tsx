@@ -3,7 +3,7 @@ import { useSimulatorContext } from "../contexts/SimulatorContext"
 
 const SerialMonitorData = () => {
   const { outputData } = useSimulatorContext()
-  const refData = React.useRef(null)
+  const refData = React.useRef<HTMLDivElement>(null)
 
   React.useEffect(() => {
     if (refData.current) {

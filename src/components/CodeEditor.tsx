@@ -3,7 +3,7 @@ import { editorInit } from "../utils/editor"
 
 const CodeEditor = () => {
   React.useEffect(() => {
-    const styleNode = document.createElement("style")
+    const styleNode: HTMLStyleElement = document.createElement("style")
     const styleText = `
       .ace-arduino-light{background-color:#fff}
       .ace-arduino-light .ace_gutter{background-color:#dae3e3;color:#434f54}
@@ -27,7 +27,7 @@ const CodeEditor = () => {
       .ace-arduino-light .ace_keyword{color:#728e00}
       .ace-arduino-light .ace_numeric{color:#8a7b52}
     `
-    const styleTextNode = document.createTextNode(styleText)
+    const styleTextNode: Text = document.createTextNode(styleText)
     styleNode.appendChild(styleTextNode)
     document.getElementsByTagName("head")[0].appendChild(styleNode)
 

@@ -2,7 +2,7 @@ import React from "react"
 
 const Spinner = () => {
   React.useEffect(() => {
-    const styleNode = document.createElement("style")
+    const styleNode: HTMLStyleElement = document.createElement("style")
     const styleText = `
       .spinner_white_animation{color:white;display:inline-block;width:64px;height:64px}
       .spinner_white_animation div{transform-origin:32px 32px;animation:spinner_white_animation 1.2s linear infinite}
@@ -21,7 +21,7 @@ const Spinner = () => {
       .spinner_white_animation div:nth-child(12){transform:rotate(330deg);animation-delay:0s}
       @keyframes spinner_white_animation{0%{opacity:1}100%{opacity:0}}
     `
-    const styleTextNode = document.createTextNode(styleText)
+    const styleTextNode: Text = document.createTextNode(styleText)
     styleNode.appendChild(styleTextNode)
     document.getElementsByTagName("head")[0].appendChild(styleNode)
 

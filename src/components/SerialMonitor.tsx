@@ -8,7 +8,7 @@ import { useSimulatorContext } from "../contexts/SimulatorContext"
 
 const SerialMonitor = () => {
   const { simulatorRunning } = useSimulatorContext()
-  const [inputValue, setInputValue] = React.useState("")
+  const [inputValue, setInputValue] = React.useState<string>("")
 
   const _sendSerialData = () => {
     sendSerialData(inputValue)

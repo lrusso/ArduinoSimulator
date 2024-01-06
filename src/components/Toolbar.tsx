@@ -36,8 +36,6 @@ import {
 import { t } from "../utils/languages"
 
 const Toolbar = () => {
-  const [showConfirmMessage, setShowConfirmMessage] = React.useState(null)
-  const [showLoading, setShowLoading] = React.useState(false)
   const {
     simulatorRunning,
     setSimulatorRunning,
@@ -116,7 +114,11 @@ const Toolbar = () => {
     setAnalogPin14,
     setOutputData,
   } = useSimulatorContext()
-  const refUploader = React.useRef(null)
+  const [showConfirmMessage, setShowConfirmMessage] = React.useState<number | null>(
+    null
+  )
+  const [showLoading, setShowLoading] = React.useState<boolean>(false)
+  const refUploader = React.useRef<HTMLInputElement>(null)
   const NEW_FILE = 1
   const OPEN_FILE = 2
 

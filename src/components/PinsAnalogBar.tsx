@@ -24,8 +24,9 @@ const PinsAnalogBar = () => {
     boardType,
   } = useSimulatorContext()
 
-  const isMega = boardType === BOARD_MEGA1280 || boardType === BOARD_MEGA2560
-  const showPin6And7 = boardType === BOARD_NANO || isMega
+  const isMega: boolean =
+    boardType === BOARD_MEGA1280 || boardType === BOARD_MEGA2560
+  const showPin6And7: boolean = boardType === BOARD_NANO || isMega
 
   return (
     <div style={styles.container}>

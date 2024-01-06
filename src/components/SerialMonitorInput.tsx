@@ -14,9 +14,9 @@ const SerialMonitorInput = ({
   onChange,
   simulatorRunning,
 }: SerialMonitorInputProps) => {
-  const refInput = React.useRef(null)
+  const refInput = React.useRef<HTMLInputElement>(null)
 
-  const _onKeyUp = (event) => {
+  const _onKeyUp = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       sendSerialData()
       refInput.current.focus()

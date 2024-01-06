@@ -63,7 +63,8 @@ const PinsDigitalBar = () => {
     boardType,
   } = useSimulatorContext()
 
-  const isMega = boardType === BOARD_MEGA1280 || boardType === BOARD_MEGA2560
+  const isMega: boolean =
+    boardType === BOARD_MEGA1280 || boardType === BOARD_MEGA2560
 
   return (
     <div style={styles.container}>
