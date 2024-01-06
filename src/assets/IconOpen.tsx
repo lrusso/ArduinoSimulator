@@ -1,6 +1,11 @@
 import React from "react"
 
-const IconOpen = ({ width, height }) => {
+interface IconOpenProps {
+  width: number
+  height: number
+}
+
+const IconOpen = ({ width, height }: IconOpenProps) => {
   return (
     <svg width={width} height={height} viewBox="0 0 576 512">
       <path

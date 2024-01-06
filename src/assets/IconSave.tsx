@@ -1,6 +1,11 @@
 import React from "react"
 
-const IconSave = ({ width, height }) => {
+interface IconSaveProps {
+  width: number
+  height: number
+}
+
+const IconSave = ({ width, height }: IconSaveProps) => {
   return (
     <svg width={width} height={height} viewBox="0 0 1000 1000">
       <path

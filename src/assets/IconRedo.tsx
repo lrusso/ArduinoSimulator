@@ -1,6 +1,11 @@
 import React from "react"
 
-const IconRedo = ({ width, height }) => {
+interface IconRedoProps {
+  width: number
+  height: number
+}
+
+const IconRedo = ({ width, height }: IconRedoProps) => {
   return (
     <svg width={width} height={height} viewBox="0 0 1000 1000">
       <path

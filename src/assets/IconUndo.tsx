@@ -1,6 +1,11 @@
 import React from "react"
 
-const IconUndo = ({ width, height }) => {
+interface IconUndoProps {
+  width: number
+  height: number
+}
+
+const IconUndo = ({ width, height }: IconUndoProps) => {
   return (
     <svg width={width} height={height} viewBox="0 0 1000 1000">
       <path

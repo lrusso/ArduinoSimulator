@@ -1,6 +1,11 @@
 import React from "react"
 
-const IconStart = ({ width, height }) => {
+interface IconStartProps {
+  width: number
+  height: number
+}
+
+const IconStart = ({ width, height }: IconStartProps) => {
   return (
     <svg
       width={width}

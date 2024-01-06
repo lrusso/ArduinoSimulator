@@ -1,6 +1,11 @@
 import React from "react"
 
-const IconStop = ({ width, height }) => {
+interface IconStopProps {
+  width: number
+  height: number
+}
+
+const IconStop = ({ width, height }: IconStopProps) => {
   return (
     <svg
       width={width}
