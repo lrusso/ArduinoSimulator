@@ -1,11 +1,19 @@
 import React from "react"
 
+interface SerialMonitorInputProps {
+  sendSerialData: () => void
+  value: string
+  // eslint-disable-next-line no-unused-vars
+  onChange: (value: string) => void
+  simulatorRunning: boolean
+}
+
 const SerialMonitorInput = ({
   sendSerialData,
   value,
   onChange,
   simulatorRunning,
-}) => {
+}: SerialMonitorInputProps) => {
   const refInput = React.useRef(null)
 
   const _onKeyUp = (event) => {
@@ -15,7 +23,7 @@ const SerialMonitorInput = ({
     }
   }
 
-  const _onChange = (event) => {
+  const _onChange = (event: { target: HTMLInputElement }) => {
     onChange(event.target.value)
   }
 
@@ -32,7 +40,7 @@ const SerialMonitorInput = ({
   )
 }
 
-const styles = {
+const styles: { [key: string]: React.CSSProperties } = {
   enabled: {
     flex: 2,
     borderRadius: 0,

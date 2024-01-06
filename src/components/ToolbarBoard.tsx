@@ -2,7 +2,12 @@ import React from "react"
 import IconBoard from "../assets/IconBoard"
 import { BOARD_UNO } from "../utils/service"
 
-const ToolbarBoard = ({ boardType, simulatorRunning }) => {
+interface ToolbarBoardProps {
+  boardType: string
+  simulatorRunning: boolean
+}
+
+const ToolbarBoard = ({ boardType, simulatorRunning }: ToolbarBoardProps) => {
   return (
     <div style={styles.container}>
       <IconBoard width={28} height={28} enabled={!simulatorRunning} />
@@ -13,7 +18,7 @@ const ToolbarBoard = ({ boardType, simulatorRunning }) => {
   )
 }
 
-const styles = {
+const styles: { [key: string]: React.CSSProperties } = {
   container: {
     float: "left",
     display: "flex",

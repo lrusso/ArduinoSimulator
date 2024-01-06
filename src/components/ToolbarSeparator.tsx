@@ -4,7 +4,7 @@ const ToolbarSeparator = () => {
   return <div style={styles.separator}></div>
 }
 
-const styles = {
+const styles: { [key: string]: React.CSSProperties } = {
   separator: {
     float: "left",
     borderLeft: "thin solid #D3D3D3",

@@ -578,7 +578,7 @@ const Toolbar = () => {
   )
 }
 
-const styles = {
+const styles: { [key: string]: React.CSSProperties } = {
   container: {
     height: "40px",
     borderBottom: "thin solid #D3D3D3",

@@ -11,7 +11,7 @@ const Loading = () => {
   )
 }
 
-const styles = {
+const styles: { [key: string]: React.CSSProperties } = {
   container: {
     position: "fixed",
     minWidth: "320px",

@@ -134,7 +134,7 @@ const PinsDigitalBar = () => {
   )
 }
 
-const styles = {
+const styles: { [key: string]: React.CSSProperties } = {
   container: {
     height: "26px",
     overflowY: "hidden",

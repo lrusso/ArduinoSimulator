@@ -1,10 +1,14 @@
 import React from "react"
 
-const PinsAnalogItem = ({ value }) => {
+interface PinsAnalogItemProps {
+  value: number
+}
+
+const PinsAnalogItem = ({ value }: PinsAnalogItemProps) => {
   return <div style={styles.container}>{value}</div>
 }
 
-const styles = {
+const styles: { [key: string]: React.CSSProperties } = {
   container: {
     float: "left",
     width: "40px",

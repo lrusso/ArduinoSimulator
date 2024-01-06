@@ -1,10 +1,14 @@
 import React from "react"
 
-const BottomPanel = ({ children }) => {
+interface BottomPanelProps {
+  children: React.ReactNode
+}
+
+const BottomPanel = ({ children }: BottomPanelProps) => {
   return <div style={styles.container}>{children}</div>
 }
 
-const styles = {
+const styles: { [key: string]: React.CSSProperties } = {
   container: {
     position: "fixed",
     left: 0,

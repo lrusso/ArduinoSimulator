@@ -11,7 +11,7 @@ const ToolbarFilename = () => {
   )
 }
 
-const styles = {
+const styles: { [key: string]: React.CSSProperties } = {
   container: {
     float: "left",
     display: "flex",

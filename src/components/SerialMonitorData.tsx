@@ -19,7 +19,7 @@ const SerialMonitorData = () => {
   )
 }
 
-const styles = {
+const styles: { [key: string]: React.CSSProperties } = {
   container: {
     position: "fixed",
     left: 0,

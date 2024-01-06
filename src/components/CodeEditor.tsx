@@ -42,7 +42,7 @@ const CodeEditor = () => {
   )
 }
 
-const styles = {
+const styles: { [key: string]: React.CSSProperties } = {
   container: {
     position: "fixed",
     padding: 0,

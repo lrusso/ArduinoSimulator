@@ -1,7 +1,15 @@
 import React from "react"
 import { t } from "../utils/languages"
 
-const SerialMonitorButton = ({ sendSerialData, simulatorRunning }) => {
+interface SerialMonitorButtonProps {
+  sendSerialData: () => void
+  simulatorRunning: boolean
+}
+
+const SerialMonitorButton = ({
+  sendSerialData,
+  simulatorRunning,
+}: SerialMonitorButtonProps) => {
   return (
     <input
       type="submit"
@@ -13,7 +21,7 @@ const SerialMonitorButton = ({ sendSerialData, simulatorRunning }) => {
   )
 }
 
-const styles = {
+const styles: { [key: string]: React.CSSProperties } = {
   button: {
     borderRadius: 0,
     marginLeft: "2px",

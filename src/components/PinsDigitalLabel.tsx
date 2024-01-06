@@ -1,11 +1,11 @@
 import React from "react"
 import { t } from "../utils/languages"
 
-const SerialMonitorLabel = () => {
-  return <div style={styles.label}>{t("SERIAL_MONITOR")}</div>
+const PinsDigitalLabel = () => {
+  return <div style={styles.label}>{t("DIGITAL_PINS")}</div>
 }
 
-const styles = {
+const styles: { [key: string]: React.CSSProperties } = {
   label: {
     float: "left",
     fontFamily: "Arial",
@@ -18,4 +18,4 @@ const styles = {
   },
 }
 
-export default SerialMonitorLabel
+export default PinsDigitalLabel

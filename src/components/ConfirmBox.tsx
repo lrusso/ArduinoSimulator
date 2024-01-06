@@ -1,5 +1,14 @@
 import React from "react"
 
+interface ConfirmBoxProps {
+  title: string
+  message: string
+  accept: string
+  acceptCallback: () => void
+  cancel: string
+  cancelCallback: () => void
+}
+
 const ConfirmBox = ({
   title,
   message,
@@ -7,7 +16,7 @@ const ConfirmBox = ({
   acceptCallback,
   cancel,
   cancelCallback,
-}) => {
+}: ConfirmBoxProps) => {
   return (
     <div style={styles.container}>
       <div style={styles.form}>
@@ -33,7 +42,7 @@ const ConfirmBox = ({
   )
 }
 
-const styles = {
+const styles: { [key: string]: React.CSSProperties } = {
   container: {
     position: "fixed",
     minWidth: "320px",

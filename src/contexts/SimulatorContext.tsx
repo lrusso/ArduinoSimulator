@@ -1,6 +1,155 @@
 import React from "react"
 
-const SimulatorContext = React.createContext({
+interface ThemeContextType {
+  filename: null | boolean
+  setFilename: React.Dispatch<boolean>
+  boardType: null | string
+  setBoardType: React.Dispatch<string>
+  digitalPin0: null | boolean
+  setDigitalPin0: React.Dispatch<boolean>
+  digitalPin1: null | boolean
+  setDigitalPin1: React.Dispatch<boolean>
+  digitalPin2: null | boolean
+  setDigitalPin2: React.Dispatch<boolean>
+  digitalPin3: null | boolean
+  setDigitalPin3: React.Dispatch<boolean>
+  digitalPin4: null | boolean
+  setDigitalPin4: React.Dispatch<boolean>
+  digitalPin5: null | boolean
+  setDigitalPin5: React.Dispatch<boolean>
+  digitalPin6: null | boolean
+  setDigitalPin6: React.Dispatch<boolean>
+  digitalPin7: null | boolean
+  setDigitalPin7: React.Dispatch<boolean>
+  digitalPin8: null | boolean
+  setDigitalPin8: React.Dispatch<boolean>
+  digitalPin9: null | boolean
+  setDigitalPin9: React.Dispatch<boolean>
+  digitalPin10: null | boolean
+  setDigitalPin10: React.Dispatch<boolean>
+  digitalPin11: null | boolean
+  setDigitalPin11: React.Dispatch<boolean>
+  digitalPin12: null | boolean
+  setDigitalPin12: React.Dispatch<boolean>
+  digitalPin13: null | boolean
+  setDigitalPin13: React.Dispatch<boolean>
+  digitalPin14: null | boolean
+  setDigitalPin14: React.Dispatch<boolean>
+  digitalPin15: null | boolean
+  setDigitalPin15: React.Dispatch<boolean>
+  digitalPin16: null | boolean
+  setDigitalPin16: React.Dispatch<boolean>
+  digitalPin17: null | boolean
+  setDigitalPin17: React.Dispatch<boolean>
+  digitalPin18: null | boolean
+  setDigitalPin18: React.Dispatch<boolean>
+  digitalPin19: null | boolean
+  setDigitalPin19: React.Dispatch<boolean>
+  digitalPin20: null | boolean
+  setDigitalPin20: React.Dispatch<boolean>
+  digitalPin21: null | boolean
+  setDigitalPin21: React.Dispatch<boolean>
+  digitalPin22: null | boolean
+  setDigitalPin22: React.Dispatch<boolean>
+  digitalPin23: null | boolean
+  setDigitalPin23: React.Dispatch<boolean>
+  digitalPin24: null | boolean
+  setDigitalPin24: React.Dispatch<boolean>
+  digitalPin25: null | boolean
+  setDigitalPin25: React.Dispatch<boolean>
+  digitalPin26: null | boolean
+  setDigitalPin26: React.Dispatch<boolean>
+  digitalPin27: null | boolean
+  setDigitalPin27: React.Dispatch<boolean>
+  digitalPin28: null | boolean
+  setDigitalPin28: React.Dispatch<boolean>
+  digitalPin29: null | boolean
+  setDigitalPin29: React.Dispatch<boolean>
+  digitalPin30: null | boolean
+  setDigitalPin30: React.Dispatch<boolean>
+  digitalPin31: null | boolean
+  setDigitalPin31: React.Dispatch<boolean>
+  digitalPin32: null | boolean
+  setDigitalPin32: React.Dispatch<boolean>
+  digitalPin33: null | boolean
+  setDigitalPin33: React.Dispatch<boolean>
+  digitalPin34: null | boolean
+  setDigitalPin34: React.Dispatch<boolean>
+  digitalPin35: null | boolean
+  setDigitalPin35: React.Dispatch<boolean>
+  digitalPin36: null | boolean
+  setDigitalPin36: React.Dispatch<boolean>
+  digitalPin37: null | boolean
+  setDigitalPin37: React.Dispatch<boolean>
+  digitalPin38: null | boolean
+  setDigitalPin38: React.Dispatch<boolean>
+  digitalPin39: null | boolean
+  setDigitalPin39: React.Dispatch<boolean>
+  digitalPin40: null | boolean
+  setDigitalPin40: React.Dispatch<boolean>
+  digitalPin41: null | boolean
+  setDigitalPin41: React.Dispatch<boolean>
+  digitalPin42: null | boolean
+  setDigitalPin42: React.Dispatch<boolean>
+  digitalPin43: null | boolean
+  setDigitalPin43: React.Dispatch<boolean>
+  digitalPin44: null | boolean
+  setDigitalPin44: React.Dispatch<boolean>
+  digitalPin45: null | boolean
+  setDigitalPin45: React.Dispatch<boolean>
+  digitalPin46: null | boolean
+  setDigitalPin46: React.Dispatch<boolean>
+  digitalPin47: null | boolean
+  setDigitalPin47: React.Dispatch<boolean>
+  digitalPin48: null | boolean
+  setDigitalPin48: React.Dispatch<boolean>
+  digitalPin49: null | boolean
+  setDigitalPin49: React.Dispatch<boolean>
+  digitalPin50: null | boolean
+  setDigitalPin50: React.Dispatch<boolean>
+  digitalPin51: null | boolean
+  setDigitalPin51: React.Dispatch<boolean>
+  digitalPin52: null | boolean
+  setDigitalPin52: React.Dispatch<boolean>
+  digitalPin53: null | boolean
+  setDigitalPin53: React.Dispatch<boolean>
+  analogPin0: null | number
+  setAnalogPin0: React.Dispatch<number>
+  analogPin1: null | number
+  setAnalogPin1: React.Dispatch<number>
+  analogPin2: null | number
+  setAnalogPin2: React.Dispatch<number>
+  analogPin3: null | number
+  setAnalogPin3: React.Dispatch<number>
+  analogPin4: null | number
+  setAnalogPin4: React.Dispatch<number>
+  analogPin5: null | number
+  setAnalogPin5: React.Dispatch<number>
+  analogPin6: null | number
+  setAnalogPin6: React.Dispatch<number>
+  analogPin7: null | number
+  setAnalogPin7: React.Dispatch<number>
+  analogPin8: null | number
+  setAnalogPin8: React.Dispatch<number>
+  analogPin9: null | number
+  setAnalogPin9: React.Dispatch<number>
+  analogPin10: null | number
+  setAnalogPin10: React.Dispatch<number>
+  analogPin11: null | number
+  setAnalogPin11: React.Dispatch<number>
+  analogPin12: null | number
+  setAnalogPin12: React.Dispatch<number>
+  analogPin13: null | number
+  setAnalogPin13: React.Dispatch<number>
+  analogPin14: null | number
+  setAnalogPin14: React.Dispatch<number>
+  outputData: null | string
+  setOutputData: React.Dispatch<string>
+  simulatorRunning: boolean
+  setSimulatorRunning: React.Dispatch<boolean>
+}
+
+const SimulatorContext = React.createContext<ThemeContextType>({
   filename: null,
   setFilename: () => {},
   boardType: null,

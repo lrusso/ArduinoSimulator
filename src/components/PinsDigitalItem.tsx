@@ -1,6 +1,11 @@
 import React from "react"
 
-const PinsDigitalItem = ({ pinNumber, isEnabled }) => {
+interface PinsDigitalItemProps {
+  pinNumber: number
+  isEnabled: boolean
+}
+
+const PinsDigitalItem = ({ pinNumber, isEnabled }: PinsDigitalItemProps) => {
   return (
     <div
       style={{ backgroundColor: isEnabled ? "green" : "red", ...styles.container }}
@@ -10,7 +15,7 @@ const PinsDigitalItem = ({ pinNumber, isEnabled }) => {
   )
 }
 
-const styles = {
+const styles: { [key: string]: React.CSSProperties } = {
   container: {
     float: "left",
     width: "16px",

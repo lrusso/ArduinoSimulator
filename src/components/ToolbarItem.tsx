@@ -1,6 +1,12 @@
 import React from "react"
 
-const ToolbarItem = ({ onClick, disabled, children }) => {
+interface ToolbarItemProps {
+  onClick: () => void
+  disabled?: boolean
+  children: React.ReactNode
+}
+
+const ToolbarItem = ({ onClick, disabled, children }: ToolbarItemProps) => {
   return (
     <div style={styles.item}>
       <div
@@ -14,7 +20,7 @@ const ToolbarItem = ({ onClick, disabled, children }) => {
   )
 }
 
-const styles = {
+const styles: { [key: string]: React.CSSProperties } = {
   item: {
     float: "left",
     display: "flex",

@@ -41,7 +41,7 @@ const SerialMonitor = () => {
   )
 }
 
-const styles = {
+const styles: { [key: string]: React.CSSProperties } = {
   container: {
     backgroundColor: "#F2F2F2",
     borderBottom: "1px solid #D3D3D3",
