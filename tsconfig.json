@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "outDir": "./build/",
+    "baseUrl": "./",
+    "skipLibCheck": true,
+    "noEmit": true,
+    "noImplicitAny": false,
+    "downlevelIteration": true,
+    "lib": ["es6", "es2019.array", "dom"],
+    "rootDir": "src",
+    "module": "commonjs",
+    "target": "es5",
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "jsx": "react",
+    "allowJs": true
+  },
+  "include": ["./src/**/*"],
+  "exclude": ["node_modules"]
+}

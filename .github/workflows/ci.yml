@@ -26,10 +26,12 @@ jobs:
         run: npm run start:pipeline
       - name: Building the Arduino Simulator Web App
         run: npm run build
-      - name: Checking Prettier Rules
-        run: npm run prettier
       - name: Checking Lint Rules
         run: npm run lint
+      - name: Checking Prettier Rules
+        run: npm run prettier
+      - name: Checking Types
+        run: npm run check-types
       - name: Running Dependency Tests
         run: npm run test:dependency
       - name: Running Benchmark Tests

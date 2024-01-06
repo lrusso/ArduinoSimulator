@@ -1,6 +1,12 @@
 import React from "react"
 
-const IconBoard = ({ width, height, enabled }) => {
+interface IconBoardProps {
+  width: number
+  height: number
+  enabled: boolean
+}
+
+const IconBoard = ({ width, height, enabled }: IconBoardProps) => {
   return (
     <svg
       width={width}
