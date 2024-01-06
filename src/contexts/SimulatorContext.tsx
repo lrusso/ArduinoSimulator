@@ -1,6 +1,6 @@
 import React from "react"
 
-interface ThemeContextType {
+interface SimulatorContextType {
   filename: null | string
   setFilename: React.Dispatch<string>
   boardType: null | string
@@ -149,7 +149,7 @@ interface ThemeContextType {
   setSimulatorRunning: React.Dispatch<boolean>
 }
 
-const SimulatorContext = React.createContext<ThemeContextType>({
+const SimulatorContext = React.createContext<SimulatorContextType>({
   filename: null,
   setFilename: () => {},
   boardType: null,

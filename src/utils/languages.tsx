@@ -1,5 +1,5 @@
 import languages from "./languages.json"
-import settings from "./service.json"
+import { getFallbackLanguage } from "./service"
 
 const serviceUserLanguage: string = window.navigator.language
   .substring(0, 2)
@@ -7,7 +7,7 @@ const serviceUserLanguage: string = window.navigator.language
 
 const serviceStrings: string =
   typeof languages[serviceUserLanguage] === "undefined"
-    ? languages[settings.LANGUAGE_FALLBACK]
+    ? languages[getFallbackLanguage()]
     : languages[serviceUserLanguage]
 
 const declareLanguageData: () => void = () => {
