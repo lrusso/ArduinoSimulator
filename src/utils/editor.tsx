@@ -1,7 +1,7 @@
 import { t } from "./languages"
 import isMobileDevice from "./isMobileDevice"
 
-const mobileDevice = isMobileDevice()
+const mobileDevice: boolean = isMobileDevice()
 
 let editor = null
 

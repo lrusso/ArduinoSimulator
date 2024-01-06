@@ -18,7 +18,8 @@ const declareLanguageData: () => void = () => {
   global.SEARCH_OF = t("SEARCH_OF")
 }
 
-const t = (stringName: string) => {
+// eslint-disable-next-line no-unused-vars
+const t: (_value: string) => string = (stringName: string) => {
   return serviceStrings[stringName] || ""
 }
 export { declareLanguageData, t }
