@@ -3,7 +3,7 @@ import Editor from "./screens/Editor"
 import { declareLanguageData } from "./utils/languages"
 
 const App = () => {
-  const [webLoaded, setWebLoaded] = React.useState(false)
+  const [webLoaded, setWebLoaded] = React.useState<boolean>(false)
 
   React.useEffect(() => {
     declareLanguageData()
