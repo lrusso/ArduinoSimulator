@@ -1,85 +1,87 @@
+/* eslint-disable no-unused-vars */
 import { editorEnable, editorGetValue } from "./editor"
 
-let myWorker = null
+let myWorker: Worker = null
 const myWorkerTimestamp = Date.now()
 
 const startSimulator = (
-  setShowLoading,
-  setSimulatorRunning,
-  setDigitalPin0,
-  setDigitalPin1,
-  setDigitalPin2,
-  setDigitalPin3,
-  setDigitalPin4,
-  setDigitalPin5,
-  setDigitalPin6,
-  setDigitalPin7,
-  setDigitalPin8,
-  setDigitalPin9,
-  setDigitalPin10,
-  setDigitalPin11,
-  setDigitalPin12,
-  setDigitalPin13,
-  setDigitalPin14,
-  setDigitalPin15,
-  setDigitalPin16,
-  setDigitalPin17,
-  setDigitalPin18,
-  setDigitalPin19,
-  setDigitalPin20,
-  setDigitalPin21,
-  setDigitalPin22,
-  setDigitalPin23,
-  setDigitalPin24,
-  setDigitalPin25,
-  setDigitalPin26,
-  setDigitalPin27,
-  setDigitalPin28,
-  setDigitalPin29,
-  setDigitalPin30,
-  setDigitalPin31,
-  setDigitalPin32,
-  setDigitalPin33,
-  setDigitalPin34,
-  setDigitalPin35,
-  setDigitalPin36,
-  setDigitalPin37,
-  setDigitalPin38,
-  setDigitalPin39,
-  setDigitalPin40,
-  setDigitalPin41,
-  setDigitalPin42,
-  setDigitalPin43,
-  setDigitalPin44,
-  setDigitalPin45,
-  setDigitalPin46,
-  setDigitalPin47,
-  setDigitalPin48,
-  setDigitalPin49,
-  setDigitalPin50,
-  setDigitalPin51,
-  setDigitalPin52,
-  setDigitalPin53,
-  setAnalogPin0,
-  setAnalogPin1,
-  setAnalogPin2,
-  setAnalogPin3,
-  setAnalogPin4,
-  setAnalogPin5,
-  setAnalogPin6,
-  setAnalogPin7,
-  setAnalogPin8,
-  setAnalogPin9,
-  setAnalogPin10,
-  setAnalogPin11,
-  setAnalogPin12,
-  setAnalogPin13,
-  setAnalogPin14,
-  setOutputData
+  setShowLoading: (state: boolean) => void,
+  setSimulatorRunning: (state: boolean) => void,
+  setDigitalPin0: (state: boolean) => void,
+  setDigitalPin1: (state: boolean) => void,
+  setDigitalPin2: (state: boolean) => void,
+  setDigitalPin3: (state: boolean) => void,
+  setDigitalPin4: (state: boolean) => void,
+  setDigitalPin5: (state: boolean) => void,
+  setDigitalPin6: (state: boolean) => void,
+  setDigitalPin7: (state: boolean) => void,
+  setDigitalPin8: (state: boolean) => void,
+  setDigitalPin9: (state: boolean) => void,
+  setDigitalPin10: (state: boolean) => void,
+  setDigitalPin11: (state: boolean) => void,
+  setDigitalPin12: (state: boolean) => void,
+  setDigitalPin13: (state: boolean) => void,
+  setDigitalPin14: (state: boolean) => void,
+  setDigitalPin15: (state: boolean) => void,
+  setDigitalPin16: (state: boolean) => void,
+  setDigitalPin17: (state: boolean) => void,
+  setDigitalPin18: (state: boolean) => void,
+  setDigitalPin19: (state: boolean) => void,
+  setDigitalPin20: (state: boolean) => void,
+  setDigitalPin21: (state: boolean) => void,
+  setDigitalPin22: (state: boolean) => void,
+  setDigitalPin23: (state: boolean) => void,
+  setDigitalPin24: (state: boolean) => void,
+  setDigitalPin25: (state: boolean) => void,
+  setDigitalPin26: (state: boolean) => void,
+  setDigitalPin27: (state: boolean) => void,
+  setDigitalPin28: (state: boolean) => void,
+  setDigitalPin29: (state: boolean) => void,
+  setDigitalPin30: (state: boolean) => void,
+  setDigitalPin31: (state: boolean) => void,
+  setDigitalPin32: (state: boolean) => void,
+  setDigitalPin33: (state: boolean) => void,
+  setDigitalPin34: (state: boolean) => void,
+  setDigitalPin35: (state: boolean) => void,
+  setDigitalPin36: (state: boolean) => void,
+  setDigitalPin37: (state: boolean) => void,
+  setDigitalPin38: (state: boolean) => void,
+  setDigitalPin39: (state: boolean) => void,
+  setDigitalPin40: (state: boolean) => void,
+  setDigitalPin41: (state: boolean) => void,
+  setDigitalPin42: (state: boolean) => void,
+  setDigitalPin43: (state: boolean) => void,
+  setDigitalPin44: (state: boolean) => void,
+  setDigitalPin45: (state: boolean) => void,
+  setDigitalPin46: (state: boolean) => void,
+  setDigitalPin47: (state: boolean) => void,
+  setDigitalPin48: (state: boolean) => void,
+  setDigitalPin49: (state: boolean) => void,
+  setDigitalPin50: (state: boolean) => void,
+  setDigitalPin51: (state: boolean) => void,
+  setDigitalPin52: (state: boolean) => void,
+  setDigitalPin53: (state: boolean) => void,
+  setAnalogPin0: (state: number) => void,
+  setAnalogPin1: (state: number) => void,
+  setAnalogPin2: (state: number) => void,
+  setAnalogPin3: (state: number) => void,
+  setAnalogPin4: (state: number) => void,
+  setAnalogPin5: (state: number) => void,
+  setAnalogPin6: (state: number) => void,
+  setAnalogPin7: (state: number) => void,
+  setAnalogPin8: (state: number) => void,
+  setAnalogPin9: (state: number) => void,
+  setAnalogPin10: (state: number) => void,
+  setAnalogPin11: (state: number) => void,
+  setAnalogPin12: (state: number) => void,
+  setAnalogPin13: (state: number) => void,
+  setAnalogPin14: (state: number) => void,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  setOutputData: any
 ) => {
   myWorker = new Worker("ArduinoSimulatorInterpreter.min.js?v=" + myWorkerTimestamp)
 
-  myWorker.onmessage = (e) => {
+  myWorker.onmessage = (e: MessageEvent) => {
     try {
       const myReceivedData = e.data || ""
 
@@ -359,7 +361,7 @@ const startSimulator = (
           setAnalogPin14(analogPinValue)
         }
       } else {
-        setOutputData((prevState) => prevState + String(myReceivedData))
+        setOutputData((prevState: string) => prevState + String(myReceivedData))
       }
     } catch (err) {
       //
@@ -369,13 +371,13 @@ const startSimulator = (
   }
 
   // COVERTING THE SKETCH IN A CODE THAT JSCPP CAN EXECUTE
-  const convertedSketch = convertSketch(editorGetValue())
+  const convertedSketch: string = convertSketch(editorGetValue())
 
   // SENDING THE SKETCH TO THE WEB WORKER IN ORDER TO BE EXECUTED
   myWorker.postMessage(convertedSketch)
 }
 
-const convertSketch = (sketch) => {
+const convertSketch = (sketch: string) => {
   // ------------------------------------------------------
   // COVERTING THE SKETCH IN A CODE THAT JSCPP CAN EXECUTE
   // ------------------------------------------------------
@@ -586,7 +588,7 @@ const stopSimulator = () => {
   }
 }
 
-const sendSerialData = (serialDataValue) => {
+const sendSerialData = (serialDataValue: string) => {
   try {
     if (serialDataValue !== "") {
       myWorker.postMessage("SEND_SERIAL_DATA_ARDUINO_SIMULATOR=" + serialDataValue)
