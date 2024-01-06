@@ -2,7 +2,7 @@ import React from "react"
 import PinsDigitalLabel from "./PinsDigitalLabel"
 import PinsDigitalItem from "./PinsDigitalItem"
 import { useSimulatorContext } from "../contexts/SimulatorContext"
-import { BOARD_MEGA1280, BOARD_MEGA2560 } from "../utils/service"
+import { isMega } from "../../src/utils/service"
 
 const PinsDigitalBar = () => {
   const {
@@ -63,13 +63,17 @@ const PinsDigitalBar = () => {
     boardType,
   } = useSimulatorContext()
 
-  const isMega: boolean =
-    boardType === BOARD_MEGA1280 || boardType === BOARD_MEGA2560
+  const isMegaBoard = isMega(boardType)
 
   return (
     <div style={styles.container}>
       <div style={styles.noScrollbar}>
-        <div style={{ width: isMega ? "1250px" : "550px", ...styles.wrapper }}>
+        <div
+          style={{
+            width: isMegaBoard ? "1250px" : "550px",
+            ...styles.wrapper,
+          }}
+        >
           <PinsDigitalLabel />
           <PinsDigitalItem pinNumber={0} isEnabled={digitalPin0} />
           <PinsDigitalItem pinNumber={1} isEnabled={digitalPin1} />
@@ -85,7 +89,7 @@ const PinsDigitalBar = () => {
           <PinsDigitalItem pinNumber={11} isEnabled={digitalPin11} />
           <PinsDigitalItem pinNumber={12} isEnabled={digitalPin12} />
           <PinsDigitalItem pinNumber={13} isEnabled={digitalPin13} />
-          {isMega && (
+          {isMegaBoard && (
             <>
               <PinsDigitalItem pinNumber={14} isEnabled={digitalPin14} />
               <PinsDigitalItem pinNumber={15} isEnabled={digitalPin15} />

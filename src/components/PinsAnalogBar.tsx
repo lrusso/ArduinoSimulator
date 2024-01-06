@@ -2,7 +2,7 @@ import React from "react"
 import PinsAnalogLabel from "./PinsAnalogLabel"
 import PinsAnalogItem from "./PinsAnalogItem"
 import { useSimulatorContext } from "../contexts/SimulatorContext"
-import { BOARD_MEGA1280, BOARD_MEGA2560, BOARD_NANO } from "../utils/service"
+import { isMega, isNano } from "../../src/utils/service"
 
 const PinsAnalogBar = () => {
   const {
@@ -24,14 +24,13 @@ const PinsAnalogBar = () => {
     boardType,
   } = useSimulatorContext()
 
-  const isMega: boolean =
-    boardType === BOARD_MEGA1280 || boardType === BOARD_MEGA2560
-  const showPin6And7: boolean = boardType === BOARD_NANO || isMega
+  const isMegaBoard = isMega(boardType)
+  const isNanoBoard = isNano(boardType)
 
   return (
     <div style={styles.container}>
       <div style={styles.noScrollbar}>
-        <div style={{ width: isMega ? "850px" : "550px", ...styles.wrapper }}>
+        <div style={{ width: isMegaBoard ? "850px" : "550px", ...styles.wrapper }}>
           <PinsAnalogLabel />
           <PinsAnalogItem value={analogPin0} />
           <PinsAnalogItem value={analogPin1} />
@@ -39,13 +38,13 @@ const PinsAnalogBar = () => {
           <PinsAnalogItem value={analogPin3} />
           <PinsAnalogItem value={analogPin4} />
           <PinsAnalogItem value={analogPin5} />
-          {showPin6And7 && (
+          {(isMegaBoard || isNanoBoard) && (
             <>
               <PinsAnalogItem value={analogPin6} />
               <PinsAnalogItem value={analogPin7} />
             </>
           )}
-          {isMega && (
+          {isMegaBoard && (
             <>
               <PinsAnalogItem value={analogPin8} />
               <PinsAnalogItem value={analogPin9} />

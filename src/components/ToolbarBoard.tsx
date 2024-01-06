@@ -1,6 +1,6 @@
 import React from "react"
 import IconBoard from "../assets/IconBoard"
-import { BOARD_UNO } from "../utils/service"
+import { getBoards } from "../../src/utils/service"
 
 interface ToolbarBoardProps {
   boardType: string
@@ -12,7 +12,7 @@ const ToolbarBoard = ({ boardType, simulatorRunning }: ToolbarBoardProps) => {
     <div style={styles.container}>
       <IconBoard width={28} height={28} enabled={!simulatorRunning} />
       <div style={{ color: simulatorRunning ? "#D3D3D3" : "#000", ...styles.label }}>
-        {boardType ? boardType : BOARD_UNO}
+        {boardType ? boardType : getBoards()[0]}
       </div>
     </div>
   )

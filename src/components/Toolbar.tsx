@@ -27,12 +27,7 @@ import {
   editorFocus,
 } from "../utils/editor"
 import { startSimulator, stopSimulator } from "../utils/interpreter"
-import {
-  BOARD_MEGA1280,
-  BOARD_MEGA2560,
-  BOARD_NANO,
-  BOARD_UNO,
-} from "../utils/service"
+import { getBoards } from "../../src/utils/service"
 import { t } from "../utils/languages"
 
 const Toolbar = () => {
@@ -318,30 +313,18 @@ const Toolbar = () => {
   }
 
   const switchBoard = () => {
-    switch (boardType) {
-      case null:
-        setBoardType(BOARD_MEGA1280)
-        break
+    const boardList = getBoards()
 
-      case BOARD_UNO:
-        setBoardType(BOARD_MEGA1280)
-        break
+    const currentBoard = boardType ? boardType : boardList[0]
+    let nextBoard = boardList[0]
 
-      case BOARD_MEGA1280:
-        setBoardType(BOARD_MEGA2560)
-        break
+    boardList.forEach((element: string, index: number) => {
+      if (element === currentBoard && boardList.length - 1 > index) {
+        nextBoard = boardList[index + 1]
+      }
+    })
 
-      case BOARD_MEGA2560:
-        setBoardType(BOARD_NANO)
-        break
-
-      case BOARD_NANO:
-        setBoardType(BOARD_UNO)
-        break
-
-      default:
-        break
-    }
+    setBoardType(nextBoard)
   }
 
   const startSketch = () => {

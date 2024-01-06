@@ -1,3 +1,4 @@
 {
-  "LANGUAGE_FALLBACK": "en"
+  "LANGUAGE_FALLBACK": "en",
+  "BOARDS": ["UNO R3", "MEGA 1280", "MEGA 2560", "NANO V3"]
 }
