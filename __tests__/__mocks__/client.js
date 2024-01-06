@@ -9,8 +9,10 @@ global.console = {
   warn: (message) => {
     throw Error(message)
   },
-  error: (message) => {
-    throw Error(message)
+  error: (message, data, details) => {
+    throw Error(
+      message + (data ? " - " + data : "") + (details ? " - " + details : "")
+    )
   },
 }
 global.setTimeout = jest.fn(() => () => {})
