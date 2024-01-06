@@ -1,4 +1,4 @@
-const isMobileDevice = () => {
+const isMobileDevice: () => boolean = () => {
   return !!(
     window.navigator.userAgent.match(/Android/i) ||
     window.navigator.userAgent.match(/webOS/i) ||

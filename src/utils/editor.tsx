@@ -1,8 +1,9 @@
 import { t } from "./languages"
 import isMobileDevice from "./isMobileDevice"
 
+const mobileDevice = isMobileDevice()
+
 let editor = null
-let mobileDevice = isMobileDevice()
 
 const editorInit = () => {
   global.ace.config.set("basePath", ".")
@@ -48,7 +49,7 @@ const editorNew = () => {
   editorFocus()
 }
 
-const editorSetValue = (newContent) => {
+const editorSetValue = (newContent: string | ArrayBuffer) => {
   editor.setValue(newContent)
   editor.clearSelection()
   editor.selection.moveTo(0, 0)
@@ -59,7 +60,7 @@ const editorGetValue = () => {
   return editor.getValue()
 }
 
-const editorSave = (filename) => {
+const editorSave = (filename: string) => {
   try {
     const blobValue = new Blob([editor.getValue()], { type: "text/plain" })
 
