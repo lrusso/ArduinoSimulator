@@ -8,6 +8,7 @@
     "@babel/plugin-proposal-private-property-in-object": "7.21.11",
     "@babel/preset-typescript": "7.23.3",
     "@types/react": "18.2.47",
+    "@types/react-dom": "18.2.18",
     "@typescript-eslint/eslint-plugin": "5.62.0",
     "@typescript-eslint/parser": "5.62.0",
     "depcheck": "1.4.7",
@@ -47,7 +48,7 @@
     "prettier:fix": "prettier --write .",
     "check-types": "tsc --noemit",
     "test": "npm run build && npm run test:dependency && npm run test:benchmark && npm run test:unit && npm run test:e2e",
-    "test:dependency": "depcheck --ignores=\"@awmottaz/*,@babel/*,babel*,typescript-eslint,pre-commit\" --ignore-patterns=\"ArduinoSimulatorInterpreter.js\"",
+    "test:dependency": "depcheck --ignores=\"@awmottaz/*,@babel/*,babel*,@types/*,typescript-eslint,pre-commit\" --ignore-patterns=\"ArduinoSimulatorInterpreter.js\"",
     "test:benchmark": "jest --testPathPattern='.benchmark.test.js' --testTimeout=600000",
     "test:unit": "jest --testPathIgnorePatterns='.e2e.test.js' --testPathIgnorePatterns='client.js' --testPathIgnorePatterns='benchmark.test.js' --testTimeout=600000",
     "test:e2e": "jest --testPathPattern='.e2e.test.js' --testTimeout=600000"
