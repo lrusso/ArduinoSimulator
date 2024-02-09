@@ -582,7 +582,7 @@ const convertSketch = (sketch: string) => {
      // DIGITALWRITE IMPLEMENTATION
      void digitalWrite(int digitalpin, bool signal);
      void digitalWrite(int digitalpin, bool signal) {
-        if(digitalpin >= 0 && digitalpin < 54) {
+        if(digitalpin >= 0 && digitalpin <= 54) {
             if (_digital_pins_active[digitalpin]) {
               char payload[30];   
 
@@ -609,7 +609,7 @@ const convertSketch = (sketch: string) => {
      // ANALOGWRITE IMPLEMENTATION
      void analogWrite(int analogpin, int duty);
      void analogWrite(int analogpin, int duty){      
-        if(analogpin >= 0 && analogpin < 14) {
+        if(analogpin >= 0 && analogpin <= 14) {
             if (_digital_pins_active[analogpin]) {
               char payload[30];   
 
