@@ -512,7 +512,6 @@ const convertSketch = (sketch: string) => {
     "_intToChar($2)"
   )
 
-  
   // CREATING THE ARDUINO CODE INITIALIZER FOR JSCPP
   const codeInitializer = `#include <iostream>
     #include <ctime>
@@ -521,168 +520,164 @@ const convertSketch = (sketch: string) => {
     #include <string.h>
     #include <iomanip>
     using namespace std;
-     
+
     // MAIN IMPLEMENTATION THAT WILL EXECUTE SETUP AND LOOP
-     int main(){int internalLoopSystem=0;cout << fixed << setprecision(10);setup();while(true){loop();internalLoopSystem=internalLoopSystem+1;}return 0;}
-     
-     // SETUP AND LOOP PROTOTYPES IMPLEMENTATION
-     void setup();
-     void loop();
-     
-     // DIGITAL PINS IMPLEMENTATION
-     bool _digital_pins_active[54] = {false};
-     bool _digital_pins_state[54] = {false};
-     
-     // ANALOG PINS IMPLEMENTATION
-     int _analog_pins_state[14] = {0};
-     
-     // PINMODE IMPLEMENTATION
-     int INPUT = 0;
-     int INPUT_PULLPUP = 0;
-     int OUTPUT = 0;
+    int main(){int internalLoopSystem=0;cout << fixed << setprecision(10);setup();while(true){loop();internalLoopSystem=internalLoopSystem+1;}return 0;}
 
-     void pinMode(int selectedpin, int type);
-     void pinMode(int selectedpin, int type){
-       if(selectedpin<=54){
-          _digital_pins_active[selectedpin]=true;
-       }
+    // SETUP AND LOOP PROTOTYPES IMPLEMENTATION
+    void setup();
+    void loop();
+
+    // DIGITAL PINS IMPLEMENTATION
+    bool _digital_pins_active[54] = {false};
+    bool _digital_pins_state[54] = {false};
+
+    // ANALOG PINS IMPLEMENTATION
+    int _analog_pins_state[14] = {0};
+
+    // PINMODE IMPLEMENTATION
+    int INPUT = 0;
+    int INPUT_PULLPUP = 0;
+    int OUTPUT = 0;
+
+    void pinMode(int selectedpin, int type);
+    void pinMode(int selectedpin, int type) {
+      if(selectedpin<=54) {
+        _digital_pins_active[selectedpin]=true;
+      }
     }
-     
-     // SIGNAL IMPLEMENTATION FOR DIGITALWRITE AND ANALOGWRITE
-     bool LOW = false;
-     bool HIGH = true;
-     
+
+    // SIGNAL IMPLEMENTATION FOR DIGITALWRITE AND ANALOGWRITE
+    bool LOW = false;
+    bool HIGH = true;
+
     int getLength(int num) {
-        int length = 0;
-        if (num == 0)
-            return 1;
-        while (num != 0) {
-            num /= 10;
-            length++;
-        }
-        return length;
+      int length = 0;
+      if (num == 0)
+        return 1;
+      while (num != 0) {
+        num /= 10;
+        length++;
+      }
+      return length;
     }
 
-     void intToCharArray(int num, char* result) {
-        if (num == 0) {
-            result[0] = '0';
-            result[1] = '\0'; // Null-terminator
-            return;
-        }
-    
-        int length = getLength(num);
-        result[length] = '\0'; // Null-terminator
-    
-        while (num > 0) {
-            result[--length] = '0' + num % 10;
-            num /= 10;
-        }
+    void intToCharArray(int num, char* result) {
+      if (num == 0) {
+        result[0] = '0';
+        result[1] = '\0'; // Null-terminator
+          return;
+      }
+
+      int length = getLength(num);
+      result[length] = '\0'; // Null-terminator
+
+      while (num > 0) {
+          result[--length] = '0' + num % 10;
+          num /= 10;
+      }
     }
 
-     // DIGITALWRITE IMPLEMENTATION
-     void digitalWrite(int digitalpin, bool signal);
-     void digitalWrite(int digitalpin, bool signal) {
-        if(digitalpin >= 0 && digitalpin <= 54) {
-            if (_digital_pins_active[digitalpin]) {
-              char payload[30];   
+    // DIGITALWRITE IMPLEMENTATION
+    void digitalWrite(int digitalpin, bool signal);
+    void digitalWrite(int digitalpin, bool signal) {
+      if(digitalpin >= 0 && digitalpin <= 54) {
+        if (_digital_pins_active[digitalpin]) {
+          char payload[30];
 
-              char pinStr[3];
-              intToCharArray(digitalpin, pinStr);
+          char pinStr[3];
+          intToCharArray(digitalpin, pinStr);
 
-              strcpy(payload, "_DIGITAL_PIN_STATUS_");         
-              strcat(payload, pinStr);
-              strcat(payload, "_");
-              strcat(payload, signal ? "TRUE" : "FALSE");
-          
-              cout << payload;
-              return;
+          strcpy(payload, "_DIGITAL_PIN_STATUS_");
+          strcat(payload, pinStr);
+          strcat(payload, "_");
+          strcat(payload, signal ? "TRUE" : "FALSE");
 
-              _digital_pins_state[digitalpin] = signal;
-            } 
+          cout << payload;
+          return;
+
+          _digital_pins_state[digitalpin] = signal;
         }
+      }
     }
-     
-     // DIGITALREAD IMPLEMENTATION
-     int digitalRead(int digitalpin);
-     int digitalRead(int digitalpin){return _digital_pins_state[digitalpin];}
-     
-     // ANALOGWRITE IMPLEMENTATION
-     void analogWrite(int analogpin, int duty);
-     void analogWrite(int analogpin, int duty){      
-        if(analogpin >= 0 && analogpin <= 14) {
-            if (_digital_pins_active[analogpin]) {
-              char payload[30];   
 
-              char pinStr[3];
-              intToCharArray(analogpin, pinStr);
+    // DIGITALREAD IMPLEMENTATION
+    int digitalRead(int digitalpin);
+    int digitalRead(int digitalpin){return _digital_pins_state[digitalpin];}
 
-              char dutyString[4];
-              intToCharArray(duty, dutyString);
+    // ANALOGWRITE IMPLEMENTATION
+    void analogWrite(int analogpin, int duty);
+    void analogWrite(int analogpin, int duty) {
+      if(analogpin >= 0 && analogpin <= 14) {
+        if (_digital_pins_active[analogpin]) {
+          char payload[30];
 
-              strcpy(payload, "_ANALOG_PIN_STATUS_");         
-              strcat(payload, pinStr);
-              strcat(payload, "_");        
-              strcat(payload, dutyString);
-          
-              cout << payload;
-              return;
-            } 
+          char pinStr[3];
+          intToCharArray(analogpin, pinStr);
+
+          char dutyString[4];
+          intToCharArray(duty, dutyString);
+
+          strcpy(payload, "_ANALOG_PIN_STATUS_");
+          strcat(payload, pinStr);
+          strcat(payload, "_");
+          strcat(payload, dutyString);
+
+          cout << payload;
+          return;
         }
-     }
-     
-     // ANALOGREAD IMPLEMENTATION
-     int analogRead(int analogpin);
-     int analogRead(int analogpin){return _analog_pins_state[analogpin];}
-     
-     // DELAY IMPLEMENTATION
-     void delay(int milliseconds);
-     void delay(int milliseconds){int endingDelay=time(0)+(milliseconds/1000);while(time(0)<=endingDelay){}}
-     
-     // DELAYMICROSECONDS IMPLEMENTATION
-     void delayMicroseconds(int milliseconds);
-     void delayMicroseconds(int milliseconds){delay(milliseconds);}
-     
-     // PULSEIN IMPLEMENTATION
-     unsigned long pulseIn(int pin, int signal);
-     unsigned long pulseIn(int pin, int signal){return 0;}
-     
-     // SERIAL IMPLEMENTATION
-     int _SerialReceivedData = 0;
-     int _Serial_Available();
-     int _Serial_Available(){cin >> (_SerialReceivedData);return _SerialReceivedData;}
-     char _Serial_Read();
-     char _Serial_Read(){return (char)_SerialReceivedData;}
-     void _Serial_Begin(int baudRate);
-     void _Serial_Begin(int baudRate){}
-     
-     // EEPROM IMPLEMENTATION (WORK IN PROGRESS)
-     char _EEPROM_Data[4096] = {0};
-     char _EEPROM_Read(int address);
-     char _EEPROM_Read(int address){return (char)_EEPROM_Data[address];}
-     void _EEPROM_Write(int address, char value);
-     void _EEPROM_Write(int address, char value){_EEPROM_Data[address] = value;}
-     
-     // INT TO CHAR IMPLEMENTATION
-    char* _intToChar(int a)
-    {
+      }
+    }
+
+    // ANALOGREAD IMPLEMENTATION
+    int analogRead(int analogpin);
+    int analogRead(int analogpin){return _analog_pins_state[analogpin];}
+
+    // DELAY IMPLEMENTATION
+    void delay(int milliseconds);
+    void delay(int milliseconds){int endingDelay=time(0)+(milliseconds/1000);while(time(0)<=endingDelay){}}
+
+    // DELAYMICROSECONDS IMPLEMENTATION
+    void delayMicroseconds(int milliseconds);
+    void delayMicroseconds(int milliseconds){delay(milliseconds);}
+
+    // PULSEIN IMPLEMENTATION
+    unsigned long pulseIn(int pin, int signal);
+    unsigned long pulseIn(int pin, int signal){return 0;}
+
+    // SERIAL IMPLEMENTATION
+    int _SerialReceivedData = 0;
+    int _Serial_Available();
+    int _Serial_Available(){cin >> (_SerialReceivedData);return _SerialReceivedData;}
+    char _Serial_Read();
+    char _Serial_Read(){return (char)_SerialReceivedData;}
+    void _Serial_Begin(int baudRate);
+    void _Serial_Begin(int baudRate){}
+
+    // EEPROM IMPLEMENTATION (WORK IN PROGRESS)
+    char _EEPROM_Data[4096] = {0};
+    char _EEPROM_Read(int address);
+    char _EEPROM_Read(int address){return (char)_EEPROM_Data[address];}
+    void _EEPROM_Write(int address, char value);
+    void _EEPROM_Write(int address, char value){_EEPROM_Data[address] = value;}
+
+    // INT TO CHAR IMPLEMENTATION
+    char* _intToChar(int a) {
       const int BUFFERSIZE = 9;
       char answer[BUFFERSIZE];
       char answer2[BUFFERSIZE];
-      int counter = 0;while (a > 0)
-      {
+      int counter = 0;while (a > 0) {
         answer[counter] = (a % 10 + '0');
         counter = counter + 1;a = a / 10;
       }
-      int x = 0;int y = BUFFERSIZE - 1;while(y>-1)
-      {
+      int x = 0;int y = BUFFERSIZE - 1;while(y>-1) {
         answer2[x] = answer[y];x = x + 1;y = y - 1;
       }
       return answer2;
     }
-        
+
     // FRACTION TO CHAR IMPLEMENTATION
-    char* _fractionToChar(double a)
-    {
+    char* _fractionToChar(double a) {
       int b = a;
       const int BUFFERSIZE = 9;
       char answer[BUFFERSIZE];
@@ -696,20 +691,20 @@ const convertSketch = (sketch: string) => {
       answer[counter] = '.';
       counter = counter + 1;}
         
-      while (b > 0){
+      while (b > 0) {
         answer[counter] = (b % 10 + '0');
         counter = counter + 1;b = b / 10;
       }
       int x = 0;int y = BUFFERSIZE - 1;
-        
-      while(y>-1){
+
+      while(y>-1) {
         answer2[x] = answer[y];x = x + 1;y = y - 1;
       }
-        
+
       cout << fixed << setprecision(10);
       return answer2;
-    } 
-     
+      }
+
      // THE FOLLOWING BREAKLINES ARE NEED IN ORDER TO PREVENT JSCPP TO SHOW ANY OF THE PREVIOUS CODE IF THE USER CODE FAILS
      \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n`
   return codeInitializer + sketch
