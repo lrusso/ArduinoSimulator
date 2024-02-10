@@ -7,8 +7,8 @@ const myWorkerTimestamp = Date.now()
 const startSimulator = (
   setShowLoading: (state: boolean) => void,
   setSimulatorRunning: (state: boolean) => void,
-  handleSetDigitalPins: (index: any, state: any) => void,
-  handleSetAnalogPins: (index: any, duty: any) => void,
+  handleSetDigitalPins: (index: number, state: boolean) => void,
+  handleSetAnalogPins: (index: number, duty: number) => void,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   setOutputData: any
 ) => {

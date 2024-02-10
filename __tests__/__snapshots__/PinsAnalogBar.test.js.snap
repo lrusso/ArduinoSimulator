@@ -153,6 +153,28 @@ exports[`PinsAnalogBar Rendering 1 1`] = `
       >
         0
       </div>
+      <div
+        style={
+          {
+            "alignItems": "center",
+            "backgroundColor": "black",
+            "borderRadius": "16px",
+            "color": "white",
+            "cursor": "default",
+            "display": "flex",
+            "float": "left",
+            "fontFamily": "Arial",
+            "fontSize": "11px",
+            "height": "16px",
+            "justifyContent": "center",
+            "marginLeft": "4px",
+            "marginTop": "4px",
+            "width": "40px",
+          }
+        }
+      >
+        0
+      </div>
     </div>
   </div>
 </div>

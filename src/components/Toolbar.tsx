@@ -69,7 +69,6 @@ const Toolbar = () => {
       isInput: false,
       duty: 0,
     }))
-  /* eslint-enable no-unused-vars */
 
   const newFile = () => {
     if (editorIsDirty()) {
