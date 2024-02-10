@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Interpreter End-To-End Running a Sketch and reading the Serial data 1`] = `
+exports[`Interpreter End-To-End Reading the Serial data 1`] = `
 "Char 1 example.
 String 1 example.
 String 2 example.
