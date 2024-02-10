@@ -4,7 +4,7 @@ export interface Gpio {
   isEnabled: boolean
 }
 
-export interface Gpio_analog {
+export interface Gpio_Analog {
   pinNumber: number
   isInput: boolean
   duty: number

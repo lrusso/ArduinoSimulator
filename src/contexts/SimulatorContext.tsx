@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from "react"
 
-import { Gpio, Gpio_analog } from "../utils/interfaces"
+import { Gpio, Gpio_Analog } from "../utils/interfaces"
 
 interface SimulatorContextType {
   filename: null | string
@@ -11,8 +11,8 @@ interface SimulatorContextType {
   digitalPins: null | Gpio[]
   setDigitalPins: React.Dispatch<React.SetStateAction<null | Gpio[]>>
   handleSetDigitalPins: (index: number, state: boolean) => void
-  analogPins: null | Gpio_analog[]
-  setAnalogPins: React.Dispatch<React.SetStateAction<null | Gpio_analog[]>>
+  analogPins: null | Gpio_Analog[]
+  setAnalogPins: React.Dispatch<React.SetStateAction<null | Gpio_Analog[]>>
   handleSetAnalogPins: (index: number, duty: number) => void
   outputData: null | string
   setOutputData: React.Dispatch<string>
@@ -58,7 +58,7 @@ export function SimulatorContextProvider({ children }) {
   const [boardType, setBoardType] = React.useState<string | null>(null)
   const [digitalPins, setDigitalPins] = React.useState<Gpio[]>(initializeDigitalPins)
   const [analogPins, setAnalogPins] =
-    React.useState<Gpio_analog[]>(initializeAnalogPins)
+    React.useState<Gpio_Analog[]>(initializeAnalogPins)
   const [outputData, setOutputData] = React.useState<string>("")
   const [simulatorRunning, setSimulatorRunning] = React.useState<boolean>(false)
 
@@ -76,7 +76,7 @@ export function SimulatorContextProvider({ children }) {
     updateDigitalPin(pinIndex, updatedPin)
   }
 
-  const updateAnalogPin = (pinIndex: number, updatedPin: Gpio_analog) => {
+  const updateAnalogPin = (pinIndex: number, updatedPin: Gpio_Analog) => {
     setAnalogPins((prevAnalogPins) => {
       const newAnalogPins = [...prevAnalogPins]
       newAnalogPins[pinIndex] = updatedPin
