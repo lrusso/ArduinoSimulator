@@ -15,12 +15,12 @@ const PinsAnalogBar = () => {
       <div style={styles.noScrollbar}>
         <div style={{ width: isMegaBoard ? "850px" : "550px", ...styles.wrapper }}>
           <PinsAnalogLabel />
-          {analogPins.slice(0, 5).map((pin, index) => (
+          {analogPins.slice(0, 6).map((pin, index) => (
             <PinsAnalogItem key={index} gpio_analog={pin} />
           ))}
           {(isMegaBoard || isNanoBoard) && (
             <>
-              {analogPins.slice(6, 7).map((pin, index) => (
+              {analogPins.slice(6, 8).map((pin, index) => (
                 <PinsAnalogItem key={index} gpio_analog={pin} />
               ))}
             </>

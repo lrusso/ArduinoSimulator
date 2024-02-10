@@ -10,10 +10,10 @@ interface SimulatorContextType {
   setBoardType: React.Dispatch<string>
   digitalPins: null | Gpio[]
   setDigitalPins: React.Dispatch<React.SetStateAction<null | Gpio[]>>
-  handleSetDigitalPins: (index: any, state: any) => void
+  handleSetDigitalPins: (index: number, state: boolean) => void
   analogPins: null | Gpio_analog[]
   setAnalogPins: React.Dispatch<React.SetStateAction<null | Gpio_analog[]>>
-  handleSetAnalogPins: (index: any, duty: any) => void
+  handleSetAnalogPins: (index: number, duty: number) => void
   outputData: null | string
   setOutputData: React.Dispatch<string>
   simulatorRunning: boolean
