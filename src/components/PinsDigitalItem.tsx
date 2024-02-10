@@ -1,16 +1,20 @@
 import React from "react"
 
+import { Gpio } from "../utils/interfaces"
+
 interface PinsDigitalItemProps {
-  pinNumber: number
-  isEnabled: boolean
+  gpio: Gpio
 }
 
-const PinsDigitalItem = ({ pinNumber, isEnabled }: PinsDigitalItemProps) => {
+const PinsDigitalItem = ({ gpio }: PinsDigitalItemProps) => {
   return (
     <div
-      style={{ backgroundColor: isEnabled ? "green" : "red", ...styles.container }}
+      style={{
+        backgroundColor: gpio.isEnabled ? "green" : "red",
+        ...styles.container,
+      }}
     >
-      {pinNumber}
+      {gpio.pinNumber}
     </div>
   )
 }

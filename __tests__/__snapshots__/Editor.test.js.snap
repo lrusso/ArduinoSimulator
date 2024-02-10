@@ -1350,28 +1350,6 @@ exports[`Editor Rendering 1 1`] = `
           >
             12
           </div>
-          <div
-            style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "red",
-                "borderRadius": "16px",
-                "color": "white",
-                "cursor": "default",
-                "display": "flex",
-                "float": "left",
-                "fontFamily": "Arial",
-                "fontSize": "11px",
-                "height": "16px",
-                "justifyContent": "center",
-                "marginLeft": "4px",
-                "marginTop": "4px",
-                "width": "16px",
-              }
-            }
-          >
-            13
-          </div>
         </div>
       </div>
     </div>
@@ -1436,7 +1414,9 @@ exports[`Editor Rendering 1 1`] = `
                 "width": "40px",
               }
             }
-          />
+          >
+            0
+          </div>
           <div
             style={
               {
@@ -1456,7 +1436,9 @@ exports[`Editor Rendering 1 1`] = `
                 "width": "40px",
               }
             }
-          />
+          >
+            0
+          </div>
           <div
             style={
               {
@@ -1476,7 +1458,9 @@ exports[`Editor Rendering 1 1`] = `
                 "width": "40px",
               }
             }
-          />
+          >
+            0
+          </div>
           <div
             style={
               {
@@ -1496,7 +1480,9 @@ exports[`Editor Rendering 1 1`] = `
                 "width": "40px",
               }
             }
-          />
+          >
+            0
+          </div>
           <div
             style={
               {
@@ -1516,27 +1502,9 @@ exports[`Editor Rendering 1 1`] = `
                 "width": "40px",
               }
             }
-          />
-          <div
-            style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "black",
-                "borderRadius": "16px",
-                "color": "white",
-                "cursor": "default",
-                "display": "flex",
-                "float": "left",
-                "fontFamily": "Arial",
-                "fontSize": "11px",
-                "height": "16px",
-                "justifyContent": "center",
-                "marginLeft": "4px",
-                "marginTop": "4px",
-                "width": "40px",
-              }
-            }
-          />
+          >
+            0
+          </div>
         </div>
       </div>
     </div>
