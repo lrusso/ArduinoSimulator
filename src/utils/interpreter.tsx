@@ -7,75 +7,8 @@ const myWorkerTimestamp = Date.now()
 const startSimulator = (
   setShowLoading: (state: boolean) => void,
   setSimulatorRunning: (state: boolean) => void,
-  setDigitalPin0: (state: boolean) => void,
-  setDigitalPin1: (state: boolean) => void,
-  setDigitalPin2: (state: boolean) => void,
-  setDigitalPin3: (state: boolean) => void,
-  setDigitalPin4: (state: boolean) => void,
-  setDigitalPin5: (state: boolean) => void,
-  setDigitalPin6: (state: boolean) => void,
-  setDigitalPin7: (state: boolean) => void,
-  setDigitalPin8: (state: boolean) => void,
-  setDigitalPin9: (state: boolean) => void,
-  setDigitalPin10: (state: boolean) => void,
-  setDigitalPin11: (state: boolean) => void,
-  setDigitalPin12: (state: boolean) => void,
-  setDigitalPin13: (state: boolean) => void,
-  setDigitalPin14: (state: boolean) => void,
-  setDigitalPin15: (state: boolean) => void,
-  setDigitalPin16: (state: boolean) => void,
-  setDigitalPin17: (state: boolean) => void,
-  setDigitalPin18: (state: boolean) => void,
-  setDigitalPin19: (state: boolean) => void,
-  setDigitalPin20: (state: boolean) => void,
-  setDigitalPin21: (state: boolean) => void,
-  setDigitalPin22: (state: boolean) => void,
-  setDigitalPin23: (state: boolean) => void,
-  setDigitalPin24: (state: boolean) => void,
-  setDigitalPin25: (state: boolean) => void,
-  setDigitalPin26: (state: boolean) => void,
-  setDigitalPin27: (state: boolean) => void,
-  setDigitalPin28: (state: boolean) => void,
-  setDigitalPin29: (state: boolean) => void,
-  setDigitalPin30: (state: boolean) => void,
-  setDigitalPin31: (state: boolean) => void,
-  setDigitalPin32: (state: boolean) => void,
-  setDigitalPin33: (state: boolean) => void,
-  setDigitalPin34: (state: boolean) => void,
-  setDigitalPin35: (state: boolean) => void,
-  setDigitalPin36: (state: boolean) => void,
-  setDigitalPin37: (state: boolean) => void,
-  setDigitalPin38: (state: boolean) => void,
-  setDigitalPin39: (state: boolean) => void,
-  setDigitalPin40: (state: boolean) => void,
-  setDigitalPin41: (state: boolean) => void,
-  setDigitalPin42: (state: boolean) => void,
-  setDigitalPin43: (state: boolean) => void,
-  setDigitalPin44: (state: boolean) => void,
-  setDigitalPin45: (state: boolean) => void,
-  setDigitalPin46: (state: boolean) => void,
-  setDigitalPin47: (state: boolean) => void,
-  setDigitalPin48: (state: boolean) => void,
-  setDigitalPin49: (state: boolean) => void,
-  setDigitalPin50: (state: boolean) => void,
-  setDigitalPin51: (state: boolean) => void,
-  setDigitalPin52: (state: boolean) => void,
-  setDigitalPin53: (state: boolean) => void,
-  setAnalogPin0: (state: number) => void,
-  setAnalogPin1: (state: number) => void,
-  setAnalogPin2: (state: number) => void,
-  setAnalogPin3: (state: number) => void,
-  setAnalogPin4: (state: number) => void,
-  setAnalogPin5: (state: number) => void,
-  setAnalogPin6: (state: number) => void,
-  setAnalogPin7: (state: number) => void,
-  setAnalogPin8: (state: number) => void,
-  setAnalogPin9: (state: number) => void,
-  setAnalogPin10: (state: number) => void,
-  setAnalogPin11: (state: number) => void,
-  setAnalogPin12: (state: number) => void,
-  setAnalogPin13: (state: number) => void,
-  setAnalogPin14: (state: number) => void,
+  handleSetDigitalPins: (index: any, state: any) => void,
+  handleSetAnalogPins: (index: any, duty: any) => void,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   setOutputData: any
 ) => {
@@ -85,12 +18,13 @@ const startSimulator = (
     try {
       const myReceivedData = e.data || ""
 
-      const EVENT_SIMULATION_STARTED =
-        myReceivedData.indexOf("ENABLE_SERIAL_MONITOR_ARDUINO_SIMULATOR") > -1
-      const EVENT_DIGITAL_PIN = myReceivedData.indexOf("_DIGITAL_PIN_STATUS_") > -1
+      const EVENT_SIMULATION_STARTED = myReceivedData.includes(
+        "ENABLE_SERIAL_MONITOR_ARDUINO_SIMULATOR"
+      )
+      const EVENT_DIGITAL_PIN = myReceivedData.includes("_DIGITAL_PIN_STATUS_")
       const EVENT_DIGITAL_PIN_NUMBER = myReceivedData.replace(/[^0-9]/g, "")
-      const EVENT_DIGITAL_PIN_TRUE = myReceivedData.indexOf("TRUE") > -1
-      const EVENT_ANALOG_PIN = myReceivedData.indexOf("_ANALOG_PIN_STATUS_") > -1
+      const EVENT_DIGITAL_PIN_TRUE = myReceivedData.includes("TRUE")
+      const EVENT_ANALOG_PIN = myReceivedData.includes("_ANALOG_PIN_STATUS_")
 
       if (EVENT_SIMULATION_STARTED) {
         setShowLoading(false)
@@ -98,227 +32,10 @@ const startSimulator = (
         editorEnable()
         setOutputData("")
       } else if (EVENT_DIGITAL_PIN) {
-        if (EVENT_DIGITAL_PIN_TRUE) {
-          if (EVENT_DIGITAL_PIN_NUMBER === "0") {
-            setDigitalPin0(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "1") {
-            setDigitalPin1(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "2") {
-            setDigitalPin2(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "3") {
-            setDigitalPin3(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "4") {
-            setDigitalPin4(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "5") {
-            setDigitalPin5(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "6") {
-            setDigitalPin6(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "7") {
-            setDigitalPin7(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "8") {
-            setDigitalPin8(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "9") {
-            setDigitalPin9(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "10") {
-            setDigitalPin10(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "11") {
-            setDigitalPin11(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "12") {
-            setDigitalPin12(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "13") {
-            setDigitalPin13(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "14") {
-            setDigitalPin14(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "15") {
-            setDigitalPin15(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "16") {
-            setDigitalPin16(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "17") {
-            setDigitalPin17(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "18") {
-            setDigitalPin18(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "19") {
-            setDigitalPin19(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "20") {
-            setDigitalPin20(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "21") {
-            setDigitalPin21(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "22") {
-            setDigitalPin22(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "23") {
-            setDigitalPin23(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "24") {
-            setDigitalPin24(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "25") {
-            setDigitalPin25(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "26") {
-            setDigitalPin26(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "27") {
-            setDigitalPin27(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "28") {
-            setDigitalPin28(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "29") {
-            setDigitalPin29(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "30") {
-            setDigitalPin30(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "31") {
-            setDigitalPin31(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "32") {
-            setDigitalPin32(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "33") {
-            setDigitalPin33(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "34") {
-            setDigitalPin34(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "35") {
-            setDigitalPin35(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "36") {
-            setDigitalPin36(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "37") {
-            setDigitalPin37(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "38") {
-            setDigitalPin38(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "39") {
-            setDigitalPin39(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "40") {
-            setDigitalPin40(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "41") {
-            setDigitalPin41(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "42") {
-            setDigitalPin42(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "43") {
-            setDigitalPin43(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "44") {
-            setDigitalPin44(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "45") {
-            setDigitalPin45(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "46") {
-            setDigitalPin46(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "47") {
-            setDigitalPin47(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "48") {
-            setDigitalPin48(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "49") {
-            setDigitalPin49(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "50") {
-            setDigitalPin50(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "51") {
-            setDigitalPin51(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "52") {
-            setDigitalPin52(true)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "53") {
-            setDigitalPin53(true)
-          }
-        } else {
-          if (EVENT_DIGITAL_PIN_NUMBER === "0") {
-            setDigitalPin0(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "1") {
-            setDigitalPin1(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "2") {
-            setDigitalPin2(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "3") {
-            setDigitalPin3(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "4") {
-            setDigitalPin4(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "5") {
-            setDigitalPin5(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "6") {
-            setDigitalPin6(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "7") {
-            setDigitalPin7(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "8") {
-            setDigitalPin8(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "9") {
-            setDigitalPin9(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "10") {
-            setDigitalPin10(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "11") {
-            setDigitalPin11(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "12") {
-            setDigitalPin12(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "13") {
-            setDigitalPin13(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "14") {
-            setDigitalPin14(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "15") {
-            setDigitalPin15(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "16") {
-            setDigitalPin16(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "17") {
-            setDigitalPin17(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "18") {
-            setDigitalPin18(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "19") {
-            setDigitalPin19(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "20") {
-            setDigitalPin20(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "21") {
-            setDigitalPin21(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "22") {
-            setDigitalPin22(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "23") {
-            setDigitalPin23(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "24") {
-            setDigitalPin24(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "25") {
-            setDigitalPin25(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "26") {
-            setDigitalPin26(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "27") {
-            setDigitalPin27(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "28") {
-            setDigitalPin28(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "29") {
-            setDigitalPin29(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "30") {
-            setDigitalPin30(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "31") {
-            setDigitalPin31(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "32") {
-            setDigitalPin32(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "33") {
-            setDigitalPin33(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "34") {
-            setDigitalPin34(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "35") {
-            setDigitalPin35(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "36") {
-            setDigitalPin36(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "37") {
-            setDigitalPin37(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "38") {
-            setDigitalPin38(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "39") {
-            setDigitalPin39(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "40") {
-            setDigitalPin40(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "41") {
-            setDigitalPin41(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "42") {
-            setDigitalPin42(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "43") {
-            setDigitalPin43(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "44") {
-            setDigitalPin44(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "45") {
-            setDigitalPin45(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "46") {
-            setDigitalPin46(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "47") {
-            setDigitalPin47(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "48") {
-            setDigitalPin48(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "49") {
-            setDigitalPin49(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "50") {
-            setDigitalPin50(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "51") {
-            setDigitalPin51(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "52") {
-            setDigitalPin52(false)
-          } else if (EVENT_DIGITAL_PIN_NUMBER === "53") {
-            setDigitalPin53(false)
-          }
-        }
+        handleSetDigitalPins(
+          parseInt(EVENT_DIGITAL_PIN_NUMBER),
+          EVENT_DIGITAL_PIN_TRUE
+        )
       } else if (EVENT_ANALOG_PIN) {
         const analogPinNumber = myReceivedData
           .substring(0, myReceivedData.lastIndexOf("_"))
@@ -328,38 +45,7 @@ const startSimulator = (
           myReceivedData.lastIndexOf("_") + 1,
           myReceivedData.length
         )
-
-        if (analogPinNumber === "0") {
-          setAnalogPin0(analogPinValue)
-        } else if (analogPinNumber === "1") {
-          setAnalogPin1(analogPinValue)
-        } else if (analogPinNumber === "2") {
-          setAnalogPin2(analogPinValue)
-        } else if (analogPinNumber === "3") {
-          setAnalogPin3(analogPinValue)
-        } else if (analogPinNumber === "4") {
-          setAnalogPin4(analogPinValue)
-        } else if (analogPinNumber === "5") {
-          setAnalogPin5(analogPinValue)
-        } else if (analogPinNumber === "6") {
-          setAnalogPin6(analogPinValue)
-        } else if (analogPinNumber === "7") {
-          setAnalogPin7(analogPinValue)
-        } else if (analogPinNumber === "8") {
-          setAnalogPin8(analogPinValue)
-        } else if (analogPinNumber === "9") {
-          setAnalogPin9(analogPinValue)
-        } else if (analogPinNumber === "10") {
-          setAnalogPin10(analogPinValue)
-        } else if (analogPinNumber === "11") {
-          setAnalogPin11(analogPinValue)
-        } else if (analogPinNumber === "12") {
-          setAnalogPin12(analogPinValue)
-        } else if (analogPinNumber === "13") {
-          setAnalogPin13(analogPinValue)
-        } else if (analogPinNumber === "14") {
-          setAnalogPin14(analogPinValue)
-        }
+        handleSetAnalogPins(parseInt(analogPinNumber), analogPinValue)
       } else {
         setOutputData((prevState: string) => prevState + String(myReceivedData))
       }

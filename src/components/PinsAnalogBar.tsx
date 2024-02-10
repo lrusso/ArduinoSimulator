@@ -5,24 +5,7 @@ import { useSimulatorContext } from "../contexts/SimulatorContext"
 import { isMega, isNano } from "../../src/utils/service"
 
 const PinsAnalogBar = () => {
-  const {
-    analogPin0,
-    analogPin1,
-    analogPin2,
-    analogPin3,
-    analogPin4,
-    analogPin5,
-    analogPin6,
-    analogPin7,
-    analogPin8,
-    analogPin9,
-    analogPin10,
-    analogPin11,
-    analogPin12,
-    analogPin13,
-    analogPin14,
-    boardType,
-  } = useSimulatorContext()
+  const { analogPins, boardType } = useSimulatorContext()
 
   const isMegaBoard = isMega(boardType)
   const isNanoBoard = isNano(boardType)
@@ -32,27 +15,21 @@ const PinsAnalogBar = () => {
       <div style={styles.noScrollbar}>
         <div style={{ width: isMegaBoard ? "850px" : "550px", ...styles.wrapper }}>
           <PinsAnalogLabel />
-          <PinsAnalogItem value={analogPin0} />
-          <PinsAnalogItem value={analogPin1} />
-          <PinsAnalogItem value={analogPin2} />
-          <PinsAnalogItem value={analogPin3} />
-          <PinsAnalogItem value={analogPin4} />
-          <PinsAnalogItem value={analogPin5} />
+          {analogPins.slice(0, 5).map((pin, index) => (
+            <PinsAnalogItem key={index} gpio_analog={pin} />
+          ))}
           {(isMegaBoard || isNanoBoard) && (
             <>
-              <PinsAnalogItem value={analogPin6} />
-              <PinsAnalogItem value={analogPin7} />
+              {analogPins.slice(6, 7).map((pin, index) => (
+                <PinsAnalogItem key={index} gpio_analog={pin} />
+              ))}
             </>
           )}
           {isMegaBoard && (
             <>
-              <PinsAnalogItem value={analogPin8} />
-              <PinsAnalogItem value={analogPin9} />
-              <PinsAnalogItem value={analogPin10} />
-              <PinsAnalogItem value={analogPin11} />
-              <PinsAnalogItem value={analogPin12} />
-              <PinsAnalogItem value={analogPin13} />
-              <PinsAnalogItem value={analogPin14} />
+              {analogPins.slice(8, 14).map((pin, index) => (
+                <PinsAnalogItem key={index} gpio_analog={pin} />
+              ))}
             </>
           )}
         </div>

@@ -1,11 +1,13 @@
 import React from "react"
 
+import { Gpio_analog } from "../utils/interfaces"
+
 interface PinsAnalogItemProps {
-  value: number
+  gpio_analog: Gpio_analog
 }
 
-const PinsAnalogItem = ({ value }: PinsAnalogItemProps) => {
-  return <div style={styles.container}>{value}</div>
+const PinsAnalogItem = ({ gpio_analog }: PinsAnalogItemProps) => {
+  return <div style={styles.container}>{gpio_analog.duty}</div>
 }
 
 const styles: { [key: string]: React.CSSProperties } = {
