@@ -49,9 +49,9 @@ arr=str1.v.target;i=str1.v.position;tar=str2.v.target;while(i<arr.length&&arr[i]
 return rt.regFunc(_time,"global","time",[rt.longTypeLiteral],rt.longTypeLiteral);}};},{}],10:[function(require,module,exports){module.exports={load:function load(rt){var _plusX,type,typeSig;type=rt.newClass("Foo",[{name:"x",t:rt.intTypeLiteral,initialize:function initialize(rt,_this){return rt.val(rt.intTypeLiteral,2,true);}},{name:"y",t:rt.intTypeLiteral,initialize:function initialize(rt,_this){return rt.val(rt.intTypeLiteral,-2,true);}}]);typeSig=rt.getTypeSignature(type);rt.types[typeSig]["#father"]="object";_plusX=function _plusX(rt,_this,a){var newValue;newValue=_this.v.members["x"].v+a.v;return rt.val(rt.intTypeLiteral,newValue,false);};return rt.regFunc(_plusX,type,"plusX",[rt.intTypeLiteral],rt.intTypeLiteral);}};},{}],11:[function(require,module,exports){module.exports={load:function load(rt){var _addManipulator,_fixed,_setfill,_setprecesion,_setw,oType,type;type=rt.newClass("iomanipulator",[]);oType=rt.simpleType("ostream",[]);_setprecesion=function _setprecesion(rt,_this,x){return{t:type,v:{members:{name:"setprecision",f:function f(config){return config.setprecision=x.v;}}},left:false};};rt.regFunc(_setprecesion,"global","setprecision",[rt.intTypeLiteral],type);_fixed={t:type,v:{members:{name:"fixed",f:function f(config){return config.fixed=true;}}}};rt.scope[0]["fixed"]=_fixed;_setw=function _setw(rt,_this,x){return{t:type,v:{members:{name:"setw",f:function f(config){return config.setw=x.v;}}}};};rt.regFunc(_setw,"global","setw",[rt.intTypeLiteral],type);_setfill=function _setfill(rt,_this,x){return{t:type,v:{members:{name:"setfill",f:function f(config){return config.setfill=String.fromCharCode(x.v);}}}};};rt.regFunc(_setfill,"global","setfill",[rt.charTypeLiteral],type);_addManipulator=function _addManipulator(rt,_cout,m){_cout.manipulators||(_cout.manipulators={config:{},active:{},use:function use(o){var fill,i,j,prec,ref,tarStr;if(rt.isNumericType(o.t)&&!rt.isIntegerType(o.t)){if(this.active.fixed){prec=this.active.setprecision!=null?this.config.setprecision:6;tarStr=o.v.toFixed(prec);}else if(this.active.setprecision!=null){tarStr=o.v.toPrecision(this.config.setprecision).replace(/0+$/,"");}}if(this.active.setw!=null){if(this.active.setfill!=null){fill=this.config.setfill;}else{fill=" ";}if(!(rt.isTypeEqualTo(o.t,rt.charTypeLiteral)&&(o.v===10||o.v===13))){tarStr||(tarStr=rt.isPrimitiveType(o.t)?o.t.name.indexOf("char")>=0?String.fromCharCode(o.v):o.t.name==="bool"?o.v?"1":"0":o.v.toString():rt.isStringType(o.t)?rt.getStringFromCharArray(o):rt.raiseException("<< operator in ostream cannot accept "+rt.makeTypeString(o.t)));for(i=j=0,ref=this.config.setw-tarStr.length;j<ref;i=j+=1){tarStr=fill+tarStr;}delete this.active.setw;}}if(tarStr!=null){return rt.makeCharArrayFromString(tarStr);}else{return o;}}});m.v.members.f(_cout.manipulators.config);_cout.manipulators.active[m.v.members.name]=m.v.members.f;return _cout;};rt.regOperator(_addManipulator,oType,"<<",[type],oType);}};},{}],12:[function(require,module,exports){var _read,_skipSpace;_skipSpace=function _skipSpace(s){var r;r=/^\s*/.exec(s);if(r&&r.length>0){return s.substring(r[0].length);}else{return s;}};_read=function _read(rt,reg,buf,type){var r;r=reg.exec(buf);if(r==null||r.length===0){return rt.raiseException("input format mismatch "+rt.makeTypeString(type)+" with buffer="+buf);}else{return r;}};module.exports={load:function load(rt){var _bool,_cinString,_get,_getline,cin,cout,endl,pchar,stdio,type;stdio=rt.config.stdio;type=rt.newClass("istream",[]);cin={t:type,v:{buf:stdio.drain(),istream:stdio,members:{}},left:false};rt.scope[0]["cin"]=cin;pchar=rt.normalPointerType(rt.charTypeLiteral);rt.types[rt.getTypeSignature(type)]={"#father":"object","o(>>)":{"#default":function _default(rt,_cin,t){var b,len,r,v;if(!t.left){rt.raiseException("only left value can be used as storage");}if(!rt.isPrimitiveType(t.t)){rt.raiseException(">> operator in istream cannot accept "+rt.makeTypeString(t.t));}
 
 // BY LRUSSO.COM
-//b=_cin.v.buf;
-b=mySimulatorInput;
-mySimulatorInput="";
+b=_cin.v.buf;
+// b=mySimulatorInput;
+// mySimulatorInput="";
 
 _cin.v.eofbit=b.length===0;switch(t.t.name){case"char":case"signed char":case"unsigned char":b=_skipSpace(b);r=_read(rt,/^./,b,t.t);v=r[0].charCodeAt(0);break;case"short":case"short int":case"signed short":case"signed short int":case"unsigned short":case"unsigned short int":case"int":case"signed int":case"unsigned":case"unsigned int":case"long":case"long int":case"long int":case"signed long":case"signed long int":case"unsigned long":case"unsigned long int":case"long long":case"long long int":case"long long int":case"signed long long":case"signed long long int":case"unsigned long long":case"unsigned long long int":b=_skipSpace(b);r=_read(rt,/^[-+]?(?:([0-9]*)([eE]\+?[0-9]+)?)|0/,b,t.t);v=parseInt(r[0]);break;case"float":case"double":b=_skipSpace(b);r=_read(rt,/^[-+]?(?:[0-9]*\.[0-9]+([eE][-+]?[0-9]+)?)|(?:([1-9][0-9]*)([eE]\+?[0-9]+)?)/,b,t.t);v=parseFloat(r[0]);break;case"bool":b=_skipSpace(b);r=_read(rt,/^(true|false)/,b,t.t);v=r[0]==="true";break;default:rt.raiseException(">> operator in istream cannot accept "+rt.makeTypeString(t.t));}len=r[0].length;_cin.v.failbit=len===0;
 
@@ -1872,140 +1872,155 @@ if(!add||!isObject(add))return origin;var keys=Object.keys(add);var i=keys.lengt
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // -------------------------------------------------------------------------------------------------------------------
 // ARDUINO SIMULATOR CODE
 // -------------------------------------------------------------------------------------------------------------------
+let jscppInput = "";
+let jscppSerialBuffer = "";
+let jscppSerialBuffer_max_length = 200;
 
-var mySimulator;
-var mySimulatorInput = "";
-var mySimulatorInputArray = [];
-var mySimulatorInputArrayIndex = 0;
-var mySimulatorConfig = {
-			stdio: {
-				write: function(s)
-					{
-					self.postMessage(s);
-					},
-				},
-			debug: true
+
+const bufferAppend = function(text)
+{
+	if (jscppSerialBuffer.length + text.length > jscppSerialBuffer_max_length) return false;
+
+	jscppSerialBuffer += text;
+	return true;
+}
+
+const bufferAvailable = function() {			
+	return jscppSerialBuffer.length > 0;
+}
+
+const bufferReadChar = function() {
+	const firstChar = jscppSerialBuffer[0];
+	jscppSerialBuffer = jscppSerialBuffer.slice(1);
+	return firstChar;
+}
+
+const jscppIncludes = {
+	"arduinoSimulator.h": {
+		load: function (rt) {
+			const pchar = rt.normalPointerType(rt.charTypeLiteral);
+
+			const _jscpp_handleInput = function (rt, _this) {
+				const _input = rt.makeCharArrayFromString(jscppInput);
+				if (jscppInput.includes("_D_") == false && jscppInput.includes("_A_") == false) {
+					bufferAppend(jscppInput);
+				}
+				jscppInput = "";
+				return _input;
 			};
+			rt.regFunc(_jscpp_handleInput, "global", "jscpp_handleInput", [], rt.arrayPointerType);
 
-function startSendingData()
-	{
-	try
-		{
-		// CHECKING IF THE SIMULATOR INPUT IS EMPTY
-		if (mySimulatorInput=="")
-			{
-			// UPDATING THE SIMULATOR INPUT WITH A CHARACTER FROM THE INPUT ARRAY
-			mySimulatorInput = mySimulatorInputArray[mySimulatorInputArrayIndex];
+			const _jscpp_bufferAvailable = function (rt, _this) {
+				return rt.val(rt.intTypeLiteral, bufferAvailable());
+			};
+			rt.regFunc(_jscpp_bufferAvailable, "global", "jscpp_bufferAvailable", [], rt.intTypeLiteral);
 
-			// UPDATING THE INPUT ARRAY INDEX
-			mySimulatorInputArrayIndex = mySimulatorInputArrayIndex + 1;
-			}
+			const _jscpp_bufferReadChar = function (rt, _this) {
+				const newChar = bufferReadChar();
+				return rt.val(rt.intTypeLiteral, newChar.charCodeAt(0));
+			};
+			rt.regFunc(_jscpp_bufferReadChar, "global", "jscpp_bufferReadChar", [], rt.intTypeLiteral);
 
-		// CHECKING IF THE INPUT ARRAY INDEX IS LESS THAN THE INPUT ARRAY LENGTH
-		if (mySimulatorInputArrayIndex<mySimulatorInputArray.length)
-			{
-			// WAITING 1 MS AND LOOPING FOR CHECKING IF THE CHARACTER WAS RECEIVED BY THE BOARD
-			// IN ORDER TO LATER SEND THE PENDING CHARACTERS (IF ANY)
-			setTimeout(startSendingData,1);
-			}
-		}
-		catch(err)
-		{
+			const _jscpp_digitalWrite = function (rt, _this, pin, state) {			
+				self.postMessage({
+					action: Constants.EVENT_DIGITAL_PIN,
+					target: pin.v,
+					value: state.v,
+				});
+
+				return rt.val(rt.intTypeLiteral, 0);
+			};
+			rt.regFunc(_jscpp_digitalWrite, "global", "jscpp_digitalWrite", [rt.intTypeLiteral, rt.intTypeLiteral], rt.intTypeLiteral);
+
+			const _jscpp_analogWrite = function (rt, _this, pin, value) {			
+				self.postMessage({
+					action: Constants.EVENT_ANALOG_PIN,
+					target: pin.v,
+					value: value.v,
+				});
+
+				return rt.val(rt.intTypeLiteral, 0);
+			};
+			rt.regFunc(_jscpp_analogWrite, "global", "jscpp_analogWrite", [rt.intTypeLiteral, rt.intTypeLiteral], rt.intTypeLiteral);
+
+			const _consolelog = function (rt, _this, text) {
+				const str = rt.getStringFromCharArray(text);
+				console.log(str);
+				return rt.val(rt.intTypeLiteral, 0);
+			};
+			rt.regFunc(_consolelog, "global", "consolelog", [pchar], rt.intTypeLiteral);
+
 		}
 	}
+}
 
-self.addEventListener("message", function (e)
+
+let jscppDebugger;
+let jscppDebuggerConfig = {
+	stdio: {
+		write: function (s) {
+			self.postMessage(
+				{
+					action: "EVENT_SERIAL",
+					value: s,
+				});			
+		},
+	},
+	includes: jscppIncludes,
+	debug: true
+};
+
+const Constants = {
+	START_SIMULATION: "START_SIMULATION",
+    EVENT_SIMULATION_STARTED: "SIMULATION_STARTED",
+    EVENT_DIGITAL_PIN: "DIGITAL_PIN_STATUS",
+    EVENT_ANALOG_PIN: "ANALOG_PIN_STATUS",
+	COMMAND_SET_DIGITAL: "COMMAND_SET_DIGITAL",
+	COMMAND_SET_ANALOG: "COMMAND_SET_ANALOG",
+    COMMAND_SEND_SERIAL: "COMMAND_SEND_SERIAL",
+};
+
+self.addEventListener("message", function (e) {
+	try {
+		const data = e.data;			
+			
+		if (data.action == Constants.COMMAND_SET_DIGITAL) {
+			jscppInput = "_D_" + data.target + "_" + data.value;
+		}
+		else if (data.action == Constants.COMMAND_SET_ANALOG) {
+			jscppInput = "_A_" + data.target + "_" + data.value;
+		}
+		else if (data.action == Constants.COMMAND_SEND_SERIAL) {			
+			jscppInput = data.value;
+		}	
+		else if (data.action == Constants.START_SIMULATION) {
+			run_simulator(data);
+		}	
+	}
+	catch (err) {
+	}
+});
+
+function run_simulator(data) {
+	const sketch = data.value;
+	self.postMessage(
 	{
-	try
-		{
-		// GETTING THE DATA FROM THE WEB WORKER MESSAGE
-		var workerMessage = e.data;
-
-		// SETTING THE PREFIX FOR RECEIVING SERIAL DATA FROM THE USER
-		var workerReceivingDataPrefix = "SEND_SERIAL_DATA_ARDUINO_SIMULATOR=";
-
-		// CHECKING IF THE USER SENT SERIAL DATA (NOT THE SKETCH TO BE EXECUTED)
-		if (workerMessage.indexOf(workerReceivingDataPrefix)>-1)
-			{
-			// GETTING THE SERIAL DATA FROM THE USER
-			var finalData = workerMessage.substr(workerReceivingDataPrefix.length,workerMessage.length);
-
-			// CLEARING THE ARRAY THAT WILL ACT AS A BUFFER FOR THE BOARD SIMULATION
-			mySimulatorInputArray = [];
-			mySimulatorInputArrayIndex = 0;
-
-			// GETTING EVERY CHARACTER FROM THE FINALDATA VARIABLE
-			for (var i = 0; i < finalData.length; i++)
-				{
-				// ADDING THE CHARCODE FOR EVERY CHARACTER TO THE INPUT ARRAY
-				mySimulatorInputArray.push(String(finalData.charCodeAt(i)));
-				}
-
-			// START SENDING DATA TO THE BOARD
-			startSendingData();
-			}
-			else
-			{
-			// TELLING THE BROWSER TO ENABLE THE SERIAL MONITOR
-			self.postMessage("ENABLE_SERIAL_MONITOR_ARDUINO_SIMULATOR");
-
-			// RUNNING THE SIMULATOR
-			mySimulator = JSCPP.run(workerMessage, mySimulatorInput, mySimulatorConfig);
-
-			// FUNCTION FOR INFINITE LOOP WITH A DELAY
-			function loop()
-				{
-				// SETTING A LINE COUNTER
-				var lineCounter = 0;
-
-				// GETTING THE SKETCH LINE COUNT
-				var lineCounterMax = workerMessage.split("\n").length;
-
-				// EXECUTING ALL THE LINES OF CODE
-				while(lineCounter<=lineCounterMax)
-					{
-					// UPDATING THE LINE CODE COUNTER
-					lineCounter = lineCounter + 1;
-
-					// RUNNING A LINE CODE
-					try{mySimulator.next()}catch(err){}
-					}
-
-				// WAITING 1 MS FOR ANOTHER LOOP
-				setTimeout(loop, 1);
-				}
-
-			// LOOPING THE LINE CODE RUNNER
-			loop();
-			}
-		}
-		catch(err)
-		{
-		}
+		action: Constants.EVENT_SIMULATION_STARTED
 	});
+
+	jscppDebugger = JSCPP.run(sketch, jscppInput, jscppDebuggerConfig);
+	setInterval(() => {
+		for (let index = 0; index < 100; index++) {
+			jscppDebugger.next();
+		}
+
+		// do
+		// {
+		// 	jscppDebugger.next();			
+		// }
+		// while( jscppDebugger.nextNode().eLine <= jscppDebugger.src.split("\n").length - 2)	
+	}, 0);
+}

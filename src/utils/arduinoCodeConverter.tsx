@@ -1,0 +1,324 @@
+const jssCppCodeInitializer = `#include <iostream>
+#include <ctime>
+#include <stdlib.h>
+#include <cmath>
+#include <string.h>
+#include <iomanip>
+#include <arduinoSimulator.h>
+using namespace std;
+
+// PINMODE IMPLEMENTATION
+const int INPUT = 0;
+const int INPUT_PULLPUP = 1;
+const int OUTPUT = 2;
+const bool LOW = false;
+const bool HIGH = true;
+
+// SETUP AND LOOP PROTOTYPES IMPLEMENTATION
+void setup();
+void loop();
+
+// DIGITAL PINS IMPLEMENTATION
+int _digital_pins_mode[54] = {0};
+bool _digital_pins_state[54] = {false};
+
+// ANALOG PINS IMPLEMENTATION
+int _analog_pins_state[14] = {0};
+
+void pinMode(int selectedpin, int mode) {
+  if(selectedpin >= 0 && selectedpin <=53) {
+    _digital_pins_mode[selectedpin] = mode;
+  }
+}
+
+// SIGNAL IMPLEMENTATION FOR DIGITALWRITE AND ANALOGWRITE
+int getLength(int num) {
+  int length = 0;
+  if (num == 0)
+    return 1;
+  while (num != 0) {
+    num /= 10;
+    length++;
+  }
+  return length;
+}
+
+void intToCharArray(int num, char* result) {
+  if (num == 0) {
+    result[0] = '0';
+    result[1] = '\0'; // Null-terminator
+      return;
+  }
+
+  int length = getLength(num);
+  result[length] = '\0'; // Null-terminator
+
+  while (num > 0) {
+      result[--length] = '0' + num % 10;
+      num /= 10;
+  }
+}
+
+// DIGITALWRITE IMPLEMENTATION   
+void digitalWrite(int pin, bool signal) {
+  if(pin >= 0 && pin <= 53) {
+    if (_digital_pins_mode[pin] == 2) {
+      jscpp_digitalWrite(pin, signal);
+      _digital_pins_state[pin] = signal;
+    }
+  }
+}
+
+// DIGITALREAD IMPLEMENTATION    
+int digitalRead(int pin){
+  return _digital_pins_state[pin];
+}
+
+// ANALOGWRITE IMPLEMENTATION   
+void analogWrite(int pin, int duty) {
+  if(pin >= 0 && pin <= 14) {
+    jscpp_analogWrite(pin, duty);   
+    _analog_pins_state[pin] = duty;            
+  }
+}
+
+// ANALOGREAD IMPLEMENTATION
+int analogRead(int pin){
+  return _analog_pins_state[pin];
+}
+
+// PULSEIN IMPLEMENTATION
+unsigned long pulseIn(int pin, int signal){return 0;}
+
+// SERIAL IMPLEMENTATION   
+int _Serial_Available(){ return jscpp_bufferAvailable();}   
+char _Serial_Read(){ return (char)jscpp_bufferReadChar();}    
+void _Serial_Begin(int baudRate){}
+
+// EEPROM IMPLEMENTATION (WORK IN PROGRESS)
+char _EEPROM_Data[4096] = {0};
+char _EEPROM_Read(int address);
+char _EEPROM_Read(int address){return (char)_EEPROM_Data[address];}
+void _EEPROM_Write(int address, char value);
+void _EEPROM_Write(int address, char value){_EEPROM_Data[address] = value;}
+
+// INT TO CHAR IMPLEMENTATION
+char* _intToChar(int a) {
+  const int BUFFERSIZE = 9;
+  char answer[BUFFERSIZE];
+  char answer2[BUFFERSIZE];
+  int counter = 0;while (a > 0) {
+    answer[counter] = (a % 10 + '0');
+    counter = counter + 1;a = a / 10;
+  }
+  int x = 0;int y = BUFFERSIZE - 1;while(y>-1) {
+    answer2[x] = answer[y];x = x + 1;y = y - 1;
+  }
+  return answer2;
+}
+
+// FRACTION TO CHAR IMPLEMENTATION
+char* _fractionToChar(double a) {
+  int b = a;
+  const int BUFFERSIZE = 9;
+  char answer[BUFFERSIZE];
+  char answer2[BUFFERSIZE];
+  int counter = 0;
+  cout << fixed << setprecision(2);
+  int toAdd = (a - floor(a)) * 100;
+  if (toAdd>0){while (toAdd > 0)
+  {answer[counter] = (toAdd % 10 + '0');
+  counter = counter + 1;toAdd = toAdd / 10;}
+  answer[counter] = '.';
+  counter = counter + 1;}
+    
+  while (b > 0) {
+    answer[counter] = (b % 10 + '0');
+    counter = counter + 1;b = b / 10;
+  }
+  int x = 0;int y = BUFFERSIZE - 1;
+
+  while(y>-1) {
+    answer2[x] = answer[y];x = x + 1;y = y - 1;
+  }
+
+  cout << fixed << setprecision(10);
+  return answer2;
+  }
+
+  void _setDigital(int pin, int state) {
+    _digital_pins_state[pin] = state;                 
+  }
+
+  void _setAnalog(int pin, int value) {
+    _analog_pins_state[pin] = value;            
+  }
+
+  char _jscppInput[200];     
+  int char_to_int(char caracter) { return caracter - '0'; }
+
+  void _handle_jscppInput()
+  {
+    _jscppInput = jscpp_handleInput();
+    if(_jscppInput[0] == '_' && _jscppInput[1] == 'D' && _jscppInput[2] == '_') _setDigital(10 * char_to_int(_jscppInput[3]) + char_to_int(_jscppInput[4]), char_to_int(_jscppInput[6]));
+    if(_jscppInput[0] == '_' && _jscppInput[1] == 'A' && _jscppInput[2] == '_') _setDigital(10 * char_to_int(_jscppInput[3]) + char_to_int(_jscppInput[4]), 100 * char_to_int(_jscppInput[6]) + 10 * char_to_int(_jscppInput[7]) + char_to_int(_jscppInput[8]));
+  }
+ 
+// DELAY IMPLEMENTATION    
+void delay(int milliseconds){int endingDelay=time(0)+(milliseconds/1000);while(time(0)<=endingDelay){ _handle_jscppInput();}}
+
+// DELAYMICROSECONDS IMPLEMENTATION
+void delayMicroseconds(int milliseconds){delay(milliseconds);}
+
+// MAIN IMPLEMENTATION THAT WILL EXECUTE SETUP AND LOOP
+int main(){
+  int internalLoopSystem = 0;
+  cout << fixed << setprecision(10);
+
+  setup();
+  while(true) {          
+    _handle_jscppInput();          
+    loop();
+  }
+  return 0;
+}
+
+ // THE FOLLOWING BREAKLINES ARE NEED IN ORDER TO PREVENT JSCPP TO SHOW ANY OF THE PREVIOUS CODE IF THE USER CODE FAILS
+ \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n`
+
+  // ------------------------------------------------------
+  // COVERTING THE SKETCH IN A CODE THAT JSCPP CAN EXECUTE
+  // ------------------------------------------------------
+export const convertSketch = (sketch: string) => {
+  // FINDING AND REPLACING ALL THE CALLS TO THE SERIAL.BEGIN METHOD
+  sketch = sketch.replace(
+    /(?=(?:[^"]*"[^"]*")*[^"]*$)\bSerial\.begin\b/g,
+    "_Serial_Begin"
+  )
+
+  // FINDING AND REPLACING ALL THE CALLS TO THE SERIAL.PRINT METHOD
+  sketch = sketch.replace(
+    /(?=(?:[^"]*"[^"]*")*[^"]*$)(\bSerial\.print\b)(.*?\);)/g,
+    "cout <<$2"
+  )
+
+  // FINDING AND REPLACING ALL THE CALLS TO THE SERIAL.PRINTLN METHOD
+  sketch = sketch.replace(
+    /(?=(?:[^"]*"[^"]*")*[^"]*$)(\bSerial\.println\b)(.*?\);)/g,
+    'cout <<$2cout << "<br />";'
+  )
+
+  // FINDING AND REPLACING ALL THE CALLS TO THE SERIAL.AVAILABLE METHOD
+  sketch = sketch.replace(
+    /(?=(?:[^"]*"[^"]*")*[^"]*$)\bSerial\.available\b/g,
+    "_Serial_Available"
+  )
+
+  // FINDING AND REPLACING ALL THE CALLS TO THE SERIAL.READ METHOD
+  sketch = sketch.replace(
+    /(?=(?:[^"]*"[^"]*")*[^"]*$)\bSerial\.read\b/g,
+    "_Serial_Read"
+  )
+
+  // REGEX FOR CHECKING IF THE EEPROM IS GOING TO BE INCLUDED
+  const regexEEPROMLibrary = new RegExp(/^#include.*?<EEPROM.h>/gm)
+
+  if (regexEEPROMLibrary.test(sketch)) {
+    // FINDING AND REMOVING THE INCLUDE EEPROM
+    sketch = sketch.replace(/^#include.*?<EEPROM.h>/gm, "")
+
+    // FINDING AND REPLACING ALL THE CALLS TO THE EEPROM.GET METHOD
+    sketch = sketch.replace(
+      /(?=(?:[^"]*"[^"]*")*[^"]*$)\bEEPROM\.get\b/g,
+      "_EEPROM_Read"
+    )
+
+    // FINDING AND REPLACING ALL THE CALLS TO THE EEPROM.READ METHOD
+    sketch = sketch.replace(
+      /(?=(?:[^"]*"[^"]*")*[^"]*$)\bEEPROM\.read\b/g,
+      "_EEPROM_Read"
+    )
+
+    // FINDING AND REPLACING ALL THE CALLS TO THE EEPROM.UPDATE METHOD
+    sketch = sketch.replace(
+      /(?=(?:[^"]*"[^"]*")*[^"]*$)\bEEPROM\.update\b/g,
+      "_EEPROM_Write"
+    )
+
+    // FINDING AND REPLACING ALL THE CALLS TO THE EEPROM.PUT METHOD
+    sketch = sketch.replace(
+      /(?=(?:[^"]*"[^"]*")*[^"]*$)\bEEPROM\.put\b/g,
+      "_EEPROM_Write"
+    )
+
+    // FINDING AND REPLACING ALL THE CALLS TO THE EEPROM.WRITE METHOD
+    sketch = sketch.replace(
+      /(?=(?:[^"]*"[^"]*")*[^"]*$)\bEEPROM\.write\b/g,
+      "_EEPROM_Write"
+    )
+
+    // CONVERTING ALL THE DOUBLE QUOTES TO SINGLE QUOTES IN THE EEPROM.WRITE METHOD
+    sketch = sketch.replace(
+      /(?=(?:[^"]*"[^"]*")*[^"]*$)(\b_EEPROM_Write.*?)(")(.*?)"(\);)/g,
+      "$1'$3'$4"
+    )
+  }
+
+  // FINDING AND REPLACING ALL THE CALLS TO THE PULSEIN FUNCTION
+  sketch = sketch.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bpulseIn\b/g, "_pulseIn")
+
+  // FINDING AND REPLACING ALL THE REFERENCES TO THE BOOLEAN TYPE
+  sketch = sketch.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bboolean \b/g, "bool ")
+
+  // FINDING AND REPLACING ALL THE REFERENCES TO THE BYTE TYPE
+  sketch = sketch.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bbyte \b/g, "unsigned char ")
+
+  // FINDING AND REMOVING ALL THE REFERENCES TO THE STATIC VARIABLES (TEMP WORKAROUND)
+  sketch = sketch.replace(
+    /(?=(?:[^"]*"[^"]*")*[^"]*$)\bstatic unsigned char \b/g,
+    "unsigned char "
+  )
+  sketch = sketch.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bstatic int \b/g, "int ")
+  sketch = sketch.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bstatic long \b/g, "long ")
+  sketch = sketch.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bstatic bool \b/g, "bool ")
+  sketch = sketch.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bstatic float \b/g, "float ")
+  sketch = sketch.replace(
+    /(?=(?:[^"]*"[^"]*")*[^"]*$)\bstatic double \b/g,
+    "double "
+  )
+  sketch = sketch.replace(
+    /(?=(?:[^"]*"[^"]*")*[^"]*$)\bstatic String \b/g,
+    "String "
+  )
+  sketch = sketch.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bstatic char \b/g, "char ")
+  sketch = sketch.replace(
+    /(?=(?:[^"]*"[^"]*")*[^"]*$)\bstatic unsigned \b/g,
+    "unsigned "
+  )
+
+  // FINDING AND REPLACING ALL THE REFERENCES TO THE STRING TYPE
+  sketch = sketch.replace(
+    /(?=(?:[^"]*"[^"]*")*[^"]*$)\b(String )([A-Za-z])/g,
+    "char *$2"
+  )
+
+  // FINDING AND REPLACING ALL THE REFERENCES TO THE CONVERT TO STRING FUNCTION THAT HAS A STRING AS A PARAMETER
+  sketch = sketch.replace(
+    /(?=(?:[^"]*"[^"]*")*[^"]*$)\b(String\()("[A-Za-z].*")\)/g,
+    "$2"
+  )
+
+  // FINDING AND REPLACING ALL THE REFERENCES TO THE CONVERT TO STRING FUNCTION THAT HAS A FRACTION AS A PARAMETER
+  sketch = sketch.replace(
+    /(?=(?:[^"]*"[^"]*")*[^"]*$)\b(String\()([0-9]...*)\)/g,
+    "_fractionToChar($2)"
+  )
+
+  // FINDING AND REPLACING ALL THE REFERENCES TO THE CONVERT TO STRING FUNCTION THAT HAS AN INTEGER AS A PARAMETER
+  sketch = sketch.replace(
+    /(?=(?:[^"]*"[^"]*")*[^"]*$)\b(String\()([0-9].*)\)/g,
+    "_intToChar($2)"
+  )
+
+  return jssCppCodeInitializer + sketch
+}
