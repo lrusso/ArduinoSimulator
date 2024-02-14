@@ -8,10 +8,12 @@ const myWorkerTimestamp = Date.now()
 const startSimulator = (
   setShowLoading: (state: boolean) => void,
   setSimulatorRunning: (state: boolean) => void,
+  handleSetPinMode: (index: number, mode: number) => void,
   handleSetDigitalPins: (index: number, state: boolean) => void,
   handleSetAnalogPins: (index: number, duty: number) => void,
   setOutputData: any
 ) => {
+
   myWorker = new Worker("ArduinoSimulatorInterpreter.js?v=" + myWorkerTimestamp)
     
   myWorker.onmessage = (e: MessageEvent) => {
@@ -20,6 +22,11 @@ const startSimulator = (
 
       if (data.action == Constants.EVENT_SIMULATION_STARTED) {     
         handle_start_simulation(setShowLoading, setSimulatorRunning, setOutputData); 
+      } 
+      else if (data.action == Constants.EVENT_PIN_MODE) {             
+        const pin = parseInt(data.target);
+        const mode = parseInt(data.value);
+        handleSetPinMode(pin, mode);        
       } 
       else if (data.action == Constants.EVENT_DIGITAL_PIN) {        
         const pin = parseInt(data.target);
@@ -48,6 +55,30 @@ const stopSimulator = () => {
     myWorker.terminate()
   } catch (err) {
     // do nothing
+  }
+}
+
+const setDigitalPin = ( pin: number, state: boolean) => {
+  try {
+    myWorker.postMessage({
+      action : Constants.COMMAND_SET_DIGITAL,
+      target: pin,
+      value: state,
+    })
+  } catch (error) {
+    
+  }
+}
+
+const setAnalogPin = ( pin: number, duty: boolean) => {
+  try {
+    myWorker.postMessage({
+      action : Constants.COMMAND_SET_ANALOG,
+      target: pin,
+      value: duty,
+    })
+  } catch (error) {
+    
   }
 }
 
@@ -82,4 +113,4 @@ function handle_start_simulation(setShowLoading: (state: boolean) => void, setSi
   setOutputData("");
 }
 
-export { startSimulator, stopSimulator, sendSerialData, convertSketch }
+export { startSimulator, stopSimulator, sendSerialData, setDigitalPin, setAnalogPin, convertSketch }

@@ -1879,7 +1879,6 @@ let jscppInput = "";
 let jscppSerialBuffer = "";
 let jscppSerialBuffer_max_length = 200;
 
-
 const bufferAppend = function(text)
 {
 	if (jscppSerialBuffer.length + text.length > jscppSerialBuffer_max_length) return false;
@@ -1923,6 +1922,18 @@ const jscppIncludes = {
 				return rt.val(rt.intTypeLiteral, newChar.charCodeAt(0));
 			};
 			rt.regFunc(_jscpp_bufferReadChar, "global", "jscpp_bufferReadChar", [], rt.intTypeLiteral);
+			
+			const _jscpp_pinMode = function (rt, _this, pin, mode) {					
+				self.postMessage({
+					action: Constants.EVENT_PIN_MODE,
+					target: pin.v,
+					value: mode.v,
+				});
+
+				return rt.val(rt.intTypeLiteral, 0);
+			};
+			rt.regFunc(_jscpp_pinMode, "global", "jscpp_pinMode", [rt.intTypeLiteral, rt.intTypeLiteral], rt.intTypeLiteral);
+
 
 			const _jscpp_digitalWrite = function (rt, _this, pin, state) {			
 				self.postMessage({
@@ -1952,11 +1963,9 @@ const jscppIncludes = {
 				return rt.val(rt.intTypeLiteral, 0);
 			};
 			rt.regFunc(_consolelog, "global", "consolelog", [pchar], rt.intTypeLiteral);
-
 		}
 	}
 }
-
 
 let jscppDebugger;
 let jscppDebuggerConfig = {
@@ -1978,6 +1987,7 @@ const Constants = {
     EVENT_SIMULATION_STARTED: "SIMULATION_STARTED",
     EVENT_DIGITAL_PIN: "DIGITAL_PIN_STATUS",
     EVENT_ANALOG_PIN: "ANALOG_PIN_STATUS",
+	EVENT_PIN_MODE: "PIN_MODE",
 	COMMAND_SET_DIGITAL: "COMMAND_SET_DIGITAL",
 	COMMAND_SET_ANALOG: "COMMAND_SET_ANALOG",
     COMMAND_SEND_SERIAL: "COMMAND_SEND_SERIAL",
@@ -1986,19 +1996,19 @@ const Constants = {
 self.addEventListener("message", function (e) {
 	try {
 		const data = e.data;			
-			
-		if (data.action == Constants.COMMAND_SET_DIGITAL) {
-			jscppInput = "_D_" + data.target + "_" + data.value;
+		
+		if (data.action == Constants.START_SIMULATION) {
+			run_simulator(data);
+		}	
+		else if (data.action == Constants.COMMAND_SET_DIGITAL) {
+			jscppInput = "_D_" + data.target.toString().padStart(2, '0') + "_" + data.value;			
 		}
 		else if (data.action == Constants.COMMAND_SET_ANALOG) {
-			jscppInput = "_A_" + data.target + "_" + data.value;
+			jscppInput = "_A_" + data.target.toString().padStart(2, '0') + "_" + data.value.toString().padStart(3, '0');
 		}
 		else if (data.action == Constants.COMMAND_SEND_SERIAL) {			
 			jscppInput = data.value;
-		}	
-		else if (data.action == Constants.START_SIMULATION) {
-			run_simulator(data);
-		}	
+		}			
 	}
 	catch (err) {
 	}
@@ -2006,12 +2016,13 @@ self.addEventListener("message", function (e) {
 
 function run_simulator(data) {
 	const sketch = data.value;
+	jscppDebugger = JSCPP.run(sketch, jscppInput, jscppDebuggerConfig);
+	
 	self.postMessage(
 	{
 		action: Constants.EVENT_SIMULATION_STARTED
 	});
 
-	jscppDebugger = JSCPP.run(sketch, jscppInput, jscppDebuggerConfig);
 	setInterval(() => {
 		for (let index = 0; index < 100; index++) {
 			jscppDebugger.next();

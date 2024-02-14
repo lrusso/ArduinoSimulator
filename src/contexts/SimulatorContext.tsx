@@ -2,12 +2,14 @@
 import React from "react"
 
 import { Gpio, Gpio_Analog } from "../utils/interfaces"
+import { Constants } from "src/utils/constants"
 
 interface SimulatorContextType {
   filename: null | string
   setFilename: React.Dispatch<string>
   boardType: null | string
   setBoardType: React.Dispatch<string>
+  handleSetPinMode: (index: number, mode: number) => void
   digitalPins: null | Gpio[]
   setDigitalPins: React.Dispatch<React.SetStateAction<null | Gpio[]>>
   handleSetDigitalPins: (index: number, state: boolean) => void
@@ -24,15 +26,15 @@ const initializeDigitalPins = Array(54)
   .fill(null)
   .map((_, index) => ({
     pinNumber: index,
-    isInput: false,
-    isEnabled: false,
+    isInput: true,
+    state: false,
   }))
 
 const initializeAnalogPins = Array(16)
   .fill(null)
   .map((_, index) => ({
     pinNumber: index,
-    isInput: false,
+    isInput: true,
     duty: 0,
   }))
 
@@ -41,6 +43,7 @@ const SimulatorContext = React.createContext<SimulatorContextType>({
   setFilename: () => {},
   boardType: null,
   setBoardType: () => {},
+  handleSetPinMode: () => {},
   digitalPins: initializeDigitalPins,
   setDigitalPins: () => {},
   analogPins: initializeAnalogPins,
@@ -57,37 +60,38 @@ export function SimulatorContextProvider({ children }) {
   const [filename, setFilename] = React.useState<string | null>(null)
   const [boardType, setBoardType] = React.useState<string | null>(null)
   const [digitalPins, setDigitalPins] = React.useState<Gpio[]>(initializeDigitalPins)
-  const [analogPins, setAnalogPins] =
-    React.useState<Gpio_Analog[]>(initializeAnalogPins)
+  const [analogPins, setAnalogPins] = React.useState<Gpio_Analog[]>(initializeAnalogPins)
   const [outputData, setOutputData] = React.useState<string>("")
   const [simulatorRunning, setSimulatorRunning] = React.useState<boolean>(false)
 
-  const updateDigitalPin = (pinIndex: number, updatedPin: Gpio) => {
+  const handleSetPinMode = (pinIndex: number, mode: number) => {       
     setDigitalPins((prevDigitalPins) => {
+      const updatedPin = { ...prevDigitalPins[pinIndex] }
+      updatedPin.isInput = mode === Constants.INPUT || mode === Constants.INPUT_PULLPUP
       const newDigitalPins = [...prevDigitalPins]
       newDigitalPins[pinIndex] = updatedPin
       return newDigitalPins
     })
   }
 
-  const handleSetDigitalPins = (pinIndex: number, state: boolean) => {
-    const updatedPin = { ...digitalPins[pinIndex] }
-    updatedPin.isEnabled = state
-    updateDigitalPin(pinIndex, updatedPin)
-  }
-
-  const updateAnalogPin = (pinIndex: number, updatedPin: Gpio_Analog) => {
-    setAnalogPins((prevAnalogPins) => {
-      const newAnalogPins = [...prevAnalogPins]
-      newAnalogPins[pinIndex] = updatedPin
-      return newAnalogPins
+  const handleSetDigitalPins = (pinIndex: number, state: boolean) => {    
+    setDigitalPins((prevDigitalPins) => {
+      const updatedPin = { ...prevDigitalPins[pinIndex] }
+      updatedPin.state = state
+      const newDigitalPins = [...prevDigitalPins]
+      newDigitalPins[pinIndex] = updatedPin
+      return newDigitalPins
     })
   }
 
   const handleSetAnalogPins = (pinIndex: number, duty: number) => {
-    const updatedPin = { ...analogPins[pinIndex] }
-    updatedPin.duty = duty
-    updateAnalogPin(pinIndex, updatedPin)
+    setAnalogPins((prevAnalogsPins) => {
+      const updatedPin = { ...prevAnalogsPins[pinIndex] }
+      updatedPin.duty = duty
+      const newDigitalPins = [...prevAnalogsPins]
+      newDigitalPins[pinIndex] = updatedPin
+      return newDigitalPins
+    })
   }
 
   return (
@@ -97,6 +101,7 @@ export function SimulatorContextProvider({ children }) {
         setFilename: setFilename,
         boardType: boardType,
         setBoardType: setBoardType,
+        handleSetPinMode,
         digitalPins,
         setDigitalPins,
         handleSetDigitalPins,

@@ -5,7 +5,7 @@ import { useSimulatorContext } from "../contexts/SimulatorContext"
 import { isMega } from "../../src/utils/service"
 
 const PinsDigitalBar = () => {
-  const { digitalPins, boardType } = useSimulatorContext()
+  const { digitalPins, setDigitalPins, boardType } = useSimulatorContext()
   const isMegaBoard = isMega(boardType)
 
   return (
@@ -19,12 +19,12 @@ const PinsDigitalBar = () => {
         >
           <PinsDigitalLabel />
           {digitalPins.slice(0, 14).map((pin, index) => (
-            <PinsDigitalItem key={index} gpio={pin} />
+            <PinsDigitalItem key={index} gpio={pin} setDigital={setDigitalPins[index]} />
           ))}
           {isMegaBoard && (
             <>
               {digitalPins.slice(14, 54).map((pin, index) => (
-                <PinsDigitalItem key={index} gpio={pin} />
+                <PinsDigitalItem key={index} gpio={pin} setDigital={setDigitalPins[index]}/>
               ))}
             </>
           )}
@@ -46,8 +46,11 @@ const styles: { [key: string]: React.CSSProperties } = {
     height: "80px",
   },
   wrapper: {
-    float: "left",
-  },
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "baseline",
+    gap: "2px",
+  }
 }
 
 export default PinsDigitalBar

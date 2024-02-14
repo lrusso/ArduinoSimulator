@@ -1,7 +1,7 @@
 export interface Gpio {
   pinNumber: number
   isInput: boolean
-  isEnabled: boolean
+  state: boolean
 }
 
 export interface Gpio_Analog {

@@ -24,10 +24,13 @@ bool _digital_pins_state[54] = {false};
 
 // ANALOG PINS IMPLEMENTATION
 int _analog_pins_state[14] = {0};
+bool _analog_pins_mode[15] = {false};
 
-void pinMode(int selectedpin, int mode) {
-  if(selectedpin >= 0 && selectedpin <=53) {
-    _digital_pins_mode[selectedpin] = mode;
+void pinMode(int pin, int mode) {
+  if(pin >= 0 && pin <=53) {
+    jscpp_pinMode(pin, mode);
+    _digital_pins_mode[pin] = mode;
+    if(pin <= 13) _analog_pins_mode[pin] = mode;
   }
 }
 
@@ -165,7 +168,8 @@ char* _fractionToChar(double a) {
   }
  
 // DELAY IMPLEMENTATION    
-void delay(int milliseconds){int endingDelay=time(0)+(milliseconds/1000);while(time(0)<=endingDelay){ _handle_jscppInput();}}
+void delay(int milliseconds){
+  int endingDelay=time(0)+(milliseconds/1000);while(time(0)<=endingDelay){ _handle_jscppInput();}}
 
 // DELAYMICROSECONDS IMPLEMENTATION
 void delayMicroseconds(int milliseconds){delay(milliseconds);}

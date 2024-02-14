@@ -38,6 +38,7 @@ const Toolbar = () => {
     setFilename,
     boardType,
     setBoardType,
+    handleSetPinMode,
     setDigitalPins,
     handleSetDigitalPins,
     setAnalogPins,
@@ -58,15 +59,15 @@ const Toolbar = () => {
     .fill(null)
     .map((_, index) => ({
       pinNumber: index,
-      isInput: false,
-      isEnabled: false,
+      isInput: true,
+      state: false,
     }))
 
-  const initializeAnalogPins = Array(16)
+  const initializeAnalogPins = Array(14)
     .fill(null)
     .map((_, index) => ({
       pinNumber: index,
-      isInput: false,
+      isInput: true,
       duty: 0,
     }))
 
@@ -152,6 +153,7 @@ const Toolbar = () => {
     startSimulator(
       setShowLoading,
       setSimulatorRunning,
+      handleSetPinMode,
       handleSetDigitalPins,
       handleSetAnalogPins,
       setOutputData

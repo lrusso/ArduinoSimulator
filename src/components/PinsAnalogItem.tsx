@@ -6,7 +6,15 @@ interface PinsAnalogItemProps {
 }
 
 const PinsAnalogItem = ({ gpioAnalog }: PinsAnalogItemProps) => {
-  return <div style={styles.container}>{gpioAnalog.duty}</div>
+  const [age, setAge] = React.useState("");
+
+  const handle_onchange = (e) => {   
+    setAge(e.target.value);
+    // gpioAnalog.duty = (e.target.value);    
+  }
+
+  return <input type="number" style={styles.input} value={age} onChange={handle_onchange}></input>
+  // return <div style={styles.container}></div>
 }
 
 const styles: { [key: string]: React.CSSProperties } = {
@@ -26,6 +34,14 @@ const styles: { [key: string]: React.CSSProperties } = {
     display: "flex",
     cursor: "default",
   },
+  input: {
+    display: "inline-block",
+    background: "#333",
+    margin: "2px",
+    border: "none",
+    width: "40px",
+    color: "white",
+  }
 }
 
 export default PinsAnalogItem

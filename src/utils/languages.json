@@ -1,6 +1,6 @@
 {
   "en": {
-    "EMPTY_SKETCH": "/*\n\nArduino Simulator developed by LRusso.com\n\n*/\n\nvoid setup()\n\t{\n\tSerial.begin(9600);\n\t}\n\nvoid loop()\n\t{\n\t}",
+    "EMPTY_SKETCH":  "int LED_PIN = 0;\nint DCMOTOR_PIN = 5;\nint counter = 0;\n\nvoid setup()\n\t{\n\tSerial.begin(9600);\n\tSerial.println(\"Hello world!\");\n\n\tpinMode(LED_PIN, OUTPUT);\n\tpinMode(DCMOTOR_PIN, OUTPUT);\n\t}\n\nvoid loop()\n\t{\n\tdigitalWrite(LED_PIN, LOW);\n\tanalogWrite(DCMOTOR_PIN, 0);\n\tdelay(1000);\n\n\tcounter++;\n\tSerial.print(counter);\n\n\tdigitalWrite(LED_PIN, HIGH);\n\tanalogWrite(DCMOTOR_PIN, 255);\n\tdelay(1000);\n\n\tSerial.print(\" and looping! \");\n\t}",
     "FILENAME": "Untitled.ino",
     "FILENAME_EMPTY": "Untitled",
     "LOSECHANGES_TITLE": "MESSAGE",
@@ -18,7 +18,7 @@
     "ALL": "All"
   },
   "es": {
-    "EMPTY_SKETCH": "/*\n\nArduino Simulator desarrollado por LRusso.com\n\n*/\n\nvoid setup()\n\t{\n\tSerial.begin(9600);\n\t}\n\nvoid loop()\n\t{\n\t}",
+    "EMPTY_SKETCH":  "int LED_PIN = 0;\nint DCMOTOR_PIN = 5;\nint counter = 0;\n\nvoid setup()\n\t{\n\tSerial.begin(9600);\n\tSerial.println(\"Hello world!\");\n\n\tpinMode(LED_PIN, OUTPUT);\n\tpinMode(DCMOTOR_PIN, OUTPUT);\n\t}\n\nvoid loop()\n\t{\n\tdigitalWrite(LED_PIN, LOW);\n\tanalogWrite(DCMOTOR_PIN, 0);\n\tdelay(1000);\n\n\tcounter++;\n\tSerial.print(counter);\n\n\tdigitalWrite(LED_PIN, HIGH);\n\tanalogWrite(DCMOTOR_PIN, 255);\n\tdelay(1000);\n\n\tSerial.print(\" and looping! \");\n\t}",
     "FILENAME": "Sin nombre.ino",
     "FILENAME_EMPTY": "Sin nombre",
     "LOSECHANGES_TITLE": "MENSAJE",
