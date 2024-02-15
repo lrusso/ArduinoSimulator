@@ -1,6 +1,8 @@
 import React from "react"
 import { Gpio_Analog } from "../utils/interfaces"
 
+import './PinsDigitalItem.css'
+
 interface PinsAnalogItemProps {
   gpioAnalog: Gpio_Analog
 }

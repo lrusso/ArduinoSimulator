@@ -5,6 +5,8 @@ import { useSimulatorContext } from "../contexts/SimulatorContext"
 
 import { Gpio } from "../utils/interfaces"
 
+import './PinsDigitalItem.css'
+
 interface PinsDigitalItemProps {
   gpio: Gpio,
   setDigital: (Number, Boolean) => {},
@@ -21,35 +23,15 @@ const PinsDigitalItem = ({ gpio }: PinsDigitalItemProps) => {
     handleSetDigitalPins(gpio.pinNumber, newState);   
   }
 
-
-  return gpio.isInput ? (
-    <input
-      style={{ ...styles.checkbox }}
-      type="checkbox"
-      checked={gpio.state}
-      onChange={handler_onchange}
-    />
-  ) : (
-    <div style={{ backgroundColor: gpio.state ? "green" : "red", ...styles.led }} />
-  );
-}
-
-const styles: { [key: string]: React.CSSProperties } = {
-  led: {
-    display: "block",
-    width: "18px",
-    marginLeft: "3px",
-    marginRight: "3px",
-    height: "16px",
-    cursor: "default",
-    borderRadius: "50%",
-  },
-
-  checkbox: {   
-    width: "16px",
-    height: "16px",
-    cursor: "default",
-  },
+  return <label className="form-control">
+            <input  
+              type="checkbox"
+              checked={gpio.state}
+              onChange={handler_onchange}
+              disabled={gpio.isInput == false}
+            />
+            1
+          </label>
 }
 
 export default PinsDigitalItem
