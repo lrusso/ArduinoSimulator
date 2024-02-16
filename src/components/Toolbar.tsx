@@ -204,7 +204,7 @@ const Toolbar = () => {
               <IconSearch width={24} height={24} />
             </ToolbarItem>
             <ToolbarSeparator />
-            {/* <ToolbarItem
+            <ToolbarItem
               onClick={simulatorRunning ? undefined : switchBoard}
               disabled={simulatorRunning}
             >
@@ -212,7 +212,7 @@ const Toolbar = () => {
                 boardType={boardType}
                 simulatorRunning={simulatorRunning}
               />
-            </ToolbarItem> */}
+            </ToolbarItem>
             <ToolbarSeparator />
             {simulatorRunning && (
               <ToolbarItem onClick={stopSketch}>
@@ -252,11 +252,12 @@ const Toolbar = () => {
 
 const styles: { [key: string]: React.CSSProperties } = {
   container: {
-    height: "40px",   
+    height: "40px",
+    borderBottom: "thin solid #D3D3D3",
     overflowY: "hidden",
   },
   menu_scroll: {
-    backgroundColor: "#181818",
+    backgroundColor: "#F2F2F2",
     left: 0,
     right: 0,
     paddingTop: 0,

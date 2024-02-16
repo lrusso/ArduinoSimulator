@@ -35,7 +35,8 @@ const styles: { [key: string]: React.CSSProperties } = {
     lineHeight: "32px",
     height: "28px",
     minWidth: "28px",
-    backgroundColor: "#181818",   
+    backgroundColor: "#F2F2F2",
+    border: "thin solid #F2F2F2",
     marginLeft: "3px",
     cursor: "default",
     WebkitUserSelect: "none",
@@ -43,7 +44,6 @@ const styles: { [key: string]: React.CSSProperties } = {
     userSelect: "none",
     paddingTop: "3px",
     paddingBottom: "1px",
-    fill: "#868686",
   },
 }
 

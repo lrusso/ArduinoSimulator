@@ -11,7 +11,6 @@ const PinsAnalogBar = () => {
   const isNanoBoard = isNano(boardType)
 
   return (
-    <form>
     <div style={styles.container}>
       <div style={styles.noScrollbar}>
         <div style={{ width: isMegaBoard ? "850px" : "550px", ...styles.wrapper }}>
@@ -36,7 +35,6 @@ const PinsAnalogBar = () => {
         </div>
       </div>
     </div>
-    </form>
   )
 }
 

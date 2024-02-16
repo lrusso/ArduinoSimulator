@@ -4,14 +4,11 @@ import PinsDigitalItem from "./PinsDigitalItem"
 import { useSimulatorContext } from "../contexts/SimulatorContext"
 import { isMega } from "../../src/utils/service"
 
-import './PinsDigitalItem.css'
-
 const PinsDigitalBar = () => {
   const { digitalPins, setDigitalPins, boardType } = useSimulatorContext()
   const isMegaBoard = isMega(boardType)
 
   return (
-    
     <div style={styles.container}>
       <div style={styles.noScrollbar}>
         <div
