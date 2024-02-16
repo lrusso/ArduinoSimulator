@@ -2,7 +2,7 @@ import React from "react"
 import Editor from "./screens/Editor"
 import { declareLanguageData } from "./utils/languages"
 
-import "./app.css";
+import "./arduino-simulator.v1.0.0.css";
 
 const App = () => {
   const [webLoaded, setWebLoaded] = React.useState<boolean>(false)
