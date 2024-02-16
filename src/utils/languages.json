@@ -15,7 +15,8 @@
     "SEARCH_OF": " of ",
     "REPLACE_WITH": "Replace with",
     "REPLACE": "Replace",
-    "ALL": "All"
+    "ALL": "All",
+    "INTERRUPTS": "INTERRUPTS"
   },
   "es": {
     "EMPTY_SKETCH":  "int LED_PIN = 0;\nint DCMOTOR_PIN = 5;\nint counter = 0;\n\nvoid setup()\n\t{\n\tSerial.begin(9600);\n\tSerial.println(\"Hello world!\");\n\n\tpinMode(LED_PIN, OUTPUT);\n\tpinMode(DCMOTOR_PIN, OUTPUT);\n\t}\n\nvoid loop()\n\t{\n\tdigitalWrite(LED_PIN, LOW);\n\tanalogWrite(DCMOTOR_PIN, 0);\n\tdelay(1000);\n\n\tcounter++;\n\tSerial.print(counter);\n\n\tdigitalWrite(LED_PIN, HIGH);\n\tanalogWrite(DCMOTOR_PIN, 255);\n\tdelay(1000);\n\n\tSerial.print(\" and looping! \");\n\t}",
@@ -33,7 +34,8 @@
     "SEARCH_OF": " de ",
     "REPLACE_WITH": "Reemplazar con",
     "REPLACE": "Reemplazar",
-    "ALL": "Todo"
+    "ALL": "Todo",
+    "INTERRUPTS": "INTERRUPCIONES"
   },
   "it": {
     "EMPTY_SKETCH": "/*\n\nArduino Simulator sviluppato da LRusso.com\n\n*/\n\nvoid setup()\n\t{\n\tSerial.begin(9600);\n\t}\n\nvoid loop()\n\t{\n\t}",

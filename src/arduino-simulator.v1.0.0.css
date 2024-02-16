@@ -34,6 +34,11 @@
     box-shadow: inset -1px 1px 1px rgba(255, 255, 255, .1)
 }
 
+.arduino-simulator .serial_send.isr_button {
+    width: 60px;
+    margin-right: 0px;
+}
+
 .arduino-simulator .serial_send:hover {
     background: #3f3f3f;
     color: #FFF;

@@ -1,51 +1,59 @@
-import React from "react"
-import PinsAnalogLabel from "./PinsAnalogLabel"
-import PinsAnalogItem from "./PinsAnalogItem"
-import { useSimulatorContext } from "../contexts/SimulatorContext"
-import { isMega, isNano } from "../../src/utils/service"
+import React from "react";
+import PinsAnalogLabel from "./PinsAnalogLabel";
+import PinsAnalogItem from "./PinsAnalogItem";
+import PinsISRButton from "./PinsISRButton";
+import PinsISRLabel from "./PinsISRLabel";
+import { useSimulatorContext } from "../contexts/SimulatorContext";
+import { isMega, isNano } from "../../src/utils/service";
 
 const PinsAnalogBar = () => {
-  const { analogPins, boardType } = useSimulatorContext()
+  const { analogPins, boardType } = useSimulatorContext();
 
-  const isMegaBoard = isMega(boardType)
-  const isNanoBoard = isNano(boardType)
+  const isMegaBoard = isMega(boardType);
+  const isNanoBoard = isNano(boardType);
 
   return (
     <div style={styles.container}>
       <div style={styles.noScrollbar}>
-        <div style={{ width: isMegaBoard ? "850px" : "550px", ...styles.wrapper }}>
+        <div
+          style={{ width: isMegaBoard ? "850px" : "550px", ...styles.wrapper }}
+        >
           <PinsAnalogLabel />
           <div className="flex-row">
-          {analogPins.slice(0, 6).map((pin, index) => (
-            <PinsAnalogItem key={index} gpioAnalog={pin} />
-          ))}
-          {(isMegaBoard || isNanoBoard) && (
-            <>
-              {analogPins.slice(6, 8).map((pin, index) => (
-                <PinsAnalogItem key={index} gpioAnalog={pin} />
-              ))}
-            </>
-          )}
-          {isMegaBoard && (
-            <>
-              {analogPins.slice(8, 14).map((pin, index) => (
-                <PinsAnalogItem key={index} gpioAnalog={pin} />
-              ))}
-            </>
-          )}
+            {analogPins.slice(0, 6).map((pin, index) => (
+              <PinsAnalogItem key={index} gpioAnalog={pin} />
+            ))}
+            {(isMegaBoard || isNanoBoard) && (
+              <>
+                {analogPins.slice(6, 8).map((pin, index) => (
+                  <PinsAnalogItem key={index} gpioAnalog={pin} />
+                ))}
+              </>
+            )}
+            {isMegaBoard && (
+              <>
+                {analogPins.slice(8, 14).map((pin, index) => (
+                  <PinsAnalogItem key={index} gpioAnalog={pin} />
+                ))}
+              </>
+            )}
+
+            <PinsISRLabel/> 
+            <PinsISRButton isr_number={1}/>
+            <PinsISRButton isr_number={2}/>
           </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 const styles: { [key: string]: React.CSSProperties } = {
   container: {
     height: "36px",
     overflowY: "hidden",
     borderBottom: "1px solid #363636",
-    marginBottom: "5px"
+    marginBottom: "5px",
   },
   noScrollbar: {
     overflowX: "scroll",
@@ -60,7 +68,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     alignItems: "baseline",
     gap: "2px",
     flexWrap: "nowrap",
-  }
-}
+  },
+};
 
-export default PinsAnalogBar
+export default PinsAnalogBar;
