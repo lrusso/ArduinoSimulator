@@ -1,55 +1,37 @@
-import React from "react"
+import React from "react";
 
-import { setDigitalPin } from "../utils/interpreter"
-import { useSimulatorContext } from "../contexts/SimulatorContext"
+import { setDigitalPin } from "../utils/interpreter";
+import { useSimulatorContext } from "../contexts/SimulatorContext";
 
-import { Gpio } from "../utils/interfaces"
+import { Gpio } from "../utils/interfaces";
 
 interface PinsDigitalItemProps {
-  gpio: Gpio,
-  setDigital: (Number, Boolean) => {},
+  gpio: Gpio;
+  setDigital: (Number, Boolean) => {};
 }
 
-const PinsDigitalItem = ({ gpio }: PinsDigitalItemProps) => {  
-  const {
-    handleSetDigitalPins,
-  } = useSimulatorContext()
+const PinsDigitalItem = ({ gpio }: PinsDigitalItemProps) => {
+  const { handleSetDigitalPins, simulatorRunning } = useSimulatorContext();
 
-  const handler_onchange = (e) => {    
+  const handler_onchange = (e) => {
     const newState = e.target.checked;
-    setDigitalPin(gpio.pinNumber, newState); 
-    handleSetDigitalPins(gpio.pinNumber, newState);   
-  }
+    setDigitalPin(gpio.pinNumber, newState);
+    handleSetDigitalPins(gpio.pinNumber, newState);
+  };
 
-
-  return gpio.isInput ? (
-    <input
-      style={{ ...styles.checkbox }}
-      type="checkbox"
-      checked={gpio.state}
-      onChange={handler_onchange}
-    />
-  ) : (
-    <div style={{ backgroundColor: gpio.state ? "green" : "red", ...styles.led }} />
+  return (
+    <div className="pindigitalitem-container">
+      <label>
+        <input         
+          type="checkbox"
+          checked={gpio.state}
+          onChange={handler_onchange}
+          disabled={simulatorRunning == false || !gpio.isInput}
+        />
+        {gpio.pinNumber}
+      </label>
+    </div>
   );
-}
+};
 
-const styles: { [key: string]: React.CSSProperties } = {
-  led: {
-    display: "block",
-    width: "18px",
-    marginLeft: "3px",
-    marginRight: "3px",
-    height: "16px",
-    cursor: "default",
-    borderRadius: "50%",
-  },
-
-  checkbox: {   
-    width: "16px",
-    height: "16px",
-    cursor: "default",
-  },
-}
-
-export default PinsDigitalItem
+export default PinsDigitalItem;

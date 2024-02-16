@@ -18,16 +18,18 @@ const PinsDigitalBar = () => {
           }}
         >
           <PinsDigitalLabel />
-          {digitalPins.slice(0, 14).map((pin, index) => (
-            <PinsDigitalItem key={index} gpio={pin} setDigital={setDigitalPins[index]} />
-          ))}
-          {isMegaBoard && (
-            <>
-              {digitalPins.slice(14, 54).map((pin, index) => (
-                <PinsDigitalItem key={index} gpio={pin} setDigital={setDigitalPins[index]}/>
-              ))}
-            </>
-          )}
+          <div className="flex-row">
+            {digitalPins.slice(0, 14).map((pin, index) => (
+              <PinsDigitalItem key={index} gpio={pin} setDigital={setDigitalPins[index]} />
+            ))}
+            {isMegaBoard && (
+              <>
+                {digitalPins.slice(14, 54).map((pin, index) => (
+                  <PinsDigitalItem key={index} gpio={pin} setDigital={setDigitalPins[index]}/>
+                ))}
+              </>
+            )}
+          </div>
         </div>
       </div>
     </div>
@@ -36,7 +38,7 @@ const PinsDigitalBar = () => {
 
 const styles: { [key: string]: React.CSSProperties } = {
   container: {
-    height: "26px",
+    height: "36px",
     overflowY: "hidden",
   },
   noScrollbar: {

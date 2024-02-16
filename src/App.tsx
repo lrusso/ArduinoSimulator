@@ -2,6 +2,8 @@ import React from "react"
 import Editor from "./screens/Editor"
 import { declareLanguageData } from "./utils/languages"
 
+import "./app.css";
+
 const App = () => {
   const [webLoaded, setWebLoaded] = React.useState<boolean>(false)
 

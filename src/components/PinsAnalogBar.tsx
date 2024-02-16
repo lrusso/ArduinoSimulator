@@ -15,6 +15,7 @@ const PinsAnalogBar = () => {
       <div style={styles.noScrollbar}>
         <div style={{ width: isMegaBoard ? "850px" : "550px", ...styles.wrapper }}>
           <PinsAnalogLabel />
+          <div className="flex-row">
           {analogPins.slice(0, 6).map((pin, index) => (
             <PinsAnalogItem key={index} gpioAnalog={pin} />
           ))}
@@ -32,6 +33,7 @@ const PinsAnalogBar = () => {
               ))}
             </>
           )}
+          </div>
         </div>
       </div>
     </div>
@@ -40,7 +42,7 @@ const PinsAnalogBar = () => {
 
 const styles: { [key: string]: React.CSSProperties } = {
   container: {
-    height: "26px",
+    height: "36px",
     overflowY: "hidden",
   },
   noScrollbar: {
