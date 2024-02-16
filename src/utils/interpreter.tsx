@@ -23,13 +23,18 @@ const startSimulator = (
       if (data.action == Constants.EVENT_SIMULATION_STARTED) {     
         handle_start_simulation(setShowLoading, setSimulatorRunning, setOutputData); 
       } 
+      else if (data.action == Constants.EVENT_SIMULATION_ERROR) {     
+        setOutputData("Unable to run Sketch. Could be and error in check or a using funtionality not implemented in simulator\n" + data.value);        
+        stopSimulator();
+        setShowLoading(false);
+      } 
       else if (data.action == Constants.EVENT_PIN_MODE) {             
         const pin = parseInt(data.target);
         const mode = parseInt(data.value);
         handleSetPinMode(pin, mode);        
       } 
       else if (data.action == Constants.EVENT_DIGITAL_PIN) {        
-        const pin = parseInt(data.target);
+        const pin = parseInt(data.target);        
         const state = parseInt(data.value) > 0;
         handleSetDigitalPins(pin, state);        
       } 
@@ -59,7 +64,7 @@ const stopSimulator = () => {
 }
 
 const setDigitalPin = ( pin: number, state: boolean) => {
-  try {
+  try {    
     myWorker.postMessage({
       action : Constants.COMMAND_SET_DIGITAL,
       target: pin,

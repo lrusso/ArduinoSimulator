@@ -14,6 +14,31 @@ const int OUTPUT = 2;
 const bool LOW = false;
 const bool HIGH = true;
 
+const int A0 = 0;
+const int A1 = 1;
+const int A2 = 2;
+const int A3 = 3;
+const int A4 = 4;
+const int A5 = 5;
+const int A6 = 6;
+const int D0 = 0;
+const int D1 = 1;
+const int D2 = 2;
+const int D3 = 3;
+const int D4 = 4;
+const int D5 = 5;
+const int D6 = 6;
+const int D7 = 7;
+const int D8 = 8;
+const int D9 = 9;
+const int D10 = 10;
+const int D11 = 11;
+const int D12 = 12;
+const int D13 = 13;
+const int D14 = 14;
+
+
+
 // SETUP AND LOOP PROTOTYPES IMPLEMENTATION
 void setup();
 void loop();
@@ -149,11 +174,11 @@ char* _fractionToChar(double a) {
   return answer2;
   }
 
-  void _setDigital(int pin, int state) {
-    _digital_pins_state[pin] = state;                 
+  void _setDigital(int pin, int state) {    
+    _digital_pins_state[pin] = state;
   }
 
-  void _setAnalog(int pin, int value) {
+  void _setAnalog(int pin, int value) {    
     _analog_pins_state[pin] = value;            
   }
 
@@ -161,10 +186,10 @@ char* _fractionToChar(double a) {
   int char_to_int(char caracter) { return caracter - '0'; }
 
   void _handle_jscppInput()
-  {    
+  {       
     _jscppInput = jscpp_handleInput();
     if(_jscppInput[0] == '_' && _jscppInput[1] == 'D' && _jscppInput[2] == '_') _setDigital(10 * char_to_int(_jscppInput[3]) + char_to_int(_jscppInput[4]), char_to_int(_jscppInput[6]));
-    if(_jscppInput[0] == '_' && _jscppInput[1] == 'A' && _jscppInput[2] == '_') _setAnalog(10 * char_to_int(_jscppInput[3]) + char_to_int(_jscppInput[4]), 100 * char_to_int(_jscppInput[6]) + 10 * char_to_int(_jscppInput[7]) + char_to_int(_jscppInput[8]));
+    if(_jscppInput[0] == '_' && _jscppInput[1] == 'A' && _jscppInput[2] == '_') _setAnalog(10 * char_to_int(_jscppInput[3]) + char_to_int(_jscppInput[4]), 1000 * char_to_int(_jscppInput[6]) + 100 * char_to_int(_jscppInput[7]) + 10 * char_to_int(_jscppInput[8]) + char_to_int(_jscppInput[9]));
   }
  
 // DELAY IMPLEMENTATION    
@@ -186,9 +211,7 @@ int main(){
   }
   return 0;
 }
-
- // THE FOLLOWING BREAKLINES ARE NEED IN ORDER TO PREVENT JSCPP TO SHOW ANY OF THE PREVIOUS CODE IF THE USER CODE FAILS
- \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n`
+ `
 
   // ------------------------------------------------------
   // COVERTING THE SKETCH IN A CODE THAT JSCPP CAN EXECUTE
