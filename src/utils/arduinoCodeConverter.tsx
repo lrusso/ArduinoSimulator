@@ -161,10 +161,10 @@ char* _fractionToChar(double a) {
   int char_to_int(char caracter) { return caracter - '0'; }
 
   void _handle_jscppInput()
-  {
+  {    
     _jscppInput = jscpp_handleInput();
     if(_jscppInput[0] == '_' && _jscppInput[1] == 'D' && _jscppInput[2] == '_') _setDigital(10 * char_to_int(_jscppInput[3]) + char_to_int(_jscppInput[4]), char_to_int(_jscppInput[6]));
-    if(_jscppInput[0] == '_' && _jscppInput[1] == 'A' && _jscppInput[2] == '_') _setDigital(10 * char_to_int(_jscppInput[3]) + char_to_int(_jscppInput[4]), 100 * char_to_int(_jscppInput[6]) + 10 * char_to_int(_jscppInput[7]) + char_to_int(_jscppInput[8]));
+    if(_jscppInput[0] == '_' && _jscppInput[1] == 'A' && _jscppInput[2] == '_') _setAnalog(10 * char_to_int(_jscppInput[3]) + char_to_int(_jscppInput[4]), 100 * char_to_int(_jscppInput[6]) + 10 * char_to_int(_jscppInput[7]) + char_to_int(_jscppInput[8]));
   }
  
 // DELAY IMPLEMENTATION    

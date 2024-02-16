@@ -1,21 +1,33 @@
-import React from "react"
-import { Gpio_Analog } from "../utils/interfaces"
+import React from "react";
+import { Gpio_Analog } from "../utils/interfaces";
+
+import { setAnalogPin } from "../utils/interpreter";
+import { useSimulatorContext } from "../contexts/SimulatorContext";
 
 interface PinsAnalogItemProps {
-  gpioAnalog: Gpio_Analog
+  gpioAnalog: Gpio_Analog;
 }
 
 const PinsAnalogItem = ({ gpioAnalog }: PinsAnalogItemProps) => {
-  const [age, setAge] = React.useState("");
+  const { handleSetDigitalPins } = useSimulatorContext();
 
-  const handle_onchange = (e) => {   
-    setAge(e.target.value);
-    // gpioAnalog.duty = (e.target.value);    
-  }
+  const handler_onchange = (e) => {
+    const newValue = e.target.value;
+    gpioAnalog.duty = e.target.value;
+    setAnalogPin(gpioAnalog.pinNumber, newValue);
+    handleSetDigitalPins(gpioAnalog.pinNumber, newValue);
+  };
 
-  return <input type="number" style={styles.input} value={age} onChange={handle_onchange}></input>
-  // return <div style={styles.container}></div>
-}
+  return (
+    <input
+      type="number"
+      style={styles.input}
+      value={gpioAnalog.duty}
+      onChange={handler_onchange}
+      disabled={!gpioAnalog.isInput}
+    ></input>
+  );
+};
 
 const styles: { [key: string]: React.CSSProperties } = {
   container: {
@@ -41,7 +53,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     border: "none",
     width: "40px",
     color: "white",
-  }
-}
+  },
+};
 
-export default PinsAnalogItem
+export default PinsAnalogItem;

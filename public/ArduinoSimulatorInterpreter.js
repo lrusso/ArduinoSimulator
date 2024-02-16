@@ -2003,7 +2003,7 @@ self.addEventListener("message", function (e) {
 		else if (data.action == Constants.COMMAND_SET_DIGITAL) {
 			jscppInput = "_D_" + data.target.toString().padStart(2, '0') + "_" + data.value;			
 		}
-		else if (data.action == Constants.COMMAND_SET_ANALOG) {
+		else if (data.action == Constants.COMMAND_SET_ANALOG) {			
 			jscppInput = "_A_" + data.target.toString().padStart(2, '0') + "_" + data.value.toString().padStart(3, '0');
 		}
 		else if (data.action == Constants.COMMAND_SEND_SERIAL) {			

@@ -72,6 +72,14 @@ export function SimulatorContextProvider({ children }) {
       newDigitalPins[pinIndex] = updatedPin
       return newDigitalPins
     })
+
+    setAnalogPins((prevAnalogPins) => {
+      const updatedPin = { ...prevAnalogPins[pinIndex] }
+      updatedPin.isInput = mode === Constants.INPUT || mode === Constants.INPUT_PULLPUP
+      const newDigitalPins = [...prevAnalogPins]
+      newDigitalPins[pinIndex] = updatedPin
+      return newDigitalPins
+    })
   }
 
   const handleSetDigitalPins = (pinIndex: number, state: boolean) => {    
