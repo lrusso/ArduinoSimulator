@@ -44,6 +44,8 @@ const styles: { [key: string]: React.CSSProperties } = {
   container: {
     height: "36px",
     overflowY: "hidden",
+    borderBottom: "1px solid #363636",
+    marginBottom: "5px"
   },
   noScrollbar: {
     overflowX: "scroll",
@@ -52,8 +54,13 @@ const styles: { [key: string]: React.CSSProperties } = {
     height: "80px",
   },
   wrapper: {
-    float: "left",
-  },
+    display: "flex",
+    flexBasis: "0",
+    flexDirection: "row",
+    alignItems: "baseline",
+    gap: "2px",
+    flexWrap: "nowrap",
+  }
 }
 
 export default PinsAnalogBar

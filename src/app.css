@@ -1,23 +1,157 @@
 :root {
     --form-control-color: #0078d4;
-    --form-control-disabled: #555455;
+    --form-control-disabled: #555;
     --foreground: #959495;
-    --accent-color: #0283e7;
+    --accent-color: #8a5cf5;
+}
+
+.arduinosimulator_menu_item:hover {
+
+    cursor: pointer !important
+}
+
+.arduinosimulator_menu_item:hover svg {
+
+    fill: #ddd;
+}
+
+.pindigitalitem-container:has(input:disabled) > *  ,
+.pinanalogitem-container:has(input:disabled) > *  {
+    color: var(--form-control-disabled);    
+}
+
+.arduino-simulator .serial_send {
+    margin-left: 2px;
+    font-size: 13px;
+    border: 1px solid #444;
+    background: #363636;
+    height: 28px;
+    width: 99px;
+    margin-right: 5px;
+    -webkit-appearance: none;
+    border-radius: 6px;
+    color: #DADADA;
+    box-shadow: inset -1px 1px 1px rgba(255, 255, 255, .1)
+}
+
+.arduino-simulator .serial_send:hover {
+    background: #3f3f3f;
+    color: #FFF;
+}
+
+.arduino-simulator .serial_send:disabled {
+    border: 1px solid #444;
+    background: #272727;
+} 
+
+@media (pointer: coarse) {
+    .arduinosimulator_menu_item:hover {
+        background: #181818 !important;
+        border: thin solid #181818 !important
+    }
+}
+
+.arduino-simulator .serialData {
+    position: fixed;            
+    left: 5px;
+    right: 5px;
+    bottom: 0;
+    height: 134px;
+    border-radius: 8px; 
+    overflow: hidden;
+  }
+  
+  .arduino-simulator .serialData-inner {
+    margin: 0px;  
+    height: 125px;
+    background: #222;
+    border: 1px solid #95949543;
+    overflow: hidden;
+    overflow-y: scroll;  
+    border-radius: 5px; 
+    transition: all ease 0.3s;    
+  }
+  
+  .arduino-simulator .serialData-inner.disabled { 
+    background: transparent;
+} 
+
+
+  .arduino-simulator .serialData-data {
+    padding: 10px;
+    white-space: pre-line;
+    font-family: monospace;
+    overflow-wrap: break-word;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    user-select: text;
   }
 
-  .flex-row {
+svg {
+    fill: #999;
+}
+
+* {
+    color: #aaa
+}
+
+.flex-row {
     display: flex;
     gap: 1rem;
-  }
+}
+
+
+/* Firefox */
+.serialInput {
+    -moz-appearance: textfield;
+}
+
+.serialInput {
+    width: 40rem;
+    margin: 0 4px 0 4px;
+    background: #333;
+    font-size: 0.9rem;
+    border: 1px solid #95949543;
+    border-radius: 8px;
+    padding-right: 10px;
+    transition: all 0.3s ease;
+}
+
+.serialInput:focus {
+    outline: none;
+}
+
+.serialInput:disabled { 
+    background: #2b2f3925;
+    border: 0.1px solid var(--form-control-disabled);
+    color: var(--form-control-disabled);
+    cursor: not-allowed;
+}
+
+.pindigitalitem-container > * {
+    font-weight: bold;   
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.pinanalogitem-container>* {
+    font-weight: bold;    
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    gap: 0.5em;
+}
 
 .pindigitalitem-container input[type="checkbox"] {
     -webkit-appearance: none;
     appearance: none;
-    background-color: #2c303a;
+    background: #333;
     margin: 0;
     color: var(--foreground);
-    width: 1.15em;
-    height: 1.15em;
+    width: 1.25em;
+    height: 1.25em;
     border: 0.1em solid #959495;
     border-radius: 0.15em;
     transform: translateY(-0.075em);
@@ -27,22 +161,22 @@
 
 .pindigitalitem-container input[type="checkbox"]::before {
     content: "";
-    width: 0.65em;
-    height: 0.65em;
+    width: 0.75em;
+    height: 0.75em;
     transform: scale(0);
     transition: 120ms transform ease-in-out;
     box-shadow: inset 1em 1em var(--accent-color);
     transform: scale(0);
 }
 
-.pindigitalitem-container input[type="checkbox"]:checked::before {    
+.pindigitalitem-container input[type="checkbox"]:checked::before {
     transform: scale(1);
 }
 
 .pindigitalitem-container input[type="checkbox"]:disabled {
     --form-control-color: var(--form-control-disabled);
     border-radius: 50%;
-    background: #2c303a;
+    background: #333;
     box-shadow: inset #111 0 -1px 8px;
     border: 0.1em solid #555;
     color: var(--form-control-disabled);
@@ -54,19 +188,15 @@
     transform: scale(0);
 }
 
-.pindigitalitem-container input[type="checkbox"].active:disabled {
+.pindigitalitem-container input[type="checkbox"]:checked:disabled {
     background: #24E0FF;
     border: 0.15em solid #555;
-    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 2px 1px, inset #006 0 0 5px, #3F8CFF 0 0 8px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 2px 1px, inset #006 0 0 3px, #3F8CFF 0 0 3px;
 }
 
-
-.pinaanalogitem-container {
-   
+.pinanalogitem-container {
     border-radius: 16px;
-    
     font-size: 1rem;
-    font-family: Arial;
     color: white;
     justify-content: center;
     align-items: center;
@@ -74,38 +204,37 @@
     cursor: default;
 }
 
-.pinaanalogitem-container input::-webkit-outer-spin-button,
-.pinaanalogitem-container input::-webkit-inner-spin-button {
+.pinanalogitem-container input::-webkit-outer-spin-button,
+.pinanalogitem-container input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
 
 /* Firefox */
-.pinaanalogitem-container input[type=number] {
+.pinanalogitem-container input[type=number] {
     -moz-appearance: textfield;
 }
 
-.pinaanalogitem-container input[type="number"] {
+.pinanalogitem-container input[type="number"] {
     width: 3rem;
-    background: #2c303a;
-    font-size: 1.2rem;
-    border: 0.15em solid #959495;
+    background: #333;
+    font-size: 1rem;
+    border: 1px solid #959495;
     border-radius: 5px;
     padding-right: 10px;
-    color: var(--accent-color);
+    font-size: 0.9rem;
     text-align: right;
-    font-weight: bold;
 }
 
-.pinaanalogitem-container input[type="number"]:focus {
+.pinanalogitem-container input[type="number"]:focus {
     outline: none;
 }
 
-.pinaanalogitem-container input[type="number"]:disabled {
+.pinanalogitem-container input[type="number"]:disabled {
     width: 3rem;
     background: #2b2f3925;
-    border: 0.15em solid var(--form-control-disabled);
-    color: var(--form-control-disabled);
-    border-radius: 3rem;
+    border: 1px solid var(--form-control-disabled);
+    color: var(--form-control-disabled);    
     cursor: not-allowed;
 }
+

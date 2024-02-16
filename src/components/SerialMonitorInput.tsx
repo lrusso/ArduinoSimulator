@@ -30,47 +30,15 @@ const SerialMonitorInput = ({
   return (
     <input
       ref={refInput}
+      className="serialInput"
       type="text"
       value={value}
       onChange={_onChange}
       onKeyUp={_onKeyUp}
       readOnly={!simulatorRunning}
-      style={simulatorRunning ? styles.enabled : styles.disabled}
+      disabled={!simulatorRunning}    
     />
   )
-}
-
-const styles: { [key: string]: React.CSSProperties } = {
-  enabled: {
-    flex: 2,
-    borderRadius: 0,
-    marginLeft: "5px",
-    marginBottom: "7px",
-    marginRight: "3px",
-    border: "1px solid silver",
-    outline: "none",
-    fontFamily: "Arial",
-    fontSize: "13px",
-    height: "18px",
-    padding: "4px",
-    WebkitAppearance: "none",
-  },
-  disabled: {
-    flex: 2,
-    borderRadius: 0,
-    marginLeft: "5px",
-    marginBottom: "7px",
-    marginRight: "3px",
-    border: "1px solid silver",
-    outline: "none",
-    fontFamily: "Arial",
-    fontSize: "13px",
-    height: "18px",
-    padding: "4px",
-    cursor: "default",
-    WebkitAppearance: "none",
-    backgroundColor: "#D9D9D9",
-  },
 }
 
 export default SerialMonitorInput

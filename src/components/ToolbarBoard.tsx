@@ -11,7 +11,7 @@ const ToolbarBoard = ({ boardType, simulatorRunning }: ToolbarBoardProps) => {
   return (
     <div style={styles.container}>
       <IconBoard width={28} height={28} enabled={!simulatorRunning} />
-      <div style={{ color: simulatorRunning ? "#D3D3D3" : "#000", ...styles.label }}>
+      <div style={{ color: simulatorRunning ? "#363636" : "#000", ...styles.label }}>
         {boardType ? boardType : getBoards()[0]}
       </div>
     </div>
@@ -30,7 +30,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
   label: {
     float: "left",
-    fontFamily: "Arial",
+    fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
     fontSize: "13px",
     lineHeight: 2.7,
     marginLeft: "6px",

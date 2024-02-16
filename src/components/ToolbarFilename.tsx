@@ -21,11 +21,11 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
   label: {
     float: "left",
-    fontFamily: "Arial",
+    fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
     fontSize: "13px",
     lineHeight: 2.7,
     marginLeft: "6px",
-    marginRight: "0px",
+    marginRight: "1rem",
     cursor: "default",
     WebkitUserSelect: "none",
     MozUserSelect: "none",

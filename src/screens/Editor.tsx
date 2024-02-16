@@ -8,7 +8,7 @@ import SerialMonitor from "../components/SerialMonitor"
 
 const Editor = () => {
   return (
-    <>
+    <div className="arduino-simulator">
       <Toolbar />
       <CodeEditor />
       <BottomPanel>
@@ -16,7 +16,7 @@ const Editor = () => {
         <PinsAnalogBar />
         <SerialMonitor />
       </BottomPanel>
-    </>
+    </div>
   )
 }
 

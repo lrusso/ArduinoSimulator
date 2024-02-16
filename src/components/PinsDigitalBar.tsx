@@ -40,6 +40,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   container: {
     height: "36px",
     overflowY: "hidden",
+    paddingTop: "6px",
   },
   noScrollbar: {
     overflowX: "scroll",
@@ -47,8 +48,9 @@ const styles: { [key: string]: React.CSSProperties } = {
     outline: "none",
     height: "80px",
   },
-  wrapper: {
+  wrapper: {    
     display: "flex",
+    flexBasis: "0",
     flexDirection: "row",
     alignItems: "baseline",
     gap: "2px",

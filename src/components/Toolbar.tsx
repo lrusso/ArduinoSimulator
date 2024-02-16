@@ -167,22 +167,13 @@ const Toolbar = () => {
     setSimulatorRunning(false)
   }
 
-  React.useEffect(() => {
-    const styleNode = document.createElement("style")
-    const styleText = `
-      .arduinosimulator_menu_item:hover{background-color:#E3E3E3 !important;border:thin solid #D3D3D3 !important;cursor:pointer !important}
-      @media (pointer: coarse) { .arduinosimulator_menu_item:hover{background-color:#F2F2F2 !important;border:thin solid #F2F2F2 !important}
-    `
-    const styleTextNode = document.createTextNode(styleText)
-    styleNode.appendChild(styleTextNode)
-    document.getElementsByTagName("head")[0].appendChild(styleNode)
-  }, [])
-
   return (
     <>
       <div style={styles.container}>
         <div style={styles.menu_scroll}>
           <div style={styles.menu_wrapper}>
+            <ToolbarFilename />
+            <ToolbarSeparator />    
             <ToolbarItem onClick={newFile}>
               <IconNew width={16} height={16} />
             </ToolbarItem>
@@ -193,27 +184,11 @@ const Toolbar = () => {
               <IconSave width={16} height={16} />
             </ToolbarItem>
             <ToolbarSeparator />
-            <ToolbarItem onClick={editorUndo}>
-              <IconUndo width={16} height={16} />
-            </ToolbarItem>
-            <ToolbarItem onClick={editorRedo}>
-              <IconRedo width={16} height={16} />
-            </ToolbarItem>
-            <ToolbarSeparator />
             <ToolbarItem onClick={editorSearch}>
               <IconSearch width={24} height={24} />
             </ToolbarItem>
             <ToolbarSeparator />
-            <ToolbarItem
-              onClick={simulatorRunning ? undefined : switchBoard}
-              disabled={simulatorRunning}
-            >
-              <ToolbarBoard
-                boardType={boardType}
-                simulatorRunning={simulatorRunning}
-              />
-            </ToolbarItem>
-            <ToolbarSeparator />
+                    
             {simulatorRunning && (
               <ToolbarItem onClick={stopSketch}>
                 <IconStop width={17} height={17} />
@@ -224,8 +199,6 @@ const Toolbar = () => {
                 <IconStart width={17} height={17} />
               </ToolbarItem>
             )}
-            <ToolbarSeparator />
-            <ToolbarFilename />
           </div>
         </div>
       </div>
@@ -253,11 +226,11 @@ const Toolbar = () => {
 const styles: { [key: string]: React.CSSProperties } = {
   container: {
     height: "40px",
-    borderBottom: "thin solid #D3D3D3",
+    borderBottom: "thin solid #363636",
     overflowY: "hidden",
   },
   menu_scroll: {
-    backgroundColor: "#F2F2F2",
+    backgroundColor: "#181818",
     left: 0,
     right: 0,
     paddingTop: 0,
@@ -267,7 +240,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     overflowY: "hidden",
     outline: "none",
     textAlign: "center",
-    fontFamily: "Arial",
+    fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
     fontSize: "13px",
   },
   menu_wrapper: {

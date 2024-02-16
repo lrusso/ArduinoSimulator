@@ -19,7 +19,7 @@ const PinsAnalogItem = ({ gpioAnalog }: PinsAnalogItemProps) => {
   };
 
   return (
-    <div className="pinaanalogitem-container">
+    <div className="pinanalogitem-container">
     <label>
         <input
           type="number"
