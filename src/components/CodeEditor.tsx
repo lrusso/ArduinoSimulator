@@ -44,19 +44,20 @@ const CodeEditor = () => {
 
 const styles: { [key: string]: React.CSSProperties } = {
   container: {
+    background: "#1f1f1f",
     position: "fixed",
     padding: 0,
     margin: 0,
     left: 0,
     top: "41px",
-    bottom: "252px",
+    bottom: "281px",
     right: 0,
   },
   editor: {
     position: "absolute",
-    top: 0,
+    top: "10px",
     right: 0,
-    bottom: 0,
+    bottom: "10px",
     left: 0,
   },
 }
