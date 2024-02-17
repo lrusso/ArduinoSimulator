@@ -7,9 +7,11 @@ const jssCppCodeInitializer = `#include <iostream>
 #include <arduinoSimulator.h>
 using namespace std;
 
+unsigned long _startTime = 0;
+
 // PINMODE IMPLEMENTATION
 const int INPUT = 0;
-const int INPUT_PULLPUP = 1;
+const int INPUT_PULLUP = 1;
 const int OUTPUT = 2;
 const bool LOW = false;
 const bool HIGH = true;
@@ -80,8 +82,8 @@ void setup();
 void loop();
 
 // DIGITAL PINS IMPLEMENTATION
-int _digital_pins_mode_prev[54] = {0};
 int _digital_pins_mode[54] = {0};
+bool _digital_pins_state_prev[54] = {false};
 bool _digital_pins_state[54] = {false};
 
 // ANALOG PINS IMPLEMENTATION
@@ -232,11 +234,12 @@ char* _fractionToChar(double a) {
   }
 
   void _setDigital(int pin, int state) {
-    _digital_pins_mode_prev[pin] = _digital_pins_state[pin];
-    _digital_pins_state[pin] = state;
-    if(_interrupts[pin] == CHANGE && (_digital_pins_mode_prev[pin] != _digital_pins_mode[pin])) {	_ISR[pin]();}
-    if(_interrupts[pin] == FALLING && (_digital_pins_mode_prev[pin] == true && _digital_pins_mode[pin] == false)) { _ISR[pin]();}
-    if(_interrupts[pin] == RISING && (_digital_pins_mode_prev[pin] == false && _digital_pins_mode[pin] == true)) { _ISR[pin]();}
+    _digital_pins_state_prev[pin] = _digital_pins_state[pin];
+    _digital_pins_state[pin] = state; 
+
+    if(_interrupts[pin] == CHANGE && (_digital_pins_state_prev[pin] != _digital_pins_state[pin])) { _ISR[pin]();}
+    if(_interrupts[pin] == FALLING && (_digital_pins_state_prev[pin] == 1 && _digital_pins_state[pin] == 0)) { _ISR[pin]();}
+    if(_interrupts[pin] == RISING && (_digital_pins_state_prev[pin] == 0 && _digital_pins_state[pin] == 1)) { _ISR[pin]();}
   }
 
   void _setAnalog(int pin, int value) {    
@@ -255,14 +258,34 @@ char* _fractionToChar(double a) {
  
 // DELAY IMPLEMENTATION    
 void delay(int milliseconds){
-  int endingDelay=time(0)+(milliseconds/1000);while(time(0)<=endingDelay){ _handle_jscppInput();}}
+  int endingDelay = millis() + milliseconds;
+  while(millis() <= endingDelay)
+  {
+     _handle_jscppInput();
+  }
+}
 
 // DELAYMICROSECONDS IMPLEMENTATION
-void delayMicroseconds(int milliseconds){delay(milliseconds);}
+void delayMicroseconds(int microseconds){
+  int endingDelay = millis() + microseconds / 1000;
+  while(millis() <= endingDelay)
+  {
+     _handle_jscppInput();
+  }
+}
+
+unsigned long millis() {
+   unsigned long actual = jscpp_time();
+   return actual - _startTime;
+}
+
+unsigned long micros() {  
+  return millis() * 1000;
+}
 
 // MAIN IMPLEMENTATION THAT WILL EXECUTE SETUP AND LOOP
 int main(){
-  int internalLoopSystem = 0;
+  _startTime = jscpp_time();  
   cout << fixed << setprecision(10);
 
   setup();
@@ -272,7 +295,7 @@ int main(){
   }
   return 0;
 }
- `
+`
 
   // ------------------------------------------------------
   // COVERTING THE SKETCH IN A CODE THAT JSCPP CAN EXECUTE
@@ -362,27 +385,27 @@ export const convertSketch = (sketch: string) => {
   sketch = sketch.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bbyte \b/g, "unsigned char ")
 
   // FINDING AND REMOVING ALL THE REFERENCES TO THE STATIC VARIABLES (TEMP WORKAROUND)
-  sketch = sketch.replace(
-    /(?=(?:[^"]*"[^"]*")*[^"]*$)\bstatic unsigned char \b/g,
-    "unsigned char "
-  )
+  sketch = sketch.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bstatic unsigned \b/g, "unsigned ")
   sketch = sketch.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bstatic int \b/g, "int ")
   sketch = sketch.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bstatic long \b/g, "long ")
   sketch = sketch.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bstatic bool \b/g, "bool ")
   sketch = sketch.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bstatic float \b/g, "float ")
-  sketch = sketch.replace(
-    /(?=(?:[^"]*"[^"]*")*[^"]*$)\bstatic double \b/g,
-    "double "
-  )
-  sketch = sketch.replace(
-    /(?=(?:[^"]*"[^"]*")*[^"]*$)\bstatic String \b/g,
-    "String "
-  )
+  sketch = sketch.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bstatic double \b/g,"double ")
+  sketch = sketch.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bstatic String \b/g,"String ")
   sketch = sketch.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bstatic char \b/g, "char ")
-  sketch = sketch.replace(
-    /(?=(?:[^"]*"[^"]*")*[^"]*$)\bstatic unsigned \b/g,
-    "unsigned "
-  )
+
+  sketch = sketch.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bvolatile unsigned char \b/g, "unsigned char ")
+  sketch = sketch.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bvolatile int \b/g, "int ")
+  sketch = sketch.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bvolatile long \b/g, "long ")
+  sketch = sketch.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bvolatile bool \b/g, "bool ")
+  sketch = sketch.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bvolatile float \b/g, "float ")
+  sketch = sketch.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bvolatile double \b/g,"double ")
+  sketch = sketch.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bvolatile String \b/g,"String ")
+  sketch = sketch.replace(/(?=(?:[^"]*"[^"]*")*[^"]*$)\bvolatile char \b/g, "char ")
+  
+  sketch= sketch.replace(/attachInterrupt\(digitalPinToInterrupt\([^)]+\),\s*[ ]*/g, "$&&");
+
+  
 
   // FINDING AND REPLACING ALL THE REFERENCES TO THE STRING TYPE
   sketch = sketch.replace(

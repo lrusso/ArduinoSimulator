@@ -3259,6 +3259,12 @@ const jscppIncludes = {
 				return rt.val(rt.intTypeLiteral, 0);
 			};
 			rt.regFunc(_consolelog, "global", "consolelog", [pchar], rt.intTypeLiteral);
+
+			const _jscpp_time = function (rt, _this) {
+				const val = Date.now() % Math.pow(2, 32);				
+				return rt.val(rt.primitiveType("unsigned long"), val);
+			};
+			rt.regFunc(_jscpp_time, "global", "jscpp_time", [],  rt.primitiveType("unsigned long"));
 		}
 	}
 }
@@ -3274,6 +3280,7 @@ let jscppDebuggerConfig = {
 				});
 		},
 	},
+	unsigned_overflow: "ignore",
 	includes: jscppIncludes,
 	debug: true
 };

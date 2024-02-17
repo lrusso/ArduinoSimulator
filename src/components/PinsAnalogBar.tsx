@@ -37,10 +37,6 @@ const PinsAnalogBar = () => {
                 ))}
               </>
             )}
-
-            <PinsISRLabel/> 
-            <PinsISRButton isr_number={1}/>
-            <PinsISRButton isr_number={2}/>
           </div>
         </div>
       </div>
