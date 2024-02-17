@@ -47,6 +47,7 @@ const bool HIGH = true;
 #define bitToggle(value, bit) ((value) ^= (1UL << (bit)))
 #define bitWrite(value, bit, bitvalue) ((bitvalue) ? bitSet(value, bit) : bitClear(value, bit))
 
+#define UNSET 0
 #define CHANGE 1
 #define FALLING 2
 #define RISING 3
@@ -74,12 +75,12 @@ const int D12 = 12;
 const int D13 = 13;
 const int D14 = 14;
 
-
 // SETUP AND LOOP PROTOTYPES IMPLEMENTATION
 void setup();
 void loop();
 
 // DIGITAL PINS IMPLEMENTATION
+int _digital_pins_mode_prev[54] = {0};
 int _digital_pins_mode[54] = {0};
 bool _digital_pins_state[54] = {false};
 
@@ -154,6 +155,26 @@ int analogRead(int pin){
 // PULSEIN IMPLEMENTATION
 unsigned long pulseIn(int pin, int signal){return 0;}
 
+// INTERRUPTIONS IMPLEMENTATION
+typedef void (*voidFuncPtr)();
+voidFuncPtr _ISR[14];
+int _interrupts[14] = {0};
+
+int digitalPinToInterrupt(int pin)
+{
+  return pin;
+}
+
+void attachInterrupt(int interruptNum, voidFuncPtr isr, int mode)
+{
+  _interrupts[interruptNum] = mode;
+	_ISR[interruptNum] = isr;
+}
+void detachInterrupt(int interruptNum)
+{
+  _interrupts[interruptNum] = 0;
+}
+
 // SERIAL IMPLEMENTATION   
 int _Serial_Available(){ return jscpp_bufferAvailable();}   
 char _Serial_Read(){ return (char)jscpp_bufferReadChar();}    
@@ -210,8 +231,12 @@ char* _fractionToChar(double a) {
   return answer2;
   }
 
-  void _setDigital(int pin, int state) {    
+  void _setDigital(int pin, int state) {
+    _digital_pins_mode_prev[pin] = _digital_pins_state[pin];
     _digital_pins_state[pin] = state;
+    if(_interrupts[pin] == CHANGE && (_digital_pins_mode_prev[pin] != _digital_pins_mode[pin])) {	_ISR[pin]();}
+    if(_interrupts[pin] == FALLING && (_digital_pins_mode_prev[pin] == true && _digital_pins_mode[pin] == false)) { _ISR[pin]();}
+    if(_interrupts[pin] == RISING && (_digital_pins_mode_prev[pin] == false && _digital_pins_mode[pin] == true)) { _ISR[pin]();}
   }
 
   void _setAnalog(int pin, int value) {    

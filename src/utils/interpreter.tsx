@@ -1,6 +1,8 @@
-import { editorEnable, editorGetValue } from "./editor"
+import { editorEnable, editorDisable, editorGetValue } from "./editor"
 import { Constants } from './constants';
 import { convertSketch  } from "./arduinoCodeConverter";
+
+import { useSimulatorContext } from "../contexts/SimulatorContext"
 
 let myWorker: Worker = null
 const myWorkerTimestamp = Date.now()
@@ -11,8 +13,27 @@ const startSimulator = (
   handleSetPinMode: (index: number, mode: number) => void,
   handleSetDigitalPins: (index: number, state: boolean) => void,
   handleSetAnalogPins: (index: number, duty: number) => void,
+  setDigitalPins : any,
+  setAnalogPins : any,
   setOutputData: any
 ) => {
+
+  const initializeDigitalPins = Array(54)
+  .fill(null)
+  .map((_, index) => ({
+    pinNumber: index,
+    isInput: true,
+    state: false,
+  }))
+
+const initializeAnalogPins = Array(14)
+  .fill(null)
+  .map((_, index) => ({
+    pinNumber: index,
+    isInput: true,
+    duty: 0,
+  }))
+
 
   myWorker = new Worker("ArduinoSimulatorInterpreter.js?v=" + myWorkerTimestamp)
     
@@ -25,7 +46,11 @@ const startSimulator = (
       } 
       else if (data.action == Constants.EVENT_SIMULATION_ERROR) {     
         setOutputData("Unable to run Sketch. Could be and error in check or a using funtionality not implemented in simulator\n" + data.value);        
-        stopSimulator();
+        stopSimulator()
+        editorEnable();
+        setDigitalPins(initializeDigitalPins)
+        setAnalogPins(initializeAnalogPins)
+        setSimulatorRunning(false)
         setShowLoading(false);
       } 
       else if (data.action == Constants.EVENT_PIN_MODE) {             
@@ -114,7 +139,7 @@ function handle_launch_simulator() {
 function handle_start_simulation(setShowLoading: (state: boolean) => void, setSimulatorRunning: (state: boolean) => void, setOutputData: any) {
   setShowLoading(false);
   setSimulatorRunning(true);
-  editorEnable();
+  editorDisable();
   setOutputData("");
 }
 

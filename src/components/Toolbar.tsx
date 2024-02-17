@@ -156,12 +156,15 @@ const Toolbar = () => {
       handleSetPinMode,
       handleSetDigitalPins,
       handleSetAnalogPins,
+      setDigitalPins,
+      setAnalogPins,
       setOutputData
     )
   }
 
   const stopSketch = () => {
     stopSimulator()
+    editorEnable()
     setDigitalPins(initializeDigitalPins)
     setAnalogPins(initializeAnalogPins)
     setSimulatorRunning(false)
